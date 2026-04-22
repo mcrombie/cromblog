@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
 import { projects } from "@/content/site";
@@ -57,18 +58,27 @@ export default function ReactChessPage() {
                 Full app
               </dt>
               <dd className="mt-3">
-                <a
-                  href={project.demoHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-pine-800 bg-pine-800 px-5 py-3 text-sm text-pine-50 transition hover:bg-pine-700"
-                >
-                  {project.demoLabel ?? "Open standalone app"}
-                </a>
+                {project.demoHref.startsWith("/") ? (
+                  <Link
+                    href={project.demoHref}
+                    className="inline-flex w-full items-center justify-center rounded-full border border-pine-800 bg-pine-800 px-5 py-3 text-sm text-pine-50 transition hover:bg-pine-700"
+                  >
+                    {project.demoLabel ?? "Open standalone app"}
+                  </Link>
+                ) : (
+                  <a
+                    href={project.demoHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-full items-center justify-center rounded-full border border-pine-800 bg-pine-800 px-5 py-3 text-sm text-pine-50 transition hover:bg-pine-700"
+                  >
+                    {project.demoLabel ?? "Open standalone app"}
+                  </a>
+                )}
               </dd>
               <p className="mt-3 text-sm leading-7 text-pine-700">
                 The embedded board is meant for immediate play inside the post. Use
-                this button to leave the article and open the full standalone build.
+                this button to open a roomier full-page version hosted inside the site.
               </p>
             </div>
           ) : null}
