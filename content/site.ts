@@ -1,7 +1,8 @@
 export type ProjectSlug =
   | "clashvergence"
   | "archivist"
-  | "big-history-of-virginia";
+  | "big-history-of-virginia"
+  | "react-chess";
 
 export type Project = {
   slug: ProjectSlug;
@@ -24,6 +25,7 @@ export const siteMeta = {
 
 export const projectOrder: ProjectSlug[] = [
   "clashvergence",
+  "react-chess",
   "archivist",
   "big-history-of-virginia"
 ];
@@ -42,6 +44,21 @@ export const projects: Record<ProjectSlug, Project> = {
     body: [
       "Clashvergence lives at the meeting point of systems design and historical imagination. It asks what happens when long-running strategic play is paired with narrative retellings that treat each outcome as a remembered past rather than a raw scoreboard.",
       "The project is as interested in legibility as it is in scope. The simulation needs to feel intelligible, while the generated history needs to feel grounded enough that it reads like a chronicle instead of a log."
+    ]
+  },
+  "react-chess": {
+    slug: "react-chess",
+    title: "React-Chess",
+    href: "/projects/react-chess",
+    type: "Legacy rebuild and modernization case study",
+    status: "Playable revamp",
+    summary:
+      "A modern TypeScript rebuild of an older React chess project, embedded directly into the site as a playable article.",
+    focus:
+      "The current emphasis is on contrasting a monolithic learning-era implementation with a cleaner engine-first architecture.",
+    body: [
+      "React-Chess is useful to me because it makes software growth visible. The original version was earnest, ambitious, and increasingly fragile. The rebuild keeps the game itself intact while changing the shape of the code underneath it.",
+      "This page is meant to function as both writeup and artifact. The board below is not a screenshot or a trailer. It is the rebuilt game, running inside the article so the claims about architecture and playability can be tested immediately."
     ]
   },
   archivist: {
@@ -83,4 +100,3 @@ export const homeSections = [
   "This site is a home for writing, history, software, and long-form work that benefits from patience.",
   "Some projects here are technical, some are interpretive, and some live somewhere between system design and narrative craft."
 ];
-
