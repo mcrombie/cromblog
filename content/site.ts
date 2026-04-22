@@ -12,6 +12,8 @@ export type Project = {
   status: string;
   summary: string;
   focus: string;
+  demoHref?: string;
+  demoLabel?: string;
   body: string[];
 };
 
@@ -56,6 +58,8 @@ export const projects: Record<ProjectSlug, Project> = {
       "A modern TypeScript rebuild of an older React chess project, embedded directly into the site as a playable article.",
     focus:
       "The current emphasis is on contrasting a monolithic learning-era implementation with a cleaner engine-first architecture.",
+    demoHref: "http://localhost:5173",
+    demoLabel: "Play full standalone app",
     body: [
       "React-Chess is useful to me because it makes software growth visible. The original version was earnest, ambitious, and increasingly fragile. The rebuild keeps the game itself intact while changing the shape of the code underneath it.",
       "This page is meant to function as both writeup and artifact. The board below is not a screenshot or a trailer. It is the rebuilt game, running inside the article so the claims about architecture and playability can be tested immediately."

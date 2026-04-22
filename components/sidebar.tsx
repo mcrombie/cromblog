@@ -23,7 +23,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-full flex-col rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card lg:sticky lg:top-8 lg:min-h-[calc(100vh-4rem)]">
+    <aside className="flex h-full flex-col rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card lg:fixed lg:inset-y-0 lg:left-0 lg:w-[20rem] lg:rounded-none lg:rounded-r-[2.25rem] lg:border-l-0 lg:px-7 lg:py-8 lg:shadow-[0_24px_60px_rgba(39,52,37,0.12)]">
       <div className="content-flow">
         <Link href="/" className="inline-block">
           <span className="font-serif text-3xl text-ink">Cromblog</span>
@@ -108,4 +108,3 @@ export function Sidebar() {
     </aside>
   );
 }
-

@@ -36,19 +36,42 @@ export default function ReactChessPage() {
       />
 
       <section className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel)] p-6 shadow-card sm:p-8">
-        <dl className="grid gap-6 sm:grid-cols-2">
-          <div>
-            <dt className="text-sm uppercase tracking-[0.18em] text-pine-700">
-              Project type
-            </dt>
-            <dd className="mt-2 text-lg text-ink">{project.type}</dd>
+        <dl className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <dt className="text-sm uppercase tracking-[0.18em] text-pine-700">
+                Project type
+              </dt>
+              <dd className="mt-2 text-lg text-ink">{project.type}</dd>
+            </div>
+            <div>
+              <dt className="text-sm uppercase tracking-[0.18em] text-pine-700">
+                Current focus
+              </dt>
+              <dd className="mt-2 text-lg leading-8 text-ink">{project.focus}</dd>
+            </div>
           </div>
-          <div>
-            <dt className="text-sm uppercase tracking-[0.18em] text-pine-700">
-              Current focus
-            </dt>
-            <dd className="mt-2 text-lg leading-8 text-ink">{project.focus}</dd>
-          </div>
+          {project.demoHref ? (
+            <div className="rounded-3xl border border-[color:var(--border)] bg-white/70 p-4 lg:min-w-[18rem]">
+              <dt className="text-sm uppercase tracking-[0.18em] text-pine-700">
+                Full app
+              </dt>
+              <dd className="mt-3">
+                <a
+                  href={project.demoHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-pine-800 bg-pine-800 px-5 py-3 text-sm text-pine-50 transition hover:bg-pine-700"
+                >
+                  {project.demoLabel ?? "Open standalone app"}
+                </a>
+              </dd>
+              <p className="mt-3 text-sm leading-7 text-pine-700">
+                The embedded board is meant for immediate play inside the post. Use
+                this button to leave the article and open the full standalone build.
+              </p>
+            </div>
+          ) : null}
         </dl>
       </section>
 
