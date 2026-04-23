@@ -53,3 +53,43 @@ a {
   line-height: 1.85;
 }
 
+.article-prose {
+  max-width: 65ch;
+}
+
+.article-prose > * + * {
+  margin-top: 1.25rem;
+}
+
+.article-prose p,
+.article-prose li,
+.article-prose blockquote {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.article-prose h2 {
+  margin-top: 2.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.article-prose ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.article-prose li + li {
+  margin-top: 0.5rem;
+}
+
+.article-prose blockquote {
+  margin-left: 0;
+  padding: 1.1rem 0 1.1rem 1.25rem;
+  border-left: 3px solid rgba(64, 84, 64, 0.25);
+  font-style: italic;
+  color: #415040;
+}
