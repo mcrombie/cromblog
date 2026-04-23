@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { SiteShell } from "@/components/site-shell";
+import { RootShell } from "@/components/root-shell";
 import { siteMeta } from "@/content/site";
 
 import "./globals.css";
@@ -21,9 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SiteShell>{children}</SiteShell>
+        <RootShell>{children}</RootShell>
       </body>
     </html>
   );
 }
-

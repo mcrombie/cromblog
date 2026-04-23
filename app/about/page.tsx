@@ -11,31 +11,32 @@ export default function AboutPage() {
     <div className="content-flow">
       <SectionHeading
         eyebrow="About"
-        title="Work that prefers depth to noise."
-        description="Cromblog is designed as a steady portfolio rather than a feed: a place for projects that span software, history, writing, and the long middle stretch between first idea and finished form."
+        title="About"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       />
 
       <section className="editorial-copy rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card sm:p-8">
         <div className="content-flow">
           <p className="text-base leading-8 text-pine-800">
-            Some work begins as code, some as research, and some as a question
-            that refuses to stay in a single discipline. This site is meant to
-            hold all of those forms without forcing them into a louder shape
-            than they need.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </p>
           <p className="text-base leading-8 text-pine-800">
-            The common thread is duration. These projects reward patience,
-            revision, and a willingness to think across systems, narratives, and
-            historical scale.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
           </p>
           <p className="text-base leading-8 text-pine-800">
-            Over time, Cromblog can grow into a home for essays, project notes,
-            historical writing, and software experiments that deserve more than
-            a single release announcement.
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+            quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt explicabo.
           </p>
         </div>
       </section>
     </div>
   );
 }
-
