@@ -1,4 +1,4 @@
-export type BlogSlug = "test-post";
+export type BlogSlug = "ai-april";
 
 export type BlogPost = {
   slug: BlogSlug;
@@ -9,16 +9,16 @@ export type BlogPost = {
   summary: string;
 };
 
-export const blogOrder: BlogSlug[] = ["test-post"];
+export const blogOrder: BlogSlug[] = ["ai-april"];
 
 export const blogPosts: Record<BlogSlug, BlogPost> = {
-  "test-post": {
-    slug: "test-post",
-    title: "A Test Post for the New Cromblog",
-    href: "/cromblog/test-post",
-    date: "April 23, 2026",
-    readTime: "4 min read",
+  "ai-april": {
+    slug: "ai-april",
+    title: "Rebuilding a Chess App in the Age of AI",
+    href: "/cromblog/ai-april",
+    date: "April 27, 2026",
+    readTime: "2 min read",
     summary:
-      "A placeholder entry to shape the layout, rhythm, and typography for future posts."
+      "Revisiting an old chess app as an exercise in AI-assisted development, and asking what it means when a machine can do in seconds what used to take days."
   }
 };
