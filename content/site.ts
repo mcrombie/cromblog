@@ -1,4 +1,4 @@
-export type ProjectSlug = "react-chess";
+export type ProjectSlug = "react-chess" | "polity";
 
 export type Project = {
   slug: ProjectSlug;
@@ -12,7 +12,7 @@ export const siteMeta = {
   description: "Personal site for writing, projects, and Cromblog."
 };
 
-export const projectOrder: ProjectSlug[] = ["react-chess"];
+export const projectOrder: ProjectSlug[] = ["react-chess", "polity"];
 
 export const projects: Record<ProjectSlug, Project> = {
   "react-chess": {
@@ -20,5 +20,11 @@ export const projects: Record<ProjectSlug, Project> = {
     title: "React-Chess",
     href: "/projects/react-chess",
     summary: "Full implementation of the React chess app."
+  },
+  "polity": {
+    slug: "polity",
+    title: "The Root of Civilization",
+    href: "/projects/polity",
+    summary: "An interactive essay about the origins of agriculture and civilization."
   }
 };

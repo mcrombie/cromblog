@@ -12,7 +12,9 @@ type RootShellProps = {
 
 export function RootShell({ children }: RootShellProps) {
   const pathname = usePathname();
-  const isStandaloneProject = pathname.startsWith("/projects/react-chess");
+  const isStandaloneProject =
+    pathname.startsWith("/projects/react-chess") ||
+    pathname.startsWith("/projects/polity");
 
   if (isStandaloneProject) {
     return <>{children}</>;
