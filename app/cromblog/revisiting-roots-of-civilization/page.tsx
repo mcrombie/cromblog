@@ -119,7 +119,15 @@ export default function RevisitingRootsOfCivilizationPage() {
               My initial careful planning gave way to rapid iteration as Codex
               began introducing features that would have taken weeks to build
               manually. I did not expect to have such a powerful tool for coding
-              in my lifetime. The remarkable thing is how well Clashvergence
+              in my lifetime. The remarkable thing is how well{" "}
+              <a
+                href="https://github.com/mcrombie/Clashvergence/releases/tag/v0.9.0"
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-pine-300 underline-offset-4 hover:text-pine-950"
+              >
+                Clashvergence
+              </a>{" "}
               continued to function each iteration even as I piled on more
               complexity.
             </p>
