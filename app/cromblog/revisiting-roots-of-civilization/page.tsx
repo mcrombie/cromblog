@@ -5,6 +5,7 @@ import Link from "next/link";
 import { blogPosts } from "@/content/blog";
 
 const post = blogPosts["revisiting-roots-of-civilization"];
+const latestUpdate = post.updateDates?.at(-1);
 
 export const metadata: Metadata = {
   title: post.title
@@ -61,9 +62,12 @@ export default function RevisitingRootsOfCivilizationPage() {
             <h1 className="font-serif text-4xl text-ink sm:text-5xl">
               {post.title}
             </h1>
-            <p className="text-sm text-pine-700/80">
-              {post.date} &middot; {post.readTime}
-            </p>
+            <div className="space-y-1 text-sm text-pine-700/80">
+              <p>
+                {post.date} &middot; {post.readTime}
+              </p>
+              {latestUpdate ? <p>Updated {latestUpdate}</p> : null}
+            </div>
           </header>
 
           <hr className="border-[color:var(--border)]" />
@@ -72,7 +76,7 @@ export default function RevisitingRootsOfCivilizationPage() {
             <p>
               Is it possible to simulate the rise and fall of civilizations and
               automatically generate their histories? Ever since playing{" "}
-              <em>Civilization IV: Rhye&#8217;s and Fall of Civilization</em>,
+              <em>Civilization IV: Rhye&#8217;s and Fall of Civilization</em>{" "}
               I have been curious about how computer simulations can be used to
               demonstrate historical processes.
             </p>
@@ -114,11 +118,16 @@ export default function RevisitingRootsOfCivilizationPage() {
             <p>
               My initial careful planning gave way to rapid iteration as Codex
               began introducing features that would have taken weeks to build
-              manually. Honestly, I did not expect to have such a powerful tool
-              for coding in my lifetime. The remarkable thing is how well the
-              program continued to function each iteration even as I piled on
-              more complexity. You can see an example of the working display
-              below.
+              manually. I did not expect to have such a powerful tool for coding
+              in my lifetime. The remarkable thing is how well Clashvergence
+              continued to function each iteration even as I piled on more
+              complexity.
+            </p>
+
+            <p>
+              You can see an example of the working display below as numerous
+              factions rise and fall, with rebel successor states eventually
+              eclipsing the original factions.
             </p>
           </div>
 
@@ -140,12 +149,13 @@ export default function RevisitingRootsOfCivilizationPage() {
                 rel="noreferrer"
                 className="underline decoration-pine-300 underline-offset-4 hover:text-pine-950"
               >
-                Clashvergence
+                the system
               </a>{" "}
               now produces interacting regions and factions, each evolving over
               time. The aim is not just to simulate systems, but to generate
-              histories from them. Each region has its own history, economy, and
-              politics.
+              histories from them. The various factions seen above clash and
+              cooperate over a set period, building infrastructure, forming trade
+              networks, and consolidating political control over time.
             </p>
           </div>
 
@@ -159,9 +169,12 @@ export default function RevisitingRootsOfCivilizationPage() {
 
           <div className="article-prose" style={{ maxWidth: "none" }}>
             <p>
-              The same is true for factions. I am trying to replicate as much of
-              human political economy as I can, with the eventual goal of having
-              each simulation generate its own unique history.
+              Geography is the driving force of faction behavior. Each region
+              has a terrain, climate, and resources. Factions starting in a
+              particular climate or terrain develop an advantage in living in
+              such lands. For example, a faction whose heartland is in cold
+              mountains will have an advantage expanding into and developing
+              similar lands and struggle more to settle in warm plains.
             </p>
           </div>
 
@@ -175,14 +188,7 @@ export default function RevisitingRootsOfCivilizationPage() {
 
           <div className="article-prose" style={{ maxWidth: "none" }}>
             <p>
-              Ultimately, the goal is for every simulation to produce a
-              coherent, readable history written from the perspective of the
-              winning factions, that is, those that survived to write their
-              stories down.
-            </p>
-
-            <p>
-              The old{" "}
+              While the old{" "}
               <a
                 href="https://github.com/mcrombie/polity"
                 target="_blank"
@@ -191,8 +197,12 @@ export default function RevisitingRootsOfCivilizationPage() {
               >
                 Polity code
               </a>{" "}
-              was about the first roots of settled life. Clashvergence is my
-              attempt to see what grows after that.
+              was about the first roots of settled life through agriculture,
+              Clashvergence is my attempt to see what grows after that.
+              Ultimately, the goal is for every simulation to produce a
+              coherent, readable history written from the perspective of the
+              winning factions, that is, those that survived to write their
+              stories down.
             </p>
           </div>
         </div>

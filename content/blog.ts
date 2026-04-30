@@ -5,6 +5,7 @@ export type BlogPost = {
   title: string;
   href: string;
   date: string;
+  updateDates?: string[];
   readTime: string;
   summary: string;
 };
@@ -17,9 +18,10 @@ export const blogOrder: BlogSlug[] = [
 export const blogPosts: Record<BlogSlug, BlogPost> = {
   "revisiting-roots-of-civilization": {
     slug: "revisiting-roots-of-civilization",
-    title: "Revisiting the Roots of Civilization",
+    title: "Simulating Civilizations",
     href: "/cromblog/revisiting-roots-of-civilization",
     date: "April 29, 2026",
+    updateDates: ["April 30th, 2026"],
     readTime: "3 min read",
     summary:
       "Returning to an old civilization-simulation idea with a new AI-assisted system for factions, territories, political economy, and generated histories."
