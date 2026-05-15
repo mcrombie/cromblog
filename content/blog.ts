@@ -1,4 +1,4 @@
-export type BlogSlug = "revisiting-roots-of-civilization" | "ai-april";
+export type BlogSlug = "revisiting-roots-of-civilization" | "ai-april" | "make-believe-may";
 
 export type BlogPost = {
   slug: BlogSlug;
@@ -11,11 +11,21 @@ export type BlogPost = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "make-believe-may",
   "revisiting-roots-of-civilization",
   "ai-april"
 ];
 
 export const blogPosts: Record<BlogSlug, BlogPost> = {
+  "make-believe-may": {
+    slug: "make-believe-may",
+    title: "Make-Believe May",
+    href: "/cromblog/make-believe-may",
+    date: "May 15, 2026",
+    readTime: "5 min read",
+    summary:
+      "Pivoting from AI coding experiments to fiction writing and fantasy worldbuilding—and asking whether code and language models can help turn specific fictional premises into structured, believable worlds."
+  },
   "revisiting-roots-of-civilization": {
     slug: "revisiting-roots-of-civilization",
     title: "Simulating Civilizations",
