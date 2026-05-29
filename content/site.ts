@@ -1,4 +1,4 @@
-export type ProjectSlug = "react-chess" | "polity";
+export type ProjectSlug = "react-chess" | "polity" | "world-builder";
 
 export type Project = {
   slug: ProjectSlug;
@@ -12,7 +12,7 @@ export const siteMeta = {
   description: "Personal site for writing, projects, and Cromblog."
 };
 
-export const projectOrder: ProjectSlug[] = ["react-chess", "polity"];
+export const projectOrder: ProjectSlug[] = ["react-chess", "polity", "world-builder"];
 
 export const projects: Record<ProjectSlug, Project> = {
   "react-chess": {
@@ -26,5 +26,11 @@ export const projects: Record<ProjectSlug, Project> = {
     title: "The Root of Civilization",
     href: "/projects/polity",
     summary: "An interactive essay about the origins of agriculture and civilization."
+  },
+  "world-builder": {
+    slug: "world-builder",
+    title: "World Builder",
+    href: "/projects/world-builder",
+    summary: "Hex map editor with terrain, regions, rivers, and Clashvergence simulation support."
   }
 };

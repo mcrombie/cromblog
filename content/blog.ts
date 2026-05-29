@@ -1,4 +1,4 @@
-export type BlogSlug = "revisiting-roots-of-civilization" | "ai-april" | "make-believe-may";
+export type BlogSlug = "revisiting-roots-of-civilization" | "ai-april" | "make-believe-may" | "simulating-civilizations-ii";
 
 export type BlogPost = {
   slug: BlogSlug;
@@ -11,12 +11,22 @@ export type BlogPost = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "simulating-civilizations-ii",
   "make-believe-may",
   "revisiting-roots-of-civilization",
   "ai-april"
 ];
 
 export const blogPosts: Record<BlogSlug, BlogPost> = {
+  "simulating-civilizations-ii": {
+    slug: "simulating-civilizations-ii",
+    title: "Simulating Civilizations II",
+    href: "/cromblog/simulating-civilizations-ii",
+    date: "May 29, 2026",
+    readTime: "4 min read",
+    summary:
+      "Building a hex-map World Builder app compatible with Clashvergence — giving each simulated history a more believable stage."
+  },
   "make-believe-may": {
     slug: "make-believe-may",
     title: "Make-Believe May",
