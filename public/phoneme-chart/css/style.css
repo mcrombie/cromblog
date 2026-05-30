@@ -1,0 +1,470 @@
+/* ── Reset & variables ───────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:            #1a1f27;
+  --bg-2:          #242c38;
+  --bg-3:          #2c3a4a;
+  --surface:       #1f2835;
+  --border:        #3a4a5c;
+  --text:          #e8ecf0;
+  --text-muted:    #7a90a8;
+  --accent:        #e67e22;
+  --accent-dim:    #b35c0e;
+  --azhoran:       #8e44ad;
+  --azhoran-dim:   #6c3483;
+  --highlight:     rgba(230, 126, 34, 0.18);
+  --dim:           rgba(255,255,255,0.10);
+  --sidebar-w:     260px;
+  --font-ui:       'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-ipa:      'Segoe UI', 'Noto Sans', 'Arial Unicode MS', sans-serif;
+  font-size: 15px;
+}
+
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-ui); }
+
+/* ── App layout ──────────────────────────────────────────────────────────────── */
+
+#app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────────── */
+
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  background: var(--bg-2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 18px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.mode-toggle {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-3);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mode-btn:hover  { border-color: var(--accent); color: var(--text); }
+.mode-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+.category-buttons {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  flex-shrink: 0;
+}
+
+.cat-btn {
+  flex: 1;
+  padding: 5px 4px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-3);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cat-btn:hover  { border-color: var(--text-muted); color: var(--text); }
+.cat-btn.active { background: var(--bg-3); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+.section-label {
+  padding: 10px 14px 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.lang-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 8px 12px;
+}
+.lang-list::-webkit-scrollbar { width: 4px; }
+.lang-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.lang-group-label {
+  padding: 10px 6px 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.lang-btn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 7px 10px;
+  margin-bottom: 2px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.lang-btn:hover  { background: var(--bg-3); border-color: var(--border); }
+.lang-btn.active { background: var(--highlight); border-color: var(--accent); }
+
+.lang-btn-name   { font-weight: 500; }
+.lang-btn-native { font-size: 0.75rem; color: var(--text-muted); }
+
+.lang-btn.is-conlang .lang-btn-name::after {
+  content: ' ✦';
+  color: var(--azhoran);
+  font-size: 0.7rem;
+}
+.lang-btn.lang-ipa { font-weight: 700; color: var(--accent); }
+
+/* ── Main area ───────────────────────────────────────────────────────────────── */
+
+.main-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chart-area {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  background: var(--bg);
+}
+.chart-area::-webkit-scrollbar { width: 6px; height: 6px; }
+.chart-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.desc-area {
+  flex-shrink: 0;
+  height: 180px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+/* ── IPA Atlas table ─────────────────────────────────────────────────────────── */
+
+.chart-scroll { overflow-x: auto; }
+
+.phoneme-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--font-ipa);
+}
+
+.phoneme-table th {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.phoneme-table th:first-child {
+  text-align: left;
+  font-size: 0.7rem;
+  width: 120px;
+}
+
+.phoneme-table td {
+  text-align: center;
+  border: 1px solid var(--border);
+  padding: 4px 6px;
+  min-width: 48px;
+  vertical-align: middle;
+}
+
+/* ── Phoneme tokens in atlas ────────────────────────────────────────────────── */
+
+.phoneme-token {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.12s;
+  min-width: 32px;
+}
+.phoneme-token:hover { background: var(--bg-3); border-color: var(--accent); }
+.phoneme-token:active { transform: scale(0.93); }
+
+.ipa-symbol {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.rom-label {
+  font-size: 0.62rem;
+  color: var(--accent);
+  margin-top: 1px;
+}
+
+.phoneme-token.is-affricate .ipa-symbol { font-size: 1rem; }
+
+.phoneme-token.lang-active { }
+.phoneme-token.lang-dim .ipa-symbol { color: rgba(255,255,255,0.22); }
+.phoneme-token.lang-dim:hover .ipa-symbol { color: var(--text-muted); }
+
+/* ── Description panel ───────────────────────────────────────────────────────── */
+
+.description-panel { display: flex; flex-direction: column; gap: 8px; }
+
+.hint { color: var(--text-muted); font-style: italic; }
+
+.desc-symbol {
+  font-family: var(--font-ipa);
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--accent);
+  float: left;
+  margin-right: 16px;
+}
+
+.desc-name { font-size: 1rem; font-weight: 600; }
+
+.audio-btn {
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.8rem;
+  cursor: pointer;
+  width: fit-content;
+}
+.audio-btn:hover { background: var(--accent); color: #fff; }
+
+.desc-lang-section { margin-top: 4px; }
+.desc-label { color: var(--text-muted); font-size: 0.82rem; }
+
+.native-script {
+  font-size: 1.1rem;
+  color: var(--text);
+  direction: inherit;
+}
+
+.desc-examples { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px; }
+.example-item  { font-size: 0.82rem; }
+.example-word  { font-weight: 600; color: var(--text); }
+.example-gloss { color: var(--text-muted); margin-left: 4px; }
+
+.desc-absent { font-style: italic; color: var(--text-muted); font-size: 0.85rem; }
+
+.audio-attr { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+.audio-attr a { color: var(--accent); }
+
+/* ── Phonology view ───────────────────────────────────────────────────────────── */
+
+.hint-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.phonology-view {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.phon-header {
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 8px;
+}
+
+.phon-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.phon-name-row h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.phon-native-name {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+
+.conlang-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: var(--azhoran-dim);
+  color: #e0c0f8;
+  letter-spacing: 0.05em;
+}
+
+.phon-family {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.phon-section {
+  padding: 20px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+.phon-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
+}
+
+/* Phoneme grid */
+.phon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.phon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 72px;
+  transition: all 0.12s;
+}
+.phon-card.has-audio { cursor: pointer; }
+.phon-card.has-audio:hover { border-color: var(--accent); background: var(--bg-3); }
+
+.phon-ipa    { font-family: var(--font-ipa); font-size: 1.5rem; color: var(--text); }
+.phon-rom    { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+.phon-native { font-size: 1rem; color: var(--text-muted); }
+.phon-example { font-size: 0.7rem; color: var(--text-muted); text-align: center; }
+.phon-gloss { display: block; font-style: italic; }
+
+/* Script section */
+.script-section { }
+.script-meta { font-size: 0.82rem; color: var(--accent); margin-bottom: 8px; }
+.script-desc { font-size: 0.88rem; line-height: 1.6; color: var(--text); }
+
+.char-table-details { margin-top: 12px; }
+.char-table-details summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 4px 0;
+  list-style: none;
+}
+.char-table-details summary:hover { color: var(--text); }
+.char-table-details summary::before { content: '▶ '; font-size: 0.65rem; }
+.char-table-details[open] summary::before { content: '▼ '; }
+
+.char-table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.82rem;
+}
+.char-table th {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.char-table td { padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.char-glyph { font-family: var(--font-ipa); font-size: 1.1rem; color: var(--accent); font-weight: 700; }
+
+/* Features */
+.feature-item { margin-bottom: 16px; }
+.feature-item strong { display: block; color: var(--text); margin-bottom: 4px; font-size: 0.9rem; }
+.feature-item p { font-size: 0.85rem; line-height: 1.65; color: var(--text-muted); }
+
+/* Context (conlangs) */
+.context-section p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-style: italic;
+  border-left: 3px solid var(--azhoran);
+  padding-left: 14px;
+}
+
+/* ── RTL text support ────────────────────────────────────────────────────────── */
+
+.phon-native[lang="ar"], .native-script[lang="ar"] {
+  direction: rtl;
+  font-size: 1.3rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  :root { --sidebar-w: 200px; }
+  .chart-area { padding: 12px; }
+  .phoneme-table th:first-child { width: 80px; }
+  .phoneme-table th { font-size: 0.62rem; }
+  .ipa-symbol { font-size: 1.05rem; }
+}
+
+@media (max-width: 520px) {
+  #app { flex-direction: column; }
+  .sidebar { width: 100%; min-width: 0; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .lang-list { max-height: 120px; }
+  .main-area { height: calc(100vh - 200px); }
+}
