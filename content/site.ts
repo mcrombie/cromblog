@@ -5,7 +5,8 @@ export type ProjectSlug =
   | "phoneme-chart"
   | "world-builder"
   | "react-chess"
-  | "polity";
+  | "polity"
+  | "pomodoro-clock";
 
 export type ProjectLink = {
   label: string;
@@ -42,7 +43,8 @@ export const projectOrder: ProjectSlug[] = [
   "phoneme-chart",
   "world-builder",
   "react-chess",
-  "polity"
+  "polity",
+  "pomodoro-clock"
 ];
 
 export const projects: Record<ProjectSlug, Project> = {
@@ -146,5 +148,23 @@ export const projects: Record<ProjectSlug, Project> = {
       { label: "View GitHub repo", href: "https://github.com/mcrombie/polity", external: true }
     ],
     blogSeries: "simulating-civilizations"
+  },
+  "pomodoro-clock": {
+    slug: "pomodoro-clock",
+    title: "Pomodoro Clock",
+    pitch:
+      "Pomodoro Clock is a focus timer with a lava lamp background that morphs from dark green to red as your session counts down.",
+    summary:
+      "A rebuilt Pomodoro timer with an SVG progress ring, CSS metaball lava lamp art, dark/light themes, Web Audio API alerts, browser notifications, localStorage persistence, and automatic long-break cycles.",
+    stack: ["React", "TypeScript", "Vite", "Web Audio API", "CSS animations"],
+    image: {
+      src: "/pomodoro-clock/preview.png",
+      alt: "Pomodoro Clock showing a 25-minute session timer with a green lava lamp background",
+      width: 1280,
+      height: 800
+    },
+    links: [
+      { label: "Open live demo", href: "/pomodoro-clock/index.html" }
+    ]
   }
 };
