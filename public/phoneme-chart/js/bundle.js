@@ -105,7 +105,8 @@
         title: "Lack of phonemic length",
         description: 'English does not use vowel length as a phoneme \u2014 the distinction between "long" and "short" vowels in English spelling refers to vowel quality, not duration.'
       }
-    ]
+    ],
+    historicalContext: "English descends from West Germanic dialects brought to Britain by Anglo-Saxon settlers in the 5th\u20137th centuries. Viking settlement introduced heavy Norse influence, and the Norman Conquest of 1066 flooded the language with French vocabulary, giving English its characteristic layer of Latinate synonyms alongside Germanic ones (ask/inquire, begin/commence). The Great Vowel Shift (c. 1400\u20131700) dramatically changed pronunciation while spelling remained largely fixed, explaining many of the mismatches between written and spoken English today. Further borrowing from Latin, Greek, and eventually languages worldwide has made English's lexicon one of the largest of any language."
   };
 
   // src/data/languages/spanish.ts
@@ -158,7 +159,8 @@
         title: "Dialectal TH",
         description: 'Castilian Spanish uses the voiceless dental fricative /\u03B8/ for the letters "c" (before e/i) and "z". Latin American and Andalusian Spanish merge these to /s/ \u2014 a feature called "seseo." Both are standard in their regions.'
       }
-    ]
+    ],
+    historicalContext: "Spanish descends from Vulgar Latin, brought to the Iberian Peninsula by Roman soldiers and settlers from the 3rd century BC onward. The Visigoths' Germanic influence was phonologically light, but the Moorish period (711\u20131492 AD) left a rich Arabic substrate \u2014 around 4,000 Spanish words derive from Arabic, including \xE1lgebra, alcohol, az\xFAcar, and many place names. The modern standard is based on Castilian, the dialect that emerged from the Christian kingdoms of northern Iberia and spread south with the Reconquista. Spanish also absorbed thousands of words from Nahuatl, Quechua, and other indigenous American languages following the 16th-century colonial expansion."
   };
 
   // src/data/languages/arabic.ts
@@ -223,7 +225,8 @@
         title: "Abjad writing",
         description: "Standard written Arabic omits short vowels entirely. A native reader supplies them from context and root knowledge. This means the same string of consonants can represent several words \u2014 disambiguation comes from meaning and grammar, not from the letters on the page."
       }
-    ]
+    ],
+    historicalContext: "Arabic belongs to the Semitic branch of the Afro-Asiatic family, a group that includes Hebrew, Amharic, and the ancient languages Akkadian and Phoenician. Classical Arabic was codified through the pre-Islamic poetic tradition and then fixed by the text of the Quran (7th century AD), giving the written language extraordinary stability over fourteen centuries. Modern Standard Arabic (MSA) is a modernized form of Classical Arabic used in formal writing and broadcast media across the Arab world. The spoken vernaculars \u2014 Egyptian, Levantine, Moroccan, and others \u2014 diverge considerably from MSA and from each other, to the point of limited mutual intelligibility at the extremes."
   };
 
   // src/data/languages/japanese.ts
@@ -285,7 +288,8 @@
         title: "Minimal consonant inventory",
         description: "Japanese has fewer consonant phonemes than almost any other major language \u2014 no voiced fricatives except /z/, no /\u03B8/, no /v/ natively, no /l/. This simplicity is counterbalanced by a complex morphology and the three-script writing system."
       }
-    ]
+    ],
+    historicalContext: "Japanese belongs to the Japonic family and has no confirmed relatives beyond its close sister Ryukyuan. Sustained contact with China from the 5th century onward brought massive Chinese influence: Chinese characters (kanji) were adopted to write the language, along with thousands of Sino-Japanese vocabulary items that still coexist with native Japanese words. The two syllabaries, hiragana and katakana, were developed in the 9th century as phonetic complements to kanji. A second major wave of foreign borrowing followed Japan's opening to the West in the Meiji era (1868), and English loanwords (gairaigo) have continued accumulating through the 20th and 21st centuries, now numbering in the tens of thousands."
   };
 
   // src/data/languages/hindi.ts
@@ -351,7 +355,8 @@
         title: "Devanagari abugida structure",
         description: "Each Devanagari consonant carries an inherent /a/ sound unless modified. A vowel diacritic replaces the inherent vowel: \u0915 = ka, \u0915\u093F = ki, \u0915\u094B = ko. The vir\u0101ma mark (\u094D) silences the inherent vowel for consonant clusters: \u0915\u094D\u0924 = kta (written kt)."
       }
-    ]
+    ],
+    historicalContext: "Hindi descends from Sanskrit via the Prakrits \u2014 the vernacular dialects of ancient India \u2014 and the later Apabhramsha stage. The modern standard is based on the Khari Boli dialect spoken around Delhi and the western Gangetic Plain. Hindi and Urdu are essentially the same spoken language (Hindustani), diverging mainly in their literary registers: Hindi draws formal vocabulary from Sanskrit, while Urdu draws from Persian and Arabic. Standard Hindi was codified in the 19th and early 20th centuries alongside the independence movement, and after 1947 it became one of the official languages of India. The Devanagari script used for Hindi is also the writing system for Sanskrit, Marathi, and Nepali."
   };
 
   // src/data/languages/russian.ts
@@ -411,7 +416,8 @@
         title: "Vowel reduction",
         description: "Unstressed vowels in Russian are significantly reduced. The letter \u043E in an unstressed syllable is usually pronounced as /\u0250/ (near the /a/ sound). The letter \u0435 unstressed becomes /\u026A/. This means the same word sounds differently depending on which syllable is stressed \u2014 stress is lexical and must be memorized."
       }
-    ]
+    ],
+    historicalContext: "Russian is an East Slavic language, branching from the same Old East Slavic spoken in Kievan Rus' (9th\u201313th centuries) that also gave rise to Ukrainian and Belarusian. The Moscow dialect gained prestige as the Muscovite state expanded, and by the 17th century a Moscow-based written standard was emerging. Peter the Great's Westernization reforms in the early 18th century replaced Church Slavonic as the literary language with a secular standard, and introduced a wave of Western European loanwords in technology, government, and science. The 1917 spelling reform after the Russian Revolution simplified the alphabet, removing four letters that had become etymological relics."
   };
 
   // src/data/languages/german.ts
@@ -478,7 +484,8 @@
         title: "Final devoicing",
         description: 'All voiced obstruents (b, d, g, v, z) become voiceless at the end of a syllable. "Rad" (wheel, /d/ at end) is pronounced /rat/. When a suffix follows: "R\xE4der" (wheels) restores the /d/. This explains otherwise puzzling spelling/pronunciation pairs.'
       }
-    ]
+    ],
+    historicalContext: "German is a West Germanic language whose defining sound change is the High German Consonant Shift (c. 500\u2013700 AD), which systematically shifted stops \u2014 turning /p/ to /ff/ or /pf/, /t/ to /ss/ or /z/, and /k/ to /x/ in certain positions. This is what separates High German from Low German, Dutch, and English (compare German machen with English make, or German Wasser with English water). The modern written standard owes much to Martin Luther's Bible translation (1522\u20131534), which drew on a broadly intelligible East Central German to reach the widest possible audience. German spelling was last formally reformed in 1996, reducing some of the more irregular uses of \xDF."
   };
 
   // src/data/languages/french.ts
@@ -548,7 +555,8 @@
         title: "Uvular R",
         description: "Like German, standard French /r/ is realized as a voiced uvular fricative /\u0281/ \u2014 produced at the back of the mouth where the uvula meets the back of the tongue. This is quite different from Spanish or Italian /r/ and is one of the most recognizable features of the French accent."
       }
-    ]
+    ],
+    historicalContext: "French descends from Vulgar Latin, brought to Gaul by Roman conquest from the 1st century BC. The Frankish conquest in the 5th century gave the language its name but had minimal phonological impact. Old French (9th\u201313th centuries) developed into two dialect groups: the northern langue d'o\xEFl and the southern langue d'oc (modern Occitan). The Parisian dialect, Francien, gradually became the prestige form, and the Ordinance of Villers-Cotter\xEAts (1539) made French the sole language of royal administration. The Acad\xE9mie fran\xE7aise, founded in 1635, has overseen the official standard ever since. French colonial expansion spread the language to the Americas, Africa, and Southeast Asia, and today it is spoken as an official language in over 29 countries."
   };
 
   // src/data/languages/chinese.ts
@@ -610,7 +618,8 @@
         title: "Retroflex and alveolo-palatal series",
         description: "Mandarin has two series of sibilants that English conflates: retroflex (zh, ch, sh, r \u2014 tongue curled back) and alveolo-palatal (j, q, x \u2014 tongue at the palate). These are allophones in certain dialects but phonemically distinct in Standard Mandarin. The retroflex series occurs before a, e, o, u; the palatal series before i and \xFC."
       }
-    ]
+    ],
+    historicalContext: 'Chinese is attested for over 3,000 years, with the earliest written records found on oracle bones from the Shang dynasty (c. 1250 BC). Classical Chinese, the written literary standard, remained largely unchanged for two millennia while spoken dialects diverged. Mandarin is based on the dialect of the Beijing region, which became the prestige variety during the Ming and Qing dynasties \u2014 the term "Mandarin" derives from a Portuguese adaptation of the Malay word for a Chinese official. Modern Standard Chinese (P\u01D4t\u014Dnghu\xE0) was formally codified in the 20th century and promotes the Beijing phonology as the national standard. The Pinyin romanization system was standardized in 1958 to aid literacy and foreign-language learning.'
   };
 
   // src/data/languages/mittoli.ts
@@ -1772,6 +1781,17 @@
     }
     if (lang.specialFeatures && lang.specialFeatures.length > 0) {
       view.appendChild(specialFeaturesSection(lang.specialFeatures));
+    }
+    if (lang.historicalContext) {
+      const section = document.createElement("section");
+      section.className = "phon-section context-section";
+      const h = document.createElement("h3");
+      h.textContent = "Historical Context";
+      section.appendChild(h);
+      const p = document.createElement("p");
+      p.textContent = lang.historicalContext;
+      section.appendChild(p);
+      view.appendChild(section);
     }
     if (lang.worldContext) {
       const section = document.createElement("section");

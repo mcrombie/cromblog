@@ -1,5 +1,4 @@
 export type BlogSlug =
-  | "pomodoro-clock"
   | "revisiting-roots-of-civilization"
   | "ai-april"
   | "make-believe-may"
@@ -51,7 +50,6 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
-  "pomodoro-clock",
   "interactive-phoneme-chart",
   "simulating-civilizations-ii",
   "make-believe-may",
@@ -60,25 +58,15 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
-  "pomodoro-clock": {
-    slug: "pomodoro-clock",
-    title: "Rebuilding a Pomodoro Clock",
-    href: "/cromblog/pomodoro-clock",
-    status: "draft",
-    readTime: "3 min read",
-    series: "rebuilding-old-apps",
-    summary:
-      "A draft on revisiting an old FreeCodeCamp Pomodoro timer: preserving the charm of the original clock, naming the technical debt, and preparing a cleaner rebuild."
-  },
   "interactive-phoneme-chart": {
     slug: "interactive-phoneme-chart",
     title: "Rebuilding an Interactive Phoneme Chart",
     href: "/cromblog/interactive-phoneme-chart",
-    status: "draft",
+    date: "June 4, 2026",
     readTime: "3 min read",
     series: "rebuilding-old-apps",
     summary:
-      "A draft on revisiting an early IPA chart project: preserving the original idea, naming its rough edges, and preparing to turn it into a better language-learning tool."
+      "Revisiting an early IPA chart: cleaning up the data model, adding seven real languages with historical context, and introducing five constructed languages from the Azhora worldbuilding project."
   },
   "simulating-civilizations-ii": {
     slug: "simulating-civilizations-ii",
