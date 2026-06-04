@@ -12,6 +12,14 @@ export type BlogSeries = {
   title: string;
 };
 
+export type BlogPostImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  unoptimized?: boolean;
+};
+
 export type BlogPostBase = {
   slug: BlogSlug;
   title: string;
@@ -20,6 +28,7 @@ export type BlogPostBase = {
   readTime: string;
   summary: string;
   series?: BlogSeriesSlug;
+  image?: BlogPostImage;
 };
 
 export type PublishedBlogPost = BlogPostBase & {
@@ -66,7 +75,13 @@ export const blogPosts = {
     readTime: "3 min read",
     series: "rebuilding-old-apps",
     summary:
-      "Revisiting an early IPA chart: cleaning up the data model, adding seven real languages with historical context, and introducing five constructed languages from the Azhora worldbuilding project."
+      "Revisiting an early IPA chart: cleaning up the data model, adding seven real languages with historical context, and introducing five constructed languages from the Azhora worldbuilding project.",
+    image: {
+      src: "/cromblog/interactive-phoneme-chart/upgraded-phoneme-chart.png",
+      alt: "The upgraded Interactive Phoneme Chart showing the IPA Atlas view with language sidebar",
+      width: 1400,
+      height: 860
+    }
   },
   "simulating-civilizations-ii": {
     slug: "simulating-civilizations-ii",
@@ -76,7 +91,14 @@ export const blogPosts = {
     readTime: "4 min read",
     series: "simulating-civilizations",
     summary:
-      "Building a hex-map World Builder app compatible with Clashvergence — giving each simulated history a more believable stage."
+      "Building a hex-map World Builder app compatible with Clashvergence — giving each simulated history a more believable stage.",
+    image: {
+      src: "/cromblog/simulating-civilizations-ii/hex-simulation.gif",
+      alt: "Animated hex map showing a Clashvergence simulation running on a World Builder map",
+      width: 998,
+      height: 612,
+      unoptimized: true
+    }
   },
   "make-believe-may": {
     slug: "make-believe-may",
@@ -85,7 +107,13 @@ export const blogPosts = {
     date: "May 15, 2026",
     readTime: "5 min read",
     summary:
-      "Pivoting from AI coding experiments to fiction writing and fantasy worldbuilding—and asking whether code and language models can help turn specific fictional premises into structured, believable worlds."
+      "Pivoting from AI coding experiments to fiction writing and fantasy worldbuilding—and asking whether code and language models can help turn specific fictional premises into structured, believable worlds.",
+    image: {
+      src: "/cromblog/simulating-civilizations-ii/azhora-map.png",
+      alt: "The Azhora continent map used for worldbuilding",
+      width: 1916,
+      height: 1050
+    }
   },
   "revisiting-roots-of-civilization": {
     slug: "revisiting-roots-of-civilization",
@@ -96,7 +124,14 @@ export const blogPosts = {
     readTime: "3 min read",
     series: "simulating-civilizations",
     summary:
-      "Returning to an old civilization-simulation idea with a new AI-assisted system for factions, territories, political economy, and generated histories."
+      "Returning to an old civilization-simulation idea with a new AI-assisted system for factions, territories, political economy, and generated histories.",
+    image: {
+      src: "/cromblog/revisiting-roots/polity-fertile-crescent.gif",
+      alt: "Animated Root of Civilization simulation showing settlements forming along rivers",
+      width: 900,
+      height: 620,
+      unoptimized: true
+    }
   },
   "ai-april": {
     slug: "ai-april",
@@ -106,7 +141,14 @@ export const blogPosts = {
     readTime: "2 min read",
     series: "rebuilding-old-apps",
     summary:
-      "Revisiting an old chess app as an exercise in AI-assisted development, and asking what it means when a machine can do in seconds what used to take days."
+      "Revisiting an old chess app as an exercise in AI-assisted development, and asking what it means when a machine can do in seconds what uses to take days.",
+    image: {
+      src: "/chess-gameplay.gif",
+      alt: "Animated chess gameplay on the rebuilt React chess board",
+      width: 480,
+      height: 480,
+      unoptimized: true
+    }
   }
 } satisfies Record<BlogSlug, BlogPost>;
 
