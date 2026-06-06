@@ -11,29 +11,37 @@ export default function AboutPage() {
     <div className="content-flow">
       <SectionHeading
         eyebrow="About"
-        title="About"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        title="Michael Crombie"
+        description="Software developer with a background in building interactive tools, simulations, and editorial experiences from the ground up."
       />
 
       <section className="editorial-copy rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card sm:p-8">
         <div className="content-flow">
           <p className="text-base leading-8 text-pine-800">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            I&apos;m a software developer. I build things across the stack —
+            from Python simulations to TypeScript/React applications — with a
+            particular interest in projects that have a strong interactive or
+            experiential quality. The work on this site reflects that range: a
+            hex-map worldbuilding editor, a phoneme chart that lets you hear the
+            sounds of language, a civilization simulation built in layers over
+            several months.
           </p>
           <p className="text-base leading-8 text-pine-800">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            The throughline in most of my projects is curiosity: I tend to start
+            with a question I can&apos;t answer without building something. That
+            process produces both the project itself and the writing that
+            documents it, which is why this site combines a portfolio and a
+            blog.
           </p>
           <p className="text-base leading-8 text-pine-800">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo.
+            You can reach me at{" "}
+            <a
+              href="mailto:mcrombie1994@gmail.com"
+              className="underline underline-offset-2 hover:opacity-70"
+            >
+              mcrombie1994@gmail.com
+            </a>
+            .
           </p>
         </div>
       </section>
