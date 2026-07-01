@@ -3,7 +3,8 @@ export type BlogSlug =
   | "ai-april"
   | "make-believe-may"
   | "simulating-civilizations-ii"
-  | "interactive-phoneme-chart";
+  | "interactive-phoneme-chart"
+  | "simulating-civilizations-iii";
 
 export type BlogSeriesSlug = "rebuilding-old-apps" | "simulating-civilizations";
 
@@ -59,6 +60,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "simulating-civilizations-iii",
   "interactive-phoneme-chart",
   "simulating-civilizations-ii",
   "make-believe-may",
@@ -67,6 +69,22 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "simulating-civilizations-iii": {
+    slug: "simulating-civilizations-iii",
+    title: "Simulating Civilizations III",
+    href: "/cromblog/simulating-civilizations-iii",
+    date: "June 30, 2026",
+    readTime: "12 min read",
+    series: "simulating-civilizations",
+    summary:
+      "Integrating Clashvergence and World Builder on the Azhora map, with Koppen climate and map-linked lore. Two example runs — one single-civilization, one staged eight-civilization arrival — show a reworked narrative generator that positions a Boueni-descended chronicler inside the world.",
+    image: {
+      src: "/cromblog/simulating-civilizations-iii/azhora-450-turn.png",
+      alt: "World Builder simulation view showing Azhora at turn 450",
+      width: 1920,
+      height: 1080
+    }
+  },
   "interactive-phoneme-chart": {
     slug: "interactive-phoneme-chart",
     title: "Rebuilding an Interactive Phoneme Chart",
