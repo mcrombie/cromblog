@@ -4,7 +4,8 @@ export type BlogSlug =
   | "make-believe-may"
   | "simulating-civilizations-ii"
   | "interactive-phoneme-chart"
-  | "simulating-civilizations-iii";
+  | "simulating-civilizations-iii"
+  | "cradle-of-the-empire";
 
 export type BlogSeriesSlug = "rebuilding-old-apps" | "simulating-civilizations";
 
@@ -60,6 +61,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "cradle-of-the-empire",
   "simulating-civilizations-iii",
   "interactive-phoneme-chart",
   "simulating-civilizations-ii",
@@ -69,6 +71,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "cradle-of-the-empire": {
+    slug: "cradle-of-the-empire",
+    title: "Cradle of the Empire: A Big History of Virginia",
+    href: "/cromblog/cradle-of-the-empire",
+    date: "July 4, 2026",
+    readTime: "2 min read",
+    summary:
+      "After four years of work, the history book I have wanted to write since childhood is complete, and the ebook edition is ready to order. Print and hardcover editions are on the way.",
+    image: {
+      src: "/cromblog/cradle-of-the-empire/cover.jpg",
+      alt: "Cover art for Cradle of the Empire: A Big History of Virginia, showing a great oak on a riverbank with tall ships passing on the water beyond",
+      width: 1792,
+      height: 2688
+    }
+  },
   "simulating-civilizations-iii": {
     slug: "simulating-civilizations-iii",
     title: "Simulating Civilizations III",

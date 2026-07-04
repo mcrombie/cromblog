@@ -1,6 +1,7 @@
 import type { BlogSeriesSlug } from "@/content/blog";
 
 export type ProjectSlug =
+  | "big-history-of-virginia"
   | "clashvergence"
   | "phoneme-chart"
   | "world-builder"
@@ -39,6 +40,7 @@ export const siteMeta = {
 };
 
 export const projectOrder: ProjectSlug[] = [
+  "big-history-of-virginia",
   "clashvergence",
   "phoneme-chart",
   "world-builder",
@@ -48,6 +50,25 @@ export const projectOrder: ProjectSlug[] = [
 ];
 
 export const projects: Record<ProjectSlug, Project> = {
+  "big-history-of-virginia": {
+    slug: "big-history-of-virginia",
+    title: "Cradle of the Empire: A Big History of Virginia",
+    pitch:
+      "Cradle of the Empire is a big history of Virginia, tracing the land and its people from deep geological time through to the present.",
+    summary:
+      "A four-year history project spanning Virginia's geological formation, deep human history, and political development, published as a standalone book rather than software.",
+    stack: ["Research", "Long-form writing", "Editing", "Self-publishing"],
+    image: {
+      src: "/cromblog/cradle-of-the-empire/cover.jpg",
+      alt: "Cover art for Cradle of the Empire: A Big History of Virginia, showing a great oak on a riverbank with tall ships passing on the water beyond",
+      width: 1792,
+      height: 2688
+    },
+    links: [
+      { label: "Order the ebook", href: "https://www.amazon.com/dp/B0H6VNH94K", external: true },
+      { label: "Read the announcement", href: "/cromblog/cradle-of-the-empire" }
+    ]
+  },
   "clashvergence": {
     slug: "clashvergence",
     title: "Clashvergence",
