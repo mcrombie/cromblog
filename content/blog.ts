@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "building-an-llm-from-scratch"
   | "revisiting-roots-of-civilization"
   | "ai-april"
   | "make-believe-may"
@@ -61,6 +62,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "building-an-llm-from-scratch",
   "cradle-of-the-empire",
   "simulating-civilizations-iii",
   "interactive-phoneme-chart",
@@ -71,6 +73,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "building-an-llm-from-scratch": {
+    slug: "building-an-llm-from-scratch",
+    title: "Building an LLM from Scratch",
+    href: "/cromblog/building-an-llm-from-scratch",
+    date: "July 9, 2026",
+    readTime: "5 min read",
+    summary:
+      "Working through Sebastian Raschka's book turned LLMs from something magical into something mechanical: tokenizers, tensor shapes, training loops, fine-tuning, evaluation, and a codebase that became a map.",
+    image: {
+      src: "/cromblog/building-an-llm-from-scratch/software-symbol.png",
+      alt: "Minimal black line symbol representing software work, with three connected nodes forming a triangular structure",
+      width: 1122,
+      height: 1402
+    }
+  },
   "cradle-of-the-empire": {
     slug: "cradle-of-the-empire",
     title: "Cradle of the Empire: A Big History of Virginia",
