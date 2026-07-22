@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { VibeCycleButton } from "@/components/vibe-cycle-button";
 import {
   blogPosts,
   publishedBlogOrder,
@@ -9,25 +10,35 @@ import {
 
 const latestPost = blogPosts[publishedBlogOrder[0]] as PublishedBlogPost;
 
+const homeHeroImages = [
+  { vibe: "forest", src: "/home/forest-hero.png" },
+  { vibe: "whimsical", src: "/home/cosmic-almanac-hero.png" },
+  { vibe: "codex", src: "/home/illuminated-codex-still-life.png" },
+  { vibe: "ember", src: "/home/ember-ink-hero.png" },
+  { vibe: "ocean", src: "/home/tidal-archive-hero.png" }
+] as const;
+
 export default function HomePage() {
   return (
     <div className="home-page">
       <section className="home-hero">
-        <Image
-          src="/home/forest-hero.png"
-          alt=""
-          fill
-          priority
-          sizes="(min-width: 1024px) calc(100vw - 19.25rem), 100vw"
-          className="home-hero-image"
-        />
+        {homeHeroImages.map(({ vibe, src }) => (
+          <Image
+            key={vibe}
+            src={src}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) calc(100vw - 19.25rem), 100vw"
+            className={`home-hero-image home-hero-image-vibe home-hero-image-${vibe}`}
+          />
+        ))}
 
         <div className="home-hero-copy">
           <p className="home-kicker">Michael Crombie / Digital workshop</p>
-          <h1 className="home-title">Systems, stories, and worlds in motion.</h1>
+          <h1 className="home-title">Cromblog</h1>
           <p className="home-lede">
             A portfolio and writing space for a software developer and writer
-            exploring simulations, language, history, and the craft of building.
+            exploring simulations, language, and history.
           </p>
           <div className="home-actions">
             <Link href="/cromblog" className="folio-button folio-button-primary">
@@ -36,13 +47,49 @@ export default function HomePage() {
             <Link href="/projects" className="folio-button">
               View Projects
             </Link>
+            <Link href="/about" className="folio-button">
+              Contact the Developer
+            </Link>
+            <VibeCycleButton variant="inline" />
           </div>
         </div>
       </section>
 
+      <section
+        className="home-panel featured-project"
+        aria-labelledby="featured-project-heading"
+      >
+        <div className="featured-project-header">
+          <h2 className="home-panel-heading" id="featured-project-heading">
+            Featured project
+          </h2>
+          <span className="featured-project-status" aria-label="Coming soon">
+            Soon...
+          </span>
+        </div>
+
+        <article className="featured-project-card">
+          <div className="featured-project-copy">
+            <p className="featured-project-kicker">In development</p>
+            <h3 className="featured-project-title">Archivist</h3>
+            <p className="featured-project-summary" lang="la">
+              Historia testis temporum, lux veritatis, vita memoriae, magistra
+              vitae, nuntia vetustatis.
+            </p>
+          </div>
+
+          <div className="featured-project-visual" aria-hidden="true">
+            <span className="featured-project-monogram">A</span>
+            <span className="featured-project-index">
+              Project record forthcoming
+            </span>
+          </div>
+        </article>
+      </section>
+
       <div className="home-grid">
         <section className="home-panel">
-          <h2 className="home-panel-heading">Latest dispatch</h2>
+          <h2 className="home-panel-heading">Latest post</h2>
           <article className="latest-dispatch">
             {latestPost.image ? (
               <div className="latest-dispatch-image">

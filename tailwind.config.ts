@@ -29,21 +29,8 @@ const config: Config = {
         card: "0 24px 70px rgba(0, 0, 0, 0.34)"
       },
       fontFamily: {
-        serif: [
-          "\"Iowan Old Style\"",
-          "\"Palatino Linotype\"",
-          "Palatino",
-          "\"Book Antiqua\"",
-          "Georgia",
-          "serif"
-        ],
-        sans: [
-          "\"Avenir Next\"",
-          "Avenir",
-          "\"Segoe UI\"",
-          "system-ui",
-          "sans-serif"
-        ]
+        serif: ["var(--font-display)"],
+        sans: ["var(--font-ui)"]
       }
     }
   },
