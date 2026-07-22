@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "primeproofing-beyond-vibe-coding"
   | "building-an-llm-from-scratch"
   | "revisiting-roots-of-civilization"
   | "ai-april"
@@ -62,6 +63,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "primeproofing-beyond-vibe-coding",
   "building-an-llm-from-scratch",
   "cradle-of-the-empire",
   "simulating-civilizations-iii",
@@ -73,6 +75,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "primeproofing-beyond-vibe-coding": {
+    slug: "primeproofing-beyond-vibe-coding",
+    title: "Primeproofing: Beyond Vibe Coding",
+    href: "/cromblog/primeproofing-beyond-vibe-coding",
+    date: "July 22, 2026",
+    readTime: "6 min read",
+    summary:
+      "Moving beyond vibe coding through primeproofing: combining context engineering with output validation, then testing the process with mygrep and the Clio civilization simulation.",
+    image: {
+      src: "/cromblog/primeproofing-beyond-vibe-coding/thumbnail.jpg",
+      alt: "Engraving-style illustration of a cartographer drawing a glowing blue map by candlelight",
+      width: 1200,
+      height: 672
+    }
+  },
   "building-an-llm-from-scratch": {
     slug: "building-an-llm-from-scratch",
     title: "Building an LLM from Scratch",
