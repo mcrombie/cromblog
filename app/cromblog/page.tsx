@@ -14,7 +14,7 @@ export default function CromblogPage() {
       <SectionHeading
         eyebrow="Cromblog"
         title="Cromblog"
-        description="Posts appear here by date and can be filtered by series."
+        description="Essays and field notes on software, simulated histories, language, and the worlds that emerge between them."
       />
       <Suspense>
         <CromblogFilters />

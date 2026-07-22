@@ -38,8 +38,8 @@ function getBlogButton(series: BlogSeriesSlug | undefined) {
   }
 
   return {
-    href: `/cromblog?series=${series}`,
-    label: "Read the Blog Posts"
+    href: seriesPosts[0].href,
+    label: "Read the Latest Blog Post"
   };
 }
 
@@ -49,53 +49,45 @@ export default function ProjectsPage() {
       <SectionHeading
         eyebrow="Projects"
         title="Projects"
-        description="Current project list."
+        description="A cabinet of simulations, interactive tools, experiments, and long-form work."
       />
 
-      <section className="grid gap-5">
+      <section className="projects-grid">
         {projectOrder.map((slug) => {
           const project = projects[slug];
           const blogButton = getBlogButton(project.blogSeries);
 
           return (
-            <article
-              key={slug}
-              className="overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] shadow-card lg:h-[360px]"
-            >
-              <div className="grid h-full gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.95fr)]">
-                <div className="p-6 sm:p-8 lg:flex lg:h-full lg:flex-col lg:justify-between lg:gap-5">
-                  <div className="content-flow">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.22em] text-pine-700">
-                        {project.stack.slice(0, 4).join(" / ")}
-                      </p>
-                      <h2 className="mt-2 font-serif text-3xl text-ink">
-                        {project.title}
-                      </h2>
-                    </div>
+            <article key={slug} className="project-card">
+              <div className="project-card-grid">
+                <div className="project-copy">
+                  <p className="project-kicker">
+                    {project.stack.slice(0, 4).join(" / ")}
+                  </p>
+                  <h2 className="project-title">{project.title}</h2>
+                  <p className="project-summary">{project.summary}</p>
 
-                    <p className="text-base leading-8 text-pine-800">
-                      {project.summary}
-                    </p>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-3 lg:mt-0">
+                  <div className="project-actions">
                     {project.links.map((link) =>
                       link.external ? (
                         <a
                           key={link.href}
                           href={link.href}
                           target="_blank"
-                          rel="noreferrer"
-                          className="rounded-full border border-[color:var(--border)] bg-white/60 px-4 py-2 text-sm font-semibold text-pine-800 transition hover:bg-white"
+                          rel="noopener noreferrer"
+                          className="folio-button"
+                          aria-label={`${link.label} for ${project.title} (opens in a new tab)`}
                         >
                           {link.label}
+                          <span className="external-link-mark" aria-hidden="true">
+                            ↗
+                          </span>
                         </a>
                       ) : (
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="rounded-full border border-[color:var(--border)] bg-white/60 px-4 py-2 text-sm font-semibold text-pine-800 transition hover:bg-white"
+                          className="folio-button"
                         >
                           {link.label}
                         </Link>
@@ -104,7 +96,7 @@ export default function ProjectsPage() {
                     {blogButton ? (
                       <Link
                         href={blogButton.href}
-                        className="rounded-full border border-[color:var(--border)] bg-white/60 px-4 py-2 text-sm font-semibold text-pine-800 transition hover:bg-white"
+                        className="folio-button"
                       >
                         {blogButton.label}
                       </Link>
@@ -112,14 +104,14 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="flex min-h-[240px] items-center justify-center overflow-hidden p-4 sm:p-5 lg:p-6">
+                <div className="project-image-bay">
                   <Image
                     src={project.image.src}
                     alt={project.image.alt}
                     width={project.image.width}
                     height={project.image.height}
                     unoptimized={project.image.unoptimized}
-                    className="h-full w-full object-contain"
+                    className="project-image"
                   />
                 </div>
               </div>

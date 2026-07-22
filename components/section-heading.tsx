@@ -10,19 +10,15 @@ export function SectionHeading({
   description
 }: SectionHeadingProps) {
   return (
-    <header className="content-flow">
+    <header className="section-heading">
       {eyebrow ? (
-        <p className="text-xs uppercase tracking-[0.22em] text-pine-700">
-          {eyebrow}
-        </p>
+        <p className="section-eyebrow">{eyebrow}</p>
       ) : null}
-      <h1 className="font-serif text-3xl text-ink sm:text-4xl">{title}</h1>
+      <h1 className="section-title">{title}</h1>
       {description ? (
-        <p className="editorial-copy text-base leading-8 text-pine-700">
-          {description}
-        </p>
+        <p className="section-description">{description}</p>
       ) : null}
+      <span className="printer-rule" aria-hidden="true" />
     </header>
   );
 }
-

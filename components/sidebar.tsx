@@ -3,11 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/cromblog", label: "Blog" },
-  { href: "https://github.com/mcrombie", label: "GitHub", external: true },
-  { href: "/projects", label: "Projects" }
+type NavItem = {
+  label: string;
+  href?: string;
+  symbol?: string;
+  icon?: "github" | "linkedin";
+  external?: boolean;
+  disabled?: boolean;
+};
+
+const navLinks: NavItem[] = [
+  { href: "/about", label: "About", symbol: "✦" },
+  { href: "/cromblog", label: "Blog", symbol: "❧" },
+  { href: "/projects", label: "Projects", symbol: "◇" },
+  {
+    href: "https://github.com/mcrombie",
+    label: "GitHub",
+    icon: "github",
+    external: true
+  },
+  {
+    label: "LinkedIn",
+    icon: "linkedin",
+    disabled: true
+  }
 ];
 
 function isActive(pathname: string, href: string) {
@@ -18,43 +37,108 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-full flex-col rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card lg:fixed lg:inset-y-0 lg:left-0 lg:w-[20rem] lg:rounded-none lg:rounded-r-[2.25rem] lg:border-l-0 lg:px-7 lg:py-8 lg:shadow-[0_24px_60px_rgba(39,52,37,0.12)]">
-      <div className="content-flow">
-        <Link href="/" className="block font-serif text-3xl text-ink">
-          Michael Crombie
+    <aside className="site-sidebar" aria-label="Site identity and navigation">
+      <div>
+        <Link
+          href="/"
+          className="site-brand"
+          aria-label="Michael Crombie, home"
+          aria-current={pathname === "/" ? "page" : undefined}
+        >
+          <span className="brand-seal" aria-hidden="true">
+            MC
+          </span>
+          <span className="brand-copy">
+            <span className="brand-name">Michael Crombie</span>
+            <span className="brand-tagline">Software developer &amp; writer</span>
+          </span>
         </Link>
-        <p className="text-sm leading-7 text-pine-700">
-          Software Developer and Writer
-        </p>
+
+        <div className="sidebar-ornament" aria-hidden="true" />
       </div>
 
-      <nav className="mt-10 content-flow" aria-label="Primary">
+      <nav className="site-nav" aria-label="Primary navigation">
         {navLinks.map((link) => {
-          const active = !link.external && isActive(pathname, link.href);
-
-          const className = `block rounded-2xl px-4 py-3 text-sm transition ${
-            active
-              ? "bg-pine-800 text-pine-50"
-              : "border border-transparent text-pine-800 hover:border-[color:var(--border)] hover:bg-white/50"
+          const active = Boolean(
+            link.href && !link.external && !link.disabled && isActive(pathname, link.href)
+          );
+          const className = `site-nav-link${active ? " is-active" : ""}${
+            link.disabled ? " is-disabled" : ""
           }`;
+          const symbolClassName = `nav-symbol${
+            link.icon ? ` nav-symbol-${link.icon}` : " nav-symbol-glyph"
+          }`;
+
+          const content = (
+            <>
+              <span className={symbolClassName} aria-hidden="true">
+                {link.icon === "linkedin" ? "in" : link.symbol}
+              </span>
+              <span className="nav-label">{link.label}</span>
+              {link.disabled ? (
+                <span className="nav-status">Soon</span>
+              ) : link.external ? (
+                <span className="nav-external" aria-hidden="true">
+                  ↗
+                </span>
+              ) : null}
+            </>
+          );
+
+          if (link.disabled) {
+            return (
+              <span
+                key={link.label}
+                className={className}
+                role="link"
+                aria-disabled="true"
+                title="LinkedIn profile coming soon"
+              >
+                {content}
+              </span>
+            );
+          }
+
+          if (!link.href) {
+            return null;
+          }
 
           return link.external ? (
             <a
-              key={link.href}
+              key={link.label}
               href={link.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={className}
+              aria-label={`${link.label} (opens in a new tab)`}
             >
-              {link.label}
+              {content}
             </a>
           ) : (
-            <Link key={link.href} href={link.href} className={className}>
-              {link.label}
+            <Link
+              key={link.label}
+              href={link.href}
+              className={className}
+              aria-current={active ? "page" : undefined}
+            >
+              {content}
             </Link>
           );
         })}
       </nav>
+
+      <div className="sidebar-footer">
+        <div className="sidebar-sprig" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <p className="sidebar-note">
+          Essays, software, and simulated worlds.
+        </p>
+      </div>
     </aside>
   );
 }

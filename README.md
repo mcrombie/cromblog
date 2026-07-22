@@ -22,6 +22,9 @@ Build the production site:
 npm run build
 ```
 
+For a non-Vercel deployment, set `NEXT_PUBLIC_SITE_URL` to the canonical site
+origin so Open Graph and social-preview image URLs resolve correctly.
+
 ## Blog Content
 
 Blog metadata lives in `content/blog.ts`. Each post should have a stable slug, title, href, original publication date, estimated read time, and summary.

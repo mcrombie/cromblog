@@ -107,28 +107,31 @@ function ChronicleDisclosure({
 }) {
   const toneClass =
     tone === "grassic"
-      ? "border-pine-700/25 bg-[#f4f8ef]"
-      : "border-[#a67c52]/35 bg-[#fbf2e4]";
+      ? "tone-grassic"
+      : "tone-staged";
 
   return (
-    <details className={`rounded-xl border ${toneClass} shadow-sm`}>
-      <summary className="cursor-pointer list-none px-4 py-4 sm:px-5">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="m-0 text-xs uppercase tracking-[0.18em] text-pine-700">
+    <details className={`chronicle-disclosure group ${toneClass}`}>
+      <summary className="chronicle-summary cursor-pointer px-4 py-4 sm:px-5">
+        <span className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            <span className="m-0 block text-xs uppercase tracking-[0.18em] text-pine-700">
               Generated Historical Chronicle
-            </p>
-            <p className="m-0 mt-1 font-serif text-xl leading-7 text-ink">
+            </span>
+            <span className="m-0 mt-1 block font-serif text-xl leading-7 text-ink">
               {title}
-            </p>
-            <p className="m-0 mt-1 text-sm leading-6 text-[color:var(--muted)]">
+            </span>
+            <span className="m-0 mt-1 block text-sm leading-6 text-[color:var(--muted)]">
               {subtitle}
-            </p>
-          </div>
-          <span className="text-sm font-medium text-pine-700">
+            </span>
+          </span>
+          <span className="chronicle-action text-sm font-medium text-pine-700 group-open:hidden">
             Open chronicle
           </span>
-        </div>
+          <span className="chronicle-action hidden text-sm font-medium text-pine-700 group-open:inline">
+            Close chronicle
+          </span>
+        </span>
       </summary>
       <div className="border-t border-[color:var(--border)] px-4 py-5 sm:px-6">
         <div className="space-y-5 font-serif text-[1.05rem] leading-8 text-ink">
@@ -272,28 +275,31 @@ export default function SimulatingCivilizationsIIIPage() {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-[color:var(--border)]">
-            <table className="min-w-full border-collapse text-left text-sm text-[color:var(--muted)]">
-              <thead className="bg-pine-50 text-xs uppercase tracking-[0.18em] text-pine-700">
+          <div
+            className="arrival-table-wrap"
+            role="region"
+            aria-labelledby="arrival-table-caption"
+            tabIndex={0}
+          >
+            <table className="arrival-table">
+              <caption id="arrival-table-caption" className="sr-only">
+                Staged civilization arrival waves in Azhora
+              </caption>
+              <thead>
                 <tr>
-                  <th className="px-4 py-3 font-semibold">Turn</th>
-                  <th className="px-4 py-3 font-semibold">Civilization</th>
-                  <th className="px-4 py-3 font-semibold">Arrival</th>
-                  <th className="px-4 py-3 font-semibold">Pressure</th>
+                  <th scope="col">Turn</th>
+                  <th scope="col">Civilization</th>
+                  <th scope="col">Arrival</th>
+                  <th scope="col">Pressure</th>
                 </tr>
               </thead>
               <tbody>
                 {arrivalWaves.map((wave) => (
-                  <tr
-                    key={`${wave.turn}-${wave.name}`}
-                    className="border-t border-[color:var(--border)]"
-                  >
-                    <td className="px-4 py-3 font-medium text-ink">
-                      {wave.turn}
-                    </td>
-                    <td className="px-4 py-3">{wave.name}</td>
-                    <td className="px-4 py-3">{wave.entry}</td>
-                    <td className="px-4 py-3">{wave.doctrine}</td>
+                  <tr key={`${wave.turn}-${wave.name}`}>
+                    <td>{wave.turn}</td>
+                    <td>{wave.name}</td>
+                    <td>{wave.entry}</td>
+                    <td>{wave.doctrine}</td>
                   </tr>
                 ))}
               </tbody>

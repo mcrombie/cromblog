@@ -16,10 +16,11 @@ export function RootShell({ children }: RootShellProps) {
     pathname.startsWith("/projects/react-chess") ||
     pathname.startsWith("/projects/phoneme-chart") ||
     pathname.startsWith("/projects/polity") ||
-    pathname.startsWith("/projects/world-builder");
+    pathname.startsWith("/projects/world-builder") ||
+    pathname.startsWith("/cromblog/simulating-civilizations-iii/viewer");
 
   if (isStandaloneProject) {
-    return <>{children}</>;
+    return <main className="standalone-experience">{children}</main>;
   }
 
   return <SiteShell>{children}</SiteShell>;

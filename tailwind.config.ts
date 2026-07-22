@@ -10,26 +10,40 @@ const config: Config = {
     extend: {
       colors: {
         pine: {
-          50: "#f4f7f2",
-          100: "#e8eee3",
-          200: "#d2ddca",
-          300: "#adc3a6",
-          400: "#87a282",
-          500: "#6a8665",
-          600: "#546d50",
-          700: "#405440",
-          800: "#344434",
-          900: "#243024"
+          50: "#f3ead5",
+          100: "#e4dac3",
+          200: "#d8cfb8",
+          300: "#b7c39e",
+          400: "#8fa47f",
+          500: "#68856a",
+          600: "#486a55",
+          700: "#365445",
+          800: "#183129",
+          900: "#10231d",
+          950: "#07110e"
         },
-        parchment: "#f7f4ee",
-        ink: "#1f261f"
+        parchment: "#e4dac3",
+        ink: "#f3ead5"
       },
       boxShadow: {
-        card: "0 18px 40px rgba(36, 48, 36, 0.08)"
+        card: "0 24px 70px rgba(0, 0, 0, 0.34)"
       },
       fontFamily: {
-        serif: ["Georgia", "Cambria", "\"Times New Roman\"", "Times", "serif"],
-        sans: ["\"Avenir Next\"", "Avenir", "\"Segoe UI\"", "sans-serif"]
+        serif: [
+          "\"Iowan Old Style\"",
+          "\"Palatino Linotype\"",
+          "Palatino",
+          "\"Book Antiqua\"",
+          "Georgia",
+          "serif"
+        ],
+        sans: [
+          "\"Avenir Next\"",
+          "Avenir",
+          "\"Segoe UI\"",
+          "system-ui",
+          "sans-serif"
+        ]
       }
     }
   },
@@ -37,4 +51,3 @@ const config: Config = {
 };
 
 export default config;
-

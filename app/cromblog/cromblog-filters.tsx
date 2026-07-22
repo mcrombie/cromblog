@@ -7,30 +7,18 @@ import Link from "next/link";
 import {
   blogPosts,
   blogSeries,
-  blogSeriesOrder,
   publishedBlogOrder,
-  type BlogSeriesSlug,
   type PublishedBlogPost,
 } from "@/content/blog";
 
 type SortOrder = "newest" | "oldest";
 
-function isBlogSeriesSlug(value: string | null): value is BlogSeriesSlug {
-  return blogSeriesOrder.includes(value as BlogSeriesSlug);
-}
-
-function filterHref(series: BlogSeriesSlug | undefined, sort: SortOrder) {
-  const params = new URLSearchParams();
-  if (series) params.set("series", series);
-  if (sort === "oldest") params.set("sort", sort);
-  const query = params.toString();
-  return query ? `/cromblog?${query}` : "/cromblog";
+function sortHref(sort: SortOrder) {
+  return sort === "oldest" ? "/cromblog?sort=oldest" : "/cromblog";
 }
 
 export function CromblogFilters() {
   const searchParams = useSearchParams();
-  const seriesParam = searchParams.get("series");
-  const selectedSeries = isBlogSeriesSlug(seriesParam) ? seriesParam : undefined;
   const sortOrder: SortOrder =
     searchParams.get("sort") === "oldest" ? "oldest" : "newest";
 
@@ -39,110 +27,69 @@ export function CromblogFilters() {
       ? [...publishedBlogOrder].reverse()
       : [...publishedBlogOrder];
 
-  const visiblePosts = selectedSeries
-    ? orderedPosts.filter(
-        (slug) => (blogPosts[slug] as PublishedBlogPost).series === selectedSeries
-      )
-    : orderedPosts;
-
   return (
     <>
-      <section className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card sm:p-8">
-        <div className="content-flow">
-          <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-pine-700">
-              Series
-            </p>
-            <div className="mt-3 flex flex-wrap gap-3">
-              <Link
-                href={filterHref(undefined, sortOrder)}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                  selectedSeries
-                    ? "border-[color:var(--border)] bg-white/60 text-pine-800 hover:bg-white"
-                    : "border-pine-800 bg-pine-800 text-pine-50"
-                }`}
-              >
-                All Posts
-              </Link>
-              {blogSeriesOrder.map((seriesSlug) => (
-                <Link
-                  key={seriesSlug}
-                  href={filterHref(seriesSlug, sortOrder)}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                    selectedSeries === seriesSlug
-                      ? "border-pine-800 bg-pine-800 text-pine-50"
-                      : "border-[color:var(--border)] bg-white/60 text-pine-800 hover:bg-white"
-                  }`}
-                >
-                  {blogSeries[seriesSlug].title}
-                </Link>
-              ))}
-            </div>
-          </div>
+      <nav className="archive-sort" aria-label="Sort blog posts">
+        <span className="archive-sort-label">Order</span>
+        {(["newest", "oldest"] as SortOrder[]).map((sort) => {
+          const active = sortOrder === sort;
 
-          <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-pine-700">
-              Sort
-            </p>
-            <div className="mt-3 flex flex-wrap gap-3">
-              {(["newest", "oldest"] as SortOrder[]).map((sort) => (
-                <Link
-                  key={sort}
-                  href={filterHref(selectedSeries, sort)}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                    sortOrder === sort
-                      ? "border-pine-800 bg-pine-800 text-pine-50"
-                      : "border-[color:var(--border)] bg-white/60 text-pine-800 hover:bg-white"
-                  }`}
-                >
-                  {sort === "newest" ? "Newest First" : "Oldest First"}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+          return (
+            <Link
+              key={sort}
+              href={sortHref(sort)}
+              className={`archive-sort-link${active ? " is-active" : ""}`}
+              aria-current={active ? "page" : undefined}
+            >
+              {sort === "newest" ? "Newest" : "Oldest"}
+            </Link>
+          );
+        })}
+      </nav>
 
-      <section className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] p-6 shadow-card sm:p-8">
-        <div className="content-flow">
-          {visiblePosts.map((slug) => {
+      <section
+        className="post-archive surface-panel"
+        aria-labelledby="blog-results-heading"
+      >
+        <h2 id="blog-results-heading" className="sr-only">
+          Blog posts
+        </h2>
+        <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {orderedPosts.length} {orderedPosts.length === 1 ? "post" : "posts"}
+          {` shown, sorted ${sortOrder} first`}
+        </p>
+        <div className="post-list">
+          {orderedPosts.map((slug) => {
             const post = blogPosts[slug] as PublishedBlogPost;
             return (
-              <article
-                key={post.slug}
-                className="overflow-hidden rounded-[1.75rem] border border-[color:var(--border)] bg-white/60"
-              >
-                <div className={post.image ? "grid sm:grid-cols-[1fr_220px] lg:grid-cols-[1fr_260px]" : ""}>
-                  <div className="p-6 sm:p-7 content-flow">
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-pine-700/80">
+              <article key={post.slug} className="post-card">
+                <div
+                  className={`post-card-grid${post.image ? " has-image" : ""}`}
+                >
+                  <div className="post-card-copy">
+                    <div className="post-meta">
                       <span>{post.date}</span>
                       <span>{post.readTime}</span>
                       {post.series ? (
                         <span>{blogSeries[post.series].title}</span>
                       ) : null}
                     </div>
-                    <div className="content-flow">
-                      <h2 className="font-serif text-2xl text-ink sm:text-3xl">
-                        <Link
-                          href={post.href}
-                          className="underline decoration-pine-300 underline-offset-4 hover:text-pine-950"
-                        >
-                          {post.title}
-                        </Link>
-                      </h2>
-                      <p className="editorial-copy text-base leading-8 text-pine-800">
-                        {post.summary}
-                      </p>
-                    </div>
+                    <h2 className="post-title">
+                      <Link href={post.href} className="post-title-link">
+                        {post.title}
+                      </Link>
+                    </h2>
+                    <p className="post-summary">{post.summary}</p>
                   </div>
                   {post.image && (
-                    <div className="relative hidden sm:block border-l border-[color:var(--border)] min-h-[180px]">
+                    <div className="post-thumbnail">
                       <Image
                         src={post.image.src}
                         alt={post.image.alt}
                         fill
+                        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 220px, 260px"
                         unoptimized={post.image.unoptimized}
-                        className="object-cover"
+                        className="post-thumbnail-image"
                       />
                     </div>
                   )}

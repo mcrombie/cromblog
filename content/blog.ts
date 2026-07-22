@@ -99,10 +99,10 @@ export const blogPosts = {
     summary:
       "Working through Sebastian Raschka's book turned LLMs from something magical into something mechanical: tokenizers, tensor shapes, training loops, fine-tuning, evaluation, and a codebase that became a map.",
     image: {
-      src: "/cromblog/building-an-llm-from-scratch/software-symbol.png",
-      alt: "Minimal black line symbol representing software work, with three connected nodes forming a triangular structure",
-      width: 1122,
-      height: 1402
+      src: "/cromblog/building-an-llm-from-scratch/llm-from-scratch.jpg",
+      alt: "Wood engraving of hands stitching glowing thread between a mechanical brain and an anatomical brain",
+      width: 1600,
+      height: 896
     }
   },
   "cradle-of-the-empire": {

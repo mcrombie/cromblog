@@ -36,7 +36,8 @@ export type Project = {
 
 export const siteMeta = {
   title: "Michael Crombie",
-  description: "Personal site for writing, projects, and Cromblog."
+  description:
+    "Software, essays, simulations, history, and imagined worlds by Michael Crombie."
 };
 
 export const projectOrder: ProjectSlug[] = [
