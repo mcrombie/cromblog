@@ -25,6 +25,18 @@ npm run build
 For a non-Vercel deployment, set `NEXT_PUBLIC_SITE_URL` to the canonical site
 origin so Open Graph and social-preview image URLs resolve correctly.
 
+Archivist is hosted separately because its Python service uses a private
+full-manuscript retrieval index. Once its public deployment is verified, set:
+
+```text
+NEXT_PUBLIC_ARCHIVIST_URL=https://your-archivist-service.example
+```
+
+Without that variable, Cromblog labels Archivist as deployment-ready and links
+the featured panel to its entry on the Projects page. With a valid HTTPS URL,
+the featured panel and project entry expose the live demo. Do not guess or
+hard-code a deployment address.
+
 ## Blog Content
 
 Blog metadata lives in `content/blog.ts`. Each post should have a stable slug, title, href, original publication date, estimated read time, and summary.

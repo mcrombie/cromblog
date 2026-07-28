@@ -2545,8 +2545,7 @@ html[data-vibe="ocean"] .vibe-control-inline {
   --vibe-inline-radius: 0.3rem;
 }
 
-/* The unreleased Archivist preview stays muted while retaining each vibe's
-   material language. It is informative content, never a disabled control. */
+/* Archivist's featured project card retains each vibe's material language. */
 html[data-vibe="professional"] .featured-project-card {
   border-color: rgba(24, 61, 69, 0.18);
   border-radius: 0.65rem;
@@ -2586,7 +2585,7 @@ html[data-vibe="minimal"] .featured-project-visual {
 }
 
 html[data-vibe="minimal"] .featured-project-title {
-  color: #555555;
+  color: #171717;
 }
 
 html[data-vibe="whimsical"] .featured-project-card {

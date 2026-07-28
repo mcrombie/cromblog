@@ -58,7 +58,7 @@ export default function ProjectsPage() {
           const blogButton = getBlogButton(project.blogSeries);
 
           return (
-            <article key={slug} className="project-card">
+            <article key={slug} id={project.slug} className="project-card">
               <div className="project-card-grid">
                 <div className="project-copy">
                   <p className="project-kicker">

@@ -7,6 +7,7 @@ import {
   publishedBlogOrder,
   type PublishedBlogPost
 } from "@/content/blog";
+import { archivistDemoUrl } from "@/content/site";
 
 const latestPost = blogPosts[publishedBlogOrder[0]] as PublishedBlogPost;
 
@@ -17,6 +18,55 @@ const homeHeroImages = [
   { vibe: "ember", src: "/home/ember-ink-hero.png" },
   { vibe: "ocean", src: "/home/tidal-archive-hero.png" }
 ] as const;
+
+function FeaturedArchivistCard() {
+  const content = (
+    <>
+      <div className="featured-project-copy">
+        <p className="featured-project-kicker">Book-grounded AI</p>
+        <h3 className="featured-project-title">Archivist</h3>
+        <p className="featured-project-summary">
+          Ask <em>Cradle of the Empire</em> about its people, events, and
+          arguments. Archivist searches the complete substantive manuscript and
+          returns to the book for evidence.
+        </p>
+        <span className="featured-project-cta">
+          {archivistDemoUrl ? "Open live demo" : "Explore the project"}
+          <span aria-hidden="true">{archivistDemoUrl ? "↗" : "→"}</span>
+        </span>
+      </div>
+
+      <div className="featured-project-visual" aria-hidden="true">
+        <span className="featured-project-monogram">A</span>
+        <span className="featured-project-index">A conversation with one book</span>
+      </div>
+    </>
+  );
+
+  if (archivistDemoUrl) {
+    return (
+      <a
+        href={archivistDemoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="featured-project-card featured-project-link"
+        aria-label="Open the live Archivist demo (opens in a new tab)"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      href="/projects#archivist"
+      className="featured-project-card featured-project-link"
+      aria-label="Explore the Archivist project"
+    >
+      {content}
+    </Link>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -63,28 +113,16 @@ export default function HomePage() {
           <h2 className="home-panel-heading" id="featured-project-heading">
             Featured project
           </h2>
-          <span className="featured-project-status" aria-label="Coming soon">
-            Soon...
+          <span
+            className={`featured-project-status${
+              archivistDemoUrl ? " is-live" : ""
+            }`}
+          >
+            {archivistDemoUrl ? "Live demo" : "Deployment ready"}
           </span>
         </div>
 
-        <article className="featured-project-card">
-          <div className="featured-project-copy">
-            <p className="featured-project-kicker">In development</p>
-            <h3 className="featured-project-title">Archivist</h3>
-            <p className="featured-project-summary" lang="la">
-              Historia testis temporum, lux veritatis, vita memoriae, magistra
-              vitae, nuntia vetustatis.
-            </p>
-          </div>
-
-          <div className="featured-project-visual" aria-hidden="true">
-            <span className="featured-project-monogram">A</span>
-            <span className="featured-project-index">
-              Project record forthcoming
-            </span>
-          </div>
-        </article>
+        <FeaturedArchivistCard />
       </section>
 
       <div className="home-grid">

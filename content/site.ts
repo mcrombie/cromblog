@@ -2,6 +2,7 @@ import type { BlogSeriesSlug } from "@/content/blog";
 
 export type ProjectSlug =
   | "big-history-of-virginia"
+  | "archivist"
   | "clashvergence"
   | "phoneme-chart"
   | "world-builder"
@@ -40,8 +41,30 @@ export const siteMeta = {
     "Software, essays, simulations, history, and imagined worlds by Michael Crombie."
 };
 
+function configuredHttpsUrl(value: string | undefined) {
+  const candidate = value?.trim();
+  if (!candidate) {
+    return undefined;
+  }
+
+  try {
+    const url = new URL(candidate);
+    if (url.protocol !== "https:") {
+      return undefined;
+    }
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return undefined;
+  }
+}
+
+export const archivistDemoUrl = configuredHttpsUrl(
+  process.env.NEXT_PUBLIC_ARCHIVIST_URL
+);
+
 export const projectOrder: ProjectSlug[] = [
   "big-history-of-virginia",
+  "archivist",
   "clashvergence",
   "phoneme-chart",
   "world-builder",
@@ -68,6 +91,45 @@ export const projects: Record<ProjectSlug, Project> = {
     links: [
       { label: "Order the ebook", href: "https://www.amazon.com/dp/B0H6VNH94K", external: true },
       { label: "Read the announcement", href: "/cromblog/cradle-of-the-empire" }
+    ]
+  },
+  archivist: {
+    slug: "archivist",
+    title: "Archivist",
+    pitch:
+      "Archivist turns Cradle of the Empire into a source-grounded conversation with the complete substantive manuscript.",
+    summary:
+      "A full-stack RAG demonstration built around one published history: conversational follow-ups, premise and absence handling, edition-qualified citations, bounded public excerpts, cost controls, and selectable historiographical framing.",
+    stack: [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "OpenAI",
+      "Chroma",
+      "RAG evaluation"
+    ],
+    image: {
+      src: "/cromblog/cradle-of-the-empire/cover.jpg",
+      alt: "Cover art for Cradle of the Empire, the manuscript queried by Archivist",
+      width: 1792,
+      height: 2688
+    },
+    links: [
+      ...(archivistDemoUrl
+        ? [
+            {
+              label: "Open live demo",
+              href: archivistDemoUrl,
+              external: true
+            }
+          ]
+        : []),
+      {
+        label: "View GitHub repo",
+        href: "https://github.com/mcrombie/archivist",
+        external: true
+      }
     ]
   },
   "clashvergence": {
