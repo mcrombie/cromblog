@@ -9,7 +9,10 @@ export const VIBES = [
   { id: "whimsical", label: "Cosmic Almanac" },
   { id: "codex", label: "Illuminated Codex" },
   { id: "ember", label: "Ember & Ink" },
-  { id: "ocean", label: "Tidal Archive" }
+  { id: "ocean", label: "Tidal Archive" },
+  { id: "princess", label: "Pretty Pink Princess" },
+  { id: "baron", label: "Baleful Black Baron" },
+  { id: "rose", label: "Rose & Ruin" }
 ] as const;
 
 export type VibeId = (typeof VIBES)[number]["id"];

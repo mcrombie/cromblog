@@ -1,5 +1,5 @@
 /*
- * Seven complete visual systems share the same semantic markup. Forest Folio
+ * Ten complete visual systems share the same semantic markup. Forest Folio
  * is the original design in globals.css; the other modes deliberately change
  * layout, density, decoration, and typography as well as color.
  */
@@ -233,7 +233,10 @@ html[data-vibe="forest"] .home-hero-image-forest,
 html[data-vibe="whimsical"] .home-hero-image-whimsical,
 html[data-vibe="codex"] .home-hero-image-codex,
 html[data-vibe="ember"] .home-hero-image-ember,
-html[data-vibe="ocean"] .home-hero-image-ocean {
+html[data-vibe="ocean"] .home-hero-image-ocean,
+html[data-vibe="princess"] .home-hero-image-whimsical,
+html[data-vibe="baron"] .home-hero-image-ember,
+html[data-vibe="rose"] .home-hero-image-codex {
   display: block;
 }
 
@@ -2545,6 +2548,843 @@ html[data-vibe="ocean"] .vibe-control-inline {
   --vibe-inline-radius: 0.3rem;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Pretty Pink Princess: pearl, blush parchment, rose glass, and courtly light. */
+/* -------------------------------------------------------------------------- */
+
+html[data-vibe="princess"] {
+  color-scheme: light;
+  --forest-975: #f2cfdd;
+  --forest-950: #f7dce7;
+  --forest-900: #fce8ef;
+  --forest-850: #fff1f6;
+  --forest-800: #f6d2e0;
+  --forest-750: #edb9cf;
+  --forest-700: #e49fbd;
+  --bone: #481a34;
+  --parchment: #5d3349;
+  --parchment-muted: #73475d;
+  --sage: #865f72;
+  --brass: #bd3f7a;
+  --brass-bright: #9c681c;
+  --brass-dim: #c3953f;
+  --background: #f2cfdd;
+  --panel: rgba(255, 247, 251, 0.9);
+  --panel-strong: rgba(255, 251, 247, 0.96);
+  --panel-raised: rgba(249, 224, 234, 0.96);
+  --foreground: var(--bone);
+  --copy: var(--parchment);
+  --muted: var(--sage);
+  --border: rgba(168, 57, 111, 0.22);
+  --border-soft: rgba(116, 54, 83, 0.13);
+  --shadow-card: 0 25px 66px rgba(104, 35, 70, 0.17);
+  background: #f2cfdd;
+  scrollbar-color: #cf6d9a #f9e5ed;
+}
+
+html[data-vibe="princess"] body {
+  background:
+    radial-gradient(circle at 86% 4%, rgba(255, 255, 255, 0.92), transparent 27rem),
+    radial-gradient(circle at 10% 10%, rgba(212, 85, 145, 0.14), transparent 30rem),
+    radial-gradient(circle at 58% 112%, rgba(190, 146, 58, 0.1), transparent 38rem),
+    linear-gradient(155deg, #f5d8e4, #fff5f8 54%, #ecc1d3);
+}
+
+html[data-vibe="princess"] body::before {
+  background:
+    radial-gradient(circle, rgba(189, 63, 122, 0.2) 0 1px, transparent 1.5px),
+    linear-gradient(45deg, transparent 47%, rgba(192, 146, 62, 0.12) 48% 52%, transparent 53%);
+  background-position: 0 0, 1.2rem 1.2rem;
+  background-size: 4.5rem 4.5rem, 5.5rem 5.5rem;
+  opacity: 0.22;
+}
+
+html[data-vibe="princess"] ::selection {
+  background: #bd3f7a;
+  color: #fff8fb;
+}
+
+html[data-vibe="princess"] .site-ambient {
+  border-color: rgba(189, 63, 122, 0.2);
+  border-style: dotted;
+  box-shadow:
+    0 0 0 1.4rem rgba(255, 255, 255, 0.11),
+    0 0 70px rgba(189, 63, 122, 0.1);
+}
+
+html[data-vibe="princess"] .site-ambient::before {
+  border-color: rgba(189, 63, 122, 0.13);
+  border-style: dashed;
+}
+
+html[data-vibe="princess"] .site-ambient::after {
+  border-color: rgba(190, 146, 62, 0.16);
+}
+
+html[data-vibe="princess"] .site-sidebar {
+  border-color: rgba(168, 57, 111, 0.3);
+  border-radius: 1.35rem;
+  background:
+    radial-gradient(circle at 14% 4%, rgba(255, 255, 255, 0.92), transparent 14rem),
+    linear-gradient(165deg, rgba(255, 240, 247, 0.98), rgba(239, 189, 211, 0.98));
+  box-shadow:
+    22px 0 60px rgba(112, 42, 76, 0.16),
+    inset -1px 0 rgba(255, 255, 255, 0.46);
+}
+
+html[data-vibe="princess"] .brand-seal {
+  border: 2px solid #bd3f7a;
+  border-radius: 52% 52% 44% 44%;
+  background: radial-gradient(circle at 34% 28%, #fffefd, #f1bad1 65%, #d776a1);
+  color: #6a2144;
+  box-shadow:
+    inset 0 0 0 4px #fbe7ef,
+    inset 0 0 0 5px rgba(190, 146, 62, 0.48),
+    0 8px 20px rgba(108, 35, 69, 0.14);
+}
+
+html[data-vibe="princess"] .brand-seal::after {
+  border-color: #bd3f7a;
+  border-radius: 50% 50% 35% 35%;
+  background: #fff9f3;
+  color: #a26d1c;
+  content: "♕";
+  transform: none;
+}
+
+html[data-vibe="princess"] .brand-tagline {
+  color: #85596f;
+}
+
+html[data-vibe="princess"] .site-nav-link:hover {
+  border-color: rgba(189, 63, 122, 0.3);
+  background: rgba(255, 255, 255, 0.55);
+  color: #671f43;
+}
+
+html[data-vibe="princess"] .site-nav-link.is-active {
+  border-color: #bd3f7a;
+  background: linear-gradient(135deg, #ce518c, #a72f67);
+  color: #fffafc;
+  box-shadow: 0 10px 25px rgba(168, 48, 102, 0.2);
+}
+
+html[data-vibe="princess"] .site-nav-link.is-active .nav-symbol {
+  color: #ffe7b0;
+}
+
+html[data-vibe="princess"] .sidebar-ornament::after,
+html[data-vibe="princess"] .printer-rule::after {
+  border-color: #bd3f7a;
+  border-radius: 50%;
+  background: #fff8fb;
+  box-shadow: 0 0 0 3px rgba(189, 63, 122, 0.08);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+html[data-vibe="princess"] .site-main {
+  border-color: rgba(168, 57, 111, 0.25);
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(210, 79, 140, 0.07), transparent 24rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 38%),
+    rgba(255, 247, 250, 0.91);
+  box-shadow:
+    var(--shadow-card),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+html[data-vibe="princess"] .site-main::before {
+  background: linear-gradient(90deg, transparent, #bd3f7a, #d4aa55, transparent);
+}
+
+html[data-vibe="princess"] .home-hero {
+  border: 3px double rgba(255, 220, 236, 0.64);
+  border-radius: 1.6rem;
+  background: #7c2854;
+  box-shadow:
+    0 26px 66px rgba(96, 28, 63, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+html[data-vibe="princess"] .home-hero::after {
+  background:
+    radial-gradient(circle at 82% 15%, rgba(255, 225, 239, 0.2), transparent 22rem),
+    linear-gradient(90deg, rgba(74, 20, 51, 0.96), rgba(112, 35, 70, 0.84) 44%, rgba(173, 70, 115, 0.34) 72%, rgba(99, 27, 60, 0.22)),
+    linear-gradient(0deg, rgba(68, 18, 46, 0.6), transparent 58%);
+}
+
+html[data-vibe="princess"] .home-hero-image-whimsical {
+  opacity: 0.88;
+  filter: sepia(0.12) saturate(1.12) hue-rotate(294deg) contrast(1.02) brightness(0.86);
+}
+
+html[data-vibe="princess"] .home-kicker {
+  color: #f6cb72;
+}
+
+html[data-vibe="princess"] .home-title,
+html[data-vibe="princess"] .home-lede {
+  color: #fff5f8;
+  text-shadow: 0 3px 28px rgba(54, 12, 37, 0.55);
+}
+
+html[data-vibe="princess"] .surface-panel,
+html[data-vibe="princess"] .editorial-panel,
+html[data-vibe="princess"] .home-panel,
+html[data-vibe="princess"] .post-card,
+html[data-vibe="princess"] .project-card {
+  border-color: rgba(168, 57, 111, 0.22);
+  border-radius: 1.15rem;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(189, 63, 122, 0.055), transparent 14rem),
+    rgba(255, 251, 248, 0.94);
+  box-shadow:
+    0 16px 42px rgba(104, 35, 70, 0.11),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+html[data-vibe="princess"] .home-panel-heading::before {
+  border-color: #bd3f7a;
+  border-radius: 50%;
+}
+
+html[data-vibe="princess"] .folio-button,
+html[data-vibe="princess"] .vibe-cycle-button,
+html[data-vibe="princess"] .vibe-select {
+  border-color: rgba(255, 232, 241, 0.5);
+  border-radius: 999px;
+  background: rgba(126, 37, 79, 0.86);
+  color: #fff8fb;
+  box-shadow: 0 10px 24px rgba(77, 19, 51, 0.16);
+}
+
+html[data-vibe="princess"] .folio-button:hover,
+html[data-vibe="princess"] .vibe-cycle-button:hover,
+html[data-vibe="princess"] .vibe-select:hover {
+  border-color: #f6cb72;
+  background: #a9326b;
+  color: #fffdf8;
+}
+
+html[data-vibe="princess"] .vibe-cycle-action,
+html[data-vibe="princess"] .vibe-picker-label {
+  color: #f4c9db;
+}
+
+html[data-vibe="princess"] .vibe-cycle-name,
+html[data-vibe="princess"] .vibe-picker-chevron {
+  color: #f6cb72;
+}
+
+html[data-vibe="princess"] .vibe-select option {
+  background: #fff3f8;
+  color: #4b1d38;
+}
+
+html[data-vibe="princess"] article.content-flow > a:first-child {
+  background: rgba(255, 249, 251, 0.9);
+}
+
+html[data-vibe="princess"] article.content-flow > div {
+  border-color: rgba(168, 57, 111, 0.24) !important;
+  border-radius: 1.15rem !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.64), transparent 28%),
+    #fffaf6 !important;
+  box-shadow:
+    0 20px 52px rgba(104, 35, 70, 0.13),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.58) !important;
+}
+
+html[data-vibe="princess"] article.content-flow > div::before {
+  background: linear-gradient(90deg, transparent, #bd3f7a, #d4aa55, transparent);
+}
+
+html[data-vibe="princess"] .article-prose blockquote,
+html[data-vibe="princess"] .chronicle-disclosure,
+html[data-vibe="princess"] .about-aside {
+  background: #f9deea;
+}
+
+html[data-vibe="princess"] .featured-project-card {
+  border: 2px solid rgba(189, 63, 122, 0.25);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #fffaf6, #f7dbe7);
+}
+
+html[data-vibe="princess"] .featured-project-status {
+  background: #fae2ec;
+}
+
+html[data-vibe="princess"] .featured-project-visual {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.72), transparent 28%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 1.6rem, rgba(189, 63, 122, 0.06) 1.65rem 1.7rem),
+    #f3ccdc;
+}
+
+html[data-vibe="princess"] .vibe-control-inline {
+  --vibe-inline-radius: 999px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Baleful Black Baron: iron, oxblood, old silver, and severe gothic geometry. */
+/* -------------------------------------------------------------------------- */
+
+html[data-vibe="baron"] {
+  color-scheme: dark;
+  --forest-975: #030304;
+  --forest-950: #080709;
+  --forest-900: #0f0c0e;
+  --forest-850: #171216;
+  --forest-800: #21181b;
+  --forest-750: #2c1e22;
+  --forest-700: #3a2429;
+  --bone: #eee8e0;
+  --parchment: #d4cbc0;
+  --parchment-muted: #b7ada5;
+  --sage: #9d9490;
+  --brass: #8d2633;
+  --brass-bright: #d1b27f;
+  --brass-dim: #745e4a;
+  --background: #030304;
+  --panel: rgba(7, 6, 8, 0.94);
+  --panel-strong: rgba(15, 12, 14, 0.97);
+  --panel-raised: rgba(25, 18, 21, 0.96);
+  --foreground: var(--bone);
+  --copy: var(--parchment);
+  --muted: var(--sage);
+  --border: rgba(193, 164, 120, 0.19);
+  --border-soft: rgba(238, 232, 224, 0.09);
+  --shadow-card: 0 30px 82px rgba(0, 0, 0, 0.62);
+  background: #030304;
+  scrollbar-color: #6f1b26 #080709;
+}
+
+html[data-vibe="baron"] body {
+  background:
+    radial-gradient(circle at 86% 3%, rgba(111, 17, 29, 0.2), transparent 27rem),
+    radial-gradient(circle at 12% 106%, rgba(115, 89, 67, 0.08), transparent 40rem),
+    linear-gradient(155deg, #020203, #0d090b 54%, #040304);
+}
+
+html[data-vibe="baron"] body::before {
+  background:
+    linear-gradient(45deg, transparent 48%, rgba(191, 157, 112, 0.08) 49% 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(116, 24, 34, 0.1) 49% 51%, transparent 52%);
+  background-size: 5rem 5rem;
+  opacity: 0.16;
+}
+
+html[data-vibe="baron"] ::selection {
+  background: #8d2633;
+  color: #fff4ed;
+}
+
+html[data-vibe="baron"] .site-ambient {
+  border-color: rgba(193, 164, 120, 0.12);
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+html[data-vibe="baron"] .site-ambient::before,
+html[data-vibe="baron"] .site-ambient::after {
+  border-color: rgba(126, 31, 42, 0.12);
+  border-radius: 0;
+}
+
+html[data-vibe="baron"] .site-sidebar {
+  border-color: rgba(193, 164, 120, 0.2);
+  border-radius: 0.15rem;
+  background:
+    linear-gradient(135deg, rgba(129, 26, 37, 0.1), transparent 26%),
+    linear-gradient(165deg, rgba(17, 13, 15, 0.99), rgba(4, 4, 5, 0.99));
+  box-shadow:
+    24px 0 72px rgba(0, 0, 0, 0.54),
+    inset -1px 0 rgba(141, 38, 51, 0.25);
+}
+
+html[data-vibe="baron"] .brand-seal {
+  border-color: #80684f;
+  border-radius: 0 0 46% 46% / 0 0 30% 30%;
+  background: linear-gradient(145deg, #2a1b1f, #080709);
+  color: #eee8e0;
+  box-shadow:
+    inset 0 0 0 4px #0f0c0e,
+    inset 0 0 0 5px rgba(141, 38, 51, 0.64);
+}
+
+html[data-vibe="baron"] .brand-seal::after {
+  border-color: #8d2633;
+  border-radius: 0;
+  background: #080709;
+  color: #d1b27f;
+  content: "B";
+  transform: rotate(45deg);
+}
+
+html[data-vibe="baron"] .site-nav-link {
+  border-radius: 0;
+}
+
+html[data-vibe="baron"] .site-nav-link:hover {
+  border-color: rgba(141, 38, 51, 0.52);
+  background: rgba(94, 22, 30, 0.18);
+}
+
+html[data-vibe="baron"] .site-nav-link.is-active {
+  border-color: #9c3340;
+  background: linear-gradient(135deg, #7b1d2a, #3b0d14);
+  color: #fff0e8;
+  box-shadow:
+    inset 3px 0 #d1b27f,
+    0 10px 26px rgba(0, 0, 0, 0.44);
+}
+
+html[data-vibe="baron"] .site-nav-link.is-active .nav-symbol {
+  color: #d1b27f;
+}
+
+html[data-vibe="baron"] .sidebar-ornament::after,
+html[data-vibe="baron"] .printer-rule::after {
+  border-color: #8d2633;
+  border-radius: 0;
+  background: #080709;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+html[data-vibe="baron"] .site-main {
+  border-color: rgba(193, 164, 120, 0.18);
+  border-radius: 0.15rem;
+  background:
+    linear-gradient(135deg, rgba(141, 38, 51, 0.055), transparent 30%),
+    rgba(7, 6, 8, 0.95);
+  box-shadow:
+    var(--shadow-card),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.018);
+}
+
+html[data-vibe="baron"] .site-main::before {
+  background: linear-gradient(90deg, transparent, #745e4a, #8d2633, transparent);
+}
+
+html[data-vibe="baron"] .home-hero {
+  border: 3px double rgba(193, 164, 120, 0.28);
+  border-radius: 0;
+  background: #080709;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.62),
+    inset 0 0 0 1px rgba(141, 38, 51, 0.13);
+}
+
+html[data-vibe="baron"] .home-hero::after {
+  background:
+    linear-gradient(90deg, rgba(2, 2, 3, 0.99), rgba(9, 7, 8, 0.94) 42%, rgba(35, 12, 16, 0.57) 72%, rgba(3, 3, 4, 0.2)),
+    linear-gradient(0deg, rgba(1, 1, 2, 0.78), transparent 62%);
+}
+
+html[data-vibe="baron"] .home-hero-image-ember {
+  opacity: 0.72;
+  filter: grayscale(0.75) sepia(0.08) saturate(0.75) hue-rotate(316deg) contrast(1.24) brightness(0.52);
+}
+
+html[data-vibe="baron"] .home-kicker,
+html[data-vibe="baron"] .section-eyebrow,
+html[data-vibe="baron"] .archive-label,
+html[data-vibe="baron"] .project-kicker {
+  color: #a84751;
+}
+
+html[data-vibe="baron"] .home-title {
+  color: #eee8e0;
+  font-weight: 430;
+  letter-spacing: -0.035em;
+  text-shadow: 0 4px 34px rgba(0, 0, 0, 0.72);
+}
+
+html[data-vibe="baron"] .surface-panel,
+html[data-vibe="baron"] .editorial-panel,
+html[data-vibe="baron"] .home-panel,
+html[data-vibe="baron"] .post-card,
+html[data-vibe="baron"] .project-card {
+  border-color: rgba(193, 164, 120, 0.17);
+  border-radius: 0;
+  background:
+    linear-gradient(135deg, rgba(141, 38, 51, 0.05), transparent 35%),
+    rgba(14, 11, 13, 0.97);
+  box-shadow:
+    0 22px 58px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.016);
+}
+
+html[data-vibe="baron"] .home-panel-heading::before {
+  border-color: #8d2633;
+  border-radius: 0;
+}
+
+html[data-vibe="baron"] .folio-button,
+html[data-vibe="baron"] .vibe-cycle-button,
+html[data-vibe="baron"] .vibe-select {
+  border-color: rgba(193, 164, 120, 0.25);
+  border-radius: 0;
+  background: #0c090b;
+  color: #eee8e0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.42);
+}
+
+html[data-vibe="baron"] .folio-button:hover,
+html[data-vibe="baron"] .vibe-cycle-button:hover,
+html[data-vibe="baron"] .vibe-select:hover {
+  border-color: #8d2633;
+  background: #2a1117;
+  color: #d1b27f;
+}
+
+html[data-vibe="baron"] .vibe-cycle-action,
+html[data-vibe="baron"] .vibe-picker-label {
+  color: #9d9490;
+}
+
+html[data-vibe="baron"] .vibe-cycle-name,
+html[data-vibe="baron"] .vibe-picker-chevron {
+  color: #d1b27f;
+}
+
+html[data-vibe="baron"] .vibe-select option {
+  background: #080709;
+  color: #eee8e0;
+}
+
+html[data-vibe="baron"] article.content-flow > a:first-child {
+  border-radius: 0;
+  background: rgba(8, 7, 9, 0.94);
+}
+
+html[data-vibe="baron"] article.content-flow > div {
+  border: 3px double rgba(193, 164, 120, 0.2) !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(145deg, rgba(141, 38, 51, 0.045), transparent 28%),
+    #0f0c0e !important;
+  box-shadow:
+    0 25px 66px rgba(0, 0, 0, 0.52),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.016) !important;
+}
+
+html[data-vibe="baron"] article.content-flow > div::before {
+  background: linear-gradient(90deg, transparent, #745e4a, #8d2633, transparent);
+}
+
+html[data-vibe="baron"] .article-prose blockquote,
+html[data-vibe="baron"] .chronicle-disclosure,
+html[data-vibe="baron"] .about-aside {
+  border-radius: 0;
+  background: #191216;
+}
+
+html[data-vibe="baron"] .featured-project-card {
+  border: 3px double rgba(193, 164, 120, 0.24);
+  border-radius: 0;
+  background: #0f0c0e;
+}
+
+html[data-vibe="baron"] .featured-project-status {
+  border-radius: 0;
+  background: #080709;
+}
+
+html[data-vibe="baron"] .featured-project-visual {
+  background:
+    linear-gradient(45deg, transparent 48%, rgba(141, 38, 51, 0.08) 49% 51%, transparent 52%),
+    #090709;
+  background-size: 3.5rem 3.5rem;
+}
+
+html[data-vibe="baron"] .featured-project-visual::before {
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+html[data-vibe="baron"] .vibe-control-inline {
+  --vibe-inline-radius: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Rose & Ruin: black velvet, dusty rose, and restrained champagne-gold court. */
+/* -------------------------------------------------------------------------- */
+
+html[data-vibe="rose"] {
+  color-scheme: dark;
+  --forest-975: #110910;
+  --forest-950: #180d16;
+  --forest-900: #22121d;
+  --forest-850: #2c1826;
+  --forest-800: #38202f;
+  --forest-750: #48283a;
+  --forest-700: #5c3348;
+  --bone: #f4e7e7;
+  --parchment: #e3cfd3;
+  --parchment-muted: #ccb1b9;
+  --sage: #b697a1;
+  --brass: #c57691;
+  --brass-bright: #dfbd7c;
+  --brass-dim: #977147;
+  --background: #110910;
+  --panel: rgba(24, 13, 22, 0.91);
+  --panel-strong: rgba(35, 18, 30, 0.96);
+  --panel-raised: rgba(49, 27, 42, 0.95);
+  --foreground: var(--bone);
+  --copy: var(--parchment);
+  --muted: var(--sage);
+  --border: rgba(222, 189, 124, 0.22);
+  --border-soft: rgba(238, 215, 220, 0.11);
+  --shadow-card: 0 28px 76px rgba(5, 1, 5, 0.52);
+  background: #110910;
+  scrollbar-color: #9e526f #180d16;
+}
+
+html[data-vibe="rose"] body {
+  background:
+    radial-gradient(circle at 86% 4%, rgba(197, 118, 145, 0.19), transparent 29rem),
+    radial-gradient(circle at 10% 102%, rgba(222, 189, 124, 0.08), transparent 40rem),
+    linear-gradient(155deg, #0e070d, #281422 54%, #10080f);
+}
+
+html[data-vibe="rose"] body::before {
+  background:
+    radial-gradient(circle, rgba(222, 189, 124, 0.23) 0 1px, transparent 1.5px),
+    repeating-linear-gradient(118deg, rgba(197, 118, 145, 0.08) 0 1px, transparent 1px 13px);
+  background-position: 0 0, 1rem 1rem;
+  background-size: 7rem 7rem, auto;
+  opacity: 0.18;
+}
+
+html[data-vibe="rose"] ::selection {
+  background: #c57691;
+  color: #190d16;
+}
+
+html[data-vibe="rose"] .site-ambient {
+  border-color: rgba(222, 189, 124, 0.14);
+  box-shadow:
+    0 0 0 1.25rem rgba(197, 118, 145, 0.025),
+    0 0 70px rgba(197, 118, 145, 0.06);
+}
+
+html[data-vibe="rose"] .site-ambient::before {
+  border-color: rgba(197, 118, 145, 0.12);
+  border-style: dashed;
+}
+
+html[data-vibe="rose"] .site-ambient::after {
+  border-color: rgba(222, 189, 124, 0.12);
+}
+
+html[data-vibe="rose"] .site-sidebar {
+  border-color: rgba(222, 189, 124, 0.23);
+  border-radius: 0.7rem 0.15rem 0.7rem 0.15rem;
+  background:
+    radial-gradient(circle at 14% 4%, rgba(197, 118, 145, 0.14), transparent 16rem),
+    linear-gradient(165deg, rgba(47, 24, 40, 0.99), rgba(16, 8, 15, 0.99));
+  box-shadow:
+    24px 0 70px rgba(5, 1, 5, 0.46),
+    inset -1px 0 rgba(222, 189, 124, 0.15);
+}
+
+html[data-vibe="rose"] .brand-seal {
+  border-color: #dfbd7c;
+  border-radius: 50% 50% 16% 16%;
+  background: radial-gradient(circle at 35% 28%, #75445a, #2a1624 68%);
+  color: #f4e7e7;
+  box-shadow:
+    inset 0 0 0 4px #22121d,
+    inset 0 0 0 5px rgba(197, 118, 145, 0.52);
+}
+
+html[data-vibe="rose"] .brand-seal::after {
+  border-color: #dfbd7c;
+  border-radius: 50%;
+  background: #22121d;
+  color: #dfbd7c;
+  content: "✦";
+  transform: none;
+}
+
+html[data-vibe="rose"] .site-nav-link:hover {
+  border-color: rgba(197, 118, 145, 0.4);
+  background: rgba(197, 118, 145, 0.1);
+}
+
+html[data-vibe="rose"] .site-nav-link.is-active {
+  border-color: #dfbd7c;
+  background: linear-gradient(135deg, #c57691, #84415f);
+  color: #170b14;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 242, 232, 0.18),
+    0 10px 28px rgba(5, 1, 5, 0.38);
+}
+
+html[data-vibe="rose"] .site-nav-link.is-active .nav-symbol {
+  color: #3b1c2c;
+}
+
+html[data-vibe="rose"] .sidebar-ornament::after,
+html[data-vibe="rose"] .printer-rule::after {
+  border-color: #dfbd7c;
+  border-radius: 50% 50% 12% 12%;
+  background: #22121d;
+}
+
+html[data-vibe="rose"] .site-main {
+  border-color: rgba(222, 189, 124, 0.22);
+  border-radius: 0.7rem 0.15rem 0.7rem 0.15rem;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(197, 118, 145, 0.07), transparent 25rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 38%),
+    rgba(24, 13, 22, 0.92);
+  box-shadow:
+    var(--shadow-card),
+    inset 0 0 0 1px rgba(238, 215, 220, 0.03);
+}
+
+html[data-vibe="rose"] .site-main::before {
+  background: linear-gradient(90deg, transparent, #c57691, #dfbd7c, transparent);
+}
+
+html[data-vibe="rose"] .home-hero {
+  border: 1px solid rgba(222, 189, 124, 0.4);
+  border-radius: 0.8rem 0.15rem 0.8rem 0.15rem;
+  background: #22121d;
+  box-shadow:
+    0 28px 76px rgba(5, 1, 5, 0.54),
+    inset 0 0 0 3px rgba(197, 118, 145, 0.07);
+}
+
+html[data-vibe="rose"] .home-hero::after {
+  background:
+    radial-gradient(circle at 84% 14%, rgba(222, 189, 124, 0.11), transparent 22rem),
+    linear-gradient(90deg, rgba(18, 8, 16, 0.98), rgba(38, 18, 32, 0.9) 43%, rgba(99, 47, 71, 0.48) 72%, rgba(25, 10, 21, 0.2)),
+    linear-gradient(0deg, rgba(15, 6, 13, 0.67), transparent 58%);
+}
+
+html[data-vibe="rose"] .home-hero-image-codex {
+  opacity: 0.82;
+  filter: sepia(0.16) saturate(0.83) hue-rotate(294deg) contrast(1.12) brightness(0.68);
+}
+
+html[data-vibe="rose"] .home-kicker,
+html[data-vibe="rose"] .section-eyebrow,
+html[data-vibe="rose"] .archive-label,
+html[data-vibe="rose"] .project-kicker {
+  color: #dfbd7c;
+}
+
+html[data-vibe="rose"] .home-title {
+  color: #f4e7e7;
+  text-shadow: 0 4px 32px rgba(5, 1, 5, 0.64);
+}
+
+html[data-vibe="rose"] .surface-panel,
+html[data-vibe="rose"] .editorial-panel,
+html[data-vibe="rose"] .home-panel,
+html[data-vibe="rose"] .post-card,
+html[data-vibe="rose"] .project-card {
+  border-color: rgba(222, 189, 124, 0.19);
+  border-radius: 0.65rem 0.12rem 0.65rem 0.12rem;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(197, 118, 145, 0.055), transparent 14rem),
+    rgba(35, 18, 30, 0.96);
+  box-shadow:
+    0 22px 56px rgba(5, 1, 5, 0.4),
+    inset 0 0 0 1px rgba(238, 215, 220, 0.025);
+}
+
+html[data-vibe="rose"] .home-panel-heading::before {
+  border-color: #dfbd7c;
+  border-radius: 50% 50% 12% 12%;
+}
+
+html[data-vibe="rose"] .folio-button,
+html[data-vibe="rose"] .vibe-cycle-button,
+html[data-vibe="rose"] .vibe-select {
+  border-color: rgba(222, 189, 124, 0.27);
+  border-radius: 0.55rem 0.12rem 0.55rem 0.12rem;
+  background: rgba(46, 24, 39, 0.95);
+  color: #f4e7e7;
+  box-shadow: 0 12px 30px rgba(5, 1, 5, 0.34);
+}
+
+html[data-vibe="rose"] .folio-button:hover,
+html[data-vibe="rose"] .vibe-cycle-button:hover,
+html[data-vibe="rose"] .vibe-select:hover {
+  border-color: #c57691;
+  background: #4a263a;
+  color: #dfbd7c;
+}
+
+html[data-vibe="rose"] .vibe-cycle-action,
+html[data-vibe="rose"] .vibe-picker-label {
+  color: #b697a1;
+}
+
+html[data-vibe="rose"] .vibe-cycle-name,
+html[data-vibe="rose"] .vibe-picker-chevron {
+  color: #dfbd7c;
+}
+
+html[data-vibe="rose"] .vibe-select option {
+  background: #22121d;
+  color: #f4e7e7;
+}
+
+html[data-vibe="rose"] article.content-flow > a:first-child {
+  border-radius: 0.5rem 0.1rem 0.5rem 0.1rem;
+  background: rgba(29, 14, 25, 0.92);
+}
+
+html[data-vibe="rose"] article.content-flow > div {
+  border-color: rgba(222, 189, 124, 0.2) !important;
+  border-radius: 0.7rem 0.12rem 0.7rem 0.12rem !important;
+  background:
+    linear-gradient(145deg, rgba(197, 118, 145, 0.055), transparent 30%),
+    #23121e !important;
+  box-shadow:
+    0 26px 68px rgba(5, 1, 5, 0.46),
+    inset 0 0 0 1px rgba(238, 215, 220, 0.026) !important;
+}
+
+html[data-vibe="rose"] article.content-flow > div::before {
+  background: linear-gradient(90deg, transparent, #c57691, #dfbd7c, transparent);
+}
+
+html[data-vibe="rose"] .article-prose blockquote,
+html[data-vibe="rose"] .chronicle-disclosure,
+html[data-vibe="rose"] .about-aside {
+  background: #321b2b;
+}
+
+html[data-vibe="rose"] .featured-project-card {
+  border-color: rgba(222, 189, 124, 0.27);
+  border-radius: 0.65rem 0.12rem 0.65rem 0.12rem;
+  background: #2c1826;
+}
+
+html[data-vibe="rose"] .featured-project-status {
+  background: #22121d;
+}
+
+html[data-vibe="rose"] .featured-project-visual {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(197, 118, 145, 0.08), transparent 32%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 1.8rem, rgba(222, 189, 124, 0.045) 1.85rem 1.9rem),
+    #21111c;
+}
+
+html[data-vibe="rose"] .vibe-control-inline {
+  --vibe-inline-radius: 0.5rem;
+}
+
 /* Archivist's featured project card retains each vibe's material language. */
 html[data-vibe="professional"] .featured-project-card {
   border-color: rgba(24, 61, 69, 0.18);
@@ -2876,6 +3716,60 @@ html[data-vibe] .vibe-control-inline .vibe-select {
   html[data-vibe="ocean"] .home-title {
     font-size: clamp(2.9rem, 15vw, 4rem);
   }
+
+  html[data-vibe="princess"] .home-hero,
+  html[data-vibe="baron"] .home-hero,
+  html[data-vibe="rose"] .home-hero {
+    min-height: 31rem;
+  }
+
+  html[data-vibe="princess"] .home-title,
+  html[data-vibe="baron"] .home-title,
+  html[data-vibe="rose"] .home-title {
+    font-size: clamp(2.9rem, 15vw, 4rem);
+  }
+
+  html[data-vibe="princess"] .home-actions > .folio-button,
+  html[data-vibe="baron"] .home-actions > .folio-button,
+  html[data-vibe="rose"] .home-actions > .folio-button {
+    flex: 1 1 100%;
+  }
+
+  html[data-vibe="princess"] .home-hero::after {
+    background:
+      linear-gradient(90deg, rgba(74, 20, 51, 0.98), rgba(112, 35, 70, 0.9) 67%, rgba(125, 41, 77, 0.72)),
+      linear-gradient(0deg, rgba(68, 18, 46, 0.72), transparent 58%);
+  }
+
+  html[data-vibe="princess"] .home-hero-image-whimsical {
+    opacity: 0.73;
+    object-position: 68% center;
+    filter: sepia(0.12) saturate(1.05) hue-rotate(294deg) contrast(1.04) brightness(0.72);
+  }
+
+  html[data-vibe="baron"] .home-hero::after {
+    background:
+      linear-gradient(90deg, rgba(2, 2, 3, 0.99), rgba(9, 7, 8, 0.95) 66%, rgba(26, 9, 12, 0.76)),
+      linear-gradient(0deg, rgba(1, 1, 2, 0.84), transparent 58%);
+  }
+
+  html[data-vibe="baron"] .home-hero-image-ember {
+    opacity: 0.58;
+    object-position: 70% center;
+    filter: grayscale(0.8) sepia(0.06) saturate(0.68) hue-rotate(316deg) contrast(1.26) brightness(0.43);
+  }
+
+  html[data-vibe="rose"] .home-hero::after {
+    background:
+      linear-gradient(90deg, rgba(18, 8, 16, 0.99), rgba(38, 18, 32, 0.93) 65%, rgba(69, 31, 51, 0.75)),
+      linear-gradient(0deg, rgba(15, 6, 13, 0.76), transparent 58%);
+  }
+
+  html[data-vibe="rose"] .home-hero-image-codex {
+    opacity: 0.67;
+    object-position: 70% center;
+    filter: sepia(0.14) saturate(0.78) hue-rotate(294deg) contrast(1.12) brightness(0.56);
+  }
 }
 
 @media (prefers-contrast: more) {
@@ -2907,6 +3801,21 @@ html[data-vibe] .vibe-control-inline .vibe-select {
   html[data-vibe="ocean"] {
     --border: rgba(189, 235, 226, 0.62);
     --border-soft: rgba(230, 240, 235, 0.3);
+  }
+
+  html[data-vibe="princess"] {
+    --border: rgba(130, 32, 82, 0.52);
+    --border-soft: rgba(83, 29, 55, 0.27);
+  }
+
+  html[data-vibe="baron"] {
+    --border: rgba(222, 188, 139, 0.56);
+    --border-soft: rgba(238, 232, 224, 0.28);
+  }
+
+  html[data-vibe="rose"] {
+    --border: rgba(238, 205, 139, 0.58);
+    --border-soft: rgba(244, 225, 230, 0.29);
   }
 }
 
