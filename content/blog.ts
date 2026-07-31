@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "archivist-elegant-context-window"
   | "primeproofing-beyond-vibe-coding"
   | "building-an-llm-from-scratch"
   | "revisiting-roots-of-civilization"
@@ -63,6 +64,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "archivist-elegant-context-window",
   "primeproofing-beyond-vibe-coding",
   "building-an-llm-from-scratch",
   "cradle-of-the-empire",
@@ -75,6 +77,22 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "archivist-elegant-context-window": {
+    slug: "archivist-elegant-context-window",
+    title: "Archivist: Crafting an Elegant Context Window",
+    href: "/cromblog/archivist-elegant-context-window",
+    date: "July 30, 2026",
+    readTime: "6 min read",
+    summary:
+      "Archivist answers questions about Cradle of the Empire from the book itself, citing passages back to the typeset edition. Building it meant deciding what belongs in a context window — and then testing that decision against a mode that simply hands the model the whole manuscript.",
+    image: {
+      src: "/cromblog/archivist-elegant-context-window/thumbnail.png",
+      alt:
+        "Engraving-style illustration of a large open book on a desk, its text rising as a column of glowing golden code beside a laptop displaying an engraved river landscape",
+      width: 1456,
+      height: 816
+    }
+  },
   "primeproofing-beyond-vibe-coding": {
     slug: "primeproofing-beyond-vibe-coding",
     title: "Primeproofing: Beyond Vibe Coding",
