@@ -3,49 +3,50 @@ import type { Metadata } from "next";
 import { SectionHeading } from "@/components/section-heading";
 
 export const metadata: Metadata = {
-  title: "About"
+  title: "De Me"
 };
 
 export default function AboutPage() {
   return (
-    <div className="content-flow">
+    <div className="content-flow" lang="la">
       <SectionHeading
-        eyebrow="About"
+        eyebrow="De Me"
         title="Michael Crombie"
-        description="Software developer with a background in building interactive tools, simulations, and editorial experiences from the ground up."
+        description="Programmator qui instrumenta interactiva, simulationes experientiasque editorias a fundamentis exstruere solet."
       />
 
       <section className="editorial-panel">
-        <h2 className="sr-only">Background and contact</h2>
+        <h2 className="sr-only">Curriculum et communicatio</h2>
         <div className="about-layout">
           <div className="about-story">
             <p>
-              I&apos;m a software developer. I build things across the stack —
-              from Python simulations to TypeScript/React applications — with a
-              particular interest in projects that have a strong interactive or
-              experiential quality. The work on this site reflects that range: a
-              hex-map worldbuilding editor, a phoneme chart that lets you hear
-              the sounds of language, a civilization simulation built in layers
-              over several months.
+              Programmator sum. Per omnes structurae partes opera exstruo — a
+              simulationibus lingua Python scriptis usque ad applicationes
+              TypeScript et React — praecipue eis studens operibus quae vim
+              interactivam vel experiendi facultatem prae se ferunt. Quae in hoc
+              situ posita sunt eam varietatem ostendunt: editor mapparum
+              hexagonalium ad mundos fingendos, tabula phonematum quae sonos
+              linguarum audire permittit, simulatio civilizationis per plures
+              menses gradatim exstructa.
             </p>
             <p>
-              The throughline in most of my projects is curiosity: I tend to
-              start with a question I can&apos;t answer without building something.
-              That process produces both the project itself and the writing that
-              documents it, which is why this site combines a portfolio and a
-              blog.
+              Filum quod per pleraque opera mea pertinet curiositas est: fere ab
+              ea quaestione incipio cui respondere non possum nisi aliquid
+              aedificando. Qui processus et opus ipsum gignit et scripta quae
+              illud testantur; qua de causa hic situs et pinacothecam operum et
+              diarium coniungit.
             </p>
           </div>
 
           <aside className="about-aside">
-            <h3 className="about-aside-heading">Find a path in</h3>
+            <h3 className="about-aside-heading">Aditus</h3>
             <ul className="about-facts">
-              <li>Software and systems</li>
-              <li>History and language</li>
-              <li>Worlds and simulations</li>
+              <li>Programmata et systemata</li>
+              <li>Historia et lingua</li>
+              <li>Mundi et simulationes</li>
             </ul>
             <h3 className="about-aside-heading" style={{ marginTop: "1.5rem" }}>
-              Correspondence
+              Epistulae
             </h3>
             <a href="mailto:mcrombie1994@gmail.com" className="about-contact">
               mcrombie1994@gmail.com

@@ -1,0 +1,166 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 720 440"
+  width="720"
+  height="440"
+  role="img"
+  aria-label="Engraved open book beneath a constellation, its text rising as a plume of glowing marks while two lines of citation return into the pages"
+>
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#132820" />
+      <stop offset="0.58" stop-color="#0c1a15" />
+      <stop offset="1" stop-color="#08130f" />
+    </linearGradient>
+
+    <radialGradient id="hearth" cx="0.5" cy="0.75" r="0.52">
+      <stop offset="0" stop-color="#e4b86c" stop-opacity="0.21" />
+      <stop offset="0.55" stop-color="#cda15d" stop-opacity="0.06" />
+      <stop offset="1" stop-color="#cda15d" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="vignette" cx="0.5" cy="0.54" r="0.7">
+      <stop offset="0.52" stop-color="#07110e" stop-opacity="0" />
+      <stop offset="1" stop-color="#07110e" stop-opacity="0.68" />
+    </radialGradient>
+
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#cda15d" stop-opacity="0" />
+      <stop offset="0.5" stop-color="#cda15d" stop-opacity="0.26" />
+      <stop offset="1" stop-color="#cda15d" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="pageLeft" x1="0.1" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#f2e9d4" />
+      <stop offset="0.6" stop-color="#dbd0b5" />
+      <stop offset="1" stop-color="#ada182" />
+    </linearGradient>
+
+    <linearGradient id="pageRight" x1="0.9" y1="0" x2="0.15" y2="1">
+      <stop offset="0" stop-color="#f2e9d4" />
+      <stop offset="0.6" stop-color="#dbd0b5" />
+      <stop offset="1" stop-color="#ada182" />
+    </linearGradient>
+
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse">
+      <path d="M0 4.5 H5" stroke="#e4dac3" stroke-width="0.5" opacity="0.05" />
+    </pattern>
+  </defs>
+
+  <rect width="720" height="440" fill="url(#plate)" />
+  <rect width="720" height="440" fill="url(#hearth)" />
+  <rect width="720" height="440" fill="url(#hatch)" />
+
+  <g fill="none" stroke="#cda15d" stroke-linecap="round">
+    <circle cx="360" cy="226" r="166" stroke-opacity="0.1" stroke-width="1" />
+    <circle cx="360" cy="226" r="186" stroke-opacity="0.05" stroke-width="1" />
+  </g>
+
+  <rect x="0" y="392" width="720" height="1" fill="url(#rule)" />
+  <rect x="0" y="399" width="720" height="1" fill="url(#rule)" opacity="0.45" />
+
+  <g stroke="#cda15d" stroke-opacity="0.32" stroke-width="1" fill="none" stroke-linecap="round">
+    <path d="M170 212 L238 148 L318 110 L410 106 L490 146 L550 214" />
+    <path d="M238 148 L410 106" />
+    <path d="M318 110 L490 146" />
+    <path d="M318 110 L410 106" />
+  </g>
+
+  <g
+    stroke="#e4b86c"
+    stroke-opacity="0.3"
+    stroke-width="1"
+    fill="none"
+    stroke-linecap="round"
+    stroke-dasharray="3 6"
+  >
+    <path d="M238 148 C246 226 252 288 262 322" />
+    <path d="M490 146 C482 224 478 288 470 322" />
+  </g>
+
+  <g fill="#e4b86c">
+    <circle cx="170" cy="212" r="2.8" opacity="0.58" />
+    <circle cx="238" cy="148" r="4" opacity="0.82" />
+    <circle cx="318" cy="110" r="3.4" opacity="0.74" />
+    <circle cx="410" cy="106" r="4.8" opacity="0.95" />
+    <circle cx="490" cy="146" r="3.6" opacity="0.76" />
+    <circle cx="550" cy="214" r="2.8" opacity="0.56" />
+  </g>
+
+  <g fill="#e4b86c">
+    <rect x="330" y="302" width="20" height="2.6" rx="1.3" opacity="0.58" />
+    <rect x="356" y="302" width="24" height="2.6" rx="1.3" opacity="0.6" />
+    <rect x="386" y="302" width="12" height="2.6" rx="1.3" opacity="0.5" />
+    <rect x="334" y="290" width="16" height="2.6" rx="1.3" opacity="0.52" />
+    <rect x="356" y="290" width="22" height="2.6" rx="1.3" opacity="0.54" />
+    <rect x="384" y="290" width="14" height="2.6" rx="1.3" opacity="0.45" />
+    <rect x="336" y="278" width="20" height="2.6" rx="1.3" opacity="0.46" />
+    <rect x="362" y="278" width="16" height="2.6" rx="1.3" opacity="0.47" />
+    <rect x="384" y="278" width="12" height="2.6" rx="1.3" opacity="0.4" />
+    <rect x="338" y="266" width="15" height="2.6" rx="1.3" opacity="0.4" />
+    <rect x="359" y="266" width="21" height="2.6" rx="1.3" opacity="0.41" />
+    <rect x="386" y="266" width="10" height="2.6" rx="1.3" opacity="0.34" />
+    <rect x="341" y="254" width="18" height="2.6" rx="1.3" opacity="0.34" />
+    <rect x="365" y="254" width="15" height="2.6" rx="1.3" opacity="0.35" />
+    <rect x="343" y="242" width="14" height="2.6" rx="1.3" opacity="0.29" />
+    <rect x="363" y="242" width="19" height="2.6" rx="1.3" opacity="0.29" />
+    <rect x="345" y="230" width="17" height="2.6" rx="1.3" opacity="0.24" />
+    <rect x="368" y="230" width="12" height="2.6" rx="1.3" opacity="0.24" />
+    <rect x="347" y="218" width="13" height="2.6" rx="1.3" opacity="0.19" />
+    <rect x="366" y="218" width="16" height="2.6" rx="1.3" opacity="0.19" />
+    <rect x="350" y="206" width="15" height="2.6" rx="1.3" opacity="0.14" />
+    <rect x="371" y="206" width="10" height="2.6" rx="1.3" opacity="0.14" />
+    <rect x="352" y="194" width="12" height="2.6" rx="1.3" opacity="0.1" />
+    <rect x="369" y="194" width="13" height="2.6" rx="1.3" opacity="0.1" />
+    <rect x="355" y="182" width="11" height="2.6" rx="1.3" opacity="0.06" />
+  </g>
+
+  <path
+    d="M144 346 C212 358 300 368 360 372 C420 368 508 358 576 346 L580 357 C512 371 422 381 360 385 C298 381 208 371 140 357 Z"
+    fill="#1a140c"
+    fill-opacity="0.82"
+  />
+
+  <g stroke="#7d6840" stroke-opacity="0.5" stroke-width="1.4" fill="none" stroke-linecap="round">
+    <path d="M150 348 C214 358 300 366 360 370" />
+    <path d="M570 348 C506 358 420 366 360 370" />
+    <path d="M152 353 C216 363 302 371 360 375" />
+    <path d="M568 353 C504 363 418 371 360 375" />
+  </g>
+
+  <path
+    d="M360 320 C298 308 212 300 156 300 L148 342 C214 352 300 362 360 366 Z"
+    fill="url(#pageLeft)"
+  />
+  <path
+    d="M360 320 C422 308 508 300 564 300 L572 342 C506 352 420 362 360 366 Z"
+    fill="url(#pageRight)"
+  />
+
+  <g stroke="#5f5540" stroke-opacity="0.5" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M178 308 C240 312 302 318 344 323" />
+    <path d="M172 316 C236 320 300 326 346 332" />
+    <path d="M166 324 C232 329 298 335 348 341" />
+    <path d="M160 332 C228 337 296 344 350 350" />
+    <path d="M154 340 C210 345 258 350 300 354" />
+    <path d="M542 308 C480 312 418 318 376 323" />
+    <path d="M548 316 C484 320 420 326 374 332" />
+    <path d="M554 324 C488 329 422 335 372 341" />
+    <path d="M560 332 C492 337 424 344 370 350" />
+    <path d="M566 340 C510 345 462 350 420 354" />
+  </g>
+
+  <g fill="#c58f3d">
+    <circle cx="262" cy="326" r="3.2" opacity="0.92" />
+    <circle cx="470" cy="326" r="3.2" opacity="0.92" />
+  </g>
+
+  <path
+    d="M360 320 C356 336 356 352 360 366 C364 352 364 336 360 320 Z"
+    fill="#241c11"
+    fill-opacity="0.6"
+  />
+  <path d="M360 320 L360 366" stroke="#7d6840" stroke-opacity="0.6" stroke-width="1.2" />
+
+  <rect width="720" height="440" fill="url(#vignette)" />
+</svg>

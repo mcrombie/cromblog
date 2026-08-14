@@ -37,23 +37,8 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="site-sidebar" aria-label="Site identity and navigation">
+    <aside className="site-sidebar" aria-label="Site navigation">
       <div>
-        <Link
-          href="/"
-          className="site-brand"
-          aria-label="Michael Crombie, home"
-          aria-current={pathname === "/" ? "page" : undefined}
-        >
-          <span className="brand-seal" aria-hidden="true">
-            MC
-          </span>
-          <span className="brand-copy">
-            <span className="brand-name">Michael Crombie</span>
-            <span className="brand-tagline">Software developer &amp; writer</span>
-          </span>
-        </Link>
-
         <div className="sidebar-ornament" aria-hidden="true" />
       </div>
 

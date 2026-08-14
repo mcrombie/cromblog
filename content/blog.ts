@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "evaluator-also-has-to-be-evaluated"
   | "archivist-elegant-context-window"
   | "primeproofing-beyond-vibe-coding"
   | "building-an-llm-from-scratch"
@@ -64,6 +65,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "evaluator-also-has-to-be-evaluated",
   "archivist-elegant-context-window",
   "primeproofing-beyond-vibe-coding",
   "building-an-llm-from-scratch",
@@ -77,6 +79,22 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "evaluator-also-has-to-be-evaluated": {
+    slug: "evaluator-also-has-to-be-evaluated",
+    title: "Archivist II: Evaluating the RAG...and the Evaluator",
+    href: "/cromblog/evaluator-also-has-to-be-evaluated",
+    date: "August 14, 2026",
+    readTime: "7 min read",
+    summary:
+      "Archivist's first frozen evaluation ran against a held-out gold set of 37 questions. Retrieval almost always found something relevant but rarely found everything an answer needed — and the decomposition instrument meant to score those answers returned invalid results for 27 of 37 of them.",
+    image: {
+      src: "/cromblog/archivist-elegant-context-window/thumbnail.png",
+      alt:
+        "Engraving-style illustration of a large open book on a desk, its text rising as a column of glowing golden code beside a laptop displaying an engraved river landscape",
+      width: 1456,
+      height: 816
+    }
+  },
   "archivist-elegant-context-window": {
     slug: "archivist-elegant-context-window",
     title: "Archivist: Crafting an Elegant Context Window",

@@ -58,9 +58,13 @@ function configuredHttpsUrl(value: string | undefined) {
   }
 }
 
-export const archivistDemoUrl = configuredHttpsUrl(
-  process.env.NEXT_PUBLIC_ARCHIVIST_URL
-);
+// The public demo is live, so it is the default. NEXT_PUBLIC_ARCHIVIST_URL
+// still overrides it when a build should point somewhere else.
+const archivistDemoFallbackUrl = "https://archivist.mcrombie.com";
+
+export const archivistDemoUrl =
+  configuredHttpsUrl(process.env.NEXT_PUBLIC_ARCHIVIST_URL) ??
+  archivistDemoFallbackUrl;
 
 export const projectOrder: ProjectSlug[] = [
   "big-history-of-virginia",
@@ -116,15 +120,11 @@ export const projects: Record<ProjectSlug, Project> = {
       height: 2688
     },
     links: [
-      ...(archivistDemoUrl
-        ? [
-            {
-              label: "Open live demo",
-              href: archivistDemoUrl,
-              external: true
-            }
-          ]
-        : []),
+      {
+        label: "Open live demo",
+        href: archivistDemoUrl,
+        external: true
+      },
       {
         label: "View GitHub repo",
         href: "https://github.com/mcrombie/archivist",

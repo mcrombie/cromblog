@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { LoadingSigil } from "@/components/loading-sigil";
+
 export default function Loading() {
   return (
     <div
@@ -16,8 +18,9 @@ export default function Loading() {
           height={192}
           priority
           unoptimized
-          className="loading-sigil-image"
+          className="loading-sigil-image loading-sigil-original"
         />
+        <LoadingSigil className="loading-sigil-image loading-sigil-themed" />
       </div>
       <p className="loading-copy">Opening the next folio…</p>
     </div>

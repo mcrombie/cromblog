@@ -701,6 +701,24 @@ summary {
   padding: clamp(2rem, 5vw, 4.5rem);
 }
 
+/* Banner variant: an orienting strip, not a full-bleed opening wall. */
+.home-hero-band {
+  min-height: clamp(11rem, 26vh, 15rem);
+}
+
+.home-hero-band .home-hero-copy {
+  padding: clamp(1.4rem, 3.2vw, 2.4rem) clamp(1.5rem, 4vw, 3rem);
+}
+
+.home-hero-band .home-title {
+  font-size: clamp(2rem, 3.4vw, 2.85rem);
+}
+
+.home-hero-band .home-lede {
+  margin-top: 0.7rem;
+  font-size: clamp(0.98rem, 1.6vw, 1.12rem);
+}
+
 .home-title {
   max-width: 16ch;
   font-size: clamp(2.65rem, 4.8vw, 4.25rem);
@@ -789,17 +807,35 @@ summary {
 .home-panel-heading {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.62rem;
+  color: var(--brass-bright);
+  font-size: 0.84rem;
+  letter-spacing: 0.2em;
 }
 
 .home-panel-heading::before {
-  width: 0.38rem;
-  height: 0.62rem;
+  width: 0.5rem;
+  height: 0.8rem;
   flex: 0 0 auto;
-  border: 1px solid var(--brass-dim);
+  border: 1px solid var(--brass-bright);
   border-radius: 100% 0 100% 0;
   content: "";
+  background: var(--brass);
   transform: rotate(-32deg);
+}
+
+/* Trailing hairline: gives the label editorial weight without shouting. */
+.home-panel-heading::after {
+  height: 1px;
+  flex: 1;
+  min-width: 1.5rem;
+  content: "";
+  background: linear-gradient(90deg, var(--brass-dim), transparent);
+  opacity: 0.55;
+}
+
+.featured-project-header .home-panel-heading {
+  flex: 1;
 }
 
 .featured-project {
@@ -846,31 +882,6 @@ summary {
     var(--panel-raised);
 }
 
-.featured-project-link {
-  color: inherit;
-  text-decoration: none;
-  transition:
-    border-color 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
-}
-
-.featured-project-link:hover,
-.featured-project-link:focus-visible {
-  border-color: rgba(205, 161, 93, 0.58);
-  box-shadow:
-    0 24px 55px rgba(0, 0, 0, 0.24),
-    inset 0 0 0 1px rgba(228, 218, 195, 0.04);
-  outline: none;
-  transform: translateY(-2px);
-}
-
-.featured-project-link:focus-visible {
-  box-shadow:
-    0 0 0 3px var(--forest-950),
-    0 0 0 5px var(--brass-bright);
-}
-
 .featured-project-copy {
   align-self: center;
   padding: clamp(1.4rem, 4vw, 2.4rem);
@@ -895,6 +906,10 @@ summary {
   letter-spacing: -0.03em;
 }
 
+.featured-project-title a:hover {
+  color: var(--brass-bright);
+}
+
 .featured-project-summary {
   max-width: 58ch;
   margin: 1rem 0 0;
@@ -902,88 +917,25 @@ summary {
   line-height: 1.75;
 }
 
-.featured-project-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 1.2rem;
-  color: var(--brass-bright);
-  font-size: 0.7rem;
-  font-weight: 750;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.featured-project-cta > span {
-  transition: transform 180ms ease;
-}
-
-.featured-project-link:hover .featured-project-cta > span,
-.featured-project-link:focus-visible .featured-project-cta > span {
-  transform: translateX(0.18rem);
-}
-
 .featured-project-visual {
   position: relative;
   isolation: isolate;
-  display: grid;
-  min-height: 10.5rem;
-  place-items: center;
+  min-height: 13rem;
   overflow: hidden;
-  border-top: 1px solid var(--border-soft);
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 1.45rem,
-      var(--border-soft) 1.46rem 1.5rem
-    ),
-    linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.025));
-  color: var(--muted);
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--forest-950);
 }
 
-.featured-project-visual::before {
+.featured-project-visual::after {
   position: absolute;
-  z-index: -1;
-  width: min(70%, 10rem);
-  aspect-ratio: 1;
-  border: 1px solid var(--border);
-  border-radius: 50%;
+  inset: 0;
+  pointer-events: none;
   content: "";
-  background:
-    linear-gradient(
-      90deg,
-      transparent 49.6%,
-      var(--border-soft) 49.8% 50.2%,
-      transparent 50.4%
-    ),
-    linear-gradient(
-      transparent 49.6%,
-      var(--border-soft) 49.8% 50.2%,
-      transparent 50.4%
-    );
-  box-shadow:
-    0 0 0 1.65rem var(--border-soft),
-    0 0 0 3.2rem rgba(0, 0, 0, 0.025);
-  opacity: 0.58;
+  box-shadow: inset 0 0 0 1px rgba(228, 218, 195, 0.07);
 }
 
-.featured-project-monogram {
-  color: var(--parchment-muted);
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 5.6rem);
-  line-height: 1;
-  opacity: 0.65;
-}
-
-.featured-project-index {
-  position: absolute;
-  right: 0.85rem;
-  bottom: 0.7rem;
-  color: var(--muted);
-  font-size: 0.56rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.featured-project-image {
+  object-fit: cover;
 }
 
 .latest-dispatch {
@@ -1134,6 +1086,53 @@ summary {
   height: auto;
   border-radius: 50%;
   animation: loading-sigil-turn 2.4s linear infinite;
+}
+
+/* The themed sigil is the default; one vibe swaps back to the original plate. */
+.loading-sigil-original {
+  display: none;
+}
+
+.sigil-plate {
+  fill: var(--forest-900);
+}
+
+.sigil-ring {
+  stroke: var(--brass);
+  stroke-width: 1.6;
+}
+
+.sigil-ring-hair {
+  stroke: var(--brass-dim);
+  stroke-width: 0.8;
+  opacity: 0.7;
+}
+
+.sigil-leaf {
+  fill: var(--sage);
+  opacity: 0.5;
+}
+
+.sigil-seal {
+  fill: var(--brass);
+}
+
+.sigil-figure {
+  fill: none;
+  stroke: var(--brass-bright);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.sigil-arc {
+  stroke: var(--brass);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.sigil-node {
+  fill: var(--brass-bright);
 }
 
 .loading-copy {
@@ -1677,19 +1676,19 @@ article.content-flow figcaption {
     grid-template-columns: minmax(11rem, 0.75fr) minmax(0, 1.25fr);
     align-items: center;
   }
-}
 
-@media (min-width: 820px) {
   .featured-project-card {
-    grid-template-columns: minmax(0, 1.3fr) minmax(15rem, 0.7fr);
+    grid-template-columns: minmax(11rem, 0.75fr) minmax(0, 1.25fr);
   }
 
   .featured-project-visual {
-    min-height: 13rem;
-    border-top: 0;
-    border-left: 1px solid var(--border-soft);
+    min-height: 100%;
+    border-bottom: 0;
+    border-right: 1px solid var(--border-soft);
   }
+}
 
+@media (min-width: 820px) {
   .home-grid {
     grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
   }
@@ -1775,6 +1774,14 @@ article.content-flow figcaption {
 
   .home-hero {
     min-height: 31rem;
+  }
+
+  .home-hero-band {
+    min-height: 13rem;
+  }
+
+  .home-hero-band .home-title {
+    font-size: clamp(1.95rem, 8.5vw, 2.5rem);
   }
 
   .home-hero::after {

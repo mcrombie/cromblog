@@ -224,6 +224,16 @@ html[data-vibe-control="dismissed"]
   color: var(--bone);
 }
 
+/* Essential keeps the original engraved plate; every other vibe draws the
+   sigil from its own palette tokens. */
+html[data-vibe="minimal"] .loading-sigil-original {
+  display: block;
+}
+
+html[data-vibe="minimal"] .loading-sigil-themed {
+  display: none;
+}
+
 /* Load every art-directed hero through one semantic layer; show one per vibe. */
 .home-hero-image-vibe {
   display: none;
@@ -442,6 +452,10 @@ html[data-vibe="professional"] .home-hero {
     linear-gradient(138deg, rgba(255, 255, 255, 0.045), transparent 44%),
     #102d35;
   box-shadow: 0 24px 60px rgba(20, 48, 55, 0.14);
+}
+
+html[data-vibe="professional"] .home-hero-band {
+  min-height: clamp(11rem, 26vh, 15rem);
 }
 
 html[data-vibe="professional"] .home-hero::before {

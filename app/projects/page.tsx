@@ -49,7 +49,7 @@ export default function ProjectsPage() {
       <SectionHeading
         eyebrow="Projects"
         title="Projects"
-        description="A cabinet of simulations, interactive tools, experiments, and long-form work."
+        description="A collection of featured applications and writing."
       />
 
       <section className="projects-grid">

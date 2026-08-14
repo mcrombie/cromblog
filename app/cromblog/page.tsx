@@ -14,7 +14,7 @@ export default function CromblogPage() {
       <SectionHeading
         eyebrow="Cromblog"
         title="Cromblog"
-        description="Essays and field notes on software, simulated histories, language, and the worlds that emerge between them."
+        description="This is a series of essays primarily focused with my learning journey since my transition from history writing back to the world of software development."
       />
       <Suspense>
         <CromblogFilters />
