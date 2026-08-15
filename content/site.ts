@@ -148,6 +148,7 @@ export const projects: Record<ProjectSlug, Project> = {
       unoptimized: true
     },
     links: [
+      { label: "Open live demo", href: "/projects/clashvergence-demo" },
       { label: "View GitHub repo", href: "https://github.com/mcrombie/Clashvergence", external: true }
     ],
     blogSeries: "simulating-civilizations"

@@ -16,6 +16,7 @@ export function RootShell({ children }: RootShellProps) {
     pathname.startsWith("/projects/react-chess") ||
     pathname.startsWith("/projects/phoneme-chart") ||
     pathname.startsWith("/projects/polity") ||
+    pathname.startsWith("/projects/clashvergence-demo") ||
     pathname.startsWith("/projects/world-builder") ||
     pathname.startsWith("/cromblog/simulating-civilizations-iii/viewer");
 

@@ -37,6 +37,24 @@ the featured panel to its entry on the Projects page. With a valid HTTPS URL,
 the featured panel and project entry expose the live demo. Do not guess or
 hard-code a deployment address.
 
+Clashvergence's browser interface is served with the World Builder bundle, but
+its simulations and AI-written histories run in a separate Python service. Set
+the server-only backend origin before deploying Cromblog:
+
+```text
+CLASHVERGENCE_API_URL=https://your-clashvergence-service.example
+CLASHVERGENCE_DEMO_PROXY_SECRET=a-long-random-server-only-value
+```
+
+The browser calls Cromblog's same-origin `/api/clashvergence` proxy. Keep
+`OPENAI_API_KEY` in the Python service only; it is not a Cromblog environment
+variable and must not be prefixed with `NEXT_PUBLIC_`.
+The proxy applies best-effort per-process limits to session creation, turns,
+histories, and observer requests, and it never forwards a browser-controlled
+client identity to the Python service. Also apply durable per-client limits to
+`/api/clashvergence` at the hosting edge: warm-instance counters reset and do
+not coordinate across horizontally scaled site instances.
+
 ## Blog Content
 
 Blog metadata lives in `content/blog.ts`. Each post should have a stable slug, title, href, original publication date, estimated read time, and summary.
