@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "archivist-iii-lowering-latency"
   | "evaluator-also-has-to-be-evaluated"
   | "archivist-elegant-context-window"
   | "primeproofing-beyond-vibe-coding"
@@ -65,6 +66,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "archivist-iii-lowering-latency",
   "evaluator-also-has-to-be-evaluated",
   "archivist-elegant-context-window",
   "primeproofing-beyond-vibe-coding",
@@ -79,6 +81,22 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "archivist-iii-lowering-latency": {
+    slug: "archivist-iii-lowering-latency",
+    title: "Archivist III: Lowering Latency",
+    href: "/cromblog/archivist-iii-lowering-latency",
+    date: "August 15, 2026",
+    readTime: "6 min read",
+    summary:
+      "Archivist's first evaluation left it with a 54.4-second median latency. Moving the evidence bookkeeping out of the model and into application code — and routing social questions away from retrieval entirely — brought casual replies to a 3.59-second median and grounded answers to 19.3 seconds.",
+    image: {
+      src: "/cromblog/archivist-elegant-context-window/thumbnail.png",
+      alt:
+        "Engraving-style illustration of a large open book on a desk, its text rising as a column of glowing golden code beside a laptop displaying an engraved river landscape",
+      width: 1456,
+      height: 816
+    }
+  },
   "evaluator-also-has-to-be-evaluated": {
     slug: "evaluator-also-has-to-be-evaluated",
     title: "Archivist II: Evaluating the RAG...and the Evaluator",

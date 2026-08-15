@@ -1651,6 +1651,66 @@ article.content-flow figcaption {
   font-weight: 700;
 }
 
+.pipeline-compare {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pipeline-stage {
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: var(--forest-950);
+}
+
+.pipeline-stage-label {
+  margin: 0 0 0.85rem;
+  color: var(--brass);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pipeline-steps {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--parchment-muted);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.pipeline-steps li + li {
+  margin-top: 0.4rem;
+  padding-top: 1.35rem;
+}
+
+.pipeline-steps li + li::before {
+  position: absolute;
+  top: 0.25rem;
+  left: 0;
+  color: var(--brass);
+  content: "\2193";
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.pipeline-steps li {
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .pipeline-compare {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 640px) {
   .site-shell {
     padding: 1rem;
