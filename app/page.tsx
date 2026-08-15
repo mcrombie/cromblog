@@ -61,13 +61,13 @@ export default function HomePage() {
 
       <section
         className="home-panel featured-project"
-        aria-labelledby="featured-project-heading"
+        aria-labelledby="featured-projects-heading"
       >
         <div className="featured-project-header">
-          <h2 className="home-panel-heading" id="featured-project-heading">
-            Featured project
+          <h2 className="home-panel-heading" id="featured-projects-heading">
+            Featured projects
           </h2>
-          <span className="featured-project-status is-live">Live demo</span>
+          <span className="featured-project-status is-live">Live demos</span>
         </div>
 
         <article className="featured-project-card">
@@ -90,6 +90,30 @@ export default function HomePage() {
               Ask a specialized chat bot about my book —{" "}
               <em>Cradle of the Empire</em>. Archivist reads the manuscript then
               cites and summarizes what the book says.
+            </p>
+          </div>
+        </article>
+
+        <article className="featured-project-card">
+          <div className="featured-project-visual">
+            <Image
+              src="/clashvergence/og.png"
+              alt="A generated hex world divided among several colorful civilizations"
+              fill
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) 35vw, 28vw"
+              className="featured-project-image"
+              style={{ objectPosition: "27% center" }}
+            />
+          </div>
+          <div className="featured-project-copy">
+            <p className="featured-project-kicker">Emergent-history simulation</p>
+            <h3 className="featured-project-title">
+              <Link href="/projects/clashvergence-demo">Clashvergence</Link>
+            </h3>
+            <p className="featured-project-summary">
+              Generate a world, watch its factions grow, trade, fight, and
+              fracture, then turn their accumulated chronicle into a history
+              written from inside the simulated culture.
             </p>
           </div>
         </article>
