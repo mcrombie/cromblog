@@ -65,6 +65,9 @@ export function VibeCycleButton({
   const resolvedVibe = vibe ?? DEFAULT_VIBE;
   const currentIndex = VIBES.findIndex((option) => option.id === resolvedVibe);
   const current = VIBES[currentIndex] ?? VIBES[0];
+  const previous =
+    VIBES[(currentIndex - 1 + VIBES.length) % VIBES.length] ??
+    VIBES[VIBES.length - 1];
   const next = VIBES[(currentIndex + 1) % VIBES.length] ?? VIBES[0];
 
   function restoreFloatingControl() {
@@ -93,15 +96,17 @@ export function VibeCycleButton({
     }
   }
 
-  function cycleVibe() {
+  function stepVibe(direction: -1 | 1) {
     restoreFloatingControl();
 
     const documentVibe = document.documentElement.dataset.vibe;
     const activeVibe = isVibeId(documentVibe) ? documentVibe : DEFAULT_VIBE;
     const activeIndex = VIBES.findIndex((option) => option.id === activeVibe);
-    const nextVibe = VIBES[(activeIndex + 1) % VIBES.length] ?? VIBES[0];
+    const adjacentIndex =
+      (activeIndex + direction + VIBES.length) % VIBES.length;
+    const adjacentVibe = VIBES[adjacentIndex] ?? VIBES[0];
 
-    applyVibe(nextVibe.id);
+    applyVibe(adjacentVibe.id);
   }
 
   function chooseVibe(event: ChangeEvent<HTMLSelectElement>) {
@@ -128,38 +133,55 @@ export function VibeCycleButton({
       className={`vibe-control${
         variant === "inline" ? " vibe-control-inline" : ""
       }`}
-      role={variant === "inline" ? "group" : undefined}
-      aria-label={variant === "inline" ? "Vibe controls" : undefined}
+      role="group"
+      aria-label="Vibe controls"
     >
-      <button
-        type="button"
-        className={`vibe-cycle-button${
-          variant === "inline" ? " vibe-cycle-button-inline folio-button" : ""
-        }`}
-        onClick={cycleVibe}
-        aria-label={
-          vibe
-            ? `Change vibe. Current: ${current.label}. Next: ${next.label}.`
-            : "Change vibe."
-        }
-        title={vibe ? `Change to ${next.label}` : "Change vibe"}
-      >
-        <span className="vibe-cycle-mark" aria-hidden="true">
-          {"\u21bb"}
-        </span>
-        <span className="vibe-cycle-copy">
-          <span className="vibe-cycle-action">Change vibe</span>
-          <span className="vibe-cycle-name">
-            {vibe
-              ? variant === "inline"
-                ? `Current: ${current.label}`
-                : current.label
-              : variant === "inline"
-                ? "Current style"
-                : "Appearance"}
+      <div className="vibe-stepper">
+        <button
+          type="button"
+          className="vibe-previous-button"
+          onClick={() => stepVibe(-1)}
+          aria-label={
+            vibe
+              ? `Previous vibe: ${previous.label}. Current: ${current.label}.`
+              : "Previous vibe."
+          }
+          title={vibe ? `Previous: ${previous.label}` : "Previous vibe"}
+        >
+          <span aria-hidden="true">{"\u2190"}</span>
+        </button>
+        <button
+          type="button"
+          className={`vibe-cycle-button${
+            variant === "inline"
+              ? " vibe-cycle-button-inline folio-button"
+              : ""
+          }`}
+          onClick={() => stepVibe(1)}
+          aria-label={
+            vibe
+              ? `Next vibe: ${next.label}. Current: ${current.label}.`
+              : "Next vibe."
+          }
+          title={vibe ? `Next: ${next.label}` : "Next vibe"}
+        >
+          <span className="vibe-cycle-mark" aria-hidden="true">
+            {"\u2192"}
           </span>
-        </span>
-      </button>
+          <span className="vibe-cycle-copy">
+            <span className="vibe-cycle-action">Next vibe</span>
+            <span className="vibe-cycle-name">
+              {vibe
+                ? variant === "inline"
+                  ? `Current: ${current.label}`
+                  : current.label
+                : variant === "inline"
+                  ? "Current style"
+                  : "Appearance"}
+            </span>
+          </span>
+        </button>
+      </div>
       {variant === "inline" ? (
         <div className="vibe-picker">
           <label htmlFor={pickerId} className="vibe-picker-label">

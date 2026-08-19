@@ -28,6 +28,11 @@
   --border: rgba(205, 161, 93, 0.25);
   --border-soft: rgba(216, 207, 184, 0.12);
   --shadow-card: 0 24px 70px rgba(0, 0, 0, 0.34);
+  --doodle-ink: var(--brass-bright);
+  --doodle-heading-alpha: 0.78;
+  --doodle-rail-alpha: 0.9;
+  --doodle-rule-alpha: 0.82;
+  --doodle-endmark-alpha: 0.86;
   --font-display: "Iowan Old Style", "Palatino Linotype", Palatino,
     "Book Antiqua", Georgia, serif;
   --font-article: Charter, "Bitstream Charter", "Iowan Old Style", Georgia,
@@ -604,6 +609,154 @@ summary {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2vw, 1.22rem);
   line-height: 1.7;
+}
+
+/* Curated doodle system */
+.doodle-art {
+  display: block;
+  flex: 0 0 auto;
+  filter:
+    drop-shadow(0 0 0.35px currentColor)
+    drop-shadow(0 0 0.35px currentColor);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cromblog-doodle-masthead {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: end;
+}
+
+.cromblog-doodle-masthead .section-heading {
+  max-width: none;
+}
+
+.doodle-cromblog-masthead {
+  width: clamp(9rem, 34vw, 15rem);
+  margin-right: clamp(0rem, 2vw, 1.5rem);
+  color: var(--doodle-ink);
+  justify-self: end;
+  opacity: var(--doodle-heading-alpha);
+}
+
+/* Art gallery */
+
+.art-gallery {
+  container: art-gallery / inline-size;
+}
+
+.art-gallery + .art-gallery {
+  margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+.art-gallery-title {
+  margin: 0;
+  color: var(--bone);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.art-gallery-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.art-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--panel-strong);
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(228, 218, 195, 0.025);
+  break-inside: avoid;
+}
+
+.art-card::before {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 1rem;
+  left: 1rem;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, var(--brass-dim), transparent);
+}
+
+.art-card-visual {
+  position: relative;
+  display: block;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background:
+    radial-gradient(circle, rgba(54, 51, 45, 0.1) 0 0.7px, transparent 0.95px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.48), transparent 48%),
+    #f1ede3;
+  background-size: 1.3rem 1.3rem, auto, auto;
+  forced-color-adjust: none;
+}
+
+.art-card-image-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.art-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: contrast(1.06);
+  forced-color-adjust: none;
+}
+
+@container art-gallery (min-width: 38rem) {
+  .art-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container art-gallery (min-width: 58rem) {
+  .art-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  .art-gallery + .art-gallery {
+    margin-top: 2rem;
+  }
+
+  .art-gallery-grid {
+    display: block;
+  }
+
+  .art-card {
+    margin-bottom: 1rem;
+    border-color: #777;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .art-card-visual {
+    height: 16rem;
+  }
 }
 
 .printer-rule {
@@ -1374,6 +1527,71 @@ summary {
 }
 
 /* Long-form articles */
+.article-doodle-panel {
+  isolation: isolate;
+  container: doodle-article / inline-size;
+}
+
+.article-doodle-content {
+  position: relative;
+  z-index: 1;
+}
+
+.doodle-article-rail {
+  position: absolute;
+  z-index: 0;
+  top: clamp(4.75rem, 8cqw, 6.5rem);
+  right: clamp(0.9rem, 2.25cqw, 1.75rem);
+  display: none;
+  color: var(--doodle-ink);
+  opacity: var(--doodle-rail-alpha);
+}
+
+.doodle-article-endmark {
+  width: clamp(3.5rem, 8vw, 4.75rem);
+  margin: 2rem clamp(0rem, 2vw, 1rem) 0 auto;
+  color: var(--doodle-ink);
+  opacity: var(--doodle-endmark-alpha);
+}
+
+.doodle-article-divider {
+  position: relative;
+  min-height: 4.75rem;
+}
+
+.doodle-article-divider-art {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  color: var(--doodle-ink);
+  opacity: var(--doodle-rule-alpha);
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center;
+}
+
+@container doodle-article (min-width: 56rem) {
+  .article-doodle-panel:not(.article-doodle-panel-wide)
+    .doodle-article-rail {
+    display: block;
+    width: 5.5rem;
+  }
+}
+
+@container doodle-article (min-width: 62rem) {
+  .article-doodle-panel .doodle-article-rail {
+    display: block;
+    width: clamp(6rem, 10cqw, 8rem);
+  }
+}
+
+@container doodle-article (min-width: 75rem) {
+  .article-doodle-panel .doodle-article-rail {
+    right: clamp(1.5rem, 3cqw, 2.75rem);
+    width: clamp(8rem, 11cqw, 10.5rem);
+  }
+}
+
 article.content-flow > a:first-child {
   display: inline-flex;
   min-height: 2.75rem;
@@ -1749,6 +1967,14 @@ article.content-flow figcaption {
 }
 
 @media (min-width: 820px) {
+  .cromblog-doodle-masthead {
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 16rem);
+  }
+
+  .doodle-cromblog-masthead {
+    width: min(100%, 16rem);
+  }
+
   .home-grid {
     grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
   }

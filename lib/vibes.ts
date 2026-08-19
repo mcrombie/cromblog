@@ -12,12 +12,27 @@ export const VIBES = [
   { id: "ocean", label: "Tidal Archive" },
   { id: "princess", label: "Pretty Pink Princess" },
   { id: "baron", label: "Baleful Black Baron" },
-  { id: "rose", label: "Rose & Ruin" }
+  { id: "rose", label: "Rose & Ruin" },
+  { id: "doodle", label: "Doodle Workshop" }
 ] as const;
 
 export type VibeId = (typeof VIBES)[number]["id"];
 
-export const DEFAULT_VIBE: VibeId = "professional";
+export const ART_NAV_LABELS_BY_VIBE = {
+  professional: "Visual Work",
+  forest: "Marginalia",
+  minimal: "Drawings",
+  whimsical: "Curiosities",
+  codex: "Illuminations",
+  ember: "Inkwork",
+  ocean: "Specimens",
+  princess: "Pretty Pictures",
+  baron: "Dark Arts",
+  rose: "Keepsakes",
+  doodle: "Doodles"
+} as const satisfies Record<VibeId, string>;
+
+export const DEFAULT_VIBE: VibeId = "doodle";
 
 export function isVibeId(value: unknown): value is VibeId {
   return VIBES.some((vibe) => vibe.id === value);

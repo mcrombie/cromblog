@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "doodles:prepare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-doodle-assets.ps1",
+    "doodles:review": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/review-doodle-assets.ps1",
     "start": "next start",
     "lint": "next lint"
   },

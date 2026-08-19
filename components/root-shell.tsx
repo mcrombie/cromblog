@@ -19,10 +19,15 @@ export function RootShell({ children }: RootShellProps) {
     pathname.startsWith("/projects/clashvergence-demo") ||
     pathname.startsWith("/projects/world-builder") ||
     pathname.startsWith("/cromblog/simulating-civilizations-iii/viewer");
+  const isArtRoute = pathname === "/art" || pathname.startsWith("/art/");
 
   if (isStandaloneProject) {
     return <main className="standalone-experience">{children}</main>;
   }
 
-  return <SiteShell>{children}</SiteShell>;
+  return (
+    <SiteShell showAmbientDoodles={!isArtRoute}>
+      {children}
+    </SiteShell>
+  );
 }

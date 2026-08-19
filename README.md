@@ -67,6 +67,42 @@ updateDates: ["April 30th, 2026"]
 
 Keep dates ordered from oldest to newest. Blog post pages should display only the original publication date and the most recent update date.
 
+## Doodle Assets
+
+Approved transparent artwork lives in `public/cromblog/doodles`, with dimensions,
+placements, semantics, tags, and source provenance recorded in
+`content/doodles.ts`. Route-level pilot compositions live in
+`content/doodle-designs.ts`; the shared `DoodleArt` component validates every
+configured placement against the asset catalog. Keep the original notebook
+photographs outside `public`.
+
+The `/art` route publishes a curated selection from `content/art.ts`, where its
+two gallery groupings and reviewed image descriptions are kept separate from
+the decorative semantics in the asset manifest. Gallery images use the cleaned
+PNGs through Next Image; original phone photographs remain private.
+
+After adding or replacing a cleaned monochrome PNG, normalize its line darkness
+into real alpha and then build the checkerboard QA sheet:
+
+```bash
+npm run doodles:prepare
+npm run doodles:review
+```
+
+The review command checks the complete catalog, including the eight restrained
+starter assets and the experimental Doodle Workshop cast, for transparency, clear
+corners, manifest dimensions, and file size. It writes its contact sheet to the
+workspace `.tmp` directory rather than shipping it with the site.
+
+The `Doodle Workshop` vibe is the final entry in `lib/vibes.ts` and the default
+for visitors without a saved preference, so cycling forward from it reaches
+Professional. It uses the less-formal characters as a restrained working-notebook layer.
+Ambient art is mounted inside `SiteShell`, so it never leaks into standalone
+apps or viewers. The floating vibe control steps in either direction; the
+native picker remains available wherever the inline control is mounted. Keep
+new Workshop art deterministic and cataloged rather than choosing it randomly at
+render time.
+
 ## Blog Style
 
 Keep Cromblog posts visually uniform:

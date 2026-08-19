@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { DoodleArt } from "@/components/doodle-art";
 import { blogPosts } from "@/content/blog";
+import { postDoodleDesigns } from "@/content/doodle-designs";
 
 const post = blogPosts["make-believe-may"];
+const doodleDesign = postDoodleDesigns["make-believe-may"];
 
 export const metadata: Metadata = {
   title: post.title
@@ -19,8 +22,13 @@ export default function MakeBelieveMayPage() {
         Back to Cromblog
       </Link>
 
-      <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] px-6 py-10 shadow-card sm:px-8 sm:py-14">
-        <div className="mx-auto max-w-[760px] content-flow">
+      <div className="article-doodle-panel article-doodle-panel-wide rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] px-6 py-10 shadow-card sm:px-8 sm:py-14">
+        <DoodleArt
+          assetId={doodleDesign.rail}
+          placement="margin"
+          className="doodle-article-rail"
+        />
+        <div className="article-doodle-content mx-auto max-w-[760px] content-flow">
           <header className="content-flow">
             <p className="text-xs uppercase tracking-[0.22em] text-pine-700">
               Cromblog
@@ -82,6 +90,14 @@ export default function MakeBelieveMayPage() {
                 </a>
               </footer>
             </blockquote>
+
+            <div className="doodle-article-divider">
+              <DoodleArt
+                assetId={doodleDesign.accent.assetId}
+                placement={doodleDesign.accent.placement}
+                className="doodle-article-divider-art"
+              />
+            </div>
 
             <p>
               Out of fiction I think we can derive recovery from the dullness
