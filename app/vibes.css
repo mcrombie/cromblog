@@ -1851,6 +1851,11 @@ html[data-vibe="codex"] .article-prose code {
   color: #7f352d;
 }
 
+html[data-vibe] article.content-flow figure.auspicious-media-panel img {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 html[data-vibe="codex"] .arrival-table thead {
   background: #dfcba2;
   color: #2b261f;

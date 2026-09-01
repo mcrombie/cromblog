@@ -29,6 +29,8 @@ export default function ArtPage() {
             <div className="art-gallery-grid">
               {gallery.works.map((work) => {
                 const asset = doodleAssets[work.assetId];
+                const displayName =
+                  "displayName" in asset ? asset.displayName : undefined;
 
                 return (
                   <figure key={work.assetId} className="art-card">
@@ -44,6 +46,11 @@ export default function ArtPage() {
                         />
                       </div>
                     </div>
+                    {displayName ? (
+                      <figcaption className="art-card-caption">
+                        {displayName}
+                      </figcaption>
+                    ) : null}
                   </figure>
                 );
               })}

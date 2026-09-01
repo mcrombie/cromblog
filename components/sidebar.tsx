@@ -2,16 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-
-import {
-  ART_NAV_LABELS_BY_VIBE,
-  DEFAULT_VIBE,
-  isVibeId,
-  VIBE_CHANGE_EVENT,
-  VIBE_STORAGE_KEY,
-  type VibeId
-} from "@/lib/vibes";
 
 type NavItem = {
   label: string;
@@ -25,7 +15,6 @@ type NavItem = {
 const navLinks: NavItem[] = [
   { href: "/about", label: "About", symbol: "✦" },
   { href: "/cromblog", label: "Blog", symbol: "❧" },
-  { href: "/art", label: "Doodles", symbol: "✎" },
   { href: "/projects", label: "Projects", symbol: "◇" },
   {
     href: "https://github.com/mcrombie",
@@ -46,36 +35,6 @@ function isActive(pathname: string, href: string) {
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [vibe, setVibe] = useState<VibeId>(DEFAULT_VIBE);
-
-  useEffect(() => {
-    const documentVibe = document.documentElement.dataset.vibe;
-
-    if (isVibeId(documentVibe)) {
-      setVibe(documentVibe);
-    }
-
-    const syncVisibleVibe = (event: Event) => {
-      const changedVibe = (event as CustomEvent<unknown>).detail;
-
-      if (isVibeId(changedVibe)) {
-        setVibe(changedVibe);
-      }
-    };
-
-    const syncStoredVibe = (event: StorageEvent) => {
-      if (event.key === VIBE_STORAGE_KEY) {
-        setVibe(isVibeId(event.newValue) ? event.newValue : DEFAULT_VIBE);
-      }
-    };
-
-    window.addEventListener(VIBE_CHANGE_EVENT, syncVisibleVibe);
-    window.addEventListener("storage", syncStoredVibe);
-    return () => {
-      window.removeEventListener(VIBE_CHANGE_EVENT, syncVisibleVibe);
-      window.removeEventListener("storage", syncStoredVibe);
-    };
-  }, []);
 
   return (
     <aside className="site-sidebar" aria-label="Site navigation">
@@ -85,8 +44,7 @@ export function Sidebar() {
 
       <nav className="site-nav" aria-label="Primary navigation">
         {navLinks.map((link) => {
-          const label =
-            link.href === "/art" ? ART_NAV_LABELS_BY_VIBE[vibe] : link.label;
+          const label = link.label;
           const active = Boolean(
             link.href && !link.external && !link.disabled && isActive(pathname, link.href)
           );

@@ -2,7 +2,7 @@ import type { DoodleAssetId } from "@/content/doodles";
 
 export type ArtGallery = {
   id: string;
-  title: "Birds" | "Miscellaneous";
+  title: "Birds" | "Characters" | "Miscellaneous";
   works: readonly {
     assetId: DoodleAssetId;
     alt: string;
@@ -27,6 +27,10 @@ export const artGalleries = [
         alt: "Graphite sketch of a rounded red-eyed vireo perched on a thin twig and facing left."
       },
       {
+        assetId: "carolina-wren-01",
+        alt: "Graphite sketch of a Carolina wren perched in left-facing profile, with its compact body and tail cocked sharply upward."
+      },
+      {
         assetId: "raven-01",
         alt: "Graphite profile study of a raven facing left, with a bright eye, heavy beak, and folded wing."
       },
@@ -37,9 +41,13 @@ export const artGalleries = [
     ]
   },
   {
-    id: "miscellaneous",
-    title: "Miscellaneous",
+    id: "characters",
+    title: "Characters",
     works: [
+      {
+        assetId: "crombot-1-01",
+        alt: "Graphite drawing of Crombot 1, a homemade robot with twin ultrasonic-sensor eyes, exposed electronics, wheels, and a crown of looping jumper wires."
+      },
       {
         assetId: "one-eyed-gentleman-01",
         alt: "Graphite drawing of a one-eyed birdlike gentleman in a top hat, bow tie, trousers, and cane."
@@ -55,7 +63,13 @@ export const artGalleries = [
       {
         assetId: "orb-balancing-slug-01",
         alt: "Graphite drawing of a slug balancing a shaded orb above its head."
-      },
+      }
+    ]
+  },
+  {
+    id: "miscellaneous",
+    title: "Miscellaneous",
+    works: [
       {
         assetId: "eye-flower-sentinel-01",
         alt: "Graphite drawing of a surreal eye-flower sentinel, with a moonlike face above a shaded body and pedestal."

@@ -90,6 +90,11 @@ export function CromblogFilters() {
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 220px, 260px"
                         unoptimized={post.image.unoptimized}
                         className="post-thumbnail-image"
+                        style={
+                          post.image.objectPosition
+                            ? { objectPosition: post.image.objectPosition }
+                            : undefined
+                        }
                       />
                     </div>
                   )}

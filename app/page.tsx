@@ -130,6 +130,11 @@ export default function HomePage() {
                 fill
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 35vw, 28vw"
                 unoptimized={latestPost.image.unoptimized}
+                style={
+                  latestPost.image.objectPosition
+                    ? { objectPosition: latestPost.image.objectPosition }
+                    : undefined
+                }
               />
             </div>
           ) : null}

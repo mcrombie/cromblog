@@ -3,7 +3,9 @@ export type DoodleAssetId =
   | "raven-01"
   | "scissor-tailed-flycatcher-01"
   | "red-eyed-vireo-01"
+  | "carolina-wren-01"
   | "common-flicker-tree-01"
+  | "crombot-1-01"
   | "leaf-vine-01"
   | "feathered-eye-01"
   | "one-eyed-gentleman-01"
@@ -42,6 +44,7 @@ type DoodleSemantics =
 export type DoodleAsset = {
   id: DoodleAssetId;
   src: `/cromblog/doodles/${string}.png`;
+  displayName?: string;
   kind: DoodleKind;
   tags: readonly string[];
   image: {
@@ -52,15 +55,15 @@ export type DoodleAsset = {
   allowedPlacements: readonly DoodlePlacement[];
   semantics: DoodleSemantics;
   provenance: {
-    sourceFile: `IMG_${string}.jpg`;
+    sourceFile: `${string}.jpg`;
     treatment: "ai-assisted-cleanup" | "manual-cleanup" | "redrawn";
   };
 };
 
 export const doodleCollection = {
   artist: "Michael Crombie",
-  collection: "Doodles June through August 17th, 2026",
-  approvedOn: "2026-08-17"
+  collection: "Doodles June through August 31st, 2026",
+  approvedOn: "2026-08-31"
 } as const;
 
 export const doodleOrder: DoodleAssetId[] = [
@@ -68,7 +71,9 @@ export const doodleOrder: DoodleAssetId[] = [
   "raven-01",
   "scissor-tailed-flycatcher-01",
   "red-eyed-vireo-01",
+  "carolina-wren-01",
   "common-flicker-tree-01",
+  "crombot-1-01",
   "leaf-vine-01",
   "feathered-eye-01",
   "one-eyed-gentleman-01",
@@ -135,6 +140,20 @@ export const doodleAssets = {
       treatment: "ai-assisted-cleanup"
     }
   },
+  "carolina-wren-01": {
+    id: "carolina-wren-01",
+    src: "/cromblog/doodles/carolina-wren-01.png",
+    kind: "specimen",
+    tags: ["bird", "carolina-wren", "profile", "upturned-tail", "perch", "horizontal"],
+    image: { width: 1403, height: 1121 },
+    focalPoint: { x: 0.51, y: 0.51 },
+    allowedPlacements: ["hero", "margin", "endmark", "card"],
+    semantics: { decorative: true, alt: "" },
+    provenance: {
+      sourceFile: "unnamed (2).jpg",
+      treatment: "ai-assisted-cleanup"
+    }
+  },
   "common-flicker-tree-01": {
     id: "common-flicker-tree-01",
     src: "/cromblog/doodles/common-flicker-tree-01.png",
@@ -147,6 +166,41 @@ export const doodleAssets = {
     provenance: {
       sourceFile: "IMG_20260817_152415768.jpg",
       treatment: "ai-assisted-cleanup"
+    }
+  },
+  "crombot-1-01": {
+    id: "crombot-1-01",
+    src: "/cromblog/doodles/crombot-1-pencil-01.png",
+    displayName: "Crombot 1",
+    kind: "character",
+    tags: [
+      "character",
+      "robot",
+      "robot-car",
+      "cardboard",
+      "electronics",
+      "ultrasonic-sensor",
+      "three-quarter",
+      "graphite",
+      "pencil"
+    ],
+    image: { width: 1254, height: 1254 },
+    focalPoint: { x: 0.5, y: 0.5 },
+    allowedPlacements: [
+      "hero",
+      "margin",
+      "endmark",
+      "card",
+      "empty-state",
+      "ambient"
+    ],
+    semantics: {
+      decorative: false,
+      alt: "Graphite drawing of Crombot 1, a small cardboard robot car with sensor eyes, exposed electronics, wheels, and looping jumper wires."
+    },
+    provenance: {
+      sourceFile: "1000005519.jpg",
+      treatment: "redrawn"
     }
   },
   "leaf-vine-01": {

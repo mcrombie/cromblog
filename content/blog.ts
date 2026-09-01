@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "an-auspicious-august"
   | "archivist-iii-lowering-latency"
   | "evaluator-also-has-to-be-evaluated"
   | "archivist-elegant-context-window"
@@ -25,6 +26,7 @@ export type BlogPostImage = {
   width: number;
   height: number;
   unoptimized?: boolean;
+  objectPosition?: string;
 };
 
 export type BlogPostBase = {
@@ -66,6 +68,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "an-auspicious-august",
   "archivist-iii-lowering-latency",
   "evaluator-also-has-to-be-evaluated",
   "archivist-elegant-context-window",
@@ -81,6 +84,22 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "an-auspicious-august": {
+    slug: "an-auspicious-august",
+    title: "An Auspicious August",
+    href: "/cromblog/an-auspicious-august",
+    date: "September 1, 2026",
+    readTime: "4 min read",
+    summary:
+      "Following August’s auspices from Roman bird signs to birdwatching, Crombot 1.0, Signal September, and a late-blooming sunflower.",
+    image: {
+      src: "/cromblog/auspicious-august-and-a-signal-september/sunflower-bloom-only-poster.png",
+      alt: "Hand-tinted nineteenth-century botanical engraving of a fully open sunflower",
+      width: 1024,
+      height: 1024,
+      objectPosition: "50% 36%"
+    }
+  },
   "archivist-iii-lowering-latency": {
     slug: "archivist-iii-lowering-latency",
     title: "Archivist III: Lowering Latency",

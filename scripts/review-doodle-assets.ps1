@@ -10,6 +10,7 @@ $assets = @(
   @{ Name = "raven-01.png"; Kind = "specimen" },
   @{ Name = "scissor-tailed-flycatcher-01.png"; Kind = "specimen" },
   @{ Name = "red-eyed-vireo-01.png"; Kind = "specimen" },
+  @{ Name = "carolina-wren-01.png"; Kind = "specimen" },
   @{ Name = "common-flicker-tree-01.png"; Kind = "composition" },
   @{ Name = "leaf-vine-01.png"; Kind = "rule" },
   @{ Name = "feathered-eye-01.png"; Kind = "mark" },

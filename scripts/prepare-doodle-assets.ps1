@@ -13,6 +13,7 @@ $assetNames = @(
   "raven-01.png",
   "scissor-tailed-flycatcher-01.png",
   "red-eyed-vireo-01.png",
+  "carolina-wren-01.png",
   "common-flicker-tree-01.png",
   "leaf-vine-01.png",
   "feathered-eye-01.png",
