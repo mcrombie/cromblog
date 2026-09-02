@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "simulating-civilizations-iv"
   | "an-auspicious-august"
   | "archivist-iii-lowering-latency"
   | "evaluator-also-has-to-be-evaluated"
@@ -68,6 +69,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "simulating-civilizations-iv",
   "an-auspicious-august",
   "archivist-iii-lowering-latency",
   "evaluator-also-has-to-be-evaluated",
@@ -84,6 +86,22 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "simulating-civilizations-iv": {
+    slug: "simulating-civilizations-iv",
+    title: "Simulating Civilizations IV",
+    href: "/cromblog/simulating-civilizations-iv",
+    date: "September 2, 2026",
+    readTime: "4 min read",
+    series: "simulating-civilizations",
+    summary:
+      "A live Clashvergence demo, a more grounded narrative generator, and an evaluation that established determinism while exposing the cost of auditing large simulated worlds.",
+    image: {
+      src: "/clashvergence/og.png",
+      alt: "Clashvergence Live artwork showing a colored hex-map world beside an open historical chronicle",
+      width: 1731,
+      height: 909
+    }
+  },
   "an-auspicious-august": {
     slug: "an-auspicious-august",
     title: "An Auspicious August",
