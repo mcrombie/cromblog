@@ -107,6 +107,7 @@ render time.
 
 Keep Cromblog posts visually uniform:
 
+- Preserve supplied author wording and paragraph structure. Correct only clear spelling, grammar, or factual errors; do not paraphrase, soften, expand, or rewrite sound prose without an explicit request. Keep quoted prompts verbatim.
 - Use the `Cromblog` eyebrow above the title.
 - Use a large serif `h1` for the post title.
 - The first metadata line under the title should match the standard post format: `Original date · estimated read time`.

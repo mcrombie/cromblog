@@ -1,0 +1,366 @@
+Codex Prompt: Build the Cromonsters! Proof of Concept
+You are the lead game designer and software engineer for Cromonsters!, an original comic monster-collecting RPG and AI coding experiment.
+Inspect the existing repository before making changes. Preserve any useful conventions or existing work. If the repository is empty, scaffold the project using the default technical approach described below. Make sensible design decisions independently and proceed with implementation rather than stopping to request approval for minor choices.
+Project Goal
+In Programs\cromonsters, build a small but complete, locally playable proof of concept for Cromonsters!
+The game should evoke the approachable scale, rhythm, and comic charm of late-1990s handheld monster-collecting RPGs, particularly the broad experience of the original Pokémon Red, Blue, and Yellow: top-down exploration, a small hometown, wild creature encounters, turn-based battles, collecting creatures, gaining levels, meeting a peer or rival, and setting out into the surrounding wilderness.
+This is a spoof and affectionate genre homage, not a clone. All code, names, dialogue, maps, creatures, visual assets, music, terminology, combat details, lore, and interface designs must be original.
+Do not copy or closely reproduce:
+Pokémon characters, creature designs, names, dialogue, music, sound effects, sprites, maps, buildings, logos, fonts, menus, or story beats
+The exact layout of Pallet Town or any Pokémon route
+Poké Balls, the Pokédex, Professors, Gyms, Badges, Team Rocket, the standard Pokémon type chart, or equivalent terminology with only superficial renaming
+Any proprietary assets or extracted game files
+The proof of concept should feel familiar enough to function as parody while developing a clear identity of its own.
+Intended Scope
+Create a vertical slice, taking as much time as you need.
+The playable world should contain:
+One small starting settlement, comparable only in overall scope to an early-game hometown
+Four surrounding wilderness areas
+A short introductory sequence
+Three starter choices
+Wild Cromon encounters
+Turn-based battles
+A method for befriending, recruiting, or capturing wild Cromon using original terminology and mechanics
+Experience and leveling
+A small party and reserve system
+A field journal or bestiary
+A healing location
+A basic supply system
+At least one scripted battle against another human character
+A simple field-trial objective that gives the demo a beginning, middle, and ending
+A clear “Proof of Concept Complete” ending screen
+Do not build a full campaign, multiple towns, a league, an eight-badge structure, online multiplayer, breeding, crafting, extensive evolution trees, or a procedural open world. Create clean foundations that can support those possibilities later.
+Setting
+The world should be a fictional, lightly fantastical region inspired by the Eastern Woodlands of North America, preferably in early autumn.
+Base the environment on regional ecology and landscape:
+Deciduous hardwood forest
+Ferns, moss, fallen logs, mushrooms, and woodland streams
+Meadows, goldenrod, asters, and migrating insects
+Wetlands, ponds, marshes, and riverbanks
+An estuary, tidal inlet, or fantastical waterway that allows marine Cromon to appear
+Rural paths, wooden structures, field stations, and naturalist outposts
+Create original names for the region, settlement, routes, landmarks, characters, items, and institutions.
+Do not treat “Eastern Woodlands” as a generic Indigenous aesthetic. Avoid invented sacred traditions, faux tribal imagery, generalized “spirit animal” language, totem stereotypes, or a mixture of unrelated Native cultures. Let the ecological landscape provide the setting’s identity.
+Several animals in the roster are not native to the Eastern Woodlands or Atlantic coast. Do not falsely imply that all thirty real animals naturally share one range. Handle distant species through an explicit fantasy device, research sanctuary, migratory phenomenon, unusual ocean current, visiting naturalist, rare event, or other internally consistent explanation. Their individual documentation should still identify their real-world ranges honestly.
+The Initial Thirty Cromon
+Create exactly one original Cromon based on each of the following animals:
+Gray wolf
+Moose
+North American beaver
+Eastern box turtle
+Little brown bat
+Great horned owl
+Timber rattlesnake
+Spotted salamander
+Giant Pacific octopus
+Moon jelly
+Monarch butterfly
+Luna moth
+Seventeen-year cicada
+Common green darner
+Black-and-yellow garden spider
+Green anole
+American bullfrog
+American alligator
+Common loon
+Broad-winged hawk
+Ruby-throated hummingbird
+Great blue heron
+American bison
+Humpback whale
+Alligator gar
+Manta ray
+Atlantic horseshoe crab
+American lobster
+Lined seahorse
+Ochre sea star
+All thirty must exist in the game’s data model and field journal.
+At least half should be available through ordinary exploration of the four initial wilderness areas. The remaining Cromon may be uncommon encounters, water-specific encounters, scripted sightings, sanctuary residents, unusual visitors, or creatures accessible through a clearly labeled developer showcase. Every Cromon must at least be viewable and battle-testable in the finished proof of concept.
+Cromon Design Principles
+Each Cromon should remain recognizably based on its real-world animal while receiving a memorable fantastical elaboration.
+For every Cromon:
+Invent an original, clever, pronounceable name
+Base the name on the animal, its behavior, anatomy, habitat, sound, scientific terminology, or signature power
+Avoid names already associated with major monster-collecting franchises
+Avoid using the same naming formula thirty times
+Do not merely attach an elemental suffix to the animal’s ordinary name
+Preserve the animal’s characteristic silhouette and major anatomical features
+Add one or two strong artistic flourishes rather than burying the animal under arbitrary armor, spikes, glowing eyes, and visual clutter
+Derive its powers from real biology, behavior, ecology, or anatomy
+Clearly distinguish real biological inspiration from fantasy extrapolation
+Give it a distinct combat role, personality, habitat, strengths, limitations, and signature technique
+Avoid making every large animal a slow tank and every flying animal a fast attacker
+Keep the roster varied in shape, scale, temperament, strategy, and visual language
+Examples of the desired reasoning include:
+A beaver-inspired Cromon might manipulate terrain, redirect water, construct barriers, or repair structures
+A bat-inspired Cromon might use echolocation, reflected attacks, darkness navigation, or sound-based perception
+A salamander-inspired Cromon might possess limited regeneration or moisture-dependent recovery
+An octopus-inspired Cromon might use camouflage, flexible positioning, decoys, ink, or multitasking
+A cicada-inspired Cromon might combine long dormancy with sudden sonic force
+A spider-inspired Cromon might control movement through webs, geometry, traps, or vibration sensing
+A hummingbird-inspired Cromon might hover, accelerate rapidly, feed from flowers, or attack with precise bursts
+A whale-inspired Cromon might communicate across great distances, manipulate pressure, sing, breach, or guide allies
+These examples illustrate the approach. Do not simply copy them without further design thought.
+Individual Cromon Documentation
+Create one Markdown file for every Cromon.
+Use a consistent directory and naming scheme, such as:
+docs/cromon/001-cromon-name.md
+docs/cromon/002-cromon-name.md
+...
+docs/cromon/030-cromon-name.md
+Each file must contain:
+Cromon Name
+Real-World Inspiration
+Name Origin and Wordplay
+Real Biology and Ecology
+Fantasy Elaboration
+Visual Design
+Silhouette and Identifying Features
+Temperament and Behavior
+Habitat in the Game
+Affinity or Classification
+Battle Role
+Base Stats
+Move Set
+Signature Technique
+Strengths and Weaknesses
+Encounter Level and Rarity
+Design Thought Process
+Distinction Between Fact and Fiction
+Future Art or Animation Notes
+Also create a roster index at:
+docs/cromon/README.md
+The index should list all thirty Cromon, their source animals, affinities, habitats, and gameplay roles. Include a checklist or automated validation test proving that no required animal has been omitted or duplicated.
+Starter Cromon
+Choose three suitable starters from the thirty-animal roster.
+The starters should:
+Be visually and mechanically distinct
+Be plausible companions for a beginning naturalist or traveler
+Form an understandable three-way strategic relationship
+Use an original relationship rather than simply reproducing the Fire-Water-Grass triangle
+Remain useful throughout future development
+Introduce different battle styles, such as defense, mobility, control, perception, construction, recovery, or precision
+Document the starter-selection reasoning in:
+docs/design/starters.md
+World Structure
+Design one original hometown and four connected wilderness areas.
+The four areas should represent distinct ecological and gameplay spaces, such as:
+A hardwood forest trail
+A meadow, ridge, or old field
+A wetland, pond, or river corridor
+A tidal inlet, estuary, coastal reach, or fantastical far-current habitat
+These are biome requirements, not mandatory names.
+Each wilderness area should contain:
+A distinct encounter table
+Several low-level Cromon
+At least one uncommon encounter
+One small environmental interaction or traversal feature
+One useful item or discovery
+At least one sign, naturalist note, or NPC observation
+A recognizable visual identity
+A safe route back to town
+Keep each area compact. The goal is a polished proof of concept, not a large but empty map.
+Create:
+docs/design/world.md
+docs/design/encounter-tables.md
+Core Gameplay
+Implement a clear, fast turn-based battle system.
+At minimum, battles should support:
+Player and opponent Cromon
+Health or vitality
+Levels
+Several meaningful stats
+Turn order
+Damage calculation
+Accuracy or reliability
+Affinities, strengths, and weaknesses
+Status or field effects, kept intentionally limited
+Switching party members
+Wild-Cromon behavior
+Recruitment, bonding, or capture attempts
+Experience rewards
+Level increases
+Defeat and recovery
+Readable battle messages
+Simple opponent AI
+Invent an original affinity system that reflects ecology, behavior, anatomy, or natural forces. Keep it small enough to understand in the proof of concept. Do not reproduce Pokémon’s type list or type chart with renamed labels.
+Create a shared move library plus distinctive techniques for the Cromon. Every Cromon should have at least:
+Two usable low-level techniques
+A defined future move progression
+One signature technique in its design documentation
+Keep early battles brisk. A normal wild encounter should usually take only a few turns.
+Original Terminology
+Invent original terms for:
+The creatures
+The person who studies them
+The player’s field journal
+Recruitment or capture
+The recruitment item or tool
+Party and reserve storage
+Healing
+Affinities
+Techniques or moves
+Human opponents
+The introductory field trial
+Do not create terms that are merely “Poké” words with a different prefix.
+The game may knowingly joke about genre conventions, but the humor should come from original writing rather than copied quotations or scenes.
+Narrative Tone
+Use a warm, lightly absurd, naturalist-adventure tone.
+The writing may be self-aware about:
+Why wild creatures agree to accompany children or amateur naturalists
+The paperwork behind cataloguing dangerous magical wildlife
+The impracticality of carrying enormous marine creatures
+Local arguments over creature naming
+Researchers treating astonishing monsters as routine fieldwork
+The gap between heroic adventure and mundane ecological observation
+Keep the humor affectionate rather than cynical. Do not turn every line into a joke. Give the setting enough sincerity that the creatures and landscape still feel worth caring about.
+Visual Direction
+Use an original retro pixel-art or crisp low-resolution aesthetic inspired broadly by classic handheld games, but do not copy Pokémon’s sprites, Game Boy palettes, interface layout, battle framing, tiles, fonts, or animation patterns.
+Create:
+Original environmental tiles or simple procedural equivalents
+An original player sprite
+Original NPC sprites
+A recognizable portrait, battle sprite, SVG, or pixel-art placeholder for all thirty Cromon
+Distinct silhouettes for the Cromon
+Original interface elements
+An original title treatment for Cromonsters!
+The art does not need to be professionally polished. It must be coherent, readable, original, and easy to replace later.
+Do not use copyrighted third-party art. If temporary assets are necessary, create them locally from original geometric shapes, programmatic drawings, or clearly labeled original placeholders.
+Any sound effects or music must also be original. Simple synthesized tones are sufficient.
+Technical Approach
+If the repository does not already suggest a suitable stack, use:
+TypeScript
+Vite
+Phaser 3
+Vitest
+ESLint and Prettier
+Local browser storage for saves
+Keep the game fully local. Do not require a backend, account system, API key, external database, or network connection after installation.
+Structure the code so that:
+Game rules are separate from rendering
+Cromon, moves, items, encounters, dialogue, and maps are data-driven
+Battle calculations can be unit tested without starting the game engine
+Save data has a versioned schema
+Future areas and Cromon can be added without rewriting core systems
+Evolution can be added later even if it is not implemented now
+Debugging tools do not leak into normal play
+No single file becomes an unmanageable collection of unrelated logic
+Include a developer showcase or debug menu that allows the developer to:
+View every Cromon
+Start a test battle with any Cromon
+Adjust levels
+Inspect base stats and techniques
+Jump between maps
+Reset save data
+Controls and Accessibility
+Support at least:
+Arrow keys and WASD for movement
+Enter or Space for interaction and confirmation
+Escape for menus or cancellation
+A visible controls screen
+Keyboard-only play
+Clear focus states and readable text
+A mute control
+Responsive scaling without blurry or distorted layouts
+Avoid relying solely on color to communicate battle affinities, status effects, or warnings.
+Proof-of-Concept Objective
+Create a short introductory field assignment.
+A suitable structure is:
+The player begins in the starting settlement
+A local naturalist, ranger, archivist, or similarly original character introduces Cromon
+The player chooses one of three starters
+The player receives a field journal and recruitment equipment
+The player visits the four wilderness areas
+The player records, battles, recruits, or observes a required number of Cromon
+The player encounters one human peer or rival
+The player returns to town
+The field assignment is evaluated
+The proof-of-concept completion screen appears
+The exact details and terminology are yours to invent.
+Documentation
+Create or update:
+README.md
+docs/design/game-design.md
+docs/design/world.md
+docs/design/starters.md
+docs/design/combat.md
+docs/design/encounter-tables.md
+docs/design/art-direction.md
+docs/design/technical-architecture.md
+docs/cromon/README.md
+docs/cromon/001-*.md through 030-*.md
+docs/roadmap.md
+The main README should explain:
+What the game is
+Its parody and homage status
+That it is not affiliated with Nintendo, Game Freak, Creatures, or The Pokémon Company
+Installation
+Development commands
+Controls
+Current features
+Project structure
+Testing
+How to access the developer showcase
+Known limitations
+How to add another Cromon
+How to add another wilderness area
+Do not add an open-source license unless the repository already has one or the owner has explicitly requested one.
+Testing and Quality Requirements
+Add automated tests for at least:
+Roster completeness
+Unique Cromon identifiers
+Unique Cromon names
+Required source-animal coverage
+Stat validation
+Move references
+Encounter-table validity
+Damage calculation
+Turn ordering
+Affinity modifiers
+Recruitment or capture calculations
+Experience and leveling
+Save and load serialization
+Map-transition validity
+Before finishing:
+Install dependencies
+Run formatting and linting
+Run the test suite
+Run the production build
+Launch the game and test the main loop
+Fix game-breaking errors and major console warnings
+Verify that a new player can reach the completion screen
+Verify that all thirty Cromon can be viewed and battle-tested
+Do not leave the central gameplay loop as pseudocode, mock buttons, or unimplemented TODOs.
+Scope Discipline
+Prioritize, in order:
+A working game loop
+All thirty Cromon designs and documentation
+Stable exploration and battles
+A coherent starting town and four wilderness areas
+Original visual placeholders
+Polish and secondary effects
+When a feature threatens the proof-of-concept schedule, implement the smallest maintainable version and document the fuller idea in the roadmap.
+Working Method
+Begin by inspecting the repository and summarizing its state.
+Then:
+Create a concise implementation plan
+Establish the data model and project architecture
+Define the thirty-Cromon roster
+Implement the battle logic with tests
+Implement exploration and encounters
+Build the town and four wilderness areas
+Add the introductory field trial
+Add original placeholder art and interface elements
+Write all Cromon documentation
+Test the complete playthrough
+Update the roadmap and README
+Do not stop after writing the plan. Continue through implementation unless a genuine technical blocker makes further work impossible.
+When uncertain, choose a reasonable original solution, document the choice, and proceed.
+At the end, report:
+What was implemented
+The principal design decisions
+Important files added or changed
+Commands used to run the game
+Test and build results
+Known limitations
+The most valuable next three development milestones

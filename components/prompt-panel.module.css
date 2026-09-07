@@ -1,0 +1,161 @@
+.panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: var(--panel);
+  color: var(--foreground);
+  font-family: var(--font-ui);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 1.25rem;
+  padding: 1rem 1.15rem;
+}
+
+.title {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  font-size: 0.875rem;
+}
+
+.copyButton {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  background: var(--panel-raised);
+  color: var(--foreground);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.copyButton:hover {
+  border-color: var(--brass-bright);
+  background: var(--panel-strong);
+}
+
+.copyButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.download {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  text-underline-offset: 0.2em;
+}
+
+.summary {
+  padding: 0.9rem 1.15rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--copy);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.summary::marker {
+  color: var(--brass-bright);
+}
+
+.openLabel {
+  display: none;
+}
+
+.disclosure[open] .openLabel {
+  display: inline;
+}
+
+.disclosure[open] .closedLabel {
+  display: none;
+}
+
+.prompt,
+.manualCopy {
+  display: block;
+  width: calc(100% - 2.3rem);
+  max-height: 30rem;
+  max-height: min(30rem, 65vh);
+  margin: 0 1.15rem 1.15rem;
+  padding: 1rem;
+  overflow: auto;
+  border: 1px solid var(--border-soft);
+  border-radius: 0.25rem;
+  background: var(--forest-950);
+  color: var(--copy);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+  scrollbar-gutter: stable;
+}
+
+.manualCopy {
+  height: 30rem;
+  resize: vertical;
+}
+
+.status {
+  padding: 0 1.15rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.status:not(:empty) {
+  padding-bottom: 1rem;
+}
+
+.copyButton:focus-visible,
+.download:focus-visible,
+.summary:focus-visible,
+.prompt:focus-visible,
+.manualCopy:focus-visible {
+  outline: 2px solid var(--brass-bright);
+  outline-offset: -3px;
+}
+
+@media (max-width: 480px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0.85rem;
+  }
+
+  .summary {
+    padding: 0.85rem;
+  }
+
+  .prompt,
+  .manualCopy {
+    width: calc(100% - 1.7rem);
+    margin: 0 0.85rem 0.85rem;
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .status {
+    padding-right: 0.85rem;
+    padding-left: 0.85rem;
+  }
+}

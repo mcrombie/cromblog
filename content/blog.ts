@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "cromonsters"
   | "simulating-civilizations-iv"
   | "an-auspicious-august"
   | "archivist-iii-lowering-latency"
@@ -69,6 +70,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "cromonsters",
   "simulating-civilizations-iv",
   "an-auspicious-august",
   "archivist-iii-lowering-latency",
@@ -86,6 +88,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "cromonsters": {
+    slug: "cromonsters",
+    title: "Cromonsters!",
+    href: "/cromblog/cromonsters",
+    date: "September 7, 2026",
+    readTime: "3 min read · plus prompts and videos",
+    summary:
+      "It occurred to me while hiking how relatively simple the original Game Boy Pokémon game was and that it would probably be trivially easy to rebuild the mechanics with modern AI agent programming.",
+    image: {
+      src: "/cromblog/cromonsters/test-2-poster.jpg",
+      alt: "Cromonsters! gameplay with a muted four-shade palette and original pixel-art creatures",
+      width: 1280,
+      height: 720
+    }
+  },
   "simulating-civilizations-iv": {
     slug: "simulating-civilizations-iv",
     title: "Simulating Civilizations IV",
