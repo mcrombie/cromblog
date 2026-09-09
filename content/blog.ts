@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "clio"
   | "cromonsters"
   | "simulating-civilizations-iv"
   | "an-auspicious-august"
@@ -70,6 +71,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "clio",
   "cromonsters",
   "simulating-civilizations-iv",
   "an-auspicious-august",
@@ -88,6 +90,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "clio": {
+    slug: "clio",
+    title: "Clio: Playing History",
+    href: "/cromblog/clio",
+    date: "September 9, 2026",
+    readTime: "2 min read · plus the original prompt and demo",
+    summary:
+      "After Cromonsters, another game-making experiment: Clio, a strategy prototype about guiding a small band of people through history, inspired by Civilization, Humankind and Total War.",
+    image: {
+      src: "/cromblog/clio/clio-demo-poster.jpg",
+      alt: "Clio's hex map, with bands and neighboring peoples exploring a wooded landscape",
+      width: 1920,
+      height: 1080
+    }
+  },
   "cromonsters": {
     slug: "cromonsters",
     title: "Cromonsters!",
