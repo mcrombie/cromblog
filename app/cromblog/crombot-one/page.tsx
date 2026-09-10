@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "article",
     title: post.title,
     description: post.summary,
-    images: [{ url: post.image.src, width: 1280, height: 720, alt: post.image.alt }]
+    images: [{ url: post.image.src, width: post.image.width, height: post.image.height, alt: post.image.alt }]
   },
   twitter: {
     card: "summary_large_image",
@@ -141,7 +141,7 @@ export default function CrombotOnePage() {
               preload="none"
               width={1920}
               height={1080}
-              poster={`${media}/thumbnail.jpg`}
+              poster={post.image.src}
               aria-label="Crombot One full project demo"
               aria-describedby="long-demo-caption"
             >

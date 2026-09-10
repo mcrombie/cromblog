@@ -116,10 +116,10 @@ export const blogPosts = {
     summary:
       "How a drone sighting led me to build Crombot One, what my first Arduino rover has taught me, and the experiments I want to try next.",
     image: {
-      src: "/cromblog/crombot-one/thumbnail.jpg",
-      alt: "Crombot One with his painted shell and LED matrix beside a graphite robot drawing",
-      width: 1280,
-      height: 720
+      src: "/cromblog/crombot-one/thumbnail-shell-drawing-v1.png",
+      alt: "Graphite pencil drawing of Crombot One in his box shell, with an LED matrix, paired ultrasonic sensors, and two wheels",
+      width: 1672,
+      height: 941
     }
   },
   "cromonsters": {
