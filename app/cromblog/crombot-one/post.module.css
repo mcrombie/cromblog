@@ -1,0 +1,39 @@
+.videoFigure {
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: var(--panel);
+}
+
+.videoFigure video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #0d161b;
+}
+
+.videoFigure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.7;
+}
+
+.videoFigure a {
+  color: var(--brass-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.videoFigure :focus-visible {
+  outline: 2px solid var(--brass-bright);
+  outline-offset: 3px;
+}

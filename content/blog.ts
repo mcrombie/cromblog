@@ -1,5 +1,6 @@
 export type BlogSlug =
   | "clio"
+  | "crombot-one"
   | "cromonsters"
   | "simulating-civilizations-iv"
   | "an-auspicious-august"
@@ -71,6 +72,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "crombot-one",
   "clio",
   "cromonsters",
   "simulating-civilizations-iv",
@@ -103,6 +105,21 @@ export const blogPosts = {
       alt: "Clio's hex map, with bands and neighboring peoples exploring a wooded landscape",
       width: 1920,
       height: 1080
+    }
+  },
+  "crombot-one": {
+    slug: "crombot-one",
+    title: "Crombot One: From a Starter Kit to My First Robot",
+    href: "/cromblog/crombot-one",
+    date: "September 10, 2026",
+    readTime: "2 min read · plus demos",
+    summary:
+      "How a drone sighting led me to build Crombot One, what my first Arduino rover has taught me, and the experiments I want to try next.",
+    image: {
+      src: "/cromblog/crombot-one/thumbnail.jpg",
+      alt: "Crombot One with his painted shell and LED matrix beside a graphite robot drawing",
+      width: 1280,
+      height: 720
     }
   },
   "cromonsters": {
