@@ -1,0 +1,403 @@
+[
+  {
+    "id": "round-04-acorn-crossing",
+    "title": "Acorn Crossing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/acorn-crossing.png",
+    "alt": "A leaf-scaled animal and small horned goat beside a giant acorn on a pale pencil woodland path.",
+    "description": "Two notebook animals cross a quiet path beside an oversized acorn.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p005-a",
+      "jj2526-p048-a",
+      "jj2526-p012-a",
+      "jj2526-p001-a",
+      "jj2526-p079-c"
+    ]
+  },
+  {
+    "id": "round-04-pondside-pause",
+    "title": "Pondside Pause",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/pondside-pause.png",
+    "alt": "A long-beaked figure stands beside a small whale in a dotted pond, with reeds and a lobe-shaped cloud.",
+    "description": "A quiet encounter at a small pond, assembled from five original notebook drawings.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p036-a",
+      "jj2526-p041-a",
+      "jj2526-p023-b",
+      "jj2526-p038-b",
+      "jj2526-p079-j"
+    ]
+  },
+  {
+    "id": "round-04-kitchen-garden-gate",
+    "title": "Kitchen Garden Gate",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/kitchen-garden-gate.png",
+    "alt": "A hollow-log face, tall carrot, onion, oval stone and scalloped leaf at a lightly sketched garden gate.",
+    "description": "A hollow-log gardener stands among oversized vegetables at a quiet garden gate.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p022-a",
+      "jj2526-p008-a",
+      "jj2526-p008-b",
+      "jj2526-p037-a",
+      "jj2526-p012-c"
+    ]
+  },
+  {
+    "id": "round-04-petal-weather",
+    "title": "Petal Weather",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/petal-weather.png",
+    "alt": "A target-headed figure and large-eyed insect among drifting leaves and petals on ivory paper.",
+    "description": "Five notebook drawings meet in a light breeze over an open common.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p075-a",
+      "jj2526-p040-a",
+      "jj2526-p019-a",
+      "jj2526-p087-b",
+      "jj2526-p087-g"
+    ]
+  },
+  {
+    "id": "round-04-the-listening-grove",
+    "title": "The Listening Grove",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/the-listening-grove.png",
+    "alt": "A small dog sits on a stool beside a spiral-eyed flower, an evergreen and a yin-yang flower in a pale clearing.",
+    "description": "A little seated dog listens among unusual flowers in a quiet pencil clearing.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p061-a",
+      "jj2526-p061-b",
+      "jj2526-p088-a",
+      "jj2526-p079-h",
+      "jj2526-p085-a"
+    ]
+  },
+  {
+    "id": "round-04-dry-river-assembly",
+    "title": "Dry River Assembly",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/dry-river-assembly.png",
+    "alt": "A feathered parrot holding a staff and a long-eared seated animal meet by a dry riverbed with patterned objects.",
+    "description": "Two notebook creatures meet among familiar leaf and patterned stone shapes.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p044-a",
+      "jj2526-p093-a",
+      "jj2526-p084-a",
+      "jj2526-p079-i",
+      "jj2526-p048-b"
+    ]
+  },
+  {
+    "id": "round-04-leaf-stage-rehearsal",
+    "title": "Leaf Stage Rehearsal",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/leaf-stage-rehearsal.png",
+    "alt": "A jester-hatted monkey, waving lizard and pointed-ear dog rehearse beside a hanging pencil medallion and a leaf stage.",
+    "description": "Three original notebook characters gather for an outdoor rehearsal beneath a geometric decoration.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p085-b",
+      "jj2526-p064-a",
+      "jj2526-p056-a",
+      "jj2526-p078-a",
+      "jj2526-p079-d"
+    ]
+  },
+  {
+    "id": "round-04-breakfast-errand",
+    "title": "Breakfast Errand",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/breakfast-errand.png",
+    "alt": "A running beaked doodle passes a bicycle beside a bench with bread and tea.",
+    "description": "A small breakfast errand assembled from a running creature, a wonky bicycle, bread, tea and a clover medallion.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p109-a",
+      "jj2526-p134-a",
+      "jj2526-p133-a",
+      "jj2526-p156-a",
+      "jj2526-p136-a"
+    ]
+  },
+  {
+    "id": "round-04-ridge-crossing",
+    "title": "Ridge Crossing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/ridge-crossing.png",
+    "alt": "A long-necked spiral snail crosses a small bridge above a patterned fish, with mountains beyond.",
+    "description": "A slow crossing brings together the spiral snail, scaled fish, jagged mountain study and two unusual sky doodles.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p125-a",
+      "jj2526-p111-a",
+      "jj2526-p101-a",
+      "jj2526-p115-b",
+      "jj2526-p119-a"
+    ]
+  },
+  {
+    "id": "round-04-root-pantry",
+    "title": "Root Pantry",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/root-pantry.png",
+    "alt": "A long-backed rabbit surveys a carrot, a sandwich and two floral vessels in a lightly drawn burrow pantry.",
+    "description": "A shaggy rabbit and a striped carrot anchor a quiet pantry of floral vessels and a sandwich wedge.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p146-a",
+      "jj2526-p130-a",
+      "jj2526-p135-a",
+      "jj2526-p137-a",
+      "jj2526-p129-a"
+    ]
+  },
+  {
+    "id": "round-04-first-orchard-steps",
+    "title": "First Orchard Steps",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/first-orchard-steps.png",
+    "alt": "An egg-bound long-necked hatchling meets a leaf-armored creature between two orchard trees.",
+    "description": "An awkward first meeting in an orchard, with an apple between a hatchling and a leaf-armored figure.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p152-a",
+      "jj2526-p170-a",
+      "jj2526-p103-a",
+      "jj2526-p155-a",
+      "jj2526-p174-a"
+    ]
+  },
+  {
+    "id": "round-04-leaf-puppet-rehearsal",
+    "title": "Leaf Puppet Rehearsal",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/leaf-puppet-rehearsal.png",
+    "alt": "Three peculiar face doodles rehearse on an open wooden stage beneath oak leaves and a diamond spark.",
+    "description": "A sleepy stage mask watches two notebook figures rehearse beneath an oak-leaf curtain.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p158-a",
+      "jj2526-p160-a",
+      "jj2526-p167-a",
+      "jj2526-p175-a",
+      "jj2526-p144-a"
+    ]
+  },
+  {
+    "id": "round-04-creekside-chorus",
+    "title": "Creekside Chorus",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/creekside-chorus.png",
+    "alt": "A long-tailed songbird and a striding fan-tailed bird meet below a floating heart-shaped bird beside a stream.",
+    "description": "Three very different bird studies share a quiet creek, with a twisting tree and a small clover.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p191-a",
+      "jj2526-p186-a",
+      "jj2526-p181-a",
+      "jj2526-p172-a",
+      "jj2526-p185-a"
+    ]
+  },
+  {
+    "id": "round-04-odd-greetings-grove",
+    "title": "Odd Greetings Grove",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/odd-greetings-grove.png",
+    "alt": "A curled eye-stalk creature greets a sail-backed animal beneath an eye and a tree with leaf-shaped roots.",
+    "description": "Strange greetings among a curled creature, a sail-backed animal and an oak-leaf-nosed face in a lightly sketched grove.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p163-a",
+      "jj2526-p173-a",
+      "jj2526-p166-a",
+      "jj2526-p176-a",
+      "jj2526-p179-a"
+    ]
+  },
+  {
+    "id": "round-04-the-orchard-has-opinions",
+    "title": "The Orchard Has Opinions",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/the-orchard-has-opinions.png",
+    "alt": "Pencil scene: A tiny daytime orchard council on an open hill; the bow-tied dancing tree, friendly bare tree and sleepy bird-tree appear to discuss where the path should go.",
+    "description": "A tiny daytime orchard council on an open hill; the bow-tied dancing tree, friendly bare tree and sleepy bird-tree appear to discuss where the path should go.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p233-a",
+      "jj2526-p239-a",
+      "jj2526-p250-a",
+      "jj2526-p258-a",
+      "jj2526-p227-a"
+    ]
+  },
+  {
+    "id": "round-04-a-very-slow-ferry",
+    "title": "A Very Slow Ferry",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/a-very-slow-ferry.png",
+    "alt": "Pencil scene: A quiet little river crossing, with a top-hatted snail waiting on the bank while an improbable two-serpent-legged rooster waits beside a three-sailed boat.",
+    "description": "A quiet little river crossing, with a top-hatted snail waiting on the bank while an improbable two-serpent-legged rooster waits beside a three-sailed boat.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p294-a",
+      "jj2526-p276-b",
+      "jj2526-p242-a",
+      "jj2526-p228-a",
+      "jj2526-p196-a"
+    ]
+  },
+  {
+    "id": "round-04-the-candlelit-rehearsal",
+    "title": "The Candlelit Rehearsal",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/the-candlelit-rehearsal.png",
+    "alt": "Pencil scene: An intimate rehearsal in a paper theater: a swept-hair bow-tied gentleman and a shaggy long-eared rabbit take their places beside a pair of candles.",
+    "description": "An intimate rehearsal in a paper theater: a swept-hair bow-tied gentleman and a shaggy long-eared rabbit take their places beside a pair of candles.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p305-a",
+      "jj2526-p231-a",
+      "jj2526-p303-a",
+      "jj2526-p237-a",
+      "jj2526-p212-a"
+    ]
+  },
+  {
+    "id": "round-04-the-sculpture-visitors",
+    "title": "The Sculpture Visitors",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/the-sculpture-visitors.png",
+    "alt": "Pencil scene: A tiny outdoor sculpture garden where the booted flower walker visits three eccentric living monuments.",
+    "description": "A tiny outdoor sculpture garden where the booted flower walker visits three eccentric living monuments.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p229-a",
+      "jj2526-p263-a",
+      "jj2526-p293-a",
+      "jj2526-p244-a",
+      "jj2526-p227-b"
+    ]
+  },
+  {
+    "id": "round-04-visitors-at-the-root-room",
+    "title": "Visitors at the Root Room",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/visitors-at-the-root-room.png",
+    "alt": "Pencil scene: A whimsical small cutaway under a tree: the underground eye-dweller receives a many-footed ghost and a leaf-crowned shirted visitor.",
+    "description": "A whimsical small cutaway under a tree: the underground eye-dweller receives a many-footed ghost and a leaf-crowned shirted visitor.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p252-a",
+      "jj2526-p221-a",
+      "jj2526-p275-a",
+      "jj2526-p235-a",
+      "jj2526-p230-a"
+    ]
+  },
+  {
+    "id": "round-04-feathered-balancing-school",
+    "title": "Feathered Balancing School",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-04/feathered-balancing-school.png",
+    "alt": "Pencil scene: An eccentric balancing lesson in a clearing: an eye-balancing dressed reptile demonstrates while two elaborate crested birds watch.",
+    "description": "An eccentric balancing lesson in a clearing: an eye-balancing dressed reptile demonstrates while two elaborate crested birds watch.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "04",
+    "sourceIds": [
+      "jj2526-p267-a",
+      "jj2526-p197-a",
+      "jj2526-p210-a",
+      "jj2526-p207-a",
+      "jj2526-p225-a",
+      "jj2526-p216-a"
+    ]
+  }
+]

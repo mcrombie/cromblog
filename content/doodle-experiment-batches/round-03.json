@@ -1,0 +1,407 @@
+[
+  {
+    "id": "round-03-seed-workshop",
+    "title": "Seed Workshop",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/seed-workshop.png",
+    "alt": "A circuit-patterned creature and a round-eared peace-sign character stand beside a low potting bench holding sprouts, a veined seed, acorns, and a vase with a circular opening.",
+    "description": "Two unlikely gardeners gather sprouts, seeds, and acorns around a little potting bench.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p004-a",
+      "jm26-p009-a",
+      "jm26-p011-a",
+      "jm26-p062-a",
+      "jm26-p053-b"
+    ]
+  },
+  {
+    "id": "round-03-leaf-regatta",
+    "title": "Leaf Regatta",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/leaf-regatta.png",
+    "alt": "A creature with three tall sails rides a pointed leaf through pale blue water, while a broad grinning frog watches from a rock and a long-finned fish swims below.",
+    "description": "A three-sailed leaf rider drifts past a grinning frog and a darting fish.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p042-a",
+      "jm26-p031-a",
+      "jm26-p017-a",
+      "jm26-p042-b",
+      "jm26-p040-a"
+    ]
+  },
+  {
+    "id": "round-03-sunflower-encounter",
+    "title": "Sunflower Encounter",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/sunflower-encounter.png",
+    "alt": "A dapper cat and an upright wolf with a sunflower on its tail meet beside a smiling sunflower, with a small spiky-backed dog and oak sprigs in the foreground.",
+    "description": "A sunflower-tailed wolf meets a dapper cat beneath an even larger smiling flower.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p044-a",
+      "jm26-p005-b",
+      "jm26-p027-a",
+      "jm26-p032-a",
+      "jm26-p050-a"
+    ]
+  },
+  {
+    "id": "round-03-pebble-parade",
+    "title": "Pebble Parade",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/pebble-parade.png",
+    "alt": "Four unusual pencil figures, including a robed long-snouted character and a small flame-headed person, line up behind a curving row of pebbles and pointed leaves.",
+    "description": "Four differently shaped notebook characters gather along a playful trail of pebbles.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p029-a",
+      "jm26-p029-b",
+      "jm26-p015-a",
+      "jm26-p060-a",
+      "jm26-p047-a"
+    ]
+  },
+  {
+    "id": "round-03-canopy-explorers",
+    "title": "Canopy Explorers",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/canopy-explorers.png",
+    "alt": "A towering woodgrain bird crowned by a tree overlooks a staff-carrying bird, a parrot greeting a spiral snail, and a shaggy sloth in a clearing edged with leaves and small flowers.",
+    "description": "A bird crowned with a tree becomes a landmark for a small gathering of explorers.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p003-a",
+      "jm26-p052-a",
+      "jm26-p006-a",
+      "jm26-p016-a",
+      "jm26-p036-a",
+      "jm26-p032-b"
+    ]
+  },
+  {
+    "id": "round-03-wayside-market",
+    "title": "Wayside Market",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/wayside-market.png",
+    "alt": "A leaf-crowned round vendor and a flame-headed shield character meet at a small wooden roadside stall displaying grapes and a cluster of eye-berries.",
+    "description": "A handful of fruit, weathered boards, and two odd customers become a tiny wayside market.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p115-a",
+      "jm26-p108-a",
+      "jm26-p114-a",
+      "jm26-p125-a",
+      "jm26-p111-a",
+      "jm26-p073-a"
+    ]
+  },
+  {
+    "id": "round-03-rain-beneath-the-bell",
+    "title": "Rain Beneath the Bell",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/rain-beneath-the-bell.png",
+    "alt": "A striped spiral-eyed worm and a root-footed four-leaf figure take shelter beneath a hanging bell flower while fine pencil rain falls around scattered leaves.",
+    "description": "A hanging flower becomes a shelter for two small notebook creatures.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p077-a",
+      "jm26-p075-a",
+      "jm26-p068-a",
+      "jm26-p067-a",
+      "jm26-p072-b"
+    ]
+  },
+  {
+    "id": "round-03-tidepool-conversation",
+    "title": "Tidepool Conversation",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/tidepool-conversation.png",
+    "alt": "A sleepy tongue-out fish and a whiskered serpent share a shallow pencil tidepool bordered by ring-patterned stones and wavy ribbon leaves.",
+    "description": "Two unlikely water creatures share a pool edged with familiar stones and leaves.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p127-a",
+      "jm26-p120-a",
+      "jm26-p110-a",
+      "jm26-p092-a",
+      "jm26-p082-b"
+    ]
+  },
+  {
+    "id": "round-03-courtyard-balancing-act",
+    "title": "Courtyard Balancing Act",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/courtyard-balancing-act.png",
+    "alt": "A bearded wizard balances on his long board in a lightly sketched courtyard while an angular wide-eyed antenna bug watches beside a candle and an oak medallion.",
+    "description": "The board-riding wizard finds a small audience in a quiet courtyard.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p103-a",
+      "jm26-p105-a",
+      "jm26-p101-a",
+      "jm26-p078-a",
+      "jm26-p097-a"
+    ]
+  },
+  {
+    "id": "round-03-field-edge-windbreak",
+    "title": "Field-Edge Windbreak",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/field-edge-windbreak.png",
+    "alt": "A long-necked crested bird shelters beside an ink evergreen while two different notebook birds cross above a sparse field of rooted seed plants.",
+    "description": "Three distinctly drawn birds meet along a sparse field windbreak.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p087-a",
+      "jm26-p066-a",
+      "jm26-p069-a",
+      "jm26-p085-a",
+      "jm26-p112-b"
+    ]
+  },
+  {
+    "id": "round-03-greenhouse-gossip",
+    "title": "Greenhouse Gossip",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/greenhouse-gossip.png",
+    "alt": "Pencil doodles of a beak-shaped plant, split seed bloom, and crowned heart cactus sharing a spare greenhouse.",
+    "description": "An airy greenhouse brings together five plant doodles with only a few penciled panes and benches.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p166-a",
+      "jm26-p162-a",
+      "jm26-p180-a",
+      "jm26-p147-a",
+      "jm26-p154-a"
+    ]
+  },
+  {
+    "id": "round-03-windblown-shore",
+    "title": "Windblown Shore",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/windblown-shore.png",
+    "alt": "A shaggy long-legged bird and a tongue-tipped eye feather cross pale coastal dunes amid windblown leaves.",
+    "description": "An unusual bird and an eye feather share a breezy coast, with source leaves and flowing marks carrying the wind.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p161-a",
+      "jm26-p156-a",
+      "jm26-p138-a",
+      "jm26-p185-a",
+      "jm26-p140-a",
+      "jm26-p165-b"
+    ]
+  },
+  {
+    "id": "round-03-beneath-the-roots",
+    "title": "Beneath the Roots",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/beneath-the-roots.png",
+    "alt": "A wide-mouthed antenna creature and striped worm meet beneath fine garden roots beside a seedling in an oval.",
+    "description": "A light garden cutaway assembles a strange creature, striped worm, seedling, leaves and pebbles without filling the soil.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p157-a",
+      "jm26-p134-a",
+      "jm26-p149-a",
+      "jm26-p133-a",
+      "jm26-p173-b"
+    ]
+  },
+  {
+    "id": "round-03-acorn-orchard",
+    "title": "Acorn Orchard",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/acorn-orchard.png",
+    "alt": "An acorn-eyed leaf walker and an instrument-shaped creature visit a small orchard of cloud-canopy trees and fallen acorns.",
+    "description": "A leaf walker and ornamental companion explore widely spaced trees, using acorns, oak leaves and a leaf medallion as ground details.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p150-b",
+      "jm26-p153-a",
+      "jm26-p145-a",
+      "jm26-p151-a",
+      "jm26-p151-b",
+      "jm26-p163-a"
+    ]
+  },
+  {
+    "id": "round-03-daisy-path",
+    "title": "Daisy Path",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/daisy-path.png",
+    "alt": "A leafy bird in striped legs and a sleepy-eyed frog pause on a winding meadow path lined with tiny daisies and clover.",
+    "description": "Two original character drawings meet along a simple meadow path, with daisies, clover and one fallen angular leaf.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p160-a",
+      "jm26-p168-a",
+      "jm26-p140-b",
+      "jm26-p168-d",
+      "jm26-p169-a"
+    ]
+  },
+  {
+    "id": "round-03-birdsong-assembly",
+    "title": "Birdsong Assembly",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/birdsong-assembly.png",
+    "alt": "A raven, long-tailed flycatcher, red-eyed vireo, and common flicker occupy lightly drawn branches above tiny firs and a few oak leaves.",
+    "description": "Four very different birds find their own perches in a quiet stand of trees.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "raven-01",
+      "scissor-tailed-flycatcher-01",
+      "red-eyed-vireo-01",
+      "common-flicker-tree-01",
+      "jm26-p187-b",
+      "jm26-p195-a"
+    ]
+  },
+  {
+    "id": "round-03-cabinet-of-small-wonders",
+    "title": "Cabinet of Small Wonders",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/cabinet-of-small-wonders.png",
+    "alt": "A toothed round vessel, little portal on a pedestal, haloed creature in a vase, leaf-shaped dagger, and two-leaf sprout sit on lightly sketched shelves.",
+    "description": "Odd vessels and a tiny portal share a shelf with a sprout and a leaf-shaped tool.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p192-a",
+      "jm26-p193-a",
+      "jm26-p201-a",
+      "jm26-p190-a",
+      "jm26-p197-c"
+    ]
+  },
+  {
+    "id": "round-03-reedbed-lookout",
+    "title": "Reedbed Lookout",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/reedbed-lookout.png",
+    "alt": "A hook-beaked feathered bird and Carolina wren watch an antenna creature at the edge of a sparse reedbed, surrounded by feather-shaped and lobed leaves.",
+    "description": "Two birds discover a small antenna creature among the reeds.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p193-b",
+      "jm26-p199-a",
+      "carolina-wren-01",
+      "jm26-p200-a",
+      "jm26-p188-a"
+    ]
+  },
+  {
+    "id": "round-03-the-balancing-path",
+    "title": "The Balancing Path",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/the-balancing-path.png",
+    "alt": "A striped balancing animal stands on one leg beside a big-mouthed eyestalk creature and a bow-tied bird person, with oak-leaf puddles and a winding pencil path.",
+    "description": "A striped acrobat holds a pose while two curious onlookers pause along the path.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "jm26-p205-a",
+      "jm26-p198-a",
+      "jm26-p193-c",
+      "jm26-p202-a",
+      "jm26-p195-a"
+    ]
+  },
+  {
+    "id": "round-03-crombots-garden-visit",
+    "title": "Crombot’s Garden Visit",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-03/crombots-garden-visit.png",
+    "alt": "A small robot car with sensor eyes and looping wires meets a bow-tied crocodile at a lightly drawn garden gate framed by vines and little sprouts.",
+    "description": "Crombot rolls up to a garden gate, where a bow-tied crocodile is waiting.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "03",
+    "sourceIds": [
+      "crombot-1-01",
+      "bow-tied-crocodile-01",
+      "leaf-vine-01",
+      "jm26-p197-c",
+      "jm26-p187-b"
+    ]
+  }
+]

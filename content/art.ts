@@ -1,5 +1,29 @@
 import type { DoodleAssetId } from "@/content/doodles";
 
+export const doodleGalleryViews = [
+  {
+    id: "curated",
+    label: "Selected",
+    description: "A selection of the more developed drawings."
+  },
+  {
+    id: "texture",
+    label: "Textures",
+    description: "Leaves, branches, and small marks for the margins."
+  },
+  {
+    id: "archive",
+    label: "Archive",
+    description: "Loose studies and smaller experiments, kept for later."
+  },
+  {
+    id: "all",
+    label: "All drawings",
+    description: "Every drawing in the collection, across all notebook batches."
+  }
+] as const;
+
+// Retain the reviewed descriptions and groupings of the original collection.
 export type ArtGallery = {
   id: string;
   title: "Birds" | "Characters" | "Miscellaneous";

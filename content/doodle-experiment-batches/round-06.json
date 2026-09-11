@@ -1,0 +1,83 @@
+[
+  {
+    "id": "round-06-the-long-way-through-the-trees",
+    "title": "The Long Way Through the Trees",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-06/the-long-way-through-the-trees.png",
+    "alt": "Panoramic pencil landscape: A wooded valley gathers a leaf-eared cat, orb juggler, staff-carrying bird and horned goat around a winding path and stream, with a curled fish below and a feathered bird overhead.",
+    "description": "A wooded valley gathers a leaf-eared cat, orb juggler, staff-carrying bird and horned goat around a winding path and stream, with a curled fish below and a feathered bird overhead.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "06",
+    "sourceIds": [
+      "jm26-p197-a",
+      "jm26-p189-a",
+      "jm26-p052-a",
+      "jm26-p109-a",
+      "jm26-p066-a",
+      "jm26-p203-a",
+      "jm26-p100-a",
+      "jm26-p145-a",
+      "jm26-p171-a",
+      "jm26-p074-a",
+      "jm26-p003-a",
+      "jm26-p172-a"
+    ]
+  },
+  {
+    "id": "round-06-the-long-river-gathering",
+    "title": "The Long River Gathering",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-06/the-long-river-gathering.png",
+    "alt": "A wide pencil river valley holds a fish, turtle, snail, frog, two birds, an egg hatchling and a sail-backed creature among four distinctive tree designs.",
+    "description": "Twelve curated doodles gather along a winding river, with small bankside groups, a leafy island and distant tree-lined bends.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "06",
+    "sourceIds": [
+      "jj2526-p111-a",
+      "jj2526-p113-a",
+      "jj2526-p173-a",
+      "jj2526-p125-a",
+      "jj2526-p152-a",
+      "jj2526-p177-a",
+      "jj2526-p186-a",
+      "jj2526-p191-a",
+      "jj2526-p108-a",
+      "jj2526-p124-a",
+      "jj2526-p172-a",
+      "jj2526-p176-a"
+    ]
+  },
+  {
+    "id": "round-06-the-sculpture-park-beyond-the-hill",
+    "title": "The Sculpture Park Beyond the Hill",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-06/the-sculpture-park-beyond-the-hill.png",
+    "alt": "A broad pencil landscape of a hillside sculpture park, with eccentric eye monuments, five doodle visitors, three kinds of trees and a little candle platform linked by a winding path.",
+    "description": "A winding park path brings twelve notebook designs together across terraces, trees and strange monuments.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "06",
+    "sourceIds": [
+      "jj2526-p263-a",
+      "jj2526-p229-a",
+      "jj2526-p293-a",
+      "jj2526-p305-a",
+      "jj2526-p267-a",
+      "jj2526-p275-a",
+      "jj2526-p303-a",
+      "jj2526-p276-b",
+      "jj2526-p304-a",
+      "jj2526-p215-a",
+      "jj2526-p258-a",
+      "bow-tied-crocodile-01"
+    ]
+  }
+]

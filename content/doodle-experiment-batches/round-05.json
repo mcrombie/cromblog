@@ -1,0 +1,94 @@
+[
+  {
+    "id": "round-05-the-woodland-audience",
+    "title": "The Woodland Audience",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-05/the-woodland-audience.png",
+    "alt": "Pencil scene: An orb juggler performs in a quiet clearing for a leaf-eared cat and a woodgrain bird, beside a fallen oak leaf and acorns.",
+    "description": "An orb juggler performs in a quiet clearing for a leaf-eared cat and a woodgrain bird, beside a fallen oak leaf and acorns.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "05",
+    "sourceIds": [
+      "jm26-p189-a",
+      "jm26-p197-a",
+      "jm26-p003-a",
+      "jm26-p172-a"
+    ]
+  },
+  {
+    "id": "round-05-sunflower-shore",
+    "title": "Sunflower Shore",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-05/sunflower-shore.png",
+    "alt": "Pencil scene: A curled serpent and a long-necked feathered bird pause beside a shallow stream, with a smiling sunflower and a maple leaf at the bank.",
+    "description": "A curled serpent and a long-necked feathered bird pause beside a shallow stream, with a smiling sunflower and a maple leaf at the bank.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "05",
+    "sourceIds": [
+      "jm26-p012-a",
+      "jm26-p196-a",
+      "jm26-p027-a",
+      "jm26-p030-a"
+    ]
+  },
+  {
+    "id": "round-05-pondside-procession",
+    "title": "Pondside Procession",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-05/pondside-procession.png",
+    "alt": "A long shaggy rabbit and zigzag dog pass a pale pond while a wide frog holds out its long forked tongue from the far bank.",
+    "description": "Three standout animal drawings keep their wonderfully odd poses during an unhurried passage beside a small pond.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "05",
+    "sourceIds": [
+      "jj2526-p146-a",
+      "jj2526-p177-a",
+      "jj2526-p178-a"
+    ]
+  },
+  {
+    "id": "round-05-the-rain-shelter",
+    "title": "The Rain Shelter",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-05/the-rain-shelter.png",
+    "alt": "A caped rabbit and a booted flower take shelter beneath the scalloped canopy of a sleepy bird-tree as a light pencil shower passes.",
+    "description": "A caped rabbit and a walking flower borrow the shelter of a very patient bird-tree.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "05",
+    "sourceIds": [
+      "jj2526-p250-a",
+      "jj2526-p244-a",
+      "caped-rabbit-01"
+    ]
+  },
+  {
+    "id": "round-05-the-birdwatchers",
+    "title": "The Birdwatchers",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-05/the-birdwatchers.png",
+    "alt": "A watchful owl on its curved branch, an alert raven and an elaborate crested bird keep lookout across a quiet pencil clearing.",
+    "description": "Three excellent observers keep watch over a clearing, each in a different direction.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "05",
+    "sourceIds": [
+      "owl-on-branch-01",
+      "raven-01",
+      "jj2526-p197-a"
+    ]
+  }
+]

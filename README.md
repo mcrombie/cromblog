@@ -76,10 +76,42 @@ placements, semantics, tags, and source provenance recorded in
 configured placement against the asset catalog. Keep the original notebook
 photographs outside `public`.
 
-The `/art` route publishes a curated selection from `content/art.ts`, where its
-two gallery groupings and reviewed image descriptions are kept separate from
-the decorative semantics in the asset manifest. Gallery images use the cleaned
-PNGs through Next Image; original phone photographs remain private.
+The restored `/art` route is **Doodle Lab**. Its growing catalog in
+`content/doodle-catalog.ts` includes every published extraction, with selected,
+texture, archive and all-drawings views, batch/subject filters, search and full-size
+previews. The earlier reviewed descriptions in `content/art.ts` remain intact.
+The **Experiments** tab (`/art#experiments`) presents composed artwork with image
+previews and full-size links. Add each new composition to
+`content/doodle-experiments.ts` and copy its selected PNG into
+`public/cromblog/doodle-experiments/round-NN/`. Keep generation prompts and source
+provenance in `art-source/doodle-lab-compositions/`, outside the public bundle.
+Larger experiment sets have a visitor-safe JSON catalog under
+`content/doodle-experiment-batches/`, imported by the shared catalog. Round 03
+adds twenty varied scenes using 102 cataloged doodles, while retaining the first
+eight experiments. Their source-usage index and exact prompts are kept privately
+with the selected PNGs in `art-source/doodle-lab-compositions/round-03/`.
+Round 04 adds twenty more scenes made from 101 distinct doodles in the
+June 2025–January 2026 intake, bringing Experiments to 48 images. Its unchanged
+PNGs, exact prompts, source-usage manifest and downloadable ZIP are in
+`art-source/doodle-lab-compositions/round-04/`.
+Round 05 adds five scenes using 17 carefully selected curated drawings across
+three notebook collections, bringing Experiments to 53 images. All 48 earlier
+experiments and all 631 catalog drawings are preserved. Its source selection
+reasons, exact prompts, unchanged PNGs and ZIP are kept in
+`art-source/doodle-lab-compositions/round-05/`.
+Round 06 adds three wide landscape panoramas, each bringing twelve curated
+doodles together across foreground, middle ground and distance. The set uses
+36 distinct source drawings and brings Experiments to 56 images, preserving
+the prior 53 experiments and all 631 drawings. Original 1774 x 887 PNGs,
+source-by-source visual review notes, exact prompts and the ZIP are kept in
+`art-source/doodle-lab-compositions/round-06/`.
+New batch metadata lives in `content/doodle-batches/`; original phone photographs
+and full-resolution masters stay outside `public`. The repeatable intake,
+provenance and review workflow is documented in `art-source/DOODLE-LAB.md`.
+The June 2025–January 2026 batch contains 367 extracted samples from 305 reviewed
+photos: 178 curated drawings, 137 textures and 52 archived studies. Its private
+page index and held-drawing inventory are in
+`art-source/2025-06-2026-01/REVIEW.md`.
 
 After adding or replacing a cleaned monochrome PNG, normalize its line darkness
 into real alpha and then build the checkerboard QA sheet:
@@ -89,19 +121,23 @@ npm run doodles:prepare
 npm run doodles:review
 ```
 
-The review command checks the complete catalog, including the eight restrained
-starter assets and the experimental Doodle Workshop cast, for transparency, clear
-corners, manifest dimensions, and file size. It writes its contact sheet to the
-workspace `.tmp` directory rather than shipping it with the site.
+The legacy review command checks the original thirteen notebook assets for
+transparency, clear corners, manifest dimensions, and file size. It writes its
+contact sheet to the workspace `.tmp` directory rather than shipping it with the
+site. New batches use `scripts/doodle_batch.py` and its source, master, and catalog
+checks described in the Doodle Lab guide.
 
-The `Doodle Workshop` vibe is the final entry in `lib/vibes.ts` and the default
+The `Doodle Lab` vibe is the final entry in `lib/vibes.ts` and the default
 for visitors without a saved preference, so cycling forward from it reaches
 Professional. It uses the less-formal characters as a restrained working-notebook layer.
 Ambient art is mounted inside `SiteShell`, so it never leaks into standalone
 apps or viewers. The floating vibe control steps in either direction; the
 native picker remains available wherever the inline control is mounted. Keep
-new Workshop art deterministic and cataloged rather than choosing it randomly at
-render time.
+new Doodle Lab art deterministic and cataloged rather than choosing it randomly
+at render time. Only selected drawings and botanical textures enter the ambient
+layer; archived studies are browseable in Art. Art itself and standalone apps
+keep the ambient layer disabled, and narrow screens hide the additional margin
+drawings.
 
 ## Blog Style
 

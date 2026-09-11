@@ -13,7 +13,7 @@ export const VIBES = [
   { id: "princess", label: "Pretty Pink Princess" },
   { id: "baron", label: "Baleful Black Baron" },
   { id: "rose", label: "Rose & Ruin" },
-  { id: "doodle", label: "Doodle Workshop" }
+  { id: "doodle", label: "Doodle Lab" }
 ] as const;
 
 export type VibeId = (typeof VIBES)[number]["id"];

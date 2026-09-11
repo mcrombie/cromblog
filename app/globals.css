@@ -353,6 +353,405 @@ summary {
 }
 
 .sidebar-ornament,
+/* Doodle Lab collection browser */
+.doodle-gallery-overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.4rem;
+  padding-bottom: 1.2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.doodle-gallery-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.doodle-gallery-view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 2.7rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  background: var(--panel);
+  color: var(--copy);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.doodle-gallery-view:hover,
+.doodle-gallery-view.is-active {
+  border-color: var(--brass);
+  background: var(--panel-raised);
+  color: var(--foreground);
+}
+
+.doodle-gallery-view.is-active {
+  box-shadow: inset 0 -2px 0 var(--brass);
+}
+
+.doodle-gallery-count {
+  min-width: 1.25rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.doodle-gallery-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.doodle-gallery-field {
+  display: grid;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.doodle-gallery-field > span {
+  color: var(--muted);
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.doodle-gallery-field input,
+.doodle-gallery-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.8rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  background: var(--panel-strong);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.doodle-gallery-field input::placeholder {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.doodle-gallery-field select {
+  cursor: pointer;
+}
+
+.doodle-gallery-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem 1rem;
+  min-height: 1.5rem;
+  margin-top: 1.3rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.doodle-gallery-results p {
+  margin: 0;
+}
+
+.doodle-gallery-clear {
+  padding: 0.2rem 0;
+  color: var(--brass-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.doodle-gallery-grid {
+  margin-top: 1rem;
+}
+
+.doodle-gallery-card::before {
+  pointer-events: none;
+}
+
+.doodle-gallery-open {
+  width: 100%;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.doodle-gallery-open:focus-visible {
+  outline-offset: -4px;
+}
+
+.doodle-gallery-open .art-card-image-frame {
+  display: block;
+}
+
+.doodle-gallery-enlarge {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.6rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.2rem;
+  background: rgba(241, 237, 227, 0.94);
+  color: #554f43;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.doodle-gallery-open:hover .doodle-gallery-enlarge,
+.doodle-gallery-open:focus-visible .doodle-gallery-enlarge {
+  opacity: 1;
+}
+
+.doodle-gallery-caption {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding: 0.95rem 1rem;
+}
+
+.doodle-gallery-caption h2 {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.13rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.doodle-gallery-caption p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  text-transform: capitalize;
+}
+
+.doodle-gallery-status {
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.6rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.doodle-gallery-empty {
+  margin-top: 1.2rem;
+  padding: 3rem 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.65rem;
+  text-align: center;
+}
+
+.doodle-gallery-empty h2 {
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.doodle-gallery-empty p {
+  margin: 0.65rem 0 1.2rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.doodle-gallery-pagination {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.doodle-gallery-dialog {
+  width: min(58rem, calc(100% - 2rem));
+  max-width: none;
+  max-height: 92vh;
+  max-height: 92dvh;
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--panel-strong);
+  color: var(--foreground);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.5);
+}
+
+.doodle-gallery-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.doodle-gallery-preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem 0.5rem 1.2rem;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.doodle-gallery-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.4rem;
+  padding: 0.35rem 0.55rem;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.doodle-gallery-close span {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.doodle-gallery-preview-image {
+  height: clamp(16rem, 52vh, 38rem);
+  aspect-ratio: auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.doodle-gallery-preview-details {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1rem, 3vw, 1.6rem);
+}
+
+.doodle-gallery-preview-details h2 {
+  margin: 0.4rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.doodle-gallery-preview-details p {
+  max-width: 75ch;
+  color: var(--copy);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.doodle-gallery-preview-details .doodle-gallery-preview-batch {
+  color: var(--muted);
+  font-size: 0.69rem;
+  letter-spacing: 0.035em;
+}
+
+.doodle-gallery-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.doodle-gallery-tags button {
+  min-height: 2rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  color: var(--copy);
+  font-size: 0.69rem;
+  cursor: pointer;
+}
+
+.doodle-gallery-tags button:hover {
+  border-color: var(--brass);
+  background: var(--panel-raised);
+}
+
+.doodle-gallery-preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+}
+
+.doodle-gallery-preview-actions > a,
+.doodle-experiment-downloads a {
+  padding: 0.5rem 0;
+  color: var(--brass-bright);
+}
+
+.doodle-gallery-step {
+  display: flex;
+  gap: 1rem;
+}
+
+.doodle-gallery-step button {
+  min-height: 2.3rem;
+  padding: 0.4rem 0;
+  cursor: pointer;
+}
+
+.doodle-gallery-step button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@container art-gallery (min-width: 28rem) {
+  .doodle-gallery-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .doodle-gallery-search {
+    grid-column: 1 / -1;
+  }
+}
+
+@container art-gallery (min-width: 48rem) {
+  .doodle-gallery-filters {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 0.85fr);
+  }
+
+  .doodle-gallery-search {
+    grid-column: auto;
+  }
+}
+
+@media (hover: none) {
+  .doodle-gallery-enlarge {
+    opacity: 1;
+  }
+}
+
+@media print {
+  .doodle-gallery-views,
+  .doodle-gallery-filters,
+  .doodle-gallery-clear,
+  .doodle-gallery-pagination,
+  .doodle-gallery-enlarge,
+  .doodle-gallery-dialog {
+    display: none;
+  }
+
+  .doodle-gallery-caption h2,
+  .doodle-gallery-caption p,
+  .doodle-gallery-status {
+    color: #333;
+  }
+}
+
 .printer-rule {
   position: relative;
   display: block;
@@ -775,6 +1174,139 @@ summary {
 
   .art-card-visual {
     height: 16rem;
+  }
+}
+
+/* Art page tabs and composed experiments */
+.art-tab-list {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.art-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.6rem 0.2rem;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.art-tab:hover,
+.art-tab.is-active {
+  color: var(--foreground);
+  border-bottom-color: var(--brass);
+}
+
+.art-tab-panel {
+  padding-top: 1.6rem;
+}
+
+.art-tab-panel[hidden] {
+  display: none;
+}
+
+.doodle-experiments {
+  container: doodle-experiments / inline-size;
+}
+
+.doodle-experiments-intro {
+  max-width: 65ch;
+  margin: 0 0 1.5rem;
+  color: var(--copy);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.doodle-experiments-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.doodle-experiment-card::before {
+  pointer-events: none;
+}
+
+.doodle-experiment-open {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #f6f1e6;
+  cursor: zoom-in;
+}
+
+.doodle-experiment-open:focus-visible {
+  outline-offset: -4px;
+}
+
+.doodle-experiment-open.is-animation {
+  cursor: pointer;
+}
+
+.doodle-experiment-play {
+  opacity: 1;
+}
+
+.doodle-experiment-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.doodle-experiment-playback-note {
+  padding: 1rem;
+  color: var(--copy);
+  font-size: 0.84rem;
+}
+
+.doodle-experiment-open:hover .doodle-gallery-enlarge,
+.doodle-experiment-open:focus-visible .doodle-gallery-enlarge {
+  opacity: 1;
+}
+
+.doodle-experiment-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.doodle-experiment-caption p {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  text-transform: none;
+}
+
+.doodle-experiment-preview-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 66vh;
+  object-fit: contain;
+  background: #f6f1e6;
+}
+
+@container doodle-experiments (min-width: 38rem) {
+  .doodle-experiments-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  .art-tab-list {
+    display: none;
+  }
+
+  .doodle-experiment-caption p {
+    color: #333;
   }
 }
 

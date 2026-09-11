@@ -3672,6 +3672,62 @@ html[data-vibe="doodle"] .doodle-lab-sentinel {
   transform: rotate(1deg);
 }
 
+/* Notebook additions remain in the margins, with botanical fragments used at
+   lower contrast than the larger drawings. Keep narrow screens free of art. */
+.doodle-lab-bird,
+.doodle-lab-leaf-cat,
+.doodle-lab-branch,
+.doodle-lab-leaf,
+.doodle-lab-acorns {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  html[data-vibe="doodle"] .doodle-lab-bird {
+    display: block;
+    top: 44rem;
+    right: -2.8rem;
+    width: clamp(7rem, 9vw, 10rem);
+    color: #56534d;
+    opacity: 0.29;
+    transform: rotate(3deg);
+  }
+  html[data-vibe="doodle"] .doodle-lab-leaf-cat {
+    display: block;
+    top: 104rem;
+    right: -2rem;
+    width: 8rem;
+    color: #56534d;
+    opacity: 0.28;
+  }
+  html[data-vibe="doodle"] .doodle-lab-branch {
+    display: block;
+    top: 7rem;
+    left: -2.5rem;
+    width: 5rem;
+    color: #56534d;
+    opacity: 0.16;
+    transform: rotate(-12deg);
+  }
+  html[data-vibe="doodle"] .doodle-lab-leaf {
+    display: block;
+    top: 60rem;
+    left: -1.5rem;
+    width: 4.5rem;
+    color: #56534d;
+    opacity: 0.19;
+    transform: rotate(-18deg);
+  }
+  html[data-vibe="doodle"] .doodle-lab-acorns {
+    display: block;
+    top: 127rem;
+    left: -1.6rem;
+    width: 5rem;
+    color: #56534d;
+    opacity: 0.17;
+  }
+}
+
 html[data-vibe="doodle"] .home-hero,
 html[data-vibe="doodle"] .surface-panel,
 html[data-vibe="doodle"] .editorial-panel,

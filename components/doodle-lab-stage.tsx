@@ -1,8 +1,35 @@
 import { DoodleArt } from "@/components/doodle-art";
+import { doodleCatalogById } from "@/content/doodle-catalog";
+import type { CSSProperties } from "react";
+
+// A small, deliberate cast from the growing collection. Archived studies never
+// become ambient decoration. The source ID stays stable when a crop is refined.
+const labDrawings = [
+  { id: "jj2526-p197-a", className: "doodle-lab-bird" },
+  { id: "jj2526-p250-a", className: "doodle-lab-leaf-cat" },
+  { id: "jj2526-p228-a", className: "doodle-lab-branch" },
+  { id: "jj2526-p227-a", className: "doodle-lab-leaf" },
+  { id: "jj2526-p244-a", className: "doodle-lab-acorns" }
+] as const;
 
 export function DoodleLabStage() {
   return (
     <div className="doodle-lab-stage" aria-hidden="true">
+      {labDrawings.map(({ id, className }) => {
+        const drawing = doodleCatalogById[id];
+        if (!drawing || drawing.status === "archive") return null;
+        const style: CSSProperties = {
+          aspectRatio: `${drawing.image.width} / ${drawing.image.height}`,
+          backgroundColor: "currentColor",
+          maskImage: `url("${drawing.src}")`,
+          WebkitMaskImage: `url("${drawing.src}")`,
+          maskRepeat: "no-repeat", WebkitMaskRepeat: "no-repeat",
+          maskPosition: "center", WebkitMaskPosition: "center",
+          maskSize: "contain", WebkitMaskSize: "contain"
+        };
+        return <span key={id} className={`doodle-art ${className}`} style={style}
+          data-doodle-asset={id} data-doodle-placement="ambient" aria-hidden="true" />;
+      })}
       <DoodleArt
         assetId="one-eyed-gentleman-01"
         placement="ambient"
