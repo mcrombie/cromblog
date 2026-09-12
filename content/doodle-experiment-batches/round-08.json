@@ -1,0 +1,163 @@
+[
+  {
+    "id": "round-08-the-leaf-ferry",
+    "title": "The Leaf Ferry",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-leaf-ferry.png",
+    "alt": "Pencil landscape: A canoe and a whiskered whale share a river crossing while curious new visitors gather along the banks.",
+    "description": "A canoe and a whiskered whale share a river crossing while curious new visitors gather along the banks.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p148-a",
+      "jj25-p146-a",
+      "jj25-p075-a",
+      "jj25-p063-a",
+      "jj25-p068-a",
+      "jj25-p095-a",
+      "jj25-p100-a",
+      "jj25-p169-a"
+    ]
+  },
+  {
+    "id": "round-08-the-acorn-conservatory",
+    "title": "The Acorn Conservatory",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-acorn-conservatory.png",
+    "alt": "Pencil landscape: Leafy visitors explore an airy conservatory filled with oversized notebook plants and delicate insects.",
+    "description": "Leafy visitors explore an airy conservatory filled with oversized notebook plants and delicate insects.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p176-a",
+      "jj25-p061-a",
+      "jj25-p092-a",
+      "jj25-p183-a",
+      "jj25-p183-b",
+      "jj25-p177-a",
+      "jj25-p182-b",
+      "jj25-p163-a"
+    ]
+  },
+  {
+    "id": "round-08-the-long-picnic",
+    "title": "The Long Picnic",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-long-picnic.png",
+    "alt": "Pencil landscape: Two dogs and a wide-eyed cat gather for a generous picnic beneath a bird-topped tree.",
+    "description": "Two dogs and a wide-eyed cat gather for a generous picnic beneath a bird-topped tree.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p179-a",
+      "jj25-p175-a",
+      "jj25-p107-a",
+      "jj25-p073-a",
+      "jj25-p073-c",
+      "jj25-p073-d",
+      "jj25-p084-a",
+      "jj25-p133-a"
+    ]
+  },
+  {
+    "id": "round-08-the-hilltop-observatory",
+    "title": "The Hilltop Observatory",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-hilltop-observatory.png",
+    "alt": "Pencil landscape: Strange instruments, a giant orb and a floating forest meet on a quiet hilltop.",
+    "description": "Strange instruments, a giant orb and a floating forest meet on a quiet hilltop.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p155-a",
+      "jj25-p162-a",
+      "jj25-p173-a",
+      "jj25-p161-a",
+      "jj25-p178-a",
+      "jj25-p168-b",
+      "jj25-p130-a",
+      "jj25-p185-a"
+    ]
+  },
+  {
+    "id": "round-08-the-wandering-parade",
+    "title": "The Wandering Parade",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-wandering-parade.png",
+    "alt": "Pencil landscape: Travelers, a wheeled creature and a spring-necked bird follow a winding woodland road.",
+    "description": "Travelers, a wheeled creature and a spring-necked bird follow a winding woodland road.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p001-a",
+      "jj25-p021-a",
+      "jj25-p023-a",
+      "jj25-p128-a",
+      "jj25-p205-a",
+      "jj25-p166-a",
+      "jj25-p049-a",
+      "jj25-p039-a"
+    ]
+  },
+  {
+    "id": "round-08-the-orchard-of-unusual-trees",
+    "title": "The Orchard of Unusual Trees",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-orchard-of-unusual-trees.png",
+    "alt": "Pencil landscape: Striped cats and leafy creatures wander among trees that seem almost as curious as their visitors.",
+    "description": "Striped cats and leafy creatures wander among trees that seem almost as curious as their visitors.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p154-a",
+      "jj25-p158-a",
+      "jj25-p182-a",
+      "jj25-p182-e",
+      "jj25-p097-a",
+      "jj25-p116-a",
+      "jj25-p027-c",
+      "jj25-p104-a"
+    ]
+  },
+  {
+    "id": "round-08-the-quiet-shore",
+    "title": "The Quiet Shore",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-08/the-quiet-shore.png",
+    "alt": "Pencil landscape: A curious group explores a shore scattered with spirals, a strange window, and a tall eye-shaped tree.",
+    "description": "A curious group explores a shore scattered with spirals, a strange window, and a tall eye-shaped tree.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "08",
+    "sourceIds": [
+      "jj25-p143-a",
+      "jj25-p124-a",
+      "jj25-p129-a",
+      "jj25-p191-a",
+      "jj25-p157-a",
+      "jj25-p171-a",
+      "jj25-p181-a",
+      "jj25-p136-a"
+    ]
+  }
+]

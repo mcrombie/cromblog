@@ -1,0 +1,163 @@
+[
+  {
+    "id": "round-09-the-rain-gate-pass",
+    "title": "The Rain Gate Pass",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-rain-gate-pass.png",
+    "alt": "Pencil landscape: Travelers and leaf creatures cross a quiet mountain pass beneath a gate of falling rain.",
+    "description": "Travelers and leaf creatures cross a quiet mountain pass beneath a gate of falling rain.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p008-a",
+      "aj2425-p014-a",
+      "aj2425-p051-a",
+      "aj2425-p104-b",
+      "aj2425-p145-a",
+      "aj2425-p119-a",
+      "aj2425-p079-a",
+      "aj2425-p112-a"
+    ]
+  },
+  {
+    "id": "round-09-the-stillwater-baths",
+    "title": "The Stillwater Baths",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-stillwater-baths.png",
+    "alt": "Pencil landscape: A pavilion and oversized goblets shelter a peaceful bathing pool visited by fish, a turtle, and curious travelers.",
+    "description": "A pavilion and oversized goblets shelter a peaceful bathing pool visited by fish, a turtle, and curious travelers.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p106-a",
+      "aj2425-p099-a",
+      "aj2425-p003-a",
+      "aj2425-p109-b",
+      "aj2425-p140-a",
+      "aj2425-p138-a",
+      "aj2425-p066-a",
+      "aj2425-p114-a"
+    ]
+  },
+  {
+    "id": "round-09-the-cuphouse-steps",
+    "title": "The Cuphouse Steps",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-cuphouse-steps.png",
+    "alt": "Pencil landscape: A hillside of cups and quiet steps brings together a striped cat, a sleepy visitor, and a tiny leaf sprite.",
+    "description": "A hillside of cups and quiet steps brings together a striped cat, a sleepy visitor, and a tiny leaf sprite.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p203-a",
+      "aj2425-p169-a",
+      "aj2425-p057-a",
+      "aj2425-p173-a",
+      "aj2425-p183-a",
+      "aj2425-p007-b",
+      "aj2425-p030-a",
+      "aj2425-p019-a"
+    ]
+  },
+  {
+    "id": "round-09-the-turning-meadow",
+    "title": "The Turning Meadow",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-turning-meadow.png",
+    "alt": "Pencil landscape: Wind-shaped plants and smiling visitors gather in a broad meadow of rolling hills.",
+    "description": "Wind-shaped plants and smiling visitors gather in a broad meadow of rolling hills.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p194-a",
+      "aj2425-p156-a",
+      "aj2425-p195-a",
+      "aj2425-p196-a",
+      "aj2425-p122-a",
+      "aj2425-p090-a",
+      "aj2425-p020-a",
+      "aj2425-p107-a"
+    ]
+  },
+  {
+    "id": "round-09-the-mossy-switchback",
+    "title": "The Mossy Switchback",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-mossy-switchback.png",
+    "alt": "Pencil landscape: A leaf car and skateboarder travel a winding woodland road watched by trees and odd little companions.",
+    "description": "A leaf car and skateboarder travel a winding woodland road watched by trees and odd little companions.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p098-a",
+      "aj2425-p089-a",
+      "aj2425-p012-a",
+      "aj2425-p073-a",
+      "aj2425-p063-a",
+      "aj2425-p047-a",
+      "aj2425-p121-a",
+      "aj2425-p087-a"
+    ]
+  },
+  {
+    "id": "round-09-the-vessel-grove",
+    "title": "The Vessel Grove",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-vessel-grove.png",
+    "alt": "Pencil landscape: Living pots, leaf-headed figures, and a plumed wanderer occupy a grove of sculptural plants.",
+    "description": "Living pots, leaf-headed figures, and a plumed wanderer occupy a grove of sculptural plants.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p109-a",
+      "aj2425-p132-a",
+      "aj2425-p076-a",
+      "aj2425-p075-a",
+      "aj2425-p140-b",
+      "aj2425-p054-a",
+      "aj2425-p104-a",
+      "aj2425-p129-a"
+    ]
+  },
+  {
+    "id": "round-09-the-lantern-hollow",
+    "title": "The Lantern Hollow",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-09/the-lantern-hollow.png",
+    "alt": "Pencil landscape: A hanging lantern lights a sheltered hollow where unlikely companions gather among roots and rings.",
+    "description": "A hanging lantern lights a sheltered hollow where unlikely companions gather among roots and rings.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "09",
+    "sourceIds": [
+      "aj2425-p188-a",
+      "aj2425-p172-a",
+      "aj2425-p177-a",
+      "aj2425-p180-a",
+      "aj2425-p186-a",
+      "aj2425-p192-a",
+      "aj2425-p164-a",
+      "aj2425-p027-a"
+    ]
+  }
+]

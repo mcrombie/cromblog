@@ -2,6 +2,9 @@ import { artGalleries } from "@/content/art";
 import { doodleAssets, doodleOrder, type DoodleAsset } from "@/content/doodles";
 import januaryToMay from "@/content/doodle-batches/2026-01-may.json";
 import juneToJanuary from "@/content/doodle-batches/2025-06-2026-01.json";
+import januaryToJune from "@/content/doodle-batches/2025-01-06.json";
+import augustToJanuary from "@/content/doodle-batches/2024-08-2025-01.json";
+import marchToAugust from "@/content/doodle-batches/2024-03-08.json";
 
 export type DoodleCatalogEntry = {
   id: string;
@@ -18,6 +21,9 @@ export type DoodleCatalogEntry = {
 export type DoodleBatch = { id: string; title: string; description?: string };
 
 export const doodleBatches: readonly DoodleBatch[] = [
+  { id: "2024-03-08", title: "March–August 2024" },
+  { id: "2024-08-2025-01", title: "August 2024–January 2025" },
+  { id: "2025-01-06", title: "January–June 2025" },
   { id: "2025-06-2026-01", title: "June 2025–January 2026" },
   { id: "2026-01-may", title: "January–May 2026" },
   { id: "2026-06-aug", title: "June–August 2026" },
@@ -48,7 +54,7 @@ const existingDrawings: DoodleCatalogEntry[] = doodleOrder.map((id) => {
 // Only publish the clean gallery projection. Source photos, masks and review
 // notes belong in art-source, outside the public bundle and browser props.
 const importedDrawings: DoodleCatalogEntry[] = ([
-  ...juneToJanuary, ...januaryToMay
+  ...marchToAugust, ...augustToJanuary, ...januaryToJune, ...juneToJanuary, ...januaryToMay
 ] as DoodleCatalogEntry[]).map((entry) => {
   if (!["curated", "texture", "archive"].includes(entry.status)) {
     throw new Error(`Invalid catalog status for ${entry.id}`);

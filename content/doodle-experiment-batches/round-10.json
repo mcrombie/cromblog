@@ -1,0 +1,163 @@
+[
+  {
+    "id": "round-10-the-leaf-book-exchange",
+    "title": "The Leaf Book Exchange",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-leaf-book-exchange.png",
+    "alt": "Pencil landscape: A giant picture book draws leaf creatures and curious readers into a sheltered woodland clearing.",
+    "description": "A giant picture book draws leaf creatures and curious readers into a sheltered woodland clearing.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p037-a",
+      "ma24-p005-a",
+      "ma24-p004-a",
+      "ma24-p038-b",
+      "ma24-p038-c",
+      "ma24-p033-a",
+      "ma24-p047-b",
+      "ma24-p028-a"
+    ]
+  },
+  {
+    "id": "round-10-the-tidepool-landing",
+    "title": "The Tidepool Landing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-tidepool-landing.png",
+    "alt": "Pencil landscape: A little sailing ship reaches a quiet inlet watched by odd shore visitors and a wide-eyed fish.",
+    "description": "A little sailing ship reaches a quiet inlet watched by odd shore visitors and a wide-eyed fish.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p054-a",
+      "ma24-p055-a",
+      "ma24-p023-a",
+      "ma24-p009-a",
+      "ma24-p022-a",
+      "ma24-p041-a",
+      "ma24-p021-a",
+      "ma24-p042-a"
+    ]
+  },
+  {
+    "id": "round-10-the-highland-procession",
+    "title": "The Highland Procession",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-highland-procession.png",
+    "alt": "Pencil landscape: An unlikely procession winds between open mountain terraces under a pale morning sky.",
+    "description": "An unlikely procession winds between open mountain terraces under a pale morning sky.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p039-a",
+      "ma24-p049-a",
+      "ma24-p047-a",
+      "ma24-p003-a",
+      "ma24-p014-a",
+      "ma24-p048-a",
+      "ma24-p006-a",
+      "ma24-p032-a"
+    ]
+  },
+  {
+    "id": "round-10-the-switchback-caravan",
+    "title": "The Switchback Caravan",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-switchback-caravan.png",
+    "alt": "Pencil landscape: A curious caravan gathers on a winding canyon trail beneath a giant arrow and its tiny climber.",
+    "description": "A curious caravan gathers on a winding canyon trail beneath a giant arrow and its tiny climber.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p134-a",
+      "ma24-p149-a",
+      "ma24-p153-a",
+      "ma24-p158-a",
+      "ma24-p159-a",
+      "ma24-p161-a",
+      "ma24-p170-a",
+      "ma24-p180-a"
+    ]
+  },
+  {
+    "id": "round-10-the-meadow-of-small-celebrations",
+    "title": "The Meadow of Small Celebrations",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-meadow-of-small-celebrations.png",
+    "alt": "Pencil landscape: Leaf dancers, a party dog and a smiling crab gather in an open meadow beside a meandering stream.",
+    "description": "Leaf dancers, a party dog and a smiling crab gather in an open meadow beside a meandering stream.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p123-a",
+      "ma24-p142-a",
+      "ma24-p146-a",
+      "ma24-p152-a",
+      "ma24-p164-a",
+      "ma24-p168-a",
+      "ma24-p169-a",
+      "ma24-p176-a"
+    ]
+  },
+  {
+    "id": "round-10-the-leaf-fair",
+    "title": "The Leaf Fair",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-leaf-fair.png",
+    "alt": "Pencil landscape: A leaf-hatted robot and curious visitors gather at a little hillside fair beneath an enormous spiral flower.",
+    "description": "A leaf-hatted robot and curious visitors gather at a little hillside fair beneath an enormous spiral flower.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p208-a",
+      "ma24-p211-a",
+      "ma24-p187-a",
+      "ma24-p203-a",
+      "ma24-p094-a",
+      "ma24-p065-a",
+      "ma24-p107-a",
+      "ma24-p079-a"
+    ]
+  },
+  {
+    "id": "round-10-the-tidal-orchard",
+    "title": "The Tidal Orchard",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-10/the-tidal-orchard.png",
+    "alt": "Pencil landscape: A mermaid, a little octopus, and strange garden visitors share the quiet pools of a tidal orchard.",
+    "description": "A mermaid, a little octopus, and strange garden visitors share the quiet pools of a tidal orchard.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "10",
+    "sourceIds": [
+      "ma24-p198-a",
+      "ma24-p198-b",
+      "ma24-p075-a",
+      "ma24-p068-a",
+      "ma24-p202-a",
+      "ma24-p222-a",
+      "ma24-p228-a",
+      "ma24-p084-a"
+    ]
+  }
+]

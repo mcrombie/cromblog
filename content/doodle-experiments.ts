@@ -2,6 +2,9 @@ import newWorlds from "@/content/doodle-experiment-batches/round-03.json";
 import juneToJanuaryScenes from "@/content/doodle-experiment-batches/round-04.json";
 import favoriteDrawingScenes from "@/content/doodle-experiment-batches/round-05.json";
 import landscapePanoramas from "@/content/doodle-experiment-batches/round-06.json";
+import januaryToJuneScenes from "@/content/doodle-experiment-batches/round-08.json";
+import augustToJanuaryScenes from "@/content/doodle-experiment-batches/round-09.json";
+import marchToAugustScenes from "@/content/doodle-experiment-batches/round-10.json";
 
 export type DoodleExperiment = {
   id: string;
@@ -20,6 +23,9 @@ export const doodleExperimentsDescription =
   "Compositions made with ImageGen from my notebook doodles, exploring how familiar drawings can share new worlds.";
 
 export const doodleExperiments: readonly DoodleExperiment[] = [
+  ...(marchToAugustScenes as DoodleExperiment[]),
+  ...(augustToJanuaryScenes as DoodleExperiment[]),
+  ...(januaryToJuneScenes as DoodleExperiment[]),
   {
     id: "round-07-sculpture-park-in-motion",
     title: "Sculpture Park in Motion",
