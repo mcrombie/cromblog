@@ -1,4 +1,4 @@
-import { CROPS, PEOPLE, type Crop, type State } from "./game";
+import { CROPS, PEOPLE, type Crop, type State, type Tool } from "./game";
 export const POSITIONS: Record<string, { x: number; y: number }> = {
   rowan: { x: 286, y: 375 },
   cleo: { x: 629, y: 231 },
@@ -89,6 +89,18 @@ export function findPath(start: Point, end: Point): Point[] {
 export class World {
   private ctx: CanvasRenderingContext2D;
   private map = new Image();
+  private characters = new Image();
+  private items = new Image();
+  private selectedTool: Tool = "water";
+  private facingUp = false;
+  private facingLeft = false;
+  private effects: {
+    x: number;
+    y: number;
+    start: number;
+    text: string;
+    color: string;
+  }[] = [];
   private path: Point[] = [];
   private pending: Target | null = null;
   private keys = new Set<string>();
@@ -107,6 +119,12 @@ export class World {
     canvas.width = 1200;
     canvas.height = 800;
     this.map.src = new URL("assets/village-map.png", document.baseURI).href;
+    this.characters.src = new URL(
+      "assets/characters.png",
+      document.baseURI,
+    ).href;
+    this.items.src = new URL("assets/items.png", document.baseURI).href;
+    this.ctx.imageSmoothingEnabled = false;
     canvas.addEventListener("pointermove", (e) => {
       this.mouse = this.coords(e);
       this.hover = this.hit(this.mouse);
@@ -177,7 +195,7 @@ export class World {
   private hit(p: Point): Target | null {
     for (const person of PEOPLE) {
       const pos = POSITIONS[person.id];
-      if (Math.hypot(p.x - pos.x, p.y - (pos.y - 12)) < 28)
+      if (Math.abs(p.x - pos.x) < 31 && p.y > pos.y - 83 && p.y < pos.y + 6)
         return { kind: "person", id: person.id };
     }
     for (const place of PLACES)
@@ -238,6 +256,20 @@ export class World {
     }
     if (candidate) this.onInteract(candidate);
   }
+  setTool(tool: Tool) {
+    this.selectedTool = tool;
+  }
+  feedback(text: string, color = "#fff1ad", bed?: number) {
+    const p = bed === undefined ? this.getState().player : plotPosition(bed);
+    this.effects.push({ ...p, text, color, start: performance.now() });
+  }
+  private face(dx: number, dy: number) {
+    if (Math.abs(dy) > Math.abs(dx)) this.facingUp = dy < 0;
+    else if (dx !== 0) {
+      this.facingLeft = dx < 0;
+      this.facingUp = false;
+    }
+  }
   private frame(time: number) {
     const dt = Math.min((time - this.last) / 1000, 0.05);
     this.last = time;
@@ -251,6 +283,7 @@ export class World {
         Number(this.keys.has("s") || this.keys.has("arrowdown")) -
         Number(this.keys.has("w") || this.keys.has("arrowup"));
       if (dx || dy) {
+        this.face(dx, dy);
         const m = Math.hypot(dx, dy);
         dx = (dx / m) * dt * 185;
         dy = (dy / m) * dt * 185;
@@ -259,6 +292,7 @@ export class World {
         moving = true;
       } else if (this.path.length) {
         const p = this.path[0];
+        this.face(p.x - s.player.x, p.y - s.player.y);
         const d = Math.hypot(p.x - s.player.x, p.y - s.player.y);
         const speed = dt * 270;
         if (d <= speed) {
@@ -278,15 +312,31 @@ export class World {
   }
   private label(text: string, x: number, y: number, highlight = false) {
     const c = this.ctx;
-    c.font = '600 13px "DM Sans",sans-serif';
+    c.font = "20px ValleyText,monospace";
     c.textAlign = "center";
-    const w = c.measureText(text).width + 17;
-    c.fillStyle = highlight ? "#f6d58d" : "#153b2ddd";
-    c.beginPath();
-    c.roundRect(x - w / 2, y - 16, w, 23, 5);
-    c.fill();
-    c.fillStyle = highlight ? "#29482c" : "#fff4d6";
+    const width = c.measureText(text).width + 14;
+    c.fillStyle = "#613a26";
+    c.fillRect(Math.round(x - width / 2) - 2, y - 19, width + 4, 26);
+    c.fillStyle = highlight ? "#fff0b7" : "#f4d794";
+    c.fillRect(Math.round(x - width / 2), y - 17, width, 22);
+    c.fillStyle = "#684024";
     c.fillText(text, x, y);
+  }
+  private drawItem(index: number, x: number, y: number, size: number) {
+    if (!this.items.complete || !this.items.naturalWidth) return;
+    const w = this.items.naturalWidth / 4,
+      h = this.items.naturalHeight / 3;
+    this.ctx.drawImage(
+      this.items,
+      (index % 4) * w,
+      Math.floor(index / 4) * h,
+      w,
+      h,
+      Math.round(x - size / 2),
+      Math.round(y - size / 2),
+      size,
+      size,
+    );
   }
   private sprite(
     x: number,
@@ -296,55 +346,49 @@ export class World {
     moving = false,
   ) {
     const c = this.ctx;
-    const palettes = [
-      ["#644231", "#c08758", "#4e753d"],
-      ["#352321", "#b77c52", "#d7a64b"],
-      ["#253549", "#dfb794", "#388d8a"],
-      ["#ae5c30", "#ebba91", "#a17bb4"],
-      ["#392b27", "#b27b54", "#b16d3d"],
-      ["#c6c2bf", "#e3b89d", "#8c536c"],
-    ];
-    const [hair, skin, shirt] = player
-      ? ["#704524", "#e6b777", "#558897"]
-      : palettes[index];
-    c.fillStyle = "#102b2948";
+    c.fillStyle = "#17392765";
     c.beginPath();
-    c.ellipse(x, y + 2, 12, 5, 0, 0, Math.PI * 2);
+    c.ellipse(x, y + 1, 13, 4, 0, 0, Math.PI * 2);
     c.fill();
-    const bob = moving ? Math.sin(this.step * 2) * 1.5 : 0;
-    const px = Math.round(x) - 9,
-      py = Math.round(y) - 33 + bob;
-    c.fillStyle = hair;
-    c.fillRect(px + 2, py, 15, 13);
-    c.fillStyle = skin;
-    c.fillRect(px + 4, py + 5, 12, 10);
-    c.fillStyle = "#29362d";
-    c.fillRect(px + 6, py + 8, 2, 2);
-    c.fillRect(px + 13, py + 8, 2, 2);
-    c.fillStyle = shirt;
-    c.fillRect(px + 1, py + 15, 17, 12);
-    c.fillStyle = skin;
-    c.fillRect(px - 2, py + 17, 3, 8);
-    c.fillRect(px + 18, py + 17, 3, 8);
-    c.fillStyle = "#304652";
-    const leg = moving ? Math.sin(this.step) * 2 : 0;
-    c.fillRect(px + 3, py + 27, 5, 6 + leg);
-    c.fillRect(px + 11, py + 27, 5, 6 - leg);
-    c.fillStyle = "#4a3526";
-    c.fillRect(px + 1, py + 31 + leg, 7, 3);
-    c.fillRect(px + 11, py + 31 - leg, 7, 3);
-    if (player) {
-      c.fillStyle = "#efce83";
-      c.fillRect(px - 2, py - 2, 23, 5);
-      c.fillStyle = "#dfb762";
-      c.fillRect(px + 3, py - 8, 13, 7);
-      c.fillStyle = "#916c39";
-      c.fillRect(px + 3, py - 3, 13, 2);
+    if (!this.characters.complete || !this.characters.naturalWidth) return;
+    const tile = player ? (this.facingUp ? 7 : 0) : index + 1;
+    const width = this.characters.naturalWidth / 4,
+      height = this.characters.naturalHeight / 2;
+    const bob = moving ? Math.round(Math.sin(this.step * 2) * 2) : 0;
+    c.save();
+    c.translate(Math.round(x), Math.round(y + bob));
+    if (player && this.facingLeft && !this.facingUp) c.scale(-1, 1);
+    c.drawImage(
+      this.characters,
+      (tile % 4) * width,
+      Math.floor(tile / 4) * height,
+      width,
+      height,
+      -33,
+      -62,
+      66,
+      66,
+    );
+    c.restore();
+    if (player && this.selectedTool !== "hand") {
+      const tool = { hand: 0, hoe: 1, seed: 2, water: 3, harvest: 4, fish: 5 }[
+        this.selectedTool
+      ];
+      this.drawItem(tool, x + 17, y - 18 + bob, 25);
     }
   }
   private crop(crop: Crop, growth: number, x: number, y: number) {
     const c = this.ctx;
     const ripe = growth >= CROPS[crop].days;
+    if (ripe && this.items.complete && this.items.naturalWidth) {
+      this.drawItem(
+        { turnip: 6, strawberry: 7, sunflower: 8 }[crop],
+        x,
+        y - 8,
+        47,
+      );
+      return;
+    }
     const size = ripe ? 1 : 0.6;
     c.save();
     c.translate(x, y + 4);
@@ -444,30 +488,28 @@ export class World {
       if (a.player) {
         c.fillStyle = "#ffe49a";
         c.beginPath();
-        c.moveTo(a.x - 4, a.y - 52);
-        c.lineTo(a.x + 4, a.y - 52);
-        c.lineTo(a.x, a.y - 46);
+        c.moveTo(a.x - 4, a.y - 74);
+        c.lineTo(a.x + 4, a.y - 74);
+        c.lineTo(a.x, a.y - 68);
         c.fill();
       } else {
         const dating = s.bonds[a.id].dating;
         this.label(
           `${dating ? "♥ " : ""}${a.name}`,
           a.x,
-          a.y - 45,
+          a.y - 65,
           this.hover?.id === a.id,
         );
       }
     }
     for (const p of PLACES) {
       c.fillStyle = this.hover?.id === p.id ? "#f3cd77" : "#183b2de8";
-      c.beginPath();
-      c.arc(p.x, p.y - 18, 14, 0, Math.PI * 2);
-      c.fill();
+      c.fillRect(p.x - 14, p.y - 32, 28, 28);
       c.strokeStyle = "#ebd095";
       c.lineWidth = 1.5;
-      c.stroke();
+      c.strokeRect(p.x - 14, p.y - 32, 28, 28);
       c.fillStyle = this.hover?.id === p.id ? "#28452f" : "#f6d995";
-      c.font = "20px Georgia";
+      c.font = "22px ValleyText,monospace";
       c.textAlign = "center";
       c.fillText(p.icon, p.x, p.y - 12);
       if (this.hover?.id === p.id) this.label(p.name, p.x, p.y - 47, true);
@@ -494,6 +536,29 @@ export class World {
       c.globalAlpha = 0.4 + Math.sin(time * 0.002 + i) * 0.3;
       c.fillStyle = "#fff0ad";
       c.fillRect(x, y, 2, 2);
+    }
+    c.globalAlpha = 1;
+    this.effects = this.effects.filter((e) => time - e.start < 1100);
+    for (const effect of this.effects) {
+      const age = (time - effect.start) / 1100;
+      c.globalAlpha = 1 - age;
+      c.font = "25px ValleyText,monospace";
+      c.textAlign = "center";
+      c.strokeStyle = "#4c3425";
+      c.lineWidth = 3;
+      c.strokeText(effect.text, effect.x, effect.y - 32 - age * 38);
+      c.fillStyle = effect.color;
+      c.fillText(effect.text, effect.x, effect.y - 32 - age * 38);
+      for (let i = 0; i < 5; i++) {
+        const a = i * Math.PI * 0.4;
+        const d = age * 30;
+        c.fillRect(
+          effect.x + Math.cos(a) * d,
+          effect.y - 14 + Math.sin(a) * d,
+          3,
+          3,
+        );
+      }
     }
     c.globalAlpha = 1;
     if (s.minutes > 1020) {

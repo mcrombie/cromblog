@@ -62,7 +62,7 @@ export const PEOPLE = [
     x: 265,
     y: 415,
     intro:
-      "I planted a welcome sign for you. It grew into a zucchini. So… welcome zucchini.",
+      "Oh, the new farmer! I was told to be mysterious until you gave me enough vegetables. Honestly, a hello works too.",
     chat: [
       "The best part of gardening? Everything is rooting for you. Including me.",
       "My tomato vines are sharing a trellis. I think they have the right idea.",
@@ -84,7 +84,7 @@ export const PEOPLE = [
     x: 597,
     y: 300,
     intro:
-      "You must be the new farmer. Here, try this. The secret ingredient is butter. The other secret ingredient is also butter.",
+      "Welcome! I sell seeds, buy your crops, and accept romantic gifts. It is a very vertically integrated meet-cute.",
     chat: [
       "Someone ordered a wedding cake with seven little figures. Finally, a structural challenge.",
       "There is always room at my table. I have been buying more chairs.",
@@ -109,7 +109,7 @@ export const PEOPLE = [
     x: 928,
     y: 480,
     intro:
-      "Quiet, a heron. Sorry, I say that whenever I get nervous. There is no heron. Hi.",
+      "You are the new farmer? Good. The river needs a keeper and my love life needs a protagonist.",
     chat: [
       "A river can split into many streams and still be the same river. Love makes sense that way.",
       "I catalogued twelve frog calls today. None of them were asking about my relationship status.",
@@ -131,7 +131,7 @@ export const PEOPLE = [
     x: 838,
     y: 310,
     intro:
-      "Welcome! I wrote the town anthem. It is mostly about vegetables, with a surprisingly romantic bridge.",
+      "I wrote the town theme. It loops forever. So does my crush on the person who keeps bringing me sunflowers.",
     chat: [
       "I am composing a love song. It has a lot of verses. And a shared calendar.",
       "You have excellent walking-through-the-village rhythm. Have you considered percussion?",
@@ -156,7 +156,7 @@ export const PEOPLE = [
     x: 655,
     y: 570,
     intro:
-      "Built your shipping crate myself. Very sturdy. Unlike my composure when someone cute moves into town.",
+      "I can upgrade your house once you have enough wood. I can upgrade our relationship once you say hello. Much less grinding.",
     chat: [
       "My love language is making sure your shelves are level.",
       "I am building a bigger picnic table. No reason. Well. Several very attractive reasons.",
@@ -181,7 +181,7 @@ export const PEOPLE = [
     x: 814,
     y: 647,
     intro:
-      "I study celestial bodies. That sounded smoother in my head. Welcome to the valley.",
+      "I chart the stars. Apparently every constellation says I am compatible with the new farmer. Extremely rigorous science.",
     chat: [
       "Constellations are just a lot of beautiful things connected. No star has to shine alone.",
       "Tonight should be clear. My schedule, remarkably, is also clear.",
