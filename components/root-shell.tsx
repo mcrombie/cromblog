@@ -16,6 +16,7 @@ export function RootShell({ children }: RootShellProps) {
     pathname === "/cromblog/doodle-lab" ||
     pathname.startsWith("/games/cromb-coo-coo") ||
     pathname.startsWith("/games/cromonsters") ||
+    pathname.startsWith("/games/heartwood-valley") ||
     pathname.startsWith("/projects/react-chess") ||
     pathname.startsWith("/projects/phoneme-chart") ||
     pathname.startsWith("/projects/polity") ||

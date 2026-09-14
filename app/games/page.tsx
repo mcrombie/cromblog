@@ -8,7 +8,7 @@ import { doodleVibeMarks } from "@/content/doodle-vibe";
 export const metadata: Metadata = {
   title: "Games",
   description:
-    "Explore Cromb Coo Coo, an illustrated browser adventure, alongside Clio and Cromonsters. Play, watch prototypes, and follow these worlds as they grow."
+    "Play Heartwood Valley, a farming and open-romance game, alongside Cromb Coo Coo, Clio, and Cromonsters. Explore original worlds in your browser."
 };
 
 export default function GamesPage() {
@@ -22,6 +22,49 @@ export default function GamesPage() {
       />
 
       <section className="projects-grid" aria-label="Games in development">
+        <article id="heartwood-valley" className="project-card" aria-labelledby="heartwood-valley-title">
+          <div className="project-card-grid">
+            <div className="project-copy">
+              <div>
+                <p className="project-kicker">Farming &amp; romance</p>
+                <h2 id="heartwood-valley-title" className="project-title">Heartwood Valley</h2>
+                <p className="project-summary">
+                  A little farm, a lot of love. Grow crops, fish by the river,
+                  and get to know six very eligible neighbors in an original
+                  pixel-art village. Date any or all of them, then bring
+                  everyone together for a long-table picnic.
+                </p>
+                <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <dt className="text-xs uppercase tracking-widest text-pine-700">Format</dt>
+                    <dd className="mt-1 text-pine-800">Browser game</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-widest text-pine-700">Stage</dt>
+                    <dd className="mt-1 text-pine-800">Playable small-town daydream</dd>
+                  </div>
+                </dl>
+              </div>
+              <div className="project-actions">
+                <Link href="/games/heartwood-valley" className="folio-button">Play Heartwood Valley</Link>
+              </div>
+              <p className="mt-4 text-sm text-pine-700">
+                For a quick tour, open the Field guide and choose “Give me a little head start.”
+              </p>
+            </div>
+            <div className="project-image-bay">
+              <Image
+                src="/games/heartwood-valley/assets/village-map.png"
+                alt="Heartwood Valley: a pixel-art farm, cottages, flower gardens, and a wooden bridge over a turquoise river"
+                width={1536}
+                height={1024}
+                sizes="(min-width: 1280px) 40vw, (min-width: 768px) 50vw, 100vw"
+                className="project-image"
+              />
+            </div>
+          </div>
+        </article>
+
         <article
           id="cromb-coo-coo"
           className="project-card"
