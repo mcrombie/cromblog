@@ -1,14 +1,16 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import type { GameState, Target } from "@/lib/cromb-coo-coo";
+import { getTargets, type GameState, type Target } from "@/lib/cromb-coo-coo";
 
 type Point = [number, number, number];
-type SceneState = { state: GameState; active: Target | null; reducedMotion: boolean; paused: boolean; disabled: boolean };
-type Projection = Record<Target, { x: number; y: number; visible: boolean }>;
+type SceneState = { state: GameState; active: Target | null; reducedMotion: boolean; paused: boolean; disabled: boolean; travelling: "forward" | "back" | null };
+type Projection = Partial<Record<Target, { x: number; y: number; visible: boolean }>>;
 type Callbacks = {
   onTarget: (target: Target) => void;
   onHover: (target: Target | null) => void;
   onProject: (points: Projection) => void;
+  onArrival: () => void;
+  onTravelComplete: () => void;
   onFailure: () => void;
 };
 export type SceneControl = "left" | "right" | "in" | "out" | "reset";
@@ -20,7 +22,7 @@ const PALETTE = {
   rock: 0x75877e, cream: 0xf4e7c8, dark: 0x41473d, soil: 0x938967
 };
 
-/** The entire scene is modeled geometry; no scene image is used in the renderer. */
+/** Each stop is a complete, modeled island; illustrated plates are a separate fallback. */
 export function createDiorama(host: HTMLElement, initial: SceneState, callbacks: Callbacks): Diorama {
   let state = initial;
   let disposed = false;
@@ -30,33 +32,33 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
   let elapsed = 0;
   let dirty = true;
   let visible = true;
-  let yaw = .13;
-  let tilt = .53;
+  let yaw = .12;
+  let tilt = .49;
   let zoom = 1;
-  let bridgeGrowth = initial.state.bridgeOpen ? 1 : 0;
-  let crossing = initial.state.complete ? 1 : 0;
+  let arrival = initial.reducedMotion ? 1 : 0;
+  let travel = 0;
+  let arrivalSent = false;
+  let travelSent = false;
   let hover: Target | null = null;
   let pointer: { id: number; x: number; y: number; lastX: number; lastY: number; moved: boolean } | null = null;
-  let seed = 72641;
+  let seed = 72641 + initial.state.sceneIndex * 943;
   const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
   const v = (p: Point) => new THREE.Vector3(...p);
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xe6e5cf);
-  scene.fog = new THREE.Fog(0xe6e5cf, 28, 78);
-  const camera = new THREE.OrthographicCamera(-12, 12, 7, -7, .1, 140);
+  const sky = initial.state.sceneIndex === 4 ? 0xd1dac7 : initial.state.sceneIndex === 3 ? 0xdce5dc : 0xe6e5cf;
+  scene.background = new THREE.Color(sky);
+  scene.fog = new THREE.Fog(sky, 29, 74);
+  const camera = new THREE.OrthographicCamera(-8, 8, 6, -6, .1, 140);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "low-power" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.65));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
+  renderer.toneMappingExposure = 1.04;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   const canvas = renderer.domElement;
   canvas.setAttribute("aria-hidden", "true");
-  canvas.style.width = "100%";
-  canvas.style.height = "100%";
-  canvas.style.display = "block";
-  canvas.style.touchAction = "pan-y";
+  canvas.style.cssText = "width:100%;height:100%;display:block;touch-action:pan-y";
   host.appendChild(canvas);
 
   const geometries = new Set<THREE.BufferGeometry>();
@@ -104,7 +106,7 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     orb: material(0xdfb96a, false, { emissive: 0x9b7839, emissiveIntensity: .4 }),
     cloud: material(0xf5eddb, false, { transparent: true, opacity: .52, depthWrite: false, flatShading: true })
   };
-  const ambient = new THREE.HemisphereLight(0xfff2cf, 0x718c85, 1.75); scene.add(ambient);
+  const ambient = new THREE.HemisphereLight(0xfff2cf, 0x718c85, 1.5); scene.add(ambient);
   const sun = new THREE.DirectionalLight(0xffe8bb, 2.6); sun.position.set(-8, 16, 10);
   sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024);
   Object.assign(sun.shadow.camera, { left: -14, right: 14, top: 12, bottom: -12, near: 1, far: 55 });
@@ -156,23 +158,32 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     parent.add(leaves); return leaves;
   }
   const pickables: THREE.Object3D[] = [];
-  const anchors = {} as Record<Target, THREE.Object3D>;
+  const anchors: Partial<Record<Target, THREE.Object3D>> = {};
   function target(id: Target, object: THREE.Object3D, at: Point) {
     object.userData.target = id; pickables.push(object); anchors[id] = group(object, at);
   }
   function batchScenery(parent: THREE.Object3D) {
     parent.updateWorldMatrix(true, true);
     const inverse = parent.matrixWorld.clone().invert();
-    const batches = new Map<THREE.Material, THREE.Mesh[]>();
+    const batches = new Map<string, { surface: THREE.Material; objects: THREE.Mesh[] }>();
     parent.traverse(object => {
-      if (!(object instanceof THREE.Mesh) || object instanceof THREE.InstancedMesh || Array.isArray(object.material)) return;
-      const entries = batches.get(object.material) ?? []; entries.push(object); batches.set(object.material, entries);
+      if (!(object instanceof THREE.Mesh) || object instanceof THREE.InstancedMesh || Array.isArray(object.material) || object.userData.animated) return;
+      // A material may be shared by indexed primitives and unindexed cliff faces.
+      // Batch only identical layouts so every original surface is preserved.
+      const geometry: THREE.BufferGeometry = object.geometry;
+      const attributes = Object.entries(geometry.attributes).map(([name, attribute]) =>
+        `${name}:${attribute.itemSize}:${attribute.normalized}:${attribute.array.constructor.name}`
+      ).sort().join("|");
+      const key = `${object.material.uuid}:${!!object.geometry.index}:${attributes}`;
+      const batch: { surface: THREE.Material; objects: THREE.Mesh[] } = batches.get(key) ?? { surface: object.material, objects: [] };
+      batch.objects.push(object); batches.set(key, batch);
     });
-    batches.forEach((objects, surface) => {
+    batches.forEach(({ objects, surface }) => {
       if (objects.length < 2) return;
       const pieces = objects.map(object => object.geometry.clone().applyMatrix4(new THREE.Matrix4().multiplyMatrices(inverse, object.matrixWorld)));
-      const combined = mergeGeometries(pieces, false);
-      pieces.forEach(piece => piece.dispose());
+      let combined: THREE.BufferGeometry | null;
+      try { combined = mergeGeometries(pieces, false); }
+      finally { pieces.forEach(piece => piece.dispose()); }
       if (!combined) return;
       objects.forEach(object => object.removeFromParent());
       mesh(ownGeometry(combined), surface, parent);
@@ -217,9 +228,6 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     }
     return result;
   }
-  const nearIsland = island(scene, [-3.8, 0, 1], 4.2, 4.7, true);
-  const farIsland = island(scene, [5, .15, .25], 2.7, 4.3, true);
-
   function pine(parent: THREE.Object3D, at: Point, size: number) {
     const tree = group(parent, at);
     cone(tree, [0, 0, 0], [.03, size * 1.2, 0], size * .065, size * .025, mat.bark, 5);
@@ -229,16 +237,6 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     }
     return tree;
   }
-  for (let i = 0; i < 14; i++) {
-    const angle = Math.PI + i / 13 * Math.PI;
-    pine(nearIsland, [Math.cos(angle) * 3.55, .05, Math.sin(angle) * 2.45 - .1], .38 + random() * .55);
-  }
-  for (let i = 0; i < 8; i++) {
-    const angle = Math.PI + i / 7 * Math.PI;
-    pine(farIsland, [Math.cos(angle) * 2.1, .07, Math.sin(angle) * 1.5], .45 + random() * .8);
-  }
-
-  // Scattered stones, grass and tiny flowers are instanced to keep mobile draw calls low.
   function meadow(parent: THREE.Object3D, radius: number, count: number) {
     const stones = new THREE.InstancedMesh(pebble, mat.wood, count);
     const grasses = new THREE.InstancedMesh(leafShape, mat.leaf, count * 3);
@@ -256,41 +254,123 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     }
     stones.receiveShadow = true; grasses.receiveShadow = true; parent.add(stones, grasses);
   }
-  meadow(nearIsland, 3.9, 100); meadow(farIsland, 2.4, 55);
-  batchScenery(nearIsland); batchScenery(farIsland);
 
-  const archipelago = group(scene);
-  const distantIslands: { object: THREE.Group; y: number; phase: number }[] = [];
-  [[-12, 3.5, -17, 2], [-6, 5.2, -22, 2.6], [1, 4.5, -14, 2.1], [8, 5.4, -22, 2.8], [14, 2, -14, 1.8], [-16, -.5, -8, 1.5], [17, -1, -5, 2.1]].forEach(([x, y, z, size], i) => {
-    const distant = island(archipelago, [x, y, z], size, size * 1.7);
-    for (let j = 0; j < 4; j++) pine(distant, [(random() - .5) * size, .1, (random() - .5) * size * .5], size * (.25 + random() * .35));
-    if (i === 2 || i === 3) {
-      cone(distant, [0, 0, 0], [.2, 2.2, 0], .13, .06, mat.bark);
-      foliage(distant, [.2, 2.2, 0], [1.2, .55, .8], 42, true);
+  const animations: ((time: number) => void)[] = [];
+  const mainIsland = island(scene, [0, 0, 0], 4.65, 3.65, true);
+  meadow(mainIsland, 4.2, 90);
+  for (let i = 0; i < 12; i++) {
+    const angle = Math.PI + i / 11 * Math.PI;
+    pine(mainIsland, [Math.cos(angle) * 4.05, .03, Math.sin(angle) * 2.95], .45 + random() * .6);
+  }
+  function flower(parent: THREE.Object3D, at: Point, size: number) {
+    const head = group(parent, at); head.rotation.x = -.28;
+    for (let j = 0; j < 7; j++) {
+      const a = j / 7 * Math.PI * 2;
+      const petal = ball(head, [Math.sin(a) * size * .72, Math.cos(a) * size * .72, 0], [size * .3, size * .58, size * .14], mat.petal);
+      petal.rotation.z = -a;
     }
-    batchScenery(distant);
-    distantIslands.push({ object: distant, y, phase: i });
-  });
-  // A generous sphere is an actual glowing sun hanging beyond the valley.
-  mesh(sphere, ownMaterial(new THREE.MeshBasicMaterial({ color: 0xffefc6 })), scene, [-17, 10, -38], [3.5, 3.5, 3.5]);
-  const distantTarget = group(archipelago, [1, 5.4, -14]);
-  target("islands", archipelago, [1, 6.7, -14]);
-  // Invisible hit volume surrounds the little central island, never the foreground.
-  mesh(sphere, ownMaterial(new THREE.MeshBasicMaterial({ visible: false })), distantTarget, [0, 0, 0], [2.2, 2.8, 2.2]);
+    ball(head, [0, 0, size * .06], [size * .34, size * .34, size * .21], mat.gold); return head;
+  }
+  function flowers(parent: THREE.Object3D, center: Point, count: number) {
+    for (let i = 0; i < count; i++) {
+      const x = center[0] + (random() - .5) * 1.3, z = center[2] + (random() - .5) * .8;
+      const y = .2 + random() * .45;
+      tube(parent, [[x, 0, z], [x - .06, y * .6, z], [x, y, z]], .015, mat.pine, 8);
+      flower(parent, [x, y, z], .13 + random() * .07);
+    }
+  }
+  function pool(parent: THREE.Object3D, at: Point, scale: Point) {
+    const water = material(0x88b8ae, false, { roughness: .22, metalness: .2, transparent: true, opacity: .88 });
+    ball(parent, [at[0], at[1] - .025, at[2]], [scale[0] * 1.13, .065, scale[2] * 1.13], mat.lightWood);
+    const surface = ball(parent, at, scale, water); surface.castShadow = false;
+    for (let i = 0; i < 3; i++) {
+      const ripple = ring(parent, [at[0] + .15, at[1] + .055, at[2]], .3 + i * .28, .008, mat.cream);
+      ripple.userData.animated = true;
+      ripple.rotation.x = -Math.PI / 2; ripple.scale.y = .7;
+      animations.push(t => { ripple.scale.setScalar(1 + Math.sin(t * .9 + i) * .08); });
+    }
+    return surface;
+  }
+  function book(parent: THREE.Object3D, at: Point, size: Point, surface = mat.pine, angle = 0) {
+    const item = group(parent, at); item.rotation.z = angle;
+    const box = ownGeometry(new THREE.BoxGeometry(1, 1, 1));
+    mesh(box, mat.cream, item, [0, 0, 0], size);
+    [-1, 1].forEach(side => mesh(box, surface, item, [side * size[0] * .51, 0, 0], [size[0] * .07, size[1] * 1.04, size[2] * 1.08]));
+    mesh(box, surface, item, [0, 0, size[2] * .51], [size[0] * 1.09, size[1] * 1.04, .025]);
+    [-.3, .3].forEach(y => mesh(box, mat.gold, item, [0, size[1] * y, size[2] * .54], [size[0] * .7, .025, .015]));
+    return item;
+  }
+  const path = group(scene);
+  for (let i = 0; i < 10; i++) {
+    const slab = mesh(ownGeometry(new THREE.BoxGeometry(.34, .12, .8)), mat.lightWood, path, [1.95 + i * .35, .15 + Math.sin(i * .23) * .07, 1.48]);
+    slab.rotation.y = Math.sin(i) * .055;
+  }
+  [-1, 1].forEach(side => tube(path, [[1.8, .22, 1.48 + side * .42], [3.4, .24, 1.48 + side * .45], [5.2, .19, 1.48 + side * .4]], .04, mat.bark));
+  const sign = group(path, [3.45, .15, 1.14]);
+  cone(sign, [0, 0, 0], [0, 1.03, 0], .04, .04, mat.bark);
+  const signBoard = mesh(ownGeometry(new THREE.BoxGeometry(.78, .3, .055)), mat.cream, sign, [.12, .86, 0]);
+  signBoard.rotation.z = -.03;
+  tube(sign, [[-.1, .86, .05], [.39, .86, .05], [.25, .97, .05]], .023, mat.pine, 8);
+  tube(sign, [[.39, .86, .05], [.25, .75, .05]], .023, mat.pine, 5);
+  target("path", path, [3.54, 1.45, 1.45]);
+  const back = group(scene);
+  for (let i = 0; i < 4; i++) ball(back, [-3.6 + i * .4, .14, 1.3], [.24, .05, .35], mat.lightWood);
+  target("back", back, [-3.6, .65, 1.35]);
 
-  const clouds: { object: THREE.Group; x: number; speed: number; phase: number }[] = [];
-  for (let i = 0; i < 14; i++) {
-    const x = (random() - .5) * 42, y = -3 - random() * 7, z = -8 - random() * 24;
-    const cloud = group(scene, [x, y, z]); const size = 1.3 + random() * 2;
+  // Background land gives the new scene a destination without crowding its cast.
+  for (let i = 0; i < 4; i++) {
+    const x = [-9, 8, -1, 14][i], y = [1.6, 2, 3.2, -.4][i], z = [-20, -14, -25, -22][i];
+    const distant = island(scene, [x, y, z], 1.2 + random() * .75, 2.5);
+    pine(distant, [0, .05, 0], 1.1 + random() * .5);
+    batchScenery(distant);
+    animations.push(t => { distant.position.y = y + Math.sin(t * .24 + i) * .1; });
+  }
+  mesh(sphere, ownMaterial(new THREE.MeshBasicMaterial({ color: 0xffefc6 })), scene, [-12, 10, -38], [3.1, 3.1, 3.1]);
+  for (let i = 0; i < 10; i++) {
+    const x = (random() - .5) * 34, y = -3 - random() * 5, z = -9 - random() * 24;
+    const cloud = group(scene, [x, y, z]); const size = 1.2 + random() * 1.5;
     for (let j = 0; j < 4; j++) {
       const puff = mesh(pebble, mat.cloud, cloud, [(j - 1.5) * size * .65, Math.sin(j) * .2, j % 2 * .5], [size, size * .35, size * .7]);
       puff.castShadow = false; puff.receiveShadow = false;
     }
-    clouds.push({ object: cloud, x, speed: .035 + random() * .02, phase: random() * 6 });
+    animations.push(t => { cloud.position.x = x + Math.sin(t * .035 + i) * 1.4; });
   }
 
+  function buildFrogIsland() {
+    pool(mainIsland, [1.55, .14, -.35], [1.24, .04, .7]);
+    for (let i = 0; i < 5; i++) {
+      const pad = ball(mainIsland, [.85 + i * .27, .22, -.55 + Math.sin(i) * .25], [.23, .025, .18], mat.pine);
+      pad.rotation.y = i;
+    }
+    flowers(mainIsland, [-.1, 0, -.45], 13); flowers(mainIsland, [2.45, 0, -.5], 11);
+  // The familiar striped amphibian becomes a welcoming first conversation.
+  const juggler = group(scene, [.85, .16, .4]); juggler.rotation.y = .05;
+  const jugglerBody = group(juggler);
+  const juggleProfile = [[.24, .27], [.47, .45], [.59, .7], [.79, .9], [.51, 1.08], [.22, 1.14]].map(([x, y]) => new THREE.Vector2(x, y));
+  mesh(ownGeometry(new THREE.LatheGeometry(juggleProfile, 24)), mat.lightWood, jugglerBody, [0, 0, 0], [1, 1, .7], true);
+  [[.35, .36], [.47, .46], [.55, .61], [.64, .76], [.75, .9]].forEach(([radius, y]) => { const stripe = ring(jugglerBody, [0, y, 0], radius, .021, mat.dark); stripe.rotation.x = Math.PI / 2; stripe.scale.y = .7; });
+  [-1, 1].forEach(side => {
+    tube(jugglerBody, [[side * .2, .37, 0], [side * .25, .12, .08], [side * .38, .07, .3]], .09, mat.lightWood, 13);
+    for (let toe = 0; toe < 3; toe++) cone(jugglerBody, [side * .35, .08, .18], [side * (.22 + toe * .12), .04, .49], .067, .02, mat.lightWood, 6);
+    tube(jugglerBody, [[side * .24, 1, 0], [side * .43, 1.3, 0], [side * .51, 1.63, 0]], .082, mat.lightWood);
+    ball(jugglerBody, [side * .53, 1.87, 0], [.36, .38, .32], mat.lightWood, true);
+    eye(jugglerBody, [side * .53, 1.91, .27], .23);
+  });
+  const jugglerArms: THREE.Group[] = [];
+  [-1, 1].forEach(side => {
+    const arm = group(jugglerBody, [side * .5, .91, 0]); jugglerArms.push(arm);
+    tube(arm, [[0, 0, 0], [side * .39, .02, .02], [side * .7, .25, .06]], .068, mat.lightWood);
+    ball(arm, [side * .73, .28, .06], [.12, .065, .12], mat.lightWood);
+    for (let finger = 0; finger < 3; finger++) tube(arm, [[side * .73, .28, .06], [side * (.82 + finger * .07), .4 + finger * .05, .06]], .025, mat.lightWood, 6);
+  });
+  tube(jugglerBody, [[-.26, .91, .44], [0, .81, .53], [.26, .91, .44]], .022, mat.dark, 14);
+  target("resident", juggler, [0, 2.36, .1]);
+  animations.push(t => { jugglerBody.position.y = Math.sin(t * 1.6) * .035; jugglerArms.forEach((arm, index) => { arm.rotation.z = Math.sin(t * 1.7 + index * Math.PI) * .07; }); });
+  }
+
+  function buildBirdTerrace() {
   // The Woodgrain Bird grows directly out of the terrace, like the original drawing.
-  const bird = group(scene, [-5.25, .07, -.05]); bird.rotation.y = .12;
+  const bird = group(scene, [.85, .07, -.6]); bird.scale.setScalar(.76); bird.rotation.y = .12;
   cone(bird, [0, 0, 0], [-.08, 4.45, -.1], 1, .62, mat.wood, 13);
   ball(bird, [0, 2.92, .1], [1.03, 1.3, .76], mat.wood, true);
   for (let i = 0; i < 7; i++) {
@@ -323,49 +403,156 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     if (i % 2 === 0) tube(crown, [[x, 1.4, z], [x + .15, .9, z + .1], [x + .1, .25, z + .15]], .021, mat.bark);
   }
   batchScenery(crown);
-  target("bird", bird, [0, 4.05, 1]);
+  target("resident", bird, [0, 4.05, 1]);
+  animations.push(t => { crown.rotation.z = Math.sin(t * .47) * .016; crown.rotation.x = Math.cos(t * .37) * .012; bird.rotation.y = .12 + Math.sin(t * .36) * .022; });
 
-  // A trumpet is a flared, hollow neck, with a rim and a dark interior.
-  const turtle = group(scene, [-5, .12, 2.85]); turtle.rotation.y = -.2;
-  ball(turtle, [-.18, .52, 0], [.94, .46, .65], mat.lightWood, true);
-  ball(turtle, [-.3, .81, -.05], [.84, .56, .62], mat.moss, true);
-  for (let i = 0; i < 5; i++) {
-    const angle = -.95 + i * .47;
-    const points: Point[] = [];
-    for (let j = 0; j <= 14; j++) {
-      const a = j / 14 * Math.PI;
-      points.push([-.3 + Math.cos(a) * .82, .83 + Math.sin(a) * Math.cos(angle) * .55, -.05 + Math.sin(angle) * .6]);
+
+    const detail = group(scene, [-1.55, .1, -.8]);
+    for (let i = 0; i < 5; i++) {
+      tube(detail, [[.3, .1, -.5], [-.3, .15, i * .25], [-.6 - i * .14, .3, .8]], .075, mat.lightWood);
     }
-    tube(turtle, points, .018, mat.ink, 18);
+    flowers(detail, [-.6, 0, .3], 7);
+    target("detail", detail, [-.4, .9, .5]);
+    const bench = group(mainIsland, [2.4, .1, -.65]);
+    [-.5, .5].forEach(x => cone(bench, [x, 0, 0], [x, .4, 0], .09, .08, mat.bark));
+    mesh(ownGeometry(new THREE.BoxGeometry(1.4, .12, .55)), mat.wood, bench, [0, .45, 0]);
+    flowers(mainIsland, [2.5, 0, -1.35], 13);
   }
-  for (let i = 0; i < 3; i++) {
-    const x = -.79 + i * .49; const r = Math.sqrt(Math.max(.05, 1 - ((x + .3) / .84) ** 2));
-    const points: Point[] = Array.from({ length: 15 }, (_, j) => { const a = j / 14 * Math.PI; return [x, .83 + Math.sin(a) * .56 * r, -.05 + Math.cos(a) * .62 * r]; });
-    tube(turtle, points, .017, mat.ink, 18);
+
+  function buildGlasshouse() {
+    const glasshouse = group(scene, [.65, .12, -1.4]);
+    const glass = material(0xb9d4bd, false, { transparent: true, opacity: .24, roughness: .16, metalness: .1, side: THREE.DoubleSide, depthWrite: false });
+    const box = ownGeometry(new THREE.BoxGeometry(1, 1, 1));
+    [-1, 1].forEach(side => {
+      mesh(box, glass, glasshouse, [side * 1.55, 1.2, 0], [.025, 2.4, 2.1]);
+      for (let i = 0; i < 4; i++) cone(glasshouse, [side * 1.55, 0, -1 + i * .67], [side * 1.55, 2.4, -1 + i * .67], .026, .026, mat.lightWood, 6);
+    });
+    mesh(box, glass, glasshouse, [0, 1.2, -1.05], [3.1, 2.4, .025]);
+    [-1, 1].forEach(z => {
+      tube(glasshouse, [[-1.55, 0, z * 1.05], [-1.55, 2.4, z * 1.05], [0, 3.6, z * 1.05], [1.55, 2.4, z * 1.05], [1.55, 0, z * 1.05]], .058, mat.lightWood, 12);
+      cone(glasshouse, [-1.55, 1.05, z * 1.05], [1.55, 1.05, z * 1.05], .025, .025, mat.lightWood, 5);
+    });
+    cone(glasshouse, [0, 3.6, -1.05], [0, 3.6, 1.05], .055, .055, mat.lightWood);
+    [-1, 1].forEach(side => {
+      for (let i = 0; i < 6; i++) {
+        const leaf = ball(glasshouse, [side * .81, 3, -.93 + i * .37], [.95, .09, .32], i % 2 ? mat.moss : mat.leaf);
+        leaf.rotation.z = -side * .61;
+        tube(glasshouse, [[0, 3.59, -.93 + i * .37], [side * .8, 3.04, -.93 + i * .37], [side * 1.55, 2.38, -.93 + i * .37]], .014, mat.pine, 8);
+      }
+    });
+    for (let i = 0; i < 7; i++) {
+      const x = -1.1 + (i % 3) * .95, z = -.65 + Math.floor(i / 3) * .5;
+      mesh(ownGeometry(new THREE.CylinderGeometry(.23, .16, .35, 8)), mat.soil, glasshouse, [x, .21, z]);
+      cone(glasshouse, [x, .3, z], [x + .07, 1 + i % 3 * .15, z], .025, .012, mat.pine);
+      foliage(glasshouse, [x, .87, z], [.33, .38, .26], 17, i % 3 === 0);
+    }
+    target("detail", glasshouse, [-.35, 3.45, 1]);
+    const snail = group(scene, [.85, .14, 1]);
+    ball(snail, [0, .22, 0], [1, .24, .4], mat.lightWood, true);
+    ball(snail, [-.1, .77, -.09], [.65, .7, .36], mat.wood, true);
+    const spiral: Point[] = [];
+    for (let i = 0; i <= 100; i++) { const a = i / 100 * Math.PI * 5.4, r = .04 + i / 100 * .54; spiral.push([-.1 + Math.cos(a) * r, .77 + Math.sin(a) * r, .27]); }
+    tube(snail, spiral, .03, mat.bark, 95);
+    const snailHead = group(snail, [.65, .36, .14]);
+    ball(snailHead, [0, .16, 0], [.29, .35, .28], mat.lightWood, true);
+    [-1, 1].forEach(side => { tube(snailHead, [[side * .13, .35, 0], [side * .2, .7, 0], [side * .23, .83, .04]], .037, mat.wood); eye(snailHead, [side * .23, .84, .1], .13); });
+    tube(snailHead, [[-.1, .13, .26], [0, .08, .28], [.12, .15, .24]], .019, mat.dark, 12);
+    target("resident", snail, [.6, 1.8, .3]);
+    flowers(mainIsland, [-2.55, 0, -.6], 14);
+    animations.push(t => { snailHead.rotation.z = Math.sin(t * .7) * .055; });
   }
-  [-.72, .4].forEach(x => [-.4, .43].forEach(z => { cone(turtle, [x, .53, z], [x + .1, .13, z + .08], .15, .18, mat.lightWood); ball(turtle, [x + .15, .09, z + .17], [.24, .1, .2], mat.lightWood, true); }));
-  const trumpet = group(turtle, [.61, .47, .12]);
-  const trumpetProfile = [[.24, 0], [.25, .35], [.22, .78], [.26, 1.04], [.43, 1.3], [.58, 1.39], [.53, 1.42], [.38, 1.31], [.2, 1.02], [.16, .82]].map(([x, y]) => new THREE.Vector2(x, y));
-  mesh(ownGeometry(new THREE.LatheGeometry(trumpetProfile, 28)), mat.lightWood, trumpet);
-  const rimRing = ring(trumpet, [0, 1.4, 0], .555, .035, mat.wood); rimRing.rotation.x = Math.PI / 2;
-  const inner = mesh(ownGeometry(new THREE.CircleGeometry(.17, 24)), mat.dark, trumpet, [0, .83, 0]); inner.rotation.x = -Math.PI / 2;
-  eye(trumpet, [-.105, .63, .225], .11, true); eye(trumpet, [.12, .64, .22], .11, true);
-  cone(trumpet, [-.19, .24, .23], [0, .24, .26], .105, .025, mat.shoe, 3);
-  cone(trumpet, [.19, .24, .23], [0, .24, .26], .105, .025, mat.shoe, 3);
-  const floweringTail = group(turtle, [-1, .47, -.05]);
-  function flower(parent: THREE.Object3D, at: Point, size: number) {
-    const head = group(parent, at); head.rotation.y = .18;
-    for (let j = 0; j < 7; j++) { const a = j / 7 * Math.PI * 2; const petal = ball(head, [Math.sin(a) * size * .72, Math.cos(a) * size * .72, 0], [size * .3, size * .58, size * .14], mat.petal); petal.rotation.z = -a; }
-    ball(head, [0, 0, size * .06], [size * .34, size * .34, size * .21], mat.gold); return head;
+
+  function buildObservatory() {
+    pool(mainIsland, [-.65, .14, -.4], [1.5, .04, .88]);
+    const telescope = group(scene, [1.4, .1, -1]);
+    for (let i = 0; i < 3; i++) { const a = i / 3 * Math.PI * 2; cone(telescope, [Math.cos(a) * .85, 0, Math.sin(a) * .85], [0, 1.9, 0], .09, .06, mat.wood); }
+    const brass = material(0xc2a15c, false, { roughness: .48, metalness: .52 });
+    const telescopeHead = group(telescope, [0, 2, 0]); telescopeHead.rotation.z = -.38;
+    cone(telescopeHead, [-1.05, 0, 0], [1.13, 0, 0], .2, .39, brass, 24);
+    const lens = mesh(ownGeometry(new THREE.CircleGeometry(.34, 28)), material(0x467b76, false, { roughness: .06, metalness: .3 }), telescopeHead, [1.135, 0, 0]); lens.rotation.y = Math.PI / 2;
+    [-.9, .85].forEach(x => { const band = ring(telescopeHead, [x, 0, 0], x < 0 ? .225 : .373, .035, mat.gold); band.rotation.y = Math.PI / 2; });
+    cone(telescopeHead, [-1.32, 0, 0], [-1.05, 0, 0], .12, .16, mat.dark);
+    const dial = ring(telescope, [0, 1.92, .23], .25, .032, brass);
+    for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2; cone(dial, [0, 0, 0], [Math.cos(a) * .21, Math.sin(a) * .21, 0], .008, .008, brass, 4); }
+    target("detail", telescope, [0, 3.2, 0]);
+    const shorebird = group(scene, [.9, .12, 1.4]);
+    [-.18, .18].forEach(x => { cone(shorebird, [x, .05, .12], [x, .9, 0], .034, .04, mat.gold); for (let j = 0; j < 3; j++) cone(shorebird, [x, .05, .12], [x + (j - 1) * .14, .035, .4], .025, .01, mat.gold); });
+    const birdBody = group(shorebird, [0, .93, 0]);
+    ball(birdBody, [0, .36, 0], [.52, .68, .4], mat.cream, true);
+    ball(birdBody, [0, .88, .05], [.38, .37, .31], mat.cream, true);
+    [-1, 1].forEach(side => { const wing = ball(birdBody, [side * .39, .32, -.06], [.18, .47, .36], mat.pine); wing.rotation.z = side * .23; eye(birdBody, [side * .135, .91, .32], .095); });
+    cone(birdBody, [0, .84, .31], [.04, .78, .91], .095, .008, mat.gold, 6);
+    for (let i = 0; i < 3; i++) cone(birdBody, [0, 1.13, 0], [i * .075 - .075, 1.5 - i * .04, -.12], .065, .009, mat.pine, 5);
+    target("resident", shorebird, [0, 2.8, .1]);
+    for (let i = 0; i < 8; i++) {
+      const rock = mesh(pebble, i % 2 ? mat.stone : mat.lightWood, mainIsland, [-2.7 + random() * .8, .2, -.6 + random() * 1.7], [.2 + random() * .3, .18 + random() * .2, .25]); rock.rotation.y = i;
+    }
+    animations.push(t => { birdBody.rotation.z = Math.sin(t * .9) * .03; telescopeHead.rotation.y = Math.sin(t * .19) * .025; });
   }
-  [[-.7, .65, 0], [-.95, .25, .14], [-.4, .96, -.08]].forEach(([x, y, z]) => {
-    tube(floweringTail, [[0, 0, 0], [x * .6, y * .5, z], [x, y, z]], .027, mat.pine);
-    flower(floweringTail, [x, y, z], .19);
-  });
-  target("turtle", turtle, [.54, 2.2, .1]);
+
+  function buildArchive() {
+    const library = group(scene, [.6, .1, -1.1]);
+    const box = ownGeometry(new THREE.BoxGeometry(1, 1, 1));
+    [-1, 1].forEach(side => {
+      cone(library, [side * 1.45, 0, 0], [side * 1.25, 3.45, -.06], .46, .29, mat.wood, 11);
+      tube(library, [[side * 1.25, 3.15, 0], [side * .75, 4.1, 0], [0, 4.23, 0]], .27, mat.wood);
+      for (let i = 0; i < 3; i++) tube(library, [[side * 1.45, .4, 0], [side * (1.7 + i * .2), .12, .1 + i * .25], [side * (1.8 + i * .3), .06, .45 + i * .23]], .07, mat.bark);
+    });
+    for (let shelf = 0; shelf < 3; shelf++) {
+      const y = .7 + shelf * .92;
+      mesh(box, mat.wood, library, [0, y, -.02], [2.8, .1, .8]);
+      for (let i = 0; i < 8; i++) book(library, [-1.12 + i * .31, y + .34, .02], [.18 + random() * .05, .43 + random() * .21, .45], [mat.pine, mat.bark, mat.gold][i % 3], (random() - .5) * .13);
+    }
+    foliage(library, [0, 4.15, -.1], [2.4, .95, 1.1], 290, true);
+    [-1, 1].forEach(side => {
+      const lantern = group(library, [side * 1.91, 2.7, .32]);
+      tube(library, [[side * 1.3, 3.3, 0], [side * 1.83, 3.4, .25], [side * 1.91, 3.05, .32]], .035, mat.bark);
+      const glow = material(0xf7cd70, false, { emissive: 0xf7bd50, emissiveIntensity: .85, roughness: .4 });
+      mesh(ownGeometry(new THREE.CylinderGeometry(.21, .21, .5, 6)), glow, lantern);
+      [-.27, .27].forEach(y => mesh(ownGeometry(new THREE.CylinderGeometry(.27, .25, .06, 6)), mat.bark, lantern, [0, y, 0]));
+      for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2; cone(lantern, [Math.cos(a) * .21, -.25, Math.sin(a) * .21], [Math.cos(a) * .21, .25, Math.sin(a) * .21], .015, .015, mat.bark); }
+      animations.push(t => { lantern.rotation.z = Math.sin(t * .72 + side) * .045; glow.emissiveIntensity = .82 + Math.sin(t * 1.2 + side) * .08; });
+    });
+    const owl = group(scene, [.95, .13, 1.3]);
+    const owlBody = group(owl);
+    ball(owlBody, [0, .72, 0], [.64, .77, .43], mat.wood, true);
+    ball(owlBody, [0, 1.32, .03], [.73, .54, .45], mat.wood, true);
+    [-1, 1].forEach(side => {
+      const wing = ball(owlBody, [side * .52, .72, -.03], [.2, .53, .36], mat.pine); wing.rotation.z = side * .16;
+      ball(owlBody, [side * .31, 1.36, .36], [.32, .34, .1], mat.cream);
+      eye(owlBody, [side * .3, 1.37, .44], .18);
+      cone(owlBody, [side * .48, 1.57, -.04], [side * .66, 2, -.02], .18, .005, mat.bark, 6);
+      for (let i = 0; i < 3; i++) cone(owlBody, [side * .26, .08, .1], [side * .26 + (i - 1) * .1, .05, .39], .036, .012, mat.gold, 5);
+    });
+    cone(owlBody, [0, 1.28, .44], [0, 1.03, .55], .13, .009, mat.gold, 5);
+    for (let i = 0; i < 5; i++) { const feather = ball(owlBody, [(i % 2 ? .12 : -.12), .45 + i * .13, .39], [.13, .1, .035], mat.lightWood); feather.rotation.z = .4; }
+    target("resident", owl, [0, 2.45, .1]);
+    const desk = group(scene, [.95, .1, 1.87]);
+    [-1, 1].forEach(side => cone(desk, [side * .7, 0, 0], [side * .7, .73, 0], .11, .085, mat.bark));
+    mesh(box, mat.wood, desk, [0, .77, 0], [1.8, .15, .84]);
+    [-1, 1].forEach(side => {
+      const page = mesh(box, mat.cream, desk, [side * .28, .91, .03], [.54, .035, .6]);
+      page.rotation.z = side * .17;
+      for (let i = 0; i < 5; i++) cone(desk, [side * .12, .954, -.18 + i * .085], [side * .46, .985, -.18 + i * .085], .004, .004, mat.bark, 4);
+    });
+    target("detail", desk, [0, 1.24, .24]);
+    // At the final island the forward route becomes a place to sit and finish.
+    path.clear();
+    const seat = group(path, [2.68, .12, 1.47]);
+    [-.38, .38].forEach(x => [-.2, .2].forEach(z => cone(seat, [x, 0, z], [x, .47, z], .055, .05, mat.bark)));
+    mesh(box, mat.wood, seat, [0, .51, 0], [1.05, .11, .66]);
+    mesh(box, mat.wood, seat, [0, .95, -.25], [1.05, .45, .09]);
+    anchors.path = group(seat, [0, 1.6, .25]);
+    const pile = group(mainIsland, [-1.4, .3, .15]);
+    for (let i = 0; i < 3; i++) { const volume = book(pile, [0, i * .19, 0], [.17, .67, .55], i % 2 ? mat.gold : mat.pine); volume.rotation.z = Math.PI / 2; volume.rotation.y = i * .13; }
+    animations.push(t => { owlBody.rotation.y = Math.sin(t * .45) * .07; owlBody.position.y = Math.sin(t * 1.3) * .02; });
+  }
+
+  [buildFrogIsland, buildBirdTerrace, buildGlasshouse, buildObservatory, buildArchive][initial.state.sceneIndex]();
+  batchScenery(mainIsland);
 
   // The visitor keeps the nervous posture and shirt from Michael's drawing.
-  const visitor = group(scene, [-2.15, .15, 2]); visitor.rotation.y = .15;
+  const visitor = group(scene, [-4.4, .15, 1.3]); visitor.rotation.y = .15;
   const visitorBody = group(visitor);
   const leftLeg = group(visitorBody, [-.16, .87, 0]), rightLeg = group(visitorBody, [.16, .87, 0]);
   [leftLeg, rightLeg].forEach(leg => {
@@ -396,99 +583,38 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     ball(arm, [side * .36, .18, .09], [.095, .14, .055], mat.lightWood);
     for (let i = 0; i < 4; i++) tube(arm, [[side * (.29 + i * .042), .23, .09], [side * (.29 + i * .048), .34 + Math.sin(i) * .04, .09]], .019, mat.lightWood, 6);
   });
-  target("visitor", visitor, [0, 2.9, 0]);
 
-  // A striped little body, two eye stalks, open hands, and two orbiting heavy orbs.
-  const juggler = group(scene, [5.25, .26, 1]); juggler.rotation.y = .05;
-  const jugglerBody = group(juggler);
-  const juggleProfile = [[.24, .27], [.47, .45], [.59, .7], [.79, .9], [.51, 1.08], [.22, 1.14]].map(([x, y]) => new THREE.Vector2(x, y));
-  mesh(ownGeometry(new THREE.LatheGeometry(juggleProfile, 24)), mat.lightWood, jugglerBody, [0, 0, 0], [1, 1, .7], true);
-  [[.35, .36], [.47, .46], [.55, .61], [.64, .76], [.75, .9]].forEach(([radius, y]) => { const stripe = ring(jugglerBody, [0, y, 0], radius, .021, mat.dark); stripe.rotation.x = Math.PI / 2; stripe.scale.y = .7; });
-  [-1, 1].forEach(side => {
-    tube(jugglerBody, [[side * .2, .37, 0], [side * .25, .12, .08], [side * .38, .07, .3]], .09, mat.lightWood, 13);
-    for (let toe = 0; toe < 3; toe++) cone(jugglerBody, [side * .35, .08, .18], [side * (.22 + toe * .12), .04, .49], .067, .02, mat.lightWood, 6);
-    tube(jugglerBody, [[side * .24, 1, 0], [side * .43, 1.3, 0], [side * .51, 1.63, 0]], .082, mat.lightWood);
-    ball(jugglerBody, [side * .53, 1.87, 0], [.36, .38, .32], mat.lightWood, true);
-    eye(jugglerBody, [side * .53, 1.91, .27], .23);
-  });
-  const jugglerArms: THREE.Group[] = [];
-  [-1, 1].forEach(side => {
-    const arm = group(jugglerBody, [side * .5, .91, 0]); jugglerArms.push(arm);
-    tube(arm, [[0, 0, 0], [side * .39, .02, .02], [side * .7, .25, .06]], .068, mat.lightWood);
-    ball(arm, [side * .73, .28, .06], [.12, .065, .12], mat.lightWood);
-    for (let finger = 0; finger < 3; finger++) tube(arm, [[side * .73, .28, .06], [side * (.82 + finger * .07), .4 + finger * .05, .06]], .025, mat.lightWood, 6);
-  });
-  const orbs = [-1, 1].map(side => {
-    const orb = group(juggler, [side * 1.25, 2.8, 0]);
-    ball(orb, [0, 0, 0], [.19, .19, .19], mat.orb, true);
-    const orbitRing = ring(orb, [0, 0, 0], .24, .013, mat.gold); orbitRing.rotation.x = .8;
-    return orb;
-  });
-  target("juggler", juggler, [0, 2.5, .1]);
-
-  // The bridge grows along real curves, so it remains a bridge when the view turns.
-  const rootTips = group(scene);
-  for (let i = 0; i < 4; i++) {
-    const z = .48 + i * .33;
-    tube(rootTips, [[-1.55, .13, z], [-.55, .23, z], [-.08, .46 + i * .04, z], [.08, .7, z]], .075, mat.lightWood);
-    tube(rootTips, [[3.6, .3, z], [2.95, .31, z], [2.7, .56, z]], .06, mat.lightWood);
-  }
-  target("roots", rootTips, [-.3, 1.1, -.06]);
-  const bridge = group(scene);
-  const bridgeParts: { object: THREE.Mesh; count: number; from: number; until: number }[] = [];
-  function bridgeRoot(points: Point[], radius: number, from = 0, until = 1) {
-    const object = tube(bridge, points, radius, mat.lightWood, 44);
-    bridgeParts.push({ object, count: object.geometry.index!.count, from, until }); return object;
-  }
-  const bridgePoint = (t: number, z: number, rail = false): Point => [-.55 + 3.63 * t, .24 + .17 * t + Math.sin(t * Math.PI) * .43 + (rail ? .83 : 0), z - t * .25];
-  for (let i = 0; i < 6; i++) {
-    const z = .55 + i * .21;
-    bridgeRoot(Array.from({ length: 9 }, (_, j) => { const p = bridgePoint(j / 8, z); p[1] += Math.sin(j * 2 + i) * .028; return p; }), .13, i * .07, .74 + i * .05);
-  }
-  [.47, 1.71].forEach(z => {
-    bridgeRoot(Array.from({ length: 9 }, (_, j) => bridgePoint(j / 8, z, true)), .065, .18, 1);
-    for (let i = 0; i <= 6; i++) {
-      const t = i / 6, base = bridgePoint(t, z), top = bridgePoint(t, z, true);
-      bridgeRoot([base, [base[0] + .1, base[1] + .4, base[2]], top], .037, .15 + t * .55, .3 + t * .65);
-    }
-  });
-  target("gap", bridge, [1.26, 1, 2.15]);
-  // Select the empty crossing as well as the completed geometry.
-  mesh(sphere, ownMaterial(new THREE.MeshBasicMaterial({ visible: false })), bridge, [1.2, .3, 1], [1.9, .5, .8]);
-  const bridgeLeaves: { object: THREE.Group; threshold: number }[] = [];
-  for (let i = 0; i < 7; i++) {
-    const point = bridgePoint(i / 6, i % 2 ? .4 : 1.77, true);
-    const sprout = group(bridge, point); cone(sprout, [0, 0, 0], [.04, .24, 0], .018, .008, mat.pine, 5);
-    const leaf = ball(sprout, [.1, .19, 0], [.13, .06, .05], mat.leaf); leaf.rotation.z = .5;
-    bridgeLeaves.push({ object: sprout, threshold: .28 + i / 6 * .66 });
-  }
-
-  // Warm drifting seeds echo the specks of light among the illustrated leaves.
-  const seedCount = 34;
+  const seedCount = 24;
   const seedGeometry = ownGeometry(new THREE.BufferGeometry());
   const seedPositions = new Float32Array(seedCount * 3); const seedOrigins: Point[] = [];
-  for (let i = 0; i < seedCount; i++) { const origin: Point = [(random() - .5) * 17, random() * 6 + .6, (random() - .5) * 9]; seedOrigins.push(origin); seedPositions.set(origin, i * 3); }
+  for (let i = 0; i < seedCount; i++) {
+    const origin: Point = [(random() - .5) * 9, random() * 4 + .5, (random() - .5) * 6];
+    seedOrigins.push(origin); seedPositions.set(origin, i * 3);
+  }
   seedGeometry.setAttribute("position", new THREE.BufferAttribute(seedPositions, 3));
-  const seeds = new THREE.Points(seedGeometry, ownMaterial(new THREE.PointsMaterial({ color: 0xe4bd67, size: .055, transparent: true, opacity: .73, sizeAttenuation: true, depthWrite: false }))); scene.add(seeds);
+  scene.add(new THREE.Points(seedGeometry, ownMaterial(new THREE.PointsMaterial({ color: 0xe4bd67, size: .045, transparent: true, opacity: .7, depthWrite: false }))));
 
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   const projectVector = new THREE.Vector3();
-  const lookAt = new THREE.Vector3(-.35, 1.3, -.2);
-  const selection = mesh(ownGeometry(new THREE.RingGeometry(.5, .53, 48)), ownMaterial(new THREE.MeshBasicMaterial({ color: 0xe2bc70, transparent: true, opacity: .7, side: THREE.DoubleSide, depthWrite: false })), scene);
+  const lookAt = new THREE.Vector3(0, .75, 0);
+  const selection = mesh(ownGeometry(new THREE.RingGeometry(.68, .72, 48)), ownMaterial(new THREE.MeshBasicMaterial({ color: 0xe2bc70, transparent: true, opacity: .75, side: THREE.DoubleSide, depthWrite: false })), scene);
   selection.rotation.x = -Math.PI / 2; selection.visible = false; selection.castShadow = false;
 
   function cameraUpdate() {
     const width = Math.max(host.clientWidth, 1), height = Math.max(host.clientHeight, 1), aspect = width / height;
-    const vertical = Math.max(12.4, 20.8 / aspect) / zoom;
+    // One island fills the frame at both laptop and phone widths.
+    const vertical = Math.max(9.4, 11.9 / aspect) / zoom;
     camera.left = -vertical * aspect / 2; camera.right = vertical * aspect / 2; camera.top = vertical / 2; camera.bottom = -vertical / 2;
-    camera.position.set(lookAt.x + Math.sin(yaw) * 30 * Math.cos(tilt), lookAt.y + Math.sin(tilt) * 30, lookAt.z + Math.cos(yaw) * 30 * Math.cos(tilt));
+    camera.position.set(lookAt.x + Math.sin(yaw) * 27 * Math.cos(tilt), lookAt.y + Math.sin(tilt) * 27, lookAt.z + Math.cos(yaw) * 27 * Math.cos(tilt));
     camera.lookAt(lookAt); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
   }
   function projectTargets() {
-    const points = {} as Projection;
-    (Object.keys(anchors) as Target[]).forEach(id => {
-      anchors[id].getWorldPosition(projectVector); projectVector.project(camera);
+    const points: Projection = {};
+    getTargets(state.state).forEach(({ id }) => {
+      const anchor = anchors[id];
+      if (!anchor) return;
+      anchor.getWorldPosition(projectVector); projectVector.project(camera);
       points[id] = { x: (projectVector.x + 1) * 50, y: (1 - projectVector.y) * 50, visible: Math.abs(projectVector.x) < .97 && Math.abs(projectVector.y) < .9 && projectVector.z > -1 && projectVector.z < 1 };
     });
     callbacks.onProject(points);
@@ -497,16 +623,21 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     const bounds = canvas.getBoundingClientRect();
     mouse.set((event.clientX - bounds.left) / bounds.width * 2 - 1, -(event.clientY - bounds.top) / bounds.height * 2 + 1);
     raycaster.setFromCamera(mouse, camera);
+    const available = new Set(getTargets(state.state).map(({ id }) => id));
     const hits = raycaster.intersectObjects(pickables, true);
     for (const hit of hits) {
       let object: THREE.Object3D | null = hit.object;
-      while (object) { if (object.userData.target) return object.userData.target as Target; object = object.parent; }
+      while (object) {
+        const id = object.userData.target as Target | undefined;
+        if (id && available.has(id)) return id;
+        object = object.parent;
+      }
     }
     return null;
   }
-  function setHover(targetId: Target | null) {
-    if (hover === targetId) return;
-    hover = targetId; canvas.style.cursor = targetId && !state.disabled ? "pointer" : "grab"; callbacks.onHover(targetId); dirty = true; wake();
+  function setHover(id: Target | null) {
+    if (hover === id) return;
+    hover = id; canvas.style.cursor = id && !state.disabled ? "pointer" : "grab"; callbacks.onHover(id); dirty = true; wake();
   }
   function onPointerDown(event: PointerEvent) {
     if (event.button !== 0 || state.disabled) return;
@@ -517,12 +648,12 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     if (pointer && pointer.id === event.pointerId) {
       if (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > 6) pointer.moved = true;
       if (pointer.moved) {
-        yaw = THREE.MathUtils.clamp(yaw - (event.clientX - pointer.lastX) * .004, -.53, .61);
-        tilt = THREE.MathUtils.clamp(tilt + (event.clientY - pointer.lastY) * .0025, .32, .77);
+        yaw = THREE.MathUtils.clamp(yaw - (event.clientX - pointer.lastX) * .004, -.5, .57);
+        tilt = THREE.MathUtils.clamp(tilt + (event.clientY - pointer.lastY) * .0025, .32, .72);
         dirty = true; wake(); setHover(null); canvas.style.cursor = "grabbing";
       }
       pointer.lastX = event.clientX; pointer.lastY = event.clientY;
-    } else if (event.pointerType !== "touch") setHover(pick(event));
+    } else if (event.pointerType !== "touch") setHover(state.disabled ? null : pick(event));
   }
   function onPointerUp(event: PointerEvent) {
     if (!pointer || pointer.id !== event.pointerId) return;
@@ -547,62 +678,47 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
     const moving = !state.reducedMotion && !state.paused && visible && !document.hidden;
     if (moving) elapsed += delta;
     const t = state.reducedMotion ? 0 : elapsed;
-    if (state.reducedMotion) { bridgeGrowth = state.state.bridgeOpen ? 1 : 0; crossing = state.state.complete ? 1 : 0; }
+    if (state.reducedMotion) { arrival = 1; if (state.travelling) travel = 1; }
     else if (moving) {
-      bridgeGrowth = state.state.bridgeOpen ? Math.min(1, bridgeGrowth + delta / 4.2) : 0;
-      crossing = state.state.complete ? Math.min(1, crossing + delta / 5.4) : 0;
+      arrival = Math.min(1, arrival + delta / 1.5);
+      if (state.travelling) travel = Math.min(1, travel + delta / 1.1);
     }
     if (moving || dirty) {
       cameraUpdate();
-      crown.rotation.z = Math.sin(t * .47) * .016;
-      crown.rotation.x = Math.cos(t * .37) * .012;
-      turtle.rotation.z = Math.sin(t * 1.4) * .012;
-      trumpet.rotation.x = Math.sin(t * 1.7) * (state.active === "turtle" ? .065 : .017);
-      floweringTail.rotation.z = Math.sin(t * 1.9) * .085;
-      bird.rotation.y = .12 + Math.sin(t * .36) * (state.active === "bird" ? .045 : .012);
-      jugglerBody.position.y = Math.sin(t * 1.8) * .035;
-      jugglerArms.forEach((arm, index) => { arm.rotation.z = Math.sin(t * 2 + index * Math.PI) * .11; });
-      orbs.forEach((orb, index) => {
-        const phase = t * (state.active === "juggler" ? 1.35 : 1.05) + index * Math.PI;
-        orb.position.set(Math.cos(phase) * 1.22, 2.35 + Math.sin(phase) * .77, Math.sin(phase) * .22);
-        orb.rotation.set(t * .5, t * .8, phase);
-      });
-      const walking = crossing > 0 && crossing < 1;
-      let visitorX = -2.15, visitorZ = 2, visitorY = .15;
-      if (crossing > 0) {
-        if (crossing < .22) { const p = crossing / .22; visitorX = THREE.MathUtils.lerp(-2.15, -.55, p); visitorZ = THREE.MathUtils.lerp(2, 1.1, p); }
-        else if (crossing < .78) { const p = (crossing - .22) / .56; [visitorX, visitorY, visitorZ] = bridgePoint(p, 1.1); }
-        else { const p = (crossing - .78) / .22; visitorX = THREE.MathUtils.lerp(3.08, 4.35, p); visitorZ = THREE.MathUtils.lerp(.85, 1.9, p); visitorY = .27; }
-      }
-      visitor.position.set(visitorX, visitorY + (walking ? Math.abs(Math.sin(t * 11)) * .06 : Math.sin(t * 1.65) * .012), visitorZ);
-      visitor.rotation.y = walking ? 1.12 : crossing === 1 ? -.36 : .15;
-      leftLeg.rotation.x = walking ? Math.sin(t * 11) * .46 : 0; rightLeg.rotation.x = walking ? -Math.sin(t * 11) * .46 : 0;
+      animations.forEach(animate => animate(t));
+      const walking = arrival < 1 || (!!state.travelling && travel < 1);
+      const smoothArrival = THREE.MathUtils.smoothstep(arrival, 0, 1);
+      let x = THREE.MathUtils.lerp(-4.25, -1.45, smoothArrival);
+      if (state.travelling) x = THREE.MathUtils.lerp(-1.45, state.travelling === "forward" ? 5.25 : -4.7, THREE.MathUtils.smoothstep(travel, 0, 1));
+      visitor.position.set(x, .16 + (walking ? Math.abs(Math.sin(t * 12)) * .055 : Math.sin(t * 1.65) * .012), state.travelling === "forward" ? 1.48 : 1.3);
+      visitor.rotation.y = walking ? state.travelling === "back" ? -1.2 : 1.2 : .5;
+      leftLeg.rotation.x = walking ? Math.sin(t * 12) * .47 : 0;
+      rightLeg.rotation.x = walking ? -Math.sin(t * 12) * .47 : 0;
       visitorHead.rotation.z = Math.sin(t * .7) * .025;
-      visitorArms.forEach((arm, index) => { arm.rotation.z = crossing === 1 && index === 1 ? -.12 + Math.sin(t * 3.3) * .18 : Math.sin(t * 1.3 + index) * .028; arm.rotation.x = walking ? Math.sin(t * 11 + index * Math.PI) * .16 : 0; });
-      bridgeParts.forEach(part => {
-        const growth = THREE.MathUtils.clamp((bridgeGrowth - part.from) / (part.until - part.from), 0, 1);
-        // Complete triangles, grown in tube-ring order, prevent slivers or missing caps.
-        part.object.geometry.setDrawRange(0, Math.floor(part.count * growth / 36) * 36); part.object.visible = growth > 0;
+      visitorArms.forEach((arm, index) => { arm.rotation.z = Math.sin(t * 1.3 + index) * .028; arm.rotation.x = walking ? Math.sin(t * 12 + index * Math.PI) * .2 : 0; });
+      seedOrigins.forEach((origin, i) => {
+        seedPositions[i * 3] = origin[0] + Math.sin(t * .19 + i) * .4;
+        seedPositions[i * 3 + 1] = origin[1] + Math.sin(t * .3 + i * 2) * .22;
+        seedPositions[i * 3 + 2] = origin[2] + Math.cos(t * .24 + i) * .2;
       });
-      bridgeLeaves.forEach(({ object, threshold }) => { const growth = THREE.MathUtils.clamp((bridgeGrowth - threshold) * 8, 0, 1); object.visible = growth > 0; object.scale.setScalar(growth); object.rotation.z = Math.sin(t * 1.6 + threshold) * .08; });
-      rootTips.rotation.x = state.state.bridgeOpen ? 0 : Math.sin(t * 1.05) * .012;
-      distantIslands.forEach(({ object, y, phase }) => { object.position.y = y + Math.sin(t * .2 + phase) * .14; });
-      clouds.forEach(({ object, x, speed, phase }) => { object.position.x = x + Math.sin(t * speed + phase) * 1.8; });
-      seedOrigins.forEach((origin, i) => { seedPositions[i * 3] = origin[0] + Math.sin(t * .19 + i) * .55; seedPositions[i * 3 + 1] = origin[1] + Math.sin(t * .3 + i * 2) * .28; seedPositions[i * 3 + 2] = origin[2] + Math.cos(t * .24 + i) * .24; });
       seedGeometry.attributes.position.needsUpdate = true;
       const selected = state.active || hover;
-      const selectedObject = selected === "visitor" ? visitor : selected === "turtle" ? turtle : selected === "juggler" ? juggler : selected === "bird" ? bird : null;
+      const selectedObject = selected === "resident" ? anchors.resident?.parent : null;
       selection.visible = !!selectedObject;
-      if (selectedObject) { selection.position.copy(selectedObject.position); selection.position.y += .075; selection.scale.setScalar(selected === "bird" ? 2 : selected === "turtle" ? 2.1 : 1.25); }
+      if (selectedObject) { selectedObject.getWorldPosition(selection.position); selection.position.y = .18; selection.scale.setScalar(state.state.sceneIndex === 1 ? 1.7 : 1.25); }
       scene.updateMatrixWorld();
       try { renderer.render(scene, camera); }
       catch { failed = true; callbacks.onHover(null); callbacks.onFailure(); return; }
       projectTargets(); dirty = false;
-      canvas.dataset.bridgeProgress = bridgeGrowth.toFixed(2);
-      canvas.dataset.crossingProgress = crossing.toFixed(2);
+      canvas.dataset.sceneIndex = String(state.state.sceneIndex);
+      canvas.dataset.arrivalProgress = arrival.toFixed(2);
+      canvas.dataset.travelProgress = travel.toFixed(2);
       canvas.dataset.motion = state.reducedMotion ? "reduced" : state.paused ? "paused" : "animated";
     }
-    if (moving) frame = requestAnimationFrame(render);
+    // Set guards before invoking React callbacks: they may synchronously replace this scene.
+    if (arrival === 1 && !arrivalSent) { arrivalSent = true; callbacks.onArrival(); }
+    if (state.travelling && travel === 1 && !travelSent) { travelSent = true; callbacks.onTravelComplete(); }
+    if (moving && !disposed) frame = requestAnimationFrame(render);
   }
   function wake() { if (!frame && !disposed && !failed) frame = requestAnimationFrame(render); }
   function visibilityChanged() { lastTime = 0; dirty = true; wake(); }
@@ -617,17 +733,15 @@ export function createDiorama(host: HTMLElement, initial: SceneState, callbacks:
 
   return {
     update(next) {
-      // Restarts reset the diorama too; restored saves were placed immediately above.
-      if (!next.state.bridgeOpen) bridgeGrowth = 0;
-      if (!next.state.complete) crossing = 0;
+      if (next.travelling !== state.travelling) { travel = 0; travelSent = false; }
       state = next; dirty = true; wake();
     },
     control(action) {
-      if (action === "left") yaw = Math.max(-.53, yaw - .16);
-      if (action === "right") yaw = Math.min(.61, yaw + .16);
-      if (action === "in") zoom = Math.min(1.55, zoom + .12);
-      if (action === "out") zoom = Math.max(.82, zoom - .12);
-      if (action === "reset") { yaw = .13; tilt = .53; zoom = 1; }
+      if (action === "left") yaw = Math.max(-.5, yaw - .16);
+      if (action === "right") yaw = Math.min(.57, yaw + .16);
+      if (action === "in") zoom = Math.min(1.45, zoom + .12);
+      if (action === "out") zoom = Math.max(.85, zoom - .12);
+      if (action === "reset") { yaw = .12; tilt = .49; zoom = 1; }
       dirty = true; wake();
     },
     dispose() {

@@ -1,20 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  choose, getDialogue, getHint, getJournal, getObjective, initialState,
-  isBridgeOpen, isComplete, restoreState,
+  canMoveForward, choose, getDialogue, getHint, getJournal, getObjective, getScene,
+  getTargets, initialState, islandScenes, isComplete, move, restoreState,
   type Dialogue, type GameState, type Target
 } from "@/lib/cromb-coo-coo";
 import styles from "./game.module.css";
 import { DioramaScene } from "./diorama-scene";
-import { sceneTargets as targets } from "./scene-targets";
 
-const SAVE_KEY = "cromb-coo-coo:first-crossing:v1";
-const ORIGINAL = "/cromblog/doodle-experiments/round-21/at-the-center-of-cromb-coo-coo.png";
-const BRIDGE = "/games/cromb-coo-coo/bridge-open.png";
-const CROSSED = "/games/cromb-coo-coo/crossed.png";
+const SAVE_KEY = "cromb-coo-coo:journey:v2";
+const LEGACY_SAVE_KEY = "cromb-coo-coo:first-crossing:v1";
+type Direction = "forward" | "back";
 function Icon({ name, size = 20 }: { name: "eye" | "talk" | "book" | "sound" | "mute" | "arrow" | "close" | "leaf" | "help" | "settings"; size?: number }) {
   const paths = {
     eye: <><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" /></>,
@@ -46,7 +44,9 @@ export function CrombCooCooGame() {
   const [stillScene, setStillScene] = useState(false);
   const reducedMotion = systemReducedMotion || stillScene;
   const [hint, setHint] = useState<string | null>(null);
-  const [moment, setMoment] = useState<"bridge" | "crossed" | null>(null);
+  const [arriving, setArriving] = useState(true);
+  const [travelling, setTravelling] = useState<Direction | null>(null);
+  const [sceneVisit, setSceneVisit] = useState(0);
   const [endingOpen, setEndingOpen] = useState(false);
   const [notice, setNotice] = useState("");
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -55,14 +55,23 @@ export function CrombCooCooGame() {
   const previousFocus = useRef<HTMLElement | null>(null);
   const audioRef = useRef<AudioContext | null>(null);
   const noticeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const complete = isComplete(state);
-  const bridgeOpen = isBridgeOpen(state);
-  const scene = complete ? CROSSED : bridgeOpen ? BRIDGE : ORIGINAL;
+  const travelRef = useRef<Direction | null>(null);
+  const arrivalRef = useRef(true);
+  const scene = getScene(state);
+  const targets = getTargets(state);
   const journal = getJournal(state);
+  const greeted = state.greeted[state.sceneIndex];
+  const busy = arriving || travelling !== null;
+  const finalIsland = state.sceneIndex === islandScenes.length - 1;
+  const residentTarget = targets.find(target => target.id === "resident");
+  const detailTarget = targets.find(target => target.id === "detail");
+  const visibleChoices = dialogue?.choices.filter(choice => !(active === "resident" && greeted && choice.id === "greet")) ?? [];
+  // Acquaintances stay in the notebook when walking back to an earlier island.
+  const furthestIsland = Math.max(state.sceneIndex, state.greeted.lastIndexOf(true));
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(SAVE_KEY);
+      const raw = window.localStorage.getItem(SAVE_KEY) ?? window.localStorage.getItem(LEGACY_SAVE_KEY);
       if (raw) {
         const envelope = JSON.parse(raw);
         const restored = restoreState(envelope?.state);
@@ -95,14 +104,15 @@ export function CrombCooCooGame() {
   }, [modal]);
 
   useEffect(() => {
-    if (dialogue && !moment) dialogueRef.current?.focus({ preventScroll: true });
-  }, [dialogue, moment]);
+    if (dialogue) dialogueRef.current?.focus({ preventScroll: true });
+  }, [dialogue]);
 
   useEffect(() => {
     if (!playing) return;
-    // Load the two reward illustrations ahead of the player's final actions.
-    for (const src of [BRIDGE, CROSSED]) { const image = new window.Image(); image.src = src; }
-  }, [playing]);
+    // Only the next illustrated scene needs to be ready before a crossing.
+    const next = islandScenes[state.sceneIndex + 1];
+    if (next) { const image = new window.Image(); image.src = next.art; }
+  }, [playing, state.sceneIndex]);
 
   useEffect(() => () => {
     if (noticeTimer.current) clearTimeout(noticeTimer.current);
@@ -117,7 +127,7 @@ export function CrombCooCooGame() {
       const notes = celebrate ? [261.63, 329.63, 392, 523.25] : [329.63, 392, 523.25];
       notes.forEach((frequency, index) => {
         const oscillator = context.createOscillator(); const gain = context.createGain();
-        const start = context.currentTime + (index === 2 ? 0.8 : index * 0.24);
+        const start = context.currentTime + index * 0.24;
         oscillator.type = "sine"; oscillator.frequency.value = frequency;
         gain.gain.setValueAtTime(0, start); gain.gain.linearRampToValueAtTime(0.07, start + 0.04);
         gain.gain.exponentialRampToValueAtTime(0.001, start + 0.8);
@@ -135,12 +145,49 @@ export function CrombCooCooGame() {
   }
 
   function begin() {
-    setPlaying(true); setEndingOpen(isComplete(state));
+    arrivalRef.current = true;
+    setArriving(true); setPlaying(true); setEndingOpen(isComplete(state));
     requestAnimationFrame(() => stageRef.current?.focus({ preventScroll: true }));
   }
 
+  const onArrival = useCallback(() => {
+    arrivalRef.current = false;
+    setArriving(false);
+  }, []);
+
+  const onTravelComplete = useCallback(() => {
+    const direction = travelRef.current;
+    if (!direction) return;
+    travelRef.current = null;
+    arrivalRef.current = true;
+    setState(current => move(current, direction));
+    setTravelling(null); setArriving(true); setSceneVisit(value => value + 1);
+    requestAnimationFrame(() => stageRef.current?.focus({ preventScroll: true }));
+  }, []);
+
+  function travel(direction: Direction) {
+    if (arrivalRef.current || travelRef.current || (direction === "forward" ? !canMoveForward(state) || finalIsland : state.sceneIndex === 0)) return;
+    travelRef.current = direction;
+    setTravelling(direction); setActive(null); setDialogue(null); setHint(null); setEndingOpen(false);
+    announce(direction === "forward" ? `Onward to ${islandScenes[state.sceneIndex + 1].name}.` : `Returning to ${islandScenes[state.sceneIndex - 1].name}.`);
+    chime();
+  }
+
+  function finish() {
+    if (busy || !finalIsland || !greeted) return;
+    const result = choose("path", "finish", state);
+    setState(result.state); setActive(null); setDialogue(null); setHint(null);
+    setEndingOpen(true); chime(true);
+    announce("Five islands, five new acquaintances. Your journey is complete.");
+  }
+
   function openTarget(target: Target) {
-    if (moment) return;
+    if (arrivalRef.current || travelRef.current || modal) return;
+    if (target === "back") { travel("back"); return; }
+    if (target === "path" && greeted) {
+      if (finalIsland) finish(); else travel("forward");
+      return;
+    }
     setActive(target); setDialogue(getDialogue(target, state)); setHint(null); setEndingOpen(false);
   }
 
@@ -150,45 +197,45 @@ export function CrombCooCooGame() {
   }
 
   function selectChoice(id: string) {
-    if (!active || moment) return;
+    if (!active || busy) return;
     if (id === "leave") { closeDialogue(); return; }
+    if (id === "forward" || id === "back") { travel(id); return; }
+    if (id === "finish") { finish(); return; }
     const result = choose(active, id, state);
     setState(result.state); setDialogue(result.dialogue); setHint(null);
-    if (!bridgeOpen && isBridgeOpen(result.state)) {
-      setMoment("bridge"); setActive(null); setDialogue(null); chime(true);
-      announce("The roots weave a bridge between the two islands.");
-    } else if (!complete && isComplete(result.state)) {
-      setMoment("crossed"); setActive(null); setDialogue(null); chime(true);
-      announce("You cross the living bridge. The first crossing is complete.");
+    if (!greeted && result.state.greeted[state.sceneIndex]) {
+      announce(finalIsland ? "You can rest here whenever you are ready." : "The way onward is open. Choose Go to the next island.");
+      chime();
     } else if (getJournal(result.state).length > journal.length) {
       announce("A new observation is in your field notebook.");
-      if (active === "roots" || active === "juggler") chime();
     }
   }
 
   function restart() {
-    setState({ ...initialState }); setActive(null); setDialogue(null); setHint(null);
-    setMoment(null); setEndingOpen(false); setNotice(""); setModal(null);
+    travelRef.current = null; arrivalRef.current = true;
+    setState({ ...initialState, greeted: [...initialState.greeted], inspected: [...initialState.inspected] });
+    setActive(null); setDialogue(null); setHint(null); setTravelling(null); setArriving(true);
+    setSceneVisit(value => value + 1); setEndingOpen(false); setNotice(""); setModal(null);
     setPlaying(true); setHasSave(false);
-    requestAnimationFrame(() => stageRef.current?.focus());
+    requestAnimationFrame(() => stageRef.current?.focus({ preventScroll: true }));
   }
 
   useEffect(() => {
     if (!playing) return;
     function onKey(event: KeyboardEvent) {
       if (event.altKey || event.metaKey || event.ctrlKey || /INPUT|TEXTAREA|SELECT/.test((event.target as HTMLElement)?.tagName)) return;
-      if (modal) return; // Native dialog owns Escape and focus while open.
+      if (modal) return;
       if (event.key === "Escape") { if (dialogue) closeDialogue(); else setHint(null); }
       if (event.key.toLowerCase() === "h") { event.preventDefault(); setShowTargets(value => !value); }
       if (event.key.toLowerCase() === "j") { event.preventDefault(); setModal("journal"); }
-      if (/^[1-9]$/.test(event.key) && dialogue && !moment) {
-        const choice = dialogue.choices[Number(event.key) - 1];
+      if (/^[1-9]$/.test(event.key) && dialogue && !busy) {
+        const choice = visibleChoices[Number(event.key) - 1];
         if (choice) { event.preventDefault(); selectChoice(choice.id); }
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // The current dialogue and state are deliberately captured for number shortcuts.
+    // Number shortcuts intentionally capture the current conversation and state.
   });
 
   return (
@@ -196,74 +243,80 @@ export function CrombCooCooGame() {
       {!playing ? (
         <section className={styles.titleScreen} aria-labelledby="coocoo-title">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className={styles.titleArt} src={ORIGINAL} alt="An anxious visitor surrounded by floating forests, a woodgrain bird, a trumpet turtle and an orb juggler." fetchPriority="high" />
+          <img className={styles.titleArt} src={islandScenes[0].art} alt={islandScenes[0].artAlt} fetchPriority="high" />
           <div className={styles.titleShade} />
           <Link href="/games" className={styles.backLink}>← Back to Cromblog</Link>
           <div className={styles.titleCopy}>
-            <p className={styles.eyebrow}>An animated 3D adventure</p>
+            <p className={styles.eyebrow}>A journey through five floating islands</p>
             <h1 id="coocoo-title">Cromb<br /><em>Coo Coo</em></h1>
             <div className={styles.rule}><Icon name="leaf" /><span /></div>
-            <p className={styles.chapter}>The First Crossing</p>
-            <p className={styles.titleDescription}>A very small visitor.<br />A very peculiar way across.</p>
+            <p className={styles.titleDescription}>Say hello. Take a step.<br />See what’s next.</p>
             <button className={styles.beginButton} onClick={begin} disabled={!loaded}>
-              {!loaded ? "Opening the notebook…" : hasSave ? "Continue your journey" : "Begin the crossing"}<Icon name="arrow" />
+              {!loaded ? "Opening…" : hasSave ? "Continue your journey" : "Begin"}<Icon name="arrow" />
             </button>
-            <p className={styles.titleFootnote}>Explore. Meet the inhabitants. Find a way onward.<br />Take your time; this place isn’t going anywhere. Probably.</p>
           </div>
           <p className={styles.artCredit}>A world grown from Michael Crombie’s notebook drawings</p>
         </section>
       ) : (
-        <div className={`${styles.playScreen} ${dialogue && !moment ? styles.conversing : ""}`}>
+        <div className={`${styles.playScreen} ${dialogue ? styles.conversing : ""}`}>
           <header className={styles.header}>
             <h1 className={styles.wordmark}><Link href="/games" aria-label="Cromb Coo Coo — back to Games">Cromb <em>Coo Coo</em></Link></h1>
-            <span className={styles.chapterLabel}>I · The First Crossing</span>
+            <span className={styles.chapterLabel}>Island {state.sceneIndex + 1} of {islandScenes.length}</span>
             <div className={styles.headerActions}>
-              <button onClick={() => setModal("journal")} className={styles.toolButton} aria-label="Open field notebook" title="Field notebook (J)"><Icon name="book" /><span>Notebook</span>{journal.length > 0 && <small>{journal.length}</small>}</button>
+              <button onClick={() => setModal("journal")} className={styles.toolButton} aria-label="Open field notebook" title="Field notebook (J)"><Icon name="book" /><span>Notebook</span></button>
               <button onClick={() => setModal("settings")} className={styles.iconButton} aria-label="Open game settings"><Icon name="settings" /></button>
             </div>
           </header>
 
           <div className={styles.sceneViewport}>
-            <div ref={stageRef} tabIndex={-1} className={`${styles.scene} ${showTargets ? styles.reveal : ""} ${moment ? styles.sceneMoment : ""}`} aria-label="The First Crossing interactive 3D diorama">
-              <DioramaScene state={state} active={active} reducedMotion={reducedMotion} paused={modal !== null} disabled={!!moment} onTarget={openTarget} fallback={scene} />
+            <div ref={stageRef} tabIndex={-1} className={`${styles.scene} ${showTargets ? styles.reveal : ""}`} aria-label={`${scene.name} interactive 3D island`} aria-busy={busy}>
+              <DioramaScene key={`${state.sceneIndex}-${sceneVisit}`} state={state} active={active} reducedMotion={reducedMotion} paused={modal !== null} disabled={busy || modal !== null} onTarget={openTarget} fallback={scene.art} travelling={travelling} onArrival={onArrival} onTravelComplete={onTravelComplete} />
             </div>
           </div>
 
           <section className={styles.storyArea} id="coocoo-story" aria-label="Story and actions">
-            {moment ? (
-              <section className={styles.momentPanel} aria-live="polite">
-                <p className={styles.eyebrow}>{moment === "bridge" ? "A call. An answer." : "One step, then another."}</p>
-                <h2>{moment === "bridge" ? "The roots remember the way." : "You are on the other side."}</h2>
-                <p>{moment === "bridge" ? "Wood stirs beneath the moss. The gap becomes a path, and the turtle gives the smallest possible bow." : state.approach === "honest" ? "Your first step is a little frightened. The root holds it just as carefully as any other step. Across the gap, the juggler makes a little room." : state.approach === "playful" ? "You take the bird’s handrail. It is an excellent extra root. On the other side, you turn and give the bird a grateful wave." : "The juggler makes a little room. Behind you, the bridge settles into the shape of something that was always possible."}</p>
-                <button className={styles.primaryButton} onClick={() => { if (moment === "crossed") setEndingOpen(true); setMoment(null); }}>{moment === "bridge" ? "Look at the crossing" : "Take a breath"}<Icon name="arrow" size={18} /></button>
+            {busy ? (
+              <section className={styles.walkingPanel} role="status">
+                <span className={styles.walkingMark} aria-hidden="true"><Icon name="arrow" size={24} /></span>
+                <div><p className={styles.eyebrow}>Island {state.sceneIndex + 1} of {islandScenes.length} · {scene.name}</p><h2>{travelling ? travelling === "forward" ? "On to the next island…" : "Back along the path…" : state.sceneIndex === 0 ? "Walking up to the frog…" : "A new place to say hello."}</h2><p>{travelling ? scene.departure : scene.arrival}</p></div>
               </section>
             ) : endingOpen ? (
               <section className={styles.endingPanel}>
-                <p className={styles.eyebrow}>The First Crossing · complete</p>
-                <h2>A beginning, on the other side.</h2>
-                <p>You arrived alone. You crossed because you listened.<br />Beyond these terraces, there are other places to ask.</p>
-                <div className={styles.endingActions}><button className={styles.primaryButton} onClick={() => setEndingOpen(false)}>Stay a little longer</button><button className={styles.textButton} onClick={() => setModal("restart")}>Play again</button><Link href="/art?collection=scenic#experiments" className={styles.textButton}>Explore the artwork ↗</Link></div>
-                <small>This is the end of the playable opening.</small>
+                <p className={styles.eyebrow}>Five islands · journey complete</p>
+                <h2>A little further from where you began.</h2>
+                <p>A hello, a few steps, and another place to remember.<br />The lanterns will keep your place while you rest.</p>
+                <div className={styles.endingActions}><button className={styles.primaryButton} onClick={() => setEndingOpen(false)}>Stay a little longer</button><button className={styles.textButton} onClick={() => setModal("journal")}>Open the notebook</button><button className={styles.textButton} onClick={() => setModal("restart")}>Begin again</button></div>
               </section>
             ) : dialogue && active ? (
               <section ref={dialogueRef} tabIndex={-1} className={styles.dialogue} aria-label={`Conversation with ${dialogue.speaker}`}>
                 <div className={styles.dialogueHeader}><span className={styles.speaker}>{dialogue.speaker}</span><span className={styles.dialogueLine} /><button className={styles.closeButton} aria-label="Close conversation" onClick={closeDialogue}><Icon name="close" size={18} /></button></div>
                 <div className={styles.lines} aria-live="polite">{dialogue.lines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div>
-                <div className={styles.choices}>{dialogue.choices.map((choice, index) => <button key={choice.id} onClick={() => selectChoice(choice.id)} className={choice.id === "leave" ? styles.leaveChoice : styles.choice}><span className={styles.choiceNumber} aria-hidden="true">{index + 1}</span>{choice.label}<span className={styles.choiceArrow} aria-hidden="true">↗</span></button>)}</div>
+                <div className={styles.choices}>{visibleChoices.map((choice, index) => <button key={choice.id} onClick={() => selectChoice(choice.id)} className={choice.id === "leave" ? styles.leaveChoice : styles.choice}><span className={styles.choiceNumber} aria-hidden="true">{index + 1}</span>{choice.label}<span className={styles.choiceArrow} aria-hidden="true">↗</span></button>)}</div>
               </section>
             ) : (
               <section className={styles.quietPanel}>
-                <div className={styles.objective}><Icon name="leaf" size={28} /><div><p className={styles.eyebrow}>{complete ? "A place to remember" : bridgeOpen ? "A way onward" : "A thought to follow"}</p><h2>{getObjective(state)}</h2></div></div>
-                <p className={styles.instructions}>{complete ? "You can still talk to your new acquaintances, or return to the artwork." : "Choose a character or something that catches your eye. There is no hurry."}</p>
+                <p className={styles.eyebrow}>Island {state.sceneIndex + 1} of {islandScenes.length} · {scene.name}</p>
+                <h2>{getObjective(state)}</h2>
+                {state.sceneIndex === 0 && !greeted && <p className={styles.firstInstruction}>Choose the frog to start a conversation.</p>}
               </section>
             )}
 
+            {!busy && !endingOpen && <nav className={styles.journeyActions} aria-label="Island actions">
+              <div className={styles.meetingActions}>
+                {!dialogue && <button className={!greeted ? styles.primaryButton : styles.secondaryButton} onClick={() => openTarget("resident")}><Icon name="talk" size={18} />{residentTarget?.action ?? `Talk to ${scene.resident}`}</button>}
+                {!dialogue && detailTarget && <button className={styles.textButton} onClick={() => openTarget("detail")}><Icon name="eye" size={17} />{detailTarget.action}</button>}
+              </div>
+              <div className={styles.forwardAction}>
+                <button className={styles.primaryButton} onClick={() => finalIsland ? finish() : travel("forward")} disabled={!greeted} aria-describedby={!greeted ? "coocoo-path-help" : undefined}>{finalIsland ? "Rest here" : "Go to the next island"}<Icon name="arrow" size={18} /></button>
+                {!greeted && <span id="coocoo-path-help">{state.sceneIndex === 0 ? "Talk to the frog first." : `Say hello to the ${scene.resident} first.`}</span>}
+              </div>
+            </nav>}
+
             <div className={styles.bottomBar}>
-              <button className={styles.toolButton} aria-pressed={showTargets} onClick={() => setShowTargets(value => !value)}><Icon name="eye" size={18} /><span>{showTargets ? "Hide places to explore" : "Show places to explore"}</span></button>
-              <button className={styles.toolButton} onClick={() => { setHint(getHint(state)); setActive(null); setDialogue(null); setEndingOpen(false); }} disabled={!!moment}><Icon name="help" size={18} /><span>A little nudge</span></button>
+              {state.sceneIndex > 0 && <button className={styles.toolButton} onClick={() => travel("back")} disabled={busy}><span aria-hidden="true">←</span><span>Previous island</span></button>}
+              {state.sceneIndex > 0 && <button className={styles.toolButton} onClick={() => { setHint(getHint(state)); setActive(null); setDialogue(null); setEndingOpen(false); }} disabled={busy}><Icon name="help" size={18} /><span>A little nudge</span></button>}
               <span className={styles.saveNote}>{storageAvailable ? "Progress saved on this device" : "Saving is unavailable · keep this tab open"}</span>
             </div>
-            {showTargets && <nav className={styles.targetList} aria-label="Places to explore">{targets.map(target => <button key={target.id} onClick={() => openTarget(target.id)} disabled={!!moment}>{target.label}</button>)}</nav>}
             {hint && <aside className={styles.hint} aria-live="polite"><Icon name="leaf" /><p>{hint}</p><button className={styles.closeButton} aria-label="Dismiss hint" onClick={() => setHint(null)}><Icon name="close" size={16} /></button></aside>}
           </section>
           <p className={styles.notice} role="status">{notice}</p>
@@ -272,9 +325,24 @@ export function CrombCooCooGame() {
 
       <dialog ref={modalRef} className={styles.modal} onCancel={event => { event.preventDefault(); setModal(null); }} onClick={event => { if (event.target === event.currentTarget) { const box = event.currentTarget.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) setModal(null); } }} aria-labelledby="coocoo-modal-title">
         <div className={styles.modalTop}><p className={styles.eyebrow}>Cromb Coo Coo</p><button className={styles.closeButton} onClick={() => setModal(null)} aria-label="Close panel"><Icon name="close" /></button></div>
-        {modal === "journal" && <><h2 id="coocoo-modal-title">Field notebook</h2><p className={styles.modalIntro}>Things you’ve noticed. People you’ve begun to understand.</p>{journal.length ? <ol className={styles.journal}>{journal.map((entry, index) => <li key={entry.title}><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3>{entry.title}</h3><p>{entry.text}</p></div></li>)}</ol> : <p className={styles.emptyJournal}>An empty page is a fine place to begin. Take a look around the terrace.</p>}<p className={styles.journalObjective}><strong>Your next thought</strong>{getObjective(state)}</p></>}
-        {modal === "settings" && <><h2 id="coocoo-modal-title">A few comforts</h2><button className={styles.settingRow} aria-pressed={sound} onClick={() => setSound(value => !value)}><span><Icon name={sound ? "sound" : "mute"} /><span>Musical signals<small>Optional tones; every clue is also written.</small></span></span><b>{sound ? "On" : "Off"}</b></button><button className={styles.settingRow} aria-pressed={showTargets} onClick={() => setShowTargets(value => !value)}><span><Icon name="eye" /><span>Places to explore<small>Keep character and object labels visible.</small></span></span><b>{showTargets ? "Shown" : "On focus"}</b></button><button className={styles.settingRow} aria-pressed={!reducedMotion} disabled={systemReducedMotion} onClick={() => setStillScene(value => !value)}><span><Icon name="leaf" /><span>Scene animation<small>Keep the world still while you explore.</small></span></span><b>{systemReducedMotion ? "Reduced by device" : stillScene ? "Off" : "On"}</b></button><p className={styles.controls}><strong>Take your time.</strong> Choose a character directly, or use Tab and Enter. Drag the world to turn it; use the camera buttons to zoom or reset the view. H shows places to explore. J opens the notebook. Escape closes a conversation or panel. Number keys choose dialogue options.<br /><br />{systemReducedMotion ? "Reduced motion follows your device setting." : "Turn scene animation off for a still world; every conversation and crossing remains available."}</p><div className={styles.settingFooter}><button className={styles.textButton} onClick={() => setModal("restart")}>Start this chapter again</button><Link href="/games" className={styles.textButton}>Return to Cromblog ↗</Link></div></>}
-        {modal === "restart" && <><h2 id="coocoo-modal-title">A fresh arrival?</h2><p className={styles.modalIntro}>This will reset your progress in The First Crossing on this device.</p><div className={styles.endingActions}><button className={styles.primaryButton} onClick={restart}>Yes, begin again</button><button className={styles.textButton} onClick={() => setModal(null)}>Keep my journey</button></div></>}
+        {modal === "journal" && <>
+          <h2 id="coocoo-modal-title">Field notebook</h2><p className={styles.modalIntro}>A few places and people to remember.</p>
+          {journal.length ? <ol className={styles.journal}>{journal.map((entry, index) => <li key={entry.title}><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3>{entry.title}</h3><p>{entry.text}</p></div></li>)}</ol> : <p className={styles.emptyJournal}>An empty page is a fine place to begin.</p>}
+          {furthestIsland >= 2 && <section className={styles.islandStudies} aria-label="Illustrations of islands visited">{islandScenes.slice(2, furthestIsland + 1).map(island => <figure key={island.id}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={island.art} alt={island.artAlt} loading="lazy" width={1672} height={941} /><figcaption>{island.name}</figcaption>
+          </figure>)}</section>}
+          <p className={styles.journalObjective}><strong>Your next step</strong>{getObjective(state)}</p>
+        </>}
+        {modal === "settings" && <>
+          <h2 id="coocoo-modal-title">A few comforts</h2>
+          <button className={styles.settingRow} aria-pressed={sound} onClick={() => setSound(value => !value)}><span><Icon name={sound ? "sound" : "mute"} /><span>Musical signals<small>Optional tones when you meet someone or move on.</small></span></span><b>{sound ? "On" : "Off"}</b></button>
+          <button className={styles.settingRow} aria-pressed={showTargets} onClick={() => setShowTargets(value => !value)}><span><Icon name="eye" /><span>Places to explore<small>Keep character and path labels visible.</small></span></span><b>{showTargets ? "Shown" : "On focus"}</b></button>
+          <button className={styles.settingRow} aria-pressed={!reducedMotion} disabled={systemReducedMotion} onClick={() => setStillScene(value => !value)}><span><Icon name="leaf" /><span>Scene animation<small>Keep the world still while you explore.</small></span></span><b>{systemReducedMotion ? "Reduced by device" : stillScene ? "Off" : "On"}</b></button>
+          <p className={styles.controls}><strong>Say hello, then take a step.</strong> Choose a character directly, or use Tab and Enter. The buttons below each island work too. Drag the world to turn it; use the camera buttons to zoom or reset the view. H shows labels. J opens the notebook. Escape closes a conversation or panel. Number keys choose dialogue options.<br /><br />{systemReducedMotion ? "Reduced motion follows your device setting." : "Turn scene animation off for a still world; every conversation and island remains available."}</p>
+          <div className={styles.settingFooter}><button className={styles.textButton} onClick={() => setModal("restart")}>Start this journey again</button><Link href="/games" className={styles.textButton}>Return to Cromblog ↗</Link></div>
+        </>}
+        {modal === "restart" && <><h2 id="coocoo-modal-title">A fresh arrival?</h2><p className={styles.modalIntro}>This will start your five-island journey again on this device.</p><div className={styles.endingActions}><button className={styles.primaryButton} onClick={restart}>Yes, begin again</button><button className={styles.textButton} onClick={() => setModal(null)}>Keep my journey</button></div></>}
       </dialog>
     </div>
   );

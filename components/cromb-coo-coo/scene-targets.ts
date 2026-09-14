@@ -1,11 +1,17 @@
-import type { Target } from "@/lib/cromb-coo-coo";
+import { getTargets, type GameState, type Target } from "@/lib/cromb-coo-coo";
 
-export const sceneTargets: { id: Target; label: string; action: string; x: number; y: number; kind: "talk" | "look" }[] = [
-  { id: "bird", label: "Woodgrain Bird", action: "Talk to the Woodgrain Bird", x: 17, y: 36, kind: "talk" },
-  { id: "turtle", label: "Trumpet Turtle", action: "Talk to the Trumpet Turtle", x: 32, y: 73, kind: "talk" },
-  { id: "juggler", label: "Orb Juggler", action: "Talk to the Orb Juggler", x: 81, y: 74, kind: "talk" },
-  { id: "visitor", label: "The Visitor", action: "Check in with the Visitor", x: 49, y: 55, kind: "talk" },
-  { id: "roots", label: "Listening roots", action: "Examine the roots", x: 48, y: 9, kind: "look" },
-  { id: "gap", label: "The crossing", action: "Examine the crossing", x: 66.5, y: 86, kind: "look" },
-  { id: "islands", label: "Distant islands", action: "Look at the distant islands", x: 63, y: 24, kind: "look" }
+// The logical controls are shared with the story; these positions follow each plate.
+const illustratedPositions: Partial<Record<Target, [number, number]>>[] = [
+  { resident: [81, 74], path: [66.5, 86] },
+  { resident: [17, 36], detail: [48, 15], path: [68, 78], back: [10, 82] },
+  { resident: [67, 57], detail: [47, 52], path: [88, 65], back: [11, 53] },
+  { resident: [50, 37], detail: [62, 30], path: [89, 54], back: [12, 45] },
+  { resident: [69, 34], detail: [68, 44], path: [64, 53], back: [13, 53] }
 ];
+
+export function sceneTargets(state: GameState) {
+  return getTargets(state).map(target => {
+    const position = illustratedPositions[state.sceneIndex][target.id];
+    return position ? { ...target, x: position[0], y: position[1] } : target;
+  });
+}

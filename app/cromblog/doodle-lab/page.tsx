@@ -110,7 +110,7 @@ export default function DoodleLabPage() {
             <div className={styles.endingCopy} lang="la"><h2 id="deinceps-title">{post.ending.title}</h2><p>{post.ending.text}</p></div>
             <div className={styles.exploreLinks}>
               <Link href="/art"><span>Explore the doodle archive</span><span aria-hidden="true">↗</span></Link>
-              <Link href="/games/cromb-coo-coo"><span>Play The First Crossing</span><span aria-hidden="true">↗</span></Link>
+              <Link href="/games/cromb-coo-coo"><span>Explore the five floating islands</span><span aria-hidden="true">↗</span></Link>
             </div>
             <footer className={styles.footer}><Link href="/cromblog">← Back to Cromblog</Link><span lang="la">{post.ending.signature}</span><a href="#">Back to top ↑</a></footer>
           </div>

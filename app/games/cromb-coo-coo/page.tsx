@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import { CrombCooCooGame } from "@/components/cromb-coo-coo/game";
 
 export const metadata: Metadata = {
-  title: "Cromb Coo Coo — The First Crossing",
+  title: "Cromb Coo Coo — Five Floating Islands",
   description:
-    "An animated 3D adventure through the world of Cromb Coo Coo. Meet its inhabitants, discover a call and response, and find your way across the roots.",
+    "A gentle animated 3D adventure across five floating islands. Say hello to the frog, take your first steps, and meet a new friend on every island.",
   openGraph: {
-    title: "Cromb Coo Coo — The First Crossing",
+    title: "Cromb Coo Coo — Five Floating Islands",
     description:
-      "A small, strange 3D adventure among animated floating forests, enormous roots, and unfamiliar friends.",
+      "Start with a hello and a few steps. Explore five animated floating islands, from a frog's clearing to a lantern-lit archive.",
     images: [
       {
         url: "/cromblog/doodle-experiments/round-21/at-the-center-of-cromb-coo-coo.png",

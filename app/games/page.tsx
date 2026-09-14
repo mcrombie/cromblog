@@ -33,10 +33,10 @@ export default function GamesPage() {
                 <p className="project-kicker">Animated 3D adventure</p>
                 <h2 id="cromb-coo-coo-title" className="project-title">Cromb Coo Coo</h2>
                 <p className="project-summary">
-                  An unfamiliar terrace, a very patient turtle, and an island
-                  just out of reach. Explore an animated 3D world grown from my doodles,
-                  listen to its inhabitants, and help them bring the roots
-                  together in The First Crossing.
+                  Say hello to the frog, then follow the path onward.
+                  Explore five animated 3D islands grown from my doodles,
+                  with a new place and a new friend at every crossing —
+                  from a quiet clearing to a lantern-lit archive.
                 </p>
                 <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
                   <div>
@@ -45,13 +45,13 @@ export default function GamesPage() {
                   </div>
                   <div>
                     <dt className="text-xs uppercase tracking-widest text-pine-700">Stage</dt>
-                    <dd className="mt-1 text-pine-800">Playable opening</dd>
+                    <dd className="mt-1 text-pine-800">Five playable islands</dd>
                   </div>
                 </dl>
               </div>
               <div className="project-actions">
                 <Link href="/games/cromb-coo-coo" className="folio-button">
-                  Play The First Crossing
+                  Begin the island journey
                 </Link>
               </div>
             </div>

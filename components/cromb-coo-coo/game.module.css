@@ -62,7 +62,21 @@
 .locationTag { position: absolute; bottom: 14px; left: 18px; background: #15392de0; border: 1px solid #fbefd635; color: #f6ead3; display: flex; align-items: center; gap: 8px; padding: 6px 10px; font-size: 9px; letter-spacing: .06em; pointer-events: none; }
 .locationTag span { width: 4px; height: 4px; border-radius: 100%; background: #d8c298; }
 .storyArea { max-width: 1120px; margin: 0 auto; padding: 23px 36px 18px; background: var(--paper); color: var(--ink); box-shadow: 0 16px 90px #041d2355; position: relative; }
-.quietPanel { min-height: 132px; display: flex; flex-direction: column; justify-content: center; }
+.quietPanel { min-height: 72px; display: flex; flex-direction: column; justify-content: center; gap: 7px; }
+.quietPanel > .eyebrow { color: #76795c; }
+.quietPanel > h2 { font: 400 clamp(22px,2.2vw,29px)/1.25 Georgia, 'Times New Roman', serif; letter-spacing: -.02em; }
+.firstInstruction { color: #687466; font-size: 12px; }
+.journeyActions { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px 20px; margin-top: 16px; }
+.meetingActions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.forwardAction { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; margin-left: auto; }
+.forwardAction > span { font-size: 11px; color: #768068; }
+.secondaryButton { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 45px; padding: 11px 18px; border: 1px solid #a1a88f88; background: #faf7ed91; color: #35523f; font-size: 12px !important; }
+.secondaryButton:hover { border-color: #74825e; background: #e6e9d8; }
+.walkingPanel { display: flex; align-items: center; gap: 20px; min-height: 128px; }
+.walkingMark { flex-shrink: 0; color: #7b875f; animation: walking 1.8s ease-in-out infinite; }
+.walkingPanel .eyebrow { color: #76795c; }
+.walkingPanel h2 { font: 400 clamp(22px,2.2vw,29px)/1.25 Georgia, 'Times New Roman', serif; margin-top: 7px; }
+.walkingPanel p:last-child { font: 15px/1.55 Georgia, 'Times New Roman', serif; color: #6e785f; margin-top: 9px; }
 .objective { display: flex; align-items: center; gap: 20px; }
 .objective > svg { color: #7a875e; flex-shrink: 0; }
 .objective .eyebrow { color: #76795c; margin-bottom: 7px; }
@@ -114,6 +128,10 @@
 .journal li > span { color: #aaa17b; font: italic 18px Georgia, 'Times New Roman', serif; }
 .journal h3 { font: 19px Georgia, 'Times New Roman', serif; margin-bottom: 7px; }
 .journal p { font-size: 13px; color: #64715b; }
+.islandStudies { display: grid; gap: 19px; margin: 0 0 25px; }
+.islandStudies figure { margin: 0; padding: 7px; border: 1px solid #b9b49577; background: #fffaeb; }
+.islandStudies img { display: block; width: 100%; height: auto; aspect-ratio: 1672 / 941; object-fit: cover; }
+.islandStudies figcaption { padding: 9px 5px 3px; color: #687456; font: italic 14px Georgia, 'Times New Roman', serif; }
 .journalObjective { background: #e7e7d3; padding: 15px; font-size: 13px; }
 .journalObjective strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 7px; color: #75815c; }
 .emptyJournal { font: italic 19px/1.7 Georgia, 'Times New Roman', serif; padding: 28px 0; color: #7e856c; }
@@ -129,6 +147,7 @@
 @keyframes reward { from { opacity: .25; filter: brightness(1.25); } to { opacity: 1; filter: brightness(1); } }
 @keyframes panelIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes invite { 50% { box-shadow: 0 0 0 7px #f0d08d44; } }
+@keyframes walking { 50% { transform: translateX(5px); opacity: .5; } }
 .reduced *, .reduced *::before, .reduced *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 @media (prefers-reduced-motion: reduce) { .game *, .game *::before, .game *::after { animation: none !important; transition: none !important; } }
 @media (min-width: 1800px) { .scene { max-width: 1600px; } }
@@ -157,7 +176,13 @@
   .lines p { font-size: 17px; }
   .choices { grid-template-columns: 1fr; gap: 6px; }
   .choice, .leaveChoice { font-size: 13px !important; padding-block: 11px; }
-  .quietPanel { min-height: 145px; }
+  .quietPanel { min-height: 72px; }
+  .quietPanel > h2 { font-size: 24px; }
+  .journeyActions { flex-direction: column; gap: 12px; }
+  .meetingActions, .forwardAction { width: 100%; }
+  .forwardAction { align-items: flex-start; }
+  .forwardAction > .primaryButton { width: 100%; justify-content: space-between; }
+  .walkingPanel { gap: 14px; min-height: 150px; }
   .objective { gap: 13px; align-items: flex-start; }
   .objective h2 { font-size: 23px; }
   .instructions { margin-left: 41px !important; line-height: 1.65; }
