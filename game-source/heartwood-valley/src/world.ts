@@ -7,6 +7,7 @@ export const POSITIONS: Record<string, { x: number; y: number }> = {
   mateo: { x: 655, y: 500 },
   maeve: { x: 823, y: 565 },
   goblin: { x: 80, y: 590 },
+  crombot: { x: 740, y: 350 },
 };
 export const PLACES = [
   { id: "home", name: "Your cottage", x: 216, y: 218, icon: "☾" },
@@ -94,6 +95,7 @@ export class World {
   private map = new Image();
   private characters = new Image();
   private goblin = new Image();
+  private crombot = new Image();
   private items = new Image();
   private selectedTool: Tool = "water";
   private facingUp = false;
@@ -128,6 +130,7 @@ export class World {
       document.baseURI,
     ).href;
     this.goblin.src = new URL("assets/lord-goblin.png", document.baseURI).href;
+    this.crombot.src = new URL("assets/crombot.png", document.baseURI).href;
     this.items.src = new URL("assets/items.png", document.baseURI).href;
     this.ctx.imageSmoothingEnabled = false;
     canvas.addEventListener("pointermove", (e) => {
@@ -200,6 +203,13 @@ export class World {
   private hit(p: Point): Target | null {
     for (const person of PEOPLE) {
       const pos = POSITIONS[person.id];
+      if (
+        person.id === "crombot" &&
+        Math.abs(p.x - pos.x) < 45 &&
+        p.y > pos.y - 114 &&
+        p.y < pos.y + 8
+      )
+        return { kind: "person", id: person.id };
       if (
         person.id === "goblin" &&
         Math.abs(p.x - pos.x) < 54 &&
@@ -358,6 +368,22 @@ export class World {
     moving = false,
   ) {
     const c = this.ctx;
+    if (!player && PEOPLE[index]?.id === "crombot") {
+      c.fillStyle = "#17392765";
+      c.beginPath();
+      c.ellipse(x, y + 1, 26, 6, 0, 0, Math.PI * 2);
+      c.fill();
+      if (this.crombot.complete && this.crombot.naturalWidth) {
+        c.drawImage(
+          this.crombot,
+          Math.round(x - 48),
+          Math.round(y - 84 + Math.sin(this.last / 900)),
+          96,
+          96,
+        );
+      }
+      return;
+    }
     if (!player && PEOPLE[index]?.id === "goblin") {
       c.fillStyle = "#17392775";
       c.beginPath();
@@ -553,7 +579,7 @@ export class World {
         this.label(
           `${dating ? "♥ " : ""}${a.id === "goblin" ? "Lord Goblin" : a.name}`,
           a.x,
-          a.y - (a.id === "goblin" ? 127 : 65),
+          a.y - (a.id === "goblin" ? 127 : a.id === "crombot" ? 94 : 65),
           this.hover?.id === a.id,
         );
       }

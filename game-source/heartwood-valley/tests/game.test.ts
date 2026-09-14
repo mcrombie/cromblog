@@ -83,7 +83,7 @@ test("daily social limits reset after sleeping", () => {
   talk(s, "rowan");
   assert.equal(s.bonds.rowan.points, 8);
 });
-test("all seven simultaneous partners are retained and can celebrate together", () => {
+test("all eight simultaneous partners are retained and can celebrate together", () => {
   const s = freshState();
   quickStart(s);
   for (const p of PEOPLE) {
@@ -176,54 +176,69 @@ test("every neighbor, garden bed and landmark is reachable without crossing bloc
   }
 });
 
-test("legacy farms gain the goblin without losing six relationships or farm progress", () => {
-  const s = freshState();
-  quickStart(s);
-  for (const p of PEOPLE.filter((p) => p.id !== "goblin")) date(s, p.id);
-  festival(s);
-  s.day = 12;
-  s.coins = 987;
-  tend(s, 0, "harvest", "turnip");
-  const expected = structuredClone(s);
-  expected.bonds.goblin = freshState().bonds.goblin;
-  delete s.bonds.goblin;
-  const migrated = restore(JSON.stringify(s));
-  assert.deepEqual(migrated, expected);
-  assert.equal(partners(migrated).length, 6);
-  assert.equal(migrated.festival, true);
-});
+for (const missing of [["goblin", "crombot"], ["crombot"]]) {
+  test(`legacy farm gains ${missing.join(" and ")} without losing existing partners or farm progress`, () => {
+    const s = freshState();
+    quickStart(s);
+    for (const p of PEOPLE.filter((p) => !missing.includes(p.id)))
+      date(s, p.id);
+    festival(s);
+    s.day = 12;
+    s.coins = 987;
+    tend(s, 0, "harvest", "turnip");
+    const expected = structuredClone(s);
+    for (const id of missing) {
+      expected.bonds[id] = freshState().bonds[id];
+      delete s.bonds[id];
+    }
+    const migrated = restore(JSON.stringify(s));
+    assert.deepEqual(migrated, expected);
+    assert.equal(partners(migrated).length, PEOPLE.length - missing.length);
+    assert.equal(migrated.festival, true);
+  });
+}
 
-test("the new goblin supports favorite gifts, daily limits, dating and save round trips", () => {
-  const s = freshState();
-  s.inventory.fish = 2;
-  talk(s, "goblin");
-  gift(s, "goblin", "fish");
-  assert.equal(s.bonds.goblin.points, 5);
-  date(s, "goblin");
-  assert.equal(s.bonds.goblin.points, 7);
-  assert.equal(s.bonds.goblin.dating, true);
-  const snapshot = JSON.stringify(s);
-  talk(s, "goblin");
-  gift(s, "goblin", "fish");
-  date(s, "goblin");
-  assert.equal(JSON.stringify(s), snapshot);
-  const loaded = restore(snapshot);
-  assert.deepEqual(loaded, s);
-  sleep(loaded);
-  talk(loaded, "goblin");
-  gift(loaded, "goblin", "fish");
-  assert.equal(loaded.bonds.goblin.points, 10);
-  assert.equal(loaded.inventory.fish, 0);
-});
+for (const [id, favorite] of [
+  ["goblin", "fish"],
+  ["crombot", "sunflower"],
+] as const) {
+  test(`${id} supports favorite gifts, daily limits, dating and save round trips`, () => {
+    const s = freshState();
+    s.inventory[favorite] = 2;
+    talk(s, id);
+    gift(s, id, favorite);
+    assert.equal(s.bonds[id].points, 5);
+    date(s, id);
+    assert.equal(s.bonds[id].points, 7);
+    assert.equal(s.bonds[id].dating, true);
+    const snapshot = JSON.stringify(s);
+    talk(s, id);
+    gift(s, id, favorite);
+    date(s, id);
+    assert.equal(JSON.stringify(s), snapshot);
+    const loaded = restore(snapshot);
+    assert.deepEqual(loaded, s);
+    sleep(loaded);
+    talk(loaded, id);
+    gift(loaded, id, favorite);
+    assert.equal(loaded.bonds[id].points, 10);
+    assert.equal(loaded.inventory[favorite], 0);
+  });
+}
 
-test("additive migration still rejects malformed goblin bonds and missing original bonds", () => {
+test("additive migration still rejects malformed new bonds and missing original bonds", () => {
   const s = freshState();
   s.coins = 999;
   assert.deepEqual(
     restore(JSON.stringify({ ...s, bonds: { ...s.bonds, goblin: null } })),
     freshState(),
   );
+  assert.deepEqual(
+    restore(JSON.stringify({ ...s, bonds: { ...s.bonds, crombot: null } })),
+    freshState(),
+  );
   delete s.bonds.rowan;
   delete s.bonds.goblin;
+  delete s.bonds.crombot;
   assert.deepEqual(restore(JSON.stringify(s)), freshState());
 });

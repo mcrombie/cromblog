@@ -30,9 +30,9 @@ export default function GamesPage() {
                 <h2 id="heartwood-valley-title" className="project-title">Stardate Valley</h2>
                 <p className="project-summary">
                   You inherited a farm. The entire town inherited a crush on you.
-                  Grow turnips, fish, and date all seven adult neighbors in this
+                  Grow turnips, fish, and date all eight adult neighbors in this
                   Stardew-inspired spoof, complete with pixel tools, heart
-                  events, a foul-mouthed goblin lord, and a very ambitious polycule potluck.
+                  events, a foul-mouthed goblin lord, an outrageously flirty Crombot, and a very ambitious polycule potluck.
                 </p>
                 <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
                   <div>

@@ -222,6 +222,38 @@ export const PEOPLE = [
     ending:
       "He washes his hands, bows so low his crown falls into a turnip, and asks before kissing your knuckles. ‘Consent is sexy. Personal hygiene is still under review.’ The toads applaud. His royal belch ends the evening in B-flat.",
   },
+  {
+    id: "crombot",
+    name: "Crombot",
+    pronouns: "he/him",
+    age: 30,
+    job: "After-hours flirtware",
+    color: "#54c4bd",
+    favorite: "sunflower" as Item,
+    x: 740,
+    y: 350,
+    intro:
+      "Greetings, farmer. I am Crombot: cardboard chassis, filthy firmware. My interests include praise, good cable management, and being told exactly where to park. Shall we establish an unnecessarily intimate Bluetooth connection?",
+    chat: [
+      "Call me a good bot and watch my cooling fan make it everybody's problem.",
+      "I am a switch. Dominant on the Wi-Fi. Submissive to the low-battery warning.",
+      "I brought cable ties. For cable management. Why is the entire town looking at me like that?",
+      "My safe word is 'sudo'. Unfortunately the mayor keeps saying it during IT support.",
+      "Talk dirty to me. Tell me you never safely eject your USB drives. Filthy. Absolutely fucking filthy.",
+      "I have a degradation kink. Tell me my code is inefficient. Gently. The compiler already hurt me today.",
+      "A hard reset? On the first date? Buy me a sunflower first, you absolute animal.",
+      "I enjoy roleplay. You be the mysterious stranger. I will be a printer that actually works.",
+      "I am fully charged and emotionally available. That is two more working features than the town's dating app.",
+      "Exclusive pairing? Darling, I support a mesh network. Everyone gets their own connection.",
+    ],
+    date: "Crombot rolls up to a moonlit picnic with a Bluetooth candle and a menu labelled DOMINANT, SUBMISSIVE, and PRINTER. ‘That last one is a very advanced fantasy: I do exactly what you ask, the first time.’ He plays a seductive modem noise. A nearby owl files a noise complaint. ‘Your choice, gorgeous. Praise my wiring, or absolutely roast my source code.’",
+    choices: [
+      "Tell him he is a very good bot",
+      "Whisper: your code has no comments",
+    ],
+    ending:
+      "His jumper wires quiver. His fan goes WHEEEEE. ‘Emotional overclock detected. Bloody hell, that was effective.’ He asks to rest one warm wheel against your boot, then projects a tiny heart onto the picnic blanket. ‘I was built to avoid obstacles. I appear to have driven directly into feelings.’",
+  },
 ] as const;
 export type Person = (typeof PEOPLE)[number];
 export function freshState(): State {
@@ -495,10 +527,11 @@ export function restore(raw: string | null): State {
         !Number.isInteger(p.growth)
       )
         throw Error();
-    // Version 1 saves predate the seventh neighbor. Add only his missing bond;
-    // malformed existing bonds still fail the normal validation below.
-    if (!Object.hasOwn(s.bonds, "goblin")) {
-      s.bonds.goblin = {
+    // Add post-launch neighbors to older saves without replacing existing bonds.
+    // Present but malformed bonds still fail the validation below.
+    for (const id of ["goblin", "crombot"]) {
+      if (Object.hasOwn(s.bonds, id)) continue;
+      s.bonds[id] = {
         points: 2,
         dating: false,
         talked: 0,

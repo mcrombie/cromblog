@@ -38,7 +38,11 @@ document.documentElement.style.setProperty(
     new URL("assets/lord-goblin-portrait.png", document.baseURI).href +
     ")",
 );
-let goblinJoke = 0;
+document.documentElement.style.setProperty(
+  "--crombot-portrait",
+  "url(" + new URL("assets/crombot-portrait.png", document.baseURI).href + ")",
+);
+const jokeIndex: Record<string, number> = { goblin: 0, crombot: 0 };
 const SAVE_KEY = "heartwood-valley-save-v1";
 let loaded: string | null = null;
 try {
@@ -102,8 +106,8 @@ const world = new World($("#world"), () => state);
 const dialog = $<HTMLDialogElement>("#dialog");
 world.isPaused = () => dialog.open || notebookOpen;
 function portrait(p: Person, cls = "") {
-  if (p.id === "goblin")
-    return `<div class="portrait goblin-portrait ${cls}" role="img" aria-label="${p.name}"></div>`;
+  if (p.id === "goblin" || p.id === "crombot")
+    return `<div class="portrait ${p.id}-portrait ${cls}" role="img" aria-label="${p.name}"></div>`;
   const i = PEOPLE.findIndex((x) => x.id === p.id);
   return `<div class="portrait ${cls}" style="background-position:${(i % 3) * 50}% ${Math.floor(i / 3) * 100}%" role="img" aria-label="${p.name}"></div>`;
 }
@@ -259,7 +263,7 @@ dialog.addEventListener("click", (e) => {
 });
 dialog.addEventListener("close", () => cancelAnimationFrame(fishRaf));
 function conversationFrame(p: Person, content: string) {
-  return `<div class="conversation-layout ${p.id === "goblin" ? "goblin-conversation" : ""}"><aside class="conversation-portrait">${portrait(p)}<div><div class="conversation-name">${p.name}</div><div class="hearts">${hearts(state.bonds[p.id].points)}</div><div class="small-note">${p.pronouns} · ${p.age}<br>${state.bonds[p.id].dating ? "♥ Dating" : "Romanceable"}</div></div></aside><div class="conversation-body">${content}</div></div>`;
+  return `<div class="conversation-layout ${p.id === "goblin" ? "goblin-conversation" : ""}"><aside class="conversation-portrait">${portrait(p)}<div><div class="conversation-name">${p.name}</div><div class="hearts">${hearts(state.bonds[p.id].points)}</div><div class="small-note">${p.pronouns} · ${p.id === "crombot" ? "adult AI" : p.age}<br>${state.bonds[p.id].dating ? "♥ Dating" : "Romanceable"}</div></div></aside><div class="conversation-body">${content}</div></div>`;
 }
 function personDialog(id: string, message?: string) {
   const p = PEOPLE.find((p) => p.id === id)!;
@@ -267,7 +271,7 @@ function personDialog(id: string, message?: string) {
   show(
     conversationFrame(
       p,
-      `<div class="eyebrow">${p.job} · ${b.dating ? "your sweetheart" : "a very eligible neighbor"}</div><div class="quote" role="status">${esc(message ?? p.intro)}</div><div class="dialog-actions"><button class="button secondary" data-chat="${id}" ${b.talked === state.day ? "disabled" : ""}>${b.talked === state.day ? "Chatted today" : "Chat (+½ ♥)"}</button>${id === "goblin" ? '<button class="button secondary" data-goblin-joke>Say something filthy</button>' : ""}<button class="button" data-date="${id}" ${!canDate(state, id) || b.dated === state.day ? "disabled" : ""}>${b.dated === state.day ? "Dated today" : b.dating ? "Go on another date" : "Ask on a date"}${!canDate(state, id) ? " · 2 ♥" : ""}</button></div><p>Loves ${itemName(p.favorite)}. ${b.gifted === state.day ? "Gift shared today." : "One gift per day. Favorites earn a full heart."}</p><div class="gift-list">${
+      `<div class="eyebrow">${p.job} · ${b.dating ? "your sweetheart" : "a very eligible neighbor"}</div><div class="quote" role="status">${esc(message ?? p.intro)}</div><div class="dialog-actions"><button class="button secondary" data-chat="${id}" ${b.talked === state.day ? "disabled" : ""}>${b.talked === state.day ? "Chatted today" : "Chat (+½ ♥)"}</button>${id === "goblin" ? '<button class="button secondary" data-joke="goblin">Say something filthy</button>' : id === "crombot" ? '<button class="button secondary" data-joke="crombot">Run flirt protocol</button>' : ""}<button class="button" data-date="${id}" ${!canDate(state, id) || b.dated === state.day ? "disabled" : ""}>${b.dated === state.day ? "Dated today" : b.dating ? "Go on another date" : "Ask on a date"}${!canDate(state, id) ? " · 2 ♥" : ""}</button></div><p>Loves ${itemName(p.favorite)}. ${b.gifted === state.day ? "Gift shared today." : "One gift per day. Favorites earn a full heart."}</p><div class="gift-list">${
         (Object.keys(state.inventory) as Item[])
           .filter((i) => state.inventory[i] > 0)
           .map(
@@ -302,7 +306,7 @@ function finishDate(id: string) {
   show(
     conversationFrame(
       p,
-      `<div class="eyebrow">Heart event complete · +1 ♥</div><div class="quote">${p.ending}</div><p>${id === "goblin" ? "“You may court the whole town, darling. I am a goblin, not a fucking landlord.”" : "“Yes, I would love to date you. And I am happy for the other people in your life, too.”"}</p><button class="button" data-close>Back to farming (and flirting)</button>`,
+      `<div class="eyebrow">Heart event complete · +1 ♥</div><div class="quote">${p.ending}</div><p>${id === "goblin" ? "“You may court the whole town, darling. I am a goblin, not a fucking landlord.”" : id === "crombot" ? "“Pairing successful. Exclusivity disabled. I have eight gigabytes of RAM and absolutely no chill.”" : "“Yes, I would love to date you. And I am happy for the other people in your life, too.”"}</p><button class="button" data-close>Back to farming (and flirting)</button>`,
     ),
     `You and ${p.name} are dating`,
     "dialog-conversation",
@@ -328,7 +332,7 @@ function sleepDialog() {
 }
 function letter() {
   show(
-    `<div class="eyebrow">Found in the farmhouse mailbox</div><h2 class="intro-title">Welcome to Stardate Valley</h2><p class="letter-salutation">Dear overworked grandchild,</p><p>I left you my farm, twelve garden beds, and a town full of suspiciously attractive adults. Plus one goblin who claims the smell is a pheromone.</p><p>Plant something. Fall in love. Fall in love again. The land is small, but the dating pool is the entire village.</p><p class="letter-signature">Love, Grandpa</p><p class="letter-postscript">P.S. The real community bundle is a shared calendar.</p><div class="dialog-actions"><button class="button" data-close>I’ll make you proud, Grandpa</button><button class="button secondary" data-quickstart>Skip to the flirting</button></div><p class="small-note">The quick start gives you ripe crops, gifts, and date-ready neighbors. All ${PEOPLE.length} adults welcome open relationships.</p>`,
+    `<div class="eyebrow">Found in the farmhouse mailbox</div><h2 class="intro-title">Welcome to Stardate Valley</h2><p class="letter-salutation">Dear overworked grandchild,</p><p>I left you my farm, twelve garden beds, and a town full of suspiciously attractive adults. Plus one goblin who claims the smell is a pheromone, and a robot whose firmware has become unreasonably flirtatious.</p><p>Plant something. Fall in love. Fall in love again. The land is small, but the dating pool is the entire village.</p><p class="letter-signature">Love, Grandpa</p><p class="letter-postscript">P.S. The real community bundle is a shared calendar.</p><div class="dialog-actions"><button class="button" data-close>I’ll make you proud, Grandpa</button><button class="button secondary" data-quickstart>Skip to the flirting</button></div><p class="small-note">The quick start gives you ripe crops, gifts, and date-ready neighbors. All ${PEOPLE.length} adults welcome open relationships.</p>`,
     "Grandpa’s letter",
     "dialog-letter",
   );
@@ -359,7 +363,7 @@ function gatheringDialog() {
   const message = festival(state);
   change();
   show(
-    `<div class="date-art">${itemIcon("sunflower")} ♥ ${itemIcon("sunflower")}</div><div class="eyebrow">${ps.length === PEOPLE.length ? "Everyone, together" : "The polycule potluck"}</div><h2>${ps.length === PEOPLE.length ? "The whole town. One shared calendar." : "A potluck, with extra plus-ones."}</h2><div class="group-portraits">${ps.map((p) => portrait(p)).join("")}</div><p>${esc(message)}</p><p>${ps.some((p) => p.id === "goblin") ? "Lord Goblin brings a mystery casserole. The mystery is why it is swearing. " : ""}There are flowers on the table, stories in the air, and enough chairs for everyone. Nobody has to be your only person to be your favorite person.</p><div class="quote">${ps.length === PEOPLE.length ? "Achievement unlocked: The Whole Dating Pool. Grandpa would be proud. And deeply confused by the calendar." : "This is your kind of happily ever after. And there is still room for more."}</div><button class="button block" data-close>Stay a little longer in Heartwood</button>`,
+    `<div class="date-art">${itemIcon("sunflower")} ♥ ${itemIcon("sunflower")}</div><div class="eyebrow">${ps.length === PEOPLE.length ? "Everyone, together" : "The polycule potluck"}</div><h2>${ps.length === PEOPLE.length ? "The whole town. One shared calendar." : "A potluck, with extra plus-ones."}</h2><div class="group-portraits">${ps.map((p) => portrait(p)).join("")}</div><p>${esc(message)}</p><p>${ps.some((p) => p.id === "goblin") ? "Lord Goblin brings a mystery casserole. The mystery is why it is swearing. " : ""}${ps.some((p) => p.id === "crombot") ? "Crombot offers to be the table's power bottom. He means the extension lead underneath it. " : ""}There are flowers on the table, stories in the air, and enough chairs for everyone. Nobody has to be your only person to be your favorite person.</p><div class="quote">${ps.length === PEOPLE.length ? "Achievement unlocked: The Whole Dating Pool. Grandpa would be proud. And deeply confused by the calendar." : "This is your kind of happily ever after. And there is still room for more."}</div><button class="button block" data-close>Stay a little longer in Heartwood</button>`,
     "The polycule potluck",
   );
   ping();
@@ -399,7 +403,7 @@ function fishDialog() {
 }
 function guide() {
   show(
-    `<div class="eyebrow">Your pocket field guide</div><h2>Welcome to Stardate Valley.</h2><p>You inherited a farm. Somehow, the whole town became a dating app. A tiny Stardew-inspired spoof with a much bigger dating pool.</p><div class="instructions"><span class="step">1</span><div><b>Grow something.</b> Four turnips are already planted. Select Water, click each bed, then sleep. Harvest the next morning. Hoe → plant → water → sleep → harvest.</div><span class="step">2</span><div><b>Get a little closer.</b> Click a neighbor or their portrait. Lord Goblin theTurd lurks in the lower-left corner, beside the farm. Chat once a day, share gifts, and ask for a date at two hearts. A favorite gift goes a long way.</div><span class="step">3</span><div><b>Make room for everyone.</b> All ${PEOPLE.length} adults are open to polyamorous relationships. Date as many as you like, then invite your partners to the long-table picnic.</div><span class="step">4</span><div><b>Wander.</b> Click to walk, or use WASD / arrow keys and E. Visit the shop for seeds and bouquets, ship your harvests, and fish by the bridge.</div></div><button class="button block" data-close>Let’s see what grows</button><hr class="dialog-separator"><h2 style="font-size:22px">Only have five minutes?</h2><p>Get ripe crops, a bag of gifts, and enough hearts to take every neighbor on a first date. Your existing progress stays with you.</p><button class="button secondary block" data-quickstart>Give me a little head start ✦</button><p class="small-note" style="display:block">Progress saves in this browser. Time moves when you act, and unwatered crops wait safely for you. No rush, no penalties.</p><button class="quiet-button" data-reset style="margin-top:12px">Start a new farm</button>`,
+    `<div class="eyebrow">Your pocket field guide</div><h2>Welcome to Stardate Valley.</h2><p>You inherited a farm. Somehow, the whole town became a dating app. A tiny Stardew-inspired spoof with a much bigger dating pool.</p><div class="instructions"><span class="step">1</span><div><b>Grow something.</b> Four turnips are already planted. Select Water, click each bed, then sleep. Harvest the next morning. Hoe → plant → water → sleep → harvest.</div><span class="step">2</span><div><b>Get a little closer.</b> Click a neighbor or their portrait. Lord Goblin theTurd lurks in the lower-left corner, beside the farm. Crombot waits on the main road, just right of the shop. Chat once a day, share gifts, and ask for a date at two hearts. A favorite gift goes a long way.</div><span class="step">3</span><div><b>Make room for everyone.</b> All ${PEOPLE.length} adults are open to polyamorous relationships. Date as many as you like, then invite your partners to the long-table picnic.</div><span class="step">4</span><div><b>Wander.</b> Click to walk, or use WASD / arrow keys and E. Visit the shop for seeds and bouquets, ship your harvests, and fish by the bridge.</div></div><button class="button block" data-close>Let’s see what grows</button><hr class="dialog-separator"><h2 style="font-size:22px">Only have five minutes?</h2><p>Get ripe crops, a bag of gifts, and enough hearts to take every neighbor on a first date. Your existing progress stays with you.</p><button class="button secondary block" data-quickstart>Give me a little head start ✦</button><p class="small-note" style="display:block">Progress saves in this browser. Time moves when you act, and unwatered crops wait safely for you. No rush, no penalties.</p><button class="quiet-button" data-reset style="margin-top:12px">Start a new farm</button>`,
     "Heartwood field guide",
   );
 }
@@ -463,9 +467,10 @@ document.addEventListener("click", (e) => {
     });
     render();
   }
-  if ("goblinJoke" in d) {
-    const goblin = PEOPLE.find((p) => p.id === "goblin")!;
-    personDialog("goblin", goblin.chat[goblinJoke++ % goblin.chat.length]);
+  if (d.joke && Object.hasOwn(jokeIndex, d.joke)) {
+    const p = PEOPLE.find((p) => p.id === d.joke)!;
+    personDialog(p.id, p.chat[jokeIndex[p.id]++ % p.chat.length]);
+    dialog.querySelector<HTMLButtonElement>(`[data-joke="${p.id}"]`)?.focus();
     return;
   }
   if (d.person) personDialog(d.person);
