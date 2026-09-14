@@ -83,17 +83,17 @@ test("daily social limits reset after sleeping", () => {
   talk(s, "rowan");
   assert.equal(s.bonds.rowan.points, 8);
 });
-test("all six simultaneous partners are retained and can celebrate together", () => {
+test("all seven simultaneous partners are retained and can celebrate together", () => {
   const s = freshState();
   quickStart(s);
   for (const p of PEOPLE) {
     date(s, p.id);
     assert.equal(s.bonds[p.id].dating, true);
   }
-  assert.equal(partners(s).length, 6);
+  assert.equal(partners(s).length, PEOPLE.length);
   festival(s);
   assert.equal(s.festival, true);
-  assert.equal(partners(s).length, 6);
+  assert.equal(partners(s).length, PEOPLE.length);
 });
 test("dates and picnic require the advertised relationship progress", () => {
   const s = freshState();
@@ -156,6 +156,13 @@ test("saves round-trip and malformed records fall back safely", () => {
 });
 test("every neighbor, garden bed and landmark is reachable without crossing blocked terrain", () => {
   const s = freshState();
+  for (const p of PEOPLE)
+    assert.ok(POSITIONS[p.id], `No position for ${p.name}`);
+  const goblinPath = findPath(s.player, POSITIONS.goblin);
+  assert.ok(
+    goblinPath.every((p) => p.x >= 141 || p.y >= 588),
+    "The goblin approach must pass below the trees and west fence",
+  );
   for (const p of [
     ...Object.values(POSITIONS),
     ...PLACES,
@@ -167,4 +174,56 @@ test("every neighbor, garden bed and landmark is reachable without crossing bloc
     const end = path.at(-1)!;
     assert.ok(Math.hypot(end.x - p.x, end.y - p.y) <= 12);
   }
+});
+
+test("legacy farms gain the goblin without losing six relationships or farm progress", () => {
+  const s = freshState();
+  quickStart(s);
+  for (const p of PEOPLE.filter((p) => p.id !== "goblin")) date(s, p.id);
+  festival(s);
+  s.day = 12;
+  s.coins = 987;
+  tend(s, 0, "harvest", "turnip");
+  const expected = structuredClone(s);
+  expected.bonds.goblin = freshState().bonds.goblin;
+  delete s.bonds.goblin;
+  const migrated = restore(JSON.stringify(s));
+  assert.deepEqual(migrated, expected);
+  assert.equal(partners(migrated).length, 6);
+  assert.equal(migrated.festival, true);
+});
+
+test("the new goblin supports favorite gifts, daily limits, dating and save round trips", () => {
+  const s = freshState();
+  s.inventory.fish = 2;
+  talk(s, "goblin");
+  gift(s, "goblin", "fish");
+  assert.equal(s.bonds.goblin.points, 5);
+  date(s, "goblin");
+  assert.equal(s.bonds.goblin.points, 7);
+  assert.equal(s.bonds.goblin.dating, true);
+  const snapshot = JSON.stringify(s);
+  talk(s, "goblin");
+  gift(s, "goblin", "fish");
+  date(s, "goblin");
+  assert.equal(JSON.stringify(s), snapshot);
+  const loaded = restore(snapshot);
+  assert.deepEqual(loaded, s);
+  sleep(loaded);
+  talk(loaded, "goblin");
+  gift(loaded, "goblin", "fish");
+  assert.equal(loaded.bonds.goblin.points, 10);
+  assert.equal(loaded.inventory.fish, 0);
+});
+
+test("additive migration still rejects malformed goblin bonds and missing original bonds", () => {
+  const s = freshState();
+  s.coins = 999;
+  assert.deepEqual(
+    restore(JSON.stringify({ ...s, bonds: { ...s.bonds, goblin: null } })),
+    freshState(),
+  );
+  delete s.bonds.rowan;
+  delete s.bonds.goblin;
+  assert.deepEqual(restore(JSON.stringify(s)), freshState());
 });

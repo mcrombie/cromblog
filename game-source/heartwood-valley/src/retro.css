@@ -516,6 +516,21 @@ kbd {
   flex: 1;
   min-width: 0;
 }
+.goblin-portrait {
+  background-image: var(--goblin-portrait);
+  background-size: 100% 100%;
+}
+.neighbor-goblin .person-name {
+  display: block;
+  font-size: 19px;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+.goblin-conversation .conversation-name {
+  font-size: 21px;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
 .person-name {
   font-size: 20px;
   line-height: 1;

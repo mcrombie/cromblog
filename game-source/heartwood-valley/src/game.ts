@@ -192,6 +192,36 @@ export const PEOPLE = [
     ending:
       "You name a tiny constellation The Extremely Lucky Farmer. Maeve laughs, then pulls you a little closer.",
   },
+  {
+    id: "goblin",
+    name: "Lord Goblin theTurd",
+    pronouns: "he/him",
+    age: 57,
+    job: "The compost aristocrat",
+    color: "#8b9146",
+    favorite: "fish" as Item,
+    x: 80,
+    y: 590,
+    intro:
+      "Lord Goblin theTurd, at your service. I am filthy rich. Mostly filthy. Bring me a fish and I will whisper something absolutely disgusting: agricultural tax loopholes.",
+    chat: [
+      "I put the ass in aristocracy. The council asked me to stop putting it on their furniture.",
+      "Fancy a roll in the hay? Fair warning: I have hay fever. It is like dating a horny accordion.",
+      "They told me to bring protection. I brought a moat. Apparently that was not the fucking question.",
+      "My ex said I was full of shit. Finally, someone who understood my compost business.",
+      "I am a freak in the sheets. Mostly because I eat soup in bed. The stains have formed a government.",
+      "I bathed for this. A duck splashed me. Practically a spa day, you lucky bastard.",
+      "My reputation is enormous. My manners are microscopic. The smell is a third, legally separate problem.",
+      "You may court the whole town, darling. I am a goblin, not a fucking landlord.",
+    ],
+    date: "His Lordship unveils a candlelit compost heap. The candles are stolen. The heap has a wine list. ‘Welcome to my filthy little kingdom. I would offer you a dirty martini, but the health inspector confiscated the bucket.’ He pulls out a surprisingly clean chair for you.",
+    choices: [
+      "Flirt shamelessly over questionable wine",
+      "Demand a royal bath before the romance",
+    ],
+    ending:
+      "He washes his hands, bows so low his crown falls into a turnip, and asks before kissing your knuckles. ‘Consent is sexy. Personal hygiene is still under review.’ The toads applaud. His royal belch ends the evening in B-flat.",
+  },
 ] as const;
 export type Person = (typeof PEOPLE)[number];
 export function freshState(): State {
@@ -402,7 +432,7 @@ export function festival(s: State) {
 }
 export function quickStart(s: State) {
   s.coins = Math.max(s.coins, 220);
-  s.inventory.bouquet = Math.max(s.inventory.bouquet, 6);
+  s.inventory.bouquet = Math.max(s.inventory.bouquet, PEOPLE.length);
   s.inventory.sunflower = Math.max(s.inventory.sunflower, 3);
   s.inventory.strawberry = Math.max(s.inventory.strawberry, 3);
   s.inventory.fish = Math.max(s.inventory.fish, 2);
@@ -465,6 +495,17 @@ export function restore(raw: string | null): State {
         !Number.isInteger(p.growth)
       )
         throw Error();
+    // Version 1 saves predate the seventh neighbor. Add only his missing bond;
+    // malformed existing bonds still fail the normal validation below.
+    if (!Object.hasOwn(s.bonds, "goblin")) {
+      s.bonds.goblin = {
+        points: 2,
+        dating: false,
+        talked: 0,
+        gifted: 0,
+        dated: 0,
+      };
+    }
     for (const p of PEOPLE) {
       const b = s.bonds[p.id];
       if (

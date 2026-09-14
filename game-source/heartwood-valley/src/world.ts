@@ -6,6 +6,7 @@ export const POSITIONS: Record<string, { x: number; y: number }> = {
   iris: { x: 902, y: 252 },
   mateo: { x: 655, y: 500 },
   maeve: { x: 823, y: 565 },
+  goblin: { x: 80, y: 590 },
 };
 export const PLACES = [
   { id: "home", name: "Your cottage", x: 216, y: 218, icon: "☾" },
@@ -32,6 +33,8 @@ const WALK_AREAS = [
   [567, 458, 911, 618],
   [967, 328, 1045, 438],
   [260, 356, 323, 410],
+  [150, 548, 177, 607],
+  [65, 588, 172, 607],
 ];
 export function walkable(x: number, y: number) {
   return WALK_AREAS.some(
@@ -90,6 +93,7 @@ export class World {
   private ctx: CanvasRenderingContext2D;
   private map = new Image();
   private characters = new Image();
+  private goblin = new Image();
   private items = new Image();
   private selectedTool: Tool = "water";
   private facingUp = false;
@@ -123,6 +127,7 @@ export class World {
       "assets/characters.png",
       document.baseURI,
     ).href;
+    this.goblin.src = new URL("assets/lord-goblin.png", document.baseURI).href;
     this.items.src = new URL("assets/items.png", document.baseURI).href;
     this.ctx.imageSmoothingEnabled = false;
     canvas.addEventListener("pointermove", (e) => {
@@ -195,6 +200,13 @@ export class World {
   private hit(p: Point): Target | null {
     for (const person of PEOPLE) {
       const pos = POSITIONS[person.id];
+      if (
+        person.id === "goblin" &&
+        Math.abs(p.x - pos.x) < 54 &&
+        p.y > pos.y - 140 &&
+        p.y < pos.y + 8
+      )
+        return { kind: "person", id: person.id };
       if (Math.abs(p.x - pos.x) < 31 && p.y > pos.y - 83 && p.y < pos.y + 6)
         return { kind: "person", id: person.id };
     }
@@ -346,6 +358,33 @@ export class World {
     moving = false,
   ) {
     const c = this.ctx;
+    if (!player && PEOPLE[index]?.id === "goblin") {
+      c.fillStyle = "#17392775";
+      c.beginPath();
+      c.ellipse(x, y + 2, 25, 7, 0, 0, Math.PI * 2);
+      c.fill();
+      if (this.goblin.complete && this.goblin.naturalWidth) {
+        const bob = Math.sin(this.last / 700) * 1.2;
+        c.drawImage(
+          this.goblin,
+          Math.round(x - 58),
+          Math.round(y - 114 + bob),
+          116,
+          116,
+        );
+        c.fillStyle = "#526b31";
+        for (let i = 0; i < 3; i++) {
+          const t = this.last / 650 + i * 2.1;
+          c.fillRect(
+            x + Math.sin(t) * 42,
+            y - 65 + Math.cos(t * 0.8) * 15,
+            3,
+            3,
+          );
+        }
+      }
+      return;
+    }
     c.fillStyle = "#17392765";
     c.beginPath();
     c.ellipse(x, y + 1, 13, 4, 0, 0, Math.PI * 2);
@@ -441,6 +480,23 @@ export class World {
       c.textAlign = "center";
       c.fillText("Your little valley is waking up…", 600, 390);
     }
+    // A wooden stile crosses the south fence; the approach stays below the trees.
+    c.fillStyle = "#372c1d75";
+    c.fillRect(148, 555, 34, 49);
+    c.fillStyle = "#674128";
+    c.fillRect(150, 550, 28, 49);
+    for (let y = 551; y < 596; y += 7) {
+      c.fillStyle = "#bb8649";
+      c.fillRect(152, y, 24, 6);
+      c.fillStyle = "#e1ad66";
+      c.fillRect(152, y, 24, 2);
+    }
+    for (const x of [147, 178]) {
+      c.fillStyle = "#5c3822";
+      c.fillRect(x, 557, 4, 26);
+      c.fillStyle = "#d49b55";
+      c.fillRect(x, 555, 4, 5);
+    }
     for (let i = 0; i < 12; i++) {
       const p = s.plots[i],
         pos = plotPosition(i);
@@ -495,9 +551,9 @@ export class World {
       } else {
         const dating = s.bonds[a.id].dating;
         this.label(
-          `${dating ? "♥ " : ""}${a.name}`,
+          `${dating ? "♥ " : ""}${a.id === "goblin" ? "Lord Goblin" : a.name}`,
           a.x,
-          a.y - 65,
+          a.y - (a.id === "goblin" ? 127 : 65),
           this.hover?.id === a.id,
         );
       }
