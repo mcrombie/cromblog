@@ -3,6 +3,7 @@ import Link from "next/link";
 import { DoodleHomeHero } from "@/components/doodle-home-hero";
 import { HomeDoodleShowcase, HomeEntrances, HomeWriting } from "@/components/home-discovery";
 import { archivistDemoUrl } from "@/content/site";
+import { archivistArt } from "@/content/archivist-art";
 import "./home-discovery.css";
 
 const homeHeroImages = [
@@ -13,13 +14,7 @@ const homeHeroImages = [
   { vibe: "ocean", src: "/home/tidal-archive-hero.png" }
 ] as const;
 
-const archivistImage = {
-  src: "/home/archivist-featured.svg",
-  alt:
-    "Engraved open book beneath a constellation, its text rising as a plume of glowing marks while two lines of citation return into the pages",
-  width: 720,
-  height: 440
-};
+const archivistImage = archivistArt.featured;
 
 function ArchivistTitleLink() {
   return (
@@ -76,8 +71,8 @@ export default function HomePage() {
               alt={archivistImage.alt}
               fill
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 35vw, 28vw"
-              unoptimized
               className="featured-project-image"
+              style={{ objectFit: "cover", objectPosition: archivistImage.objectPosition }}
             />
           </div>
           <div className="featured-project-copy">

@@ -30,11 +30,11 @@ export default function GamesPage() {
           <div className="project-card-grid">
             <div className="project-copy">
               <div>
-                <p className="project-kicker">Illustrated narrative adventure</p>
+                <p className="project-kicker">Animated 3D adventure</p>
                 <h2 id="cromb-coo-coo-title" className="project-title">Cromb Coo Coo</h2>
                 <p className="project-summary">
                   An unfamiliar terrace, a very patient turtle, and an island
-                  just out of reach. Explore a world grown from my doodles,
+                  just out of reach. Explore an animated 3D world grown from my doodles,
                   listen to its inhabitants, and help them bring the roots
                   together in The First Crossing.
                 </p>

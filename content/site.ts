@@ -1,4 +1,5 @@
 import type { BlogSeriesSlug } from "@/content/blog";
+import { archivistArt } from "@/content/archivist-art";
 
 export type ProjectSlug =
   | "big-history-of-virginia"
@@ -121,12 +122,7 @@ export const projects: Record<ProjectSlug, Project> = {
       "Chroma",
       "RAG evaluation"
     ],
-    image: {
-      src: "/cromblog/cradle-of-the-empire/cover.jpg",
-      alt: "Cover art for Cradle of the Empire, the manuscript queried by Archivist",
-      width: 1792,
-      height: 2688
-    },
+    image: archivistArt.featured,
     links: [
       {
         label: "Open live demo",

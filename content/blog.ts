@@ -1,3 +1,5 @@
+import { archivistArt } from "@/content/archivist-art";
+
 export type BlogSlug =
   | "doodle-lab"
   | "clio"
@@ -194,13 +196,7 @@ export const blogPosts = {
     readTime: "6 min read",
     summary:
       "Archivist's first evaluation left it with a 54.4-second median latency. Moving the evidence bookkeeping out of the model and into application code — and routing social questions away from retrieval entirely — brought casual replies to a 3.59-second median and grounded answers to 19.3 seconds.",
-    image: {
-      src: "/cromblog/archivist-elegant-context-window/thumbnail.png",
-      alt:
-        "Engraving-style illustration of a large open book on a desk, its text rising as a column of glowing golden code beside a laptop displaying an engraved river landscape",
-      width: 1456,
-      height: 816
-    }
+    image: archivistArt.latency
   },
   "evaluator-also-has-to-be-evaluated": {
     slug: "evaluator-also-has-to-be-evaluated",
@@ -210,13 +206,7 @@ export const blogPosts = {
     readTime: "7 min read",
     summary:
       "Archivist's first frozen evaluation ran against a held-out gold set of 37 questions. Retrieval almost always found something relevant but rarely found everything an answer needed — and the decomposition instrument meant to score those answers returned invalid results for 27 of 37 of them.",
-    image: {
-      src: "/cromblog/archivist-elegant-context-window/thumbnail.png",
-      alt:
-        "Engraving-style illustration of a large open book on a desk, its text rising as a column of glowing golden code beside a laptop displaying an engraved river landscape",
-      width: 1456,
-      height: 816
-    }
+    image: archivistArt.evaluation
   },
   "archivist-elegant-context-window": {
     slug: "archivist-elegant-context-window",
@@ -226,13 +216,7 @@ export const blogPosts = {
     readTime: "6 min read",
     summary:
       "Archivist answers questions about Cradle of the Empire from the book itself, citing passages back to the typeset edition. Building it meant deciding what belongs in a context window — and then testing that decision against a mode that simply hands the model the whole manuscript.",
-    image: {
-      src: "/cromblog/archivist-elegant-context-window/thumbnail.png",
-      alt:
-        "Engraving-style illustration of a large open book on a desk, its text rising as a column of glowing golden code beside a laptop displaying an engraved river landscape",
-      width: 1456,
-      height: 816
-    }
+    image: archivistArt.context
   },
   "primeproofing-beyond-vibe-coding": {
     slug: "primeproofing-beyond-vibe-coding",

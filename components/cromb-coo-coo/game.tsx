@@ -8,21 +8,13 @@ import {
   type Dialogue, type GameState, type Target
 } from "@/lib/cromb-coo-coo";
 import styles from "./game.module.css";
+import { DioramaScene } from "./diorama-scene";
+import { sceneTargets as targets } from "./scene-targets";
 
 const SAVE_KEY = "cromb-coo-coo:first-crossing:v1";
 const ORIGINAL = "/cromblog/doodle-experiments/round-21/at-the-center-of-cromb-coo-coo.png";
 const BRIDGE = "/games/cromb-coo-coo/bridge-open.png";
 const CROSSED = "/games/cromb-coo-coo/crossed.png";
-const targets: { id: Target; label: string; action: string; x: number; y: number; kind: "talk" | "look" }[] = [
-  { id: "bird", label: "Woodgrain Bird", action: "Talk to the Woodgrain Bird", x: 17, y: 36, kind: "talk" },
-  { id: "turtle", label: "Trumpet Turtle", action: "Talk to the Trumpet Turtle", x: 32, y: 73, kind: "talk" },
-  { id: "juggler", label: "Orb Juggler", action: "Talk to the Orb Juggler", x: 81, y: 74, kind: "talk" },
-  { id: "visitor", label: "The Visitor", action: "Check in with the Visitor", x: 49, y: 55, kind: "talk" },
-  { id: "roots", label: "Listening roots", action: "Examine the roots", x: 48, y: 9, kind: "look" },
-  { id: "gap", label: "The crossing", action: "Examine the crossing", x: 66.5, y: 86, kind: "look" },
-  { id: "islands", label: "Distant islands", action: "Look at the distant islands", x: 63, y: 24, kind: "look" }
-];
-
 function Icon({ name, size = 20 }: { name: "eye" | "talk" | "book" | "sound" | "mute" | "arrow" | "close" | "leaf" | "help" | "settings"; size?: number }) {
   const paths = {
     eye: <><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" /></>,
@@ -50,12 +42,13 @@ export function CrombCooCooGame() {
   const [modal, setModal] = useState<"journal" | "settings" | "restart" | null>(null);
   const [showTargets, setShowTargets] = useState(false);
   const [sound, setSound] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [systemReducedMotion, setSystemReducedMotion] = useState(false);
+  const [stillScene, setStillScene] = useState(false);
+  const reducedMotion = systemReducedMotion || stillScene;
   const [hint, setHint] = useState<string | null>(null);
   const [moment, setMoment] = useState<"bridge" | "crossed" | null>(null);
   const [endingOpen, setEndingOpen] = useState(false);
   const [notice, setNotice] = useState("");
-  const [assetError, setAssetError] = useState(false);
   const modalRef = useRef<HTMLDialogElement>(null);
   const dialogueRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -78,7 +71,7 @@ export function CrombCooCooGame() {
     } catch { setStorageAvailable(false); }
     setLoaded(true);
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReducedMotion(media.matches);
+    const sync = () => setSystemReducedMotion(media.matches);
     sync(); media.addEventListener("change", sync);
     return () => { media.removeEventListener("change", sync); };
   }, []);
@@ -207,7 +200,7 @@ export function CrombCooCooGame() {
           <div className={styles.titleShade} />
           <Link href="/games" className={styles.backLink}>← Back to Cromblog</Link>
           <div className={styles.titleCopy}>
-            <p className={styles.eyebrow}>An illustrated adventure</p>
+            <p className={styles.eyebrow}>An animated 3D adventure</p>
             <h1 id="coocoo-title">Cromb<br /><em>Coo Coo</em></h1>
             <div className={styles.rule}><Icon name="leaf" /><span /></div>
             <p className={styles.chapter}>The First Crossing</p>
@@ -231,18 +224,8 @@ export function CrombCooCooGame() {
           </header>
 
           <div className={styles.sceneViewport}>
-            <div ref={stageRef} tabIndex={-1} className={`${styles.scene} ${showTargets ? styles.reveal : ""} ${moment ? styles.sceneMoment : ""}`} aria-label="The First Crossing illustrated scene">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img key={scene} src={scene} className={styles.sceneArt} alt={complete ? "The Visitor has crossed the new root bridge and stands safely beside the Orb Juggler." : bridgeOpen ? "A living root bridge now connects the central terrace to the Orb Juggler’s island." : "The Visitor and Trumpet Turtle stand on the central terrace. The Orb Juggler is across a gap; the Woodgrain Bird watches from a rooted cliff."} onLoad={() => setAssetError(false)} onError={() => setAssetError(true)} />
-              <div className={styles.sceneVignette} aria-hidden="true" />
-              {targets.map(target => (
-                <button key={target.id} data-target={target.id} className={`${styles.hotspot} ${active === target.id ? styles.selected : ""} ${target.id === "gap" && bridgeOpen ? styles.openCrossing : ""}`} style={{ left: `${target.id === "visitor" && complete ? 90 : target.x}%`, top: `${target.id === "visitor" && complete ? 62 : target.y}%` }} onClick={() => openTarget(target.id)} disabled={!!moment} aria-label={target.action} aria-pressed={active === target.id}>
-                  <span className={styles.hotspotRing}><Icon name={target.id === "gap" && bridgeOpen ? "arrow" : target.kind === "talk" ? "talk" : "eye"} size={17} /></span>
-                  <span className={styles.hotspotLabel}>{target.id === "gap" && bridgeOpen ? "The bridge is ready" : target.label}</span>
-                </button>
-              ))}
-              <div className={styles.locationTag}><span /> The listening terraces</div>
-              {assetError && <p role="alert" className={styles.assetError}>The illustration couldn’t load. Your progress is saved; refresh to try again.</p>}
+            <div ref={stageRef} tabIndex={-1} className={`${styles.scene} ${showTargets ? styles.reveal : ""} ${moment ? styles.sceneMoment : ""}`} aria-label="The First Crossing interactive 3D diorama">
+              <DioramaScene state={state} active={active} reducedMotion={reducedMotion} paused={modal !== null} disabled={!!moment} onTarget={openTarget} fallback={scene} />
             </div>
           </div>
 
@@ -290,7 +273,7 @@ export function CrombCooCooGame() {
       <dialog ref={modalRef} className={styles.modal} onCancel={event => { event.preventDefault(); setModal(null); }} onClick={event => { if (event.target === event.currentTarget) { const box = event.currentTarget.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) setModal(null); } }} aria-labelledby="coocoo-modal-title">
         <div className={styles.modalTop}><p className={styles.eyebrow}>Cromb Coo Coo</p><button className={styles.closeButton} onClick={() => setModal(null)} aria-label="Close panel"><Icon name="close" /></button></div>
         {modal === "journal" && <><h2 id="coocoo-modal-title">Field notebook</h2><p className={styles.modalIntro}>Things you’ve noticed. People you’ve begun to understand.</p>{journal.length ? <ol className={styles.journal}>{journal.map((entry, index) => <li key={entry.title}><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3>{entry.title}</h3><p>{entry.text}</p></div></li>)}</ol> : <p className={styles.emptyJournal}>An empty page is a fine place to begin. Take a look around the terrace.</p>}<p className={styles.journalObjective}><strong>Your next thought</strong>{getObjective(state)}</p></>}
-        {modal === "settings" && <><h2 id="coocoo-modal-title">A few comforts</h2><button className={styles.settingRow} aria-pressed={sound} onClick={() => setSound(value => !value)}><span><Icon name={sound ? "sound" : "mute"} /><span>Musical signals<small>Optional tones; every clue is also written.</small></span></span><b>{sound ? "On" : "Off"}</b></button><button className={styles.settingRow} aria-pressed={showTargets} onClick={() => setShowTargets(value => !value)}><span><Icon name="eye" /><span>Places to explore<small>Keep character and object labels visible.</small></span></span><b>{showTargets ? "Shown" : "On focus"}</b></button><p className={styles.controls}><strong>Take your time.</strong> Use a mouse, touch, or Tab and Enter. H shows places to explore. J opens the notebook. Escape closes a conversation or panel. Number keys choose dialogue options.<br /><br />{reducedMotion ? "Reduced motion follows your device setting." : "You can reduce motion through your device’s accessibility settings."}</p><div className={styles.settingFooter}><button className={styles.textButton} onClick={() => setModal("restart")}>Start this chapter again</button><Link href="/games" className={styles.textButton}>Return to Cromblog ↗</Link></div></>}
+        {modal === "settings" && <><h2 id="coocoo-modal-title">A few comforts</h2><button className={styles.settingRow} aria-pressed={sound} onClick={() => setSound(value => !value)}><span><Icon name={sound ? "sound" : "mute"} /><span>Musical signals<small>Optional tones; every clue is also written.</small></span></span><b>{sound ? "On" : "Off"}</b></button><button className={styles.settingRow} aria-pressed={showTargets} onClick={() => setShowTargets(value => !value)}><span><Icon name="eye" /><span>Places to explore<small>Keep character and object labels visible.</small></span></span><b>{showTargets ? "Shown" : "On focus"}</b></button><button className={styles.settingRow} aria-pressed={!reducedMotion} disabled={systemReducedMotion} onClick={() => setStillScene(value => !value)}><span><Icon name="leaf" /><span>Scene animation<small>Keep the world still while you explore.</small></span></span><b>{systemReducedMotion ? "Reduced by device" : stillScene ? "Off" : "On"}</b></button><p className={styles.controls}><strong>Take your time.</strong> Choose a character directly, or use Tab and Enter. Drag the world to turn it; use the camera buttons to zoom or reset the view. H shows places to explore. J opens the notebook. Escape closes a conversation or panel. Number keys choose dialogue options.<br /><br />{systemReducedMotion ? "Reduced motion follows your device setting." : "Turn scene animation off for a still world; every conversation and crossing remains available."}</p><div className={styles.settingFooter}><button className={styles.textButton} onClick={() => setModal("restart")}>Start this chapter again</button><Link href="/games" className={styles.textButton}>Return to Cromblog ↗</Link></div></>}
         {modal === "restart" && <><h2 id="coocoo-modal-title">A fresh arrival?</h2><p className={styles.modalIntro}>This will reset your progress in The First Crossing on this device.</p><div className={styles.endingActions}><button className={styles.primaryButton} onClick={restart}>Yes, begin again</button><button className={styles.textButton} onClick={() => setModal(null)}>Keep my journey</button></div></>}
       </dialog>
     </div>

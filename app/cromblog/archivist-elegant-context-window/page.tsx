@@ -6,7 +6,20 @@ import { blogPosts } from "@/content/blog";
 const post = blogPosts["archivist-elegant-context-window"];
 
 export const metadata: Metadata = {
-  title: post.title
+  title: post.title,
+  description: post.summary,
+  openGraph: {
+    type: "article",
+    title: post.title,
+    description: post.summary,
+    images: [{ url: post.image.src, width: post.image.width, height: post.image.height, alt: post.image.alt }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: post.title,
+    description: post.summary,
+    images: [post.image.src]
+  }
 };
 
 function ExternalLink({
