@@ -1,0 +1,492 @@
+/* Doodle Lab comparison: original Field Notebook plan and Original Strokes.
+ * All shared overrides are restricted to Doodle. New markup stays hidden in
+ * the other ten appearances, without relying on client-side rendering. */
+.notebook-doodle,
+.doodle-design-switch,
+.doodle-specimen,
+.doodle-meadow,
+.doodle-home-strict,
+.doodle-home-preferred {
+  display: none;
+}
+
+html[data-vibe="doodle"] {
+  --forest-975: #d6cbb8;
+  --forest-950: #ddd3c1;
+  --forest-900: #ece3d2;
+  --forest-850: #f6f0e3;
+  --forest-800: #ece3d2;
+  --forest-750: #e0d6c3;
+  --forest-700: #d4c9b5;
+  --background: #ddd3c1;
+  --panel: #fbf7ee;
+  --panel-strong: #fbf7ee;
+  --panel-raised: #ece3d2;
+  --bone: #2f2c27;
+  --foreground: #2f2c27;
+  --parchment: #4a463e;
+  --copy: #4a463e;
+  --sage: #6b655a;
+  --muted: #6b655a;
+  --parchment-muted: #6b655a;
+  --brass: #8a5a1c;
+  --brass-bright: #3f5d6e;
+  --brass-dim: #8b7a61;
+  --doodle-moss: #5b6b3a;
+  --doodle-ink: #3a362f;
+  --border: rgba(47, 44, 39, 0.34);
+  --border-soft: rgba(47, 44, 39, 0.16);
+  --shadow-card: 0 10px 26px rgba(64, 49, 29, 0.08);
+  --doodle-paper: #f6f0e3;
+  --doodle-grid: radial-gradient(circle, rgba(53, 49, 46, 0.13) 0 0.7px, transparent 1px);
+  background: var(--background);
+  scrollbar-color: var(--muted) var(--panel-raised);
+}
+
+html[data-vibe="doodle"] body {
+  background: radial-gradient(circle at 55% 0, #f1e8d7, transparent 42rem), var(--background);
+}
+
+html[data-vibe="doodle"] body::before { display: none; }
+html[data-vibe="doodle"] ::selection { background: #ccd8d9; color: var(--bone); }
+html[data-vibe="doodle"] :focus-visible { outline: 2px solid #a8432a; outline-offset: 4px; }
+
+html[data-vibe="doodle"] .site-main,
+html[data-vibe="doodle"] .site-sidebar {
+  border-color: var(--border);
+  background: var(--doodle-grid), var(--doodle-paper);
+  background-size: 1.375rem 1.375rem, auto;
+  box-shadow: var(--shadow-card);
+}
+
+html[data-vibe="doodle"] .site-sidebar { background-color: var(--panel-raised); }
+html[data-vibe="doodle"] .site-main::before { background: var(--border-soft); }
+
+html[data-vibe="doodle"] :is(.home-hero, .surface-panel, .editorial-panel, .home-panel, .post-card, .project-card, .art-card, .featured-project-card) {
+  border-color: var(--border);
+  background: var(--panel);
+  box-shadow: var(--shadow-card);
+}
+
+html[data-vibe="doodle"] :is(.home-title, .section-title) { color: var(--bone); }
+html[data-vibe="doodle"] :is(.home-lede, .section-description) { color: var(--copy); }
+html[data-vibe="doodle"] :is(.home-kicker, .section-eyebrow, .archive-label, .project-kicker, .featured-project-kicker) {
+  color: var(--brass);
+  border-color: var(--border-soft);
+}
+
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] :is(.section-eyebrow, .home-kicker, .project-kicker, .featured-project-kicker, .archive-label, .doodle-specimen-eyebrow, .vibe-cycle-name) {
+  font-family: var(--font-hand), "Segoe Print", "Bradley Hand", var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Actual notebook strokes replace the circular ornaments and CSS leaves. */
+html[data-vibe="doodle"] :is(.sidebar-ornament, .printer-rule)::after {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--doodle-ink);
+  -webkit-mask: url("/cromblog/doodle-vibe/um22-p083-e.png") center / contain no-repeat;
+  mask: url("/cromblog/doodle-vibe/um22-p083-e.png") center / contain no-repeat;
+  transform: translate(-50%, -50%);
+}
+html[data-vibe="doodle"] .sidebar-ornament { position: relative; height: 1.1rem; padding: 0; }
+
+html[data-vibe="doodle"] .sidebar-sprig { width: 4.75rem; height: 2.15rem; }
+html[data-vibe="doodle"] .sidebar-sprig span { display: none; }
+html[data-vibe="doodle"] .sidebar-sprig::before {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--doodle-ink);
+  opacity: 0.75;
+  -webkit-mask: url("/cromblog/doodle-vibe/um22-p013-a.png") center / contain no-repeat;
+  mask: url("/cromblog/doodle-vibe/um22-p013-a.png") center / contain no-repeat;
+  transform: none;
+}
+
+html[data-vibe="doodle"] .site-nav-link { color: var(--copy); }
+html[data-vibe="doodle"] .site-nav-link.is-active {
+  border-color: var(--border-soft);
+  background: var(--panel);
+  color: var(--bone);
+  box-shadow: none;
+}
+html[data-vibe="doodle"] .nav-label { position: relative; }
+html[data-vibe="doodle"] .site-nav-link .nav-label::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.6rem;
+  left: 0;
+  height: 0.65rem;
+  content: "";
+  background: var(--brass-bright);
+  opacity: 0;
+  -webkit-mask: url("/cromblog/doodle-vibe/um22-p107-b.png") center / contain no-repeat;
+  mask: url("/cromblog/doodle-vibe/um22-p107-b.png") center / contain no-repeat;
+}
+html[data-vibe="doodle"] .site-nav-link:hover .nav-label::after { opacity: 0.4; }
+html[data-vibe="doodle"] .site-nav-link.is-active .nav-label::after { opacity: 1; }
+html[data-vibe="doodle"] .sidebar-note { color: var(--muted); }
+
+/* The two designs share a small, persistent comparison control. */
+html[data-vibe="doodle"] .doodle-design-switch {
+  display: grid;
+  gap: 0.4rem;
+  margin: 1.35rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--copy);
+  font-size: 0.74rem;
+}
+html[data-vibe="doodle"] .doodle-design-switch label { font-weight: 650; }
+html[data-vibe="doodle"] .doodle-design-switch select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.2rem;
+  background: var(--panel);
+  color: var(--bone);
+  font: inherit;
+}
+html[data-vibe="doodle"] .doodle-restore-controls {
+  display: none;
+  min-height: 2.5rem;
+  padding: 0.35rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--brass-bright);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+html[data-vibe="doodle"][data-vibe-control="dismissed"] .doodle-restore-controls { display: block; }
+html[data-vibe="doodle"][data-vibe-control="dismissed"] .vibe-control:not(.vibe-control-inline) { display: none; }
+html[data-vibe="doodle"] .vibe-dismiss-button { display: grid; }
+html[data-vibe="doodle"] .vibe-control:not(.vibe-control-inline) .vibe-cycle-button { padding-right: 3.65rem; }
+html[data-vibe="doodle"] :is(.folio-button, .vibe-previous-button, .vibe-cycle-button, .vibe-select) {
+  border-color: var(--border);
+  background: var(--panel);
+  color: var(--bone);
+  box-shadow: var(--shadow-card);
+}
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] .vibe-control:not(.vibe-control-inline) { transform: rotate(-0.6deg); }
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] .vibe-control:focus-within { transform: none; }
+
+html[data-vibe="doodle"] .notebook-doodle { display: block; color: var(--doodle-ink); pointer-events: none; }
+html[data-vibe="doodle"] .section-heading.has-notebook-doodle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(8rem, 16vw, 12rem);
+  column-gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: start;
+}
+html[data-vibe="doodle"] .has-notebook-doodle > :not(.section-heading-doodle) { grid-column: 1; }
+html[data-vibe="doodle"] .has-notebook-doodle .section-heading-doodle {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  width: 100%;
+  max-height: 12rem;
+  align-self: center;
+}
+
+/* The hero is a spread, with separate art and text regions. */
+html[data-vibe="doodle"] .home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+  column-gap: clamp(1.2rem, 3vw, 3rem);
+  min-height: 0;
+  padding: clamp(1.25rem, 3vw, 2.75rem);
+  background: var(--doodle-grid), var(--panel);
+  background-size: 1.375rem 1.375rem, auto;
+}
+html[data-vibe="doodle"] .home-hero::after { display: none; }
+html[data-vibe="doodle"] .home-hero .home-hero-copy {
+  grid-column: 1;
+  grid-row: 1;
+  width: auto;
+  padding: 0;
+  align-self: end;
+}
+html[data-vibe="doodle"] .home-hero .home-title { margin-top: 0; font-size: clamp(2.7rem, 4.7vw, 4.5rem); }
+html[data-vibe="doodle"] .home-hero .home-lede { max-width: 27ch; font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; }
+
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] .doodle-home-strict { display: block; }
+html[data-vibe="doodle"] .doodle-home-original { grid-column: 1; grid-row: 2; padding: 1.5rem 0 0; }
+html[data-vibe="doodle"] .doodle-home-bird { width: 13rem; max-height: 16rem; }
+html[data-vibe="doodle"] .doodle-home-scene { grid-column: 2; grid-row: 1 / span 2; align-self: center; margin: 0; min-width: 0; }
+html[data-vibe="doodle"] .doodle-home-scene-print {
+  display: block;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  background: #fffaf0;
+  box-shadow: 0 8px 20px rgba(64, 49, 29, 0.13);
+  transform: rotate(0.6deg);
+}
+html[data-vibe="doodle"] .doodle-home-scene-print:focus-visible { transform: none; }
+html[data-vibe="doodle"] .doodle-home-scene-print img { display: block; width: 100%; height: auto; }
+html[data-vibe="doodle"] .doodle-home-bird-print img { height: clamp(20rem, 31vw, 27rem); object-fit: contain; background: var(--doodle-paper); }
+html[data-vibe="doodle"] .doodle-home-scene figcaption {
+  display: grid;
+  gap: 0.4rem;
+  padding-top: 1rem;
+  color: var(--copy);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+html[data-vibe="doodle"] :is(.doodle-home-scene figcaption a, .doodle-home-originals figcaption a, .doodle-home-experiment-link) {
+  width: fit-content;
+  color: var(--brass-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--border);
+}
+html[data-vibe="doodle"] :is(.doodle-home-scene figcaption a, .doodle-home-originals figcaption a, .doodle-home-experiment-link):hover { text-decoration-color: currentColor; }
+
+/* Content-relative margins replace the former fixed-offset ambient cast. */
+html[data-vibe="doodle"] .doodle-meadow {
+  position: relative;
+  display: flex;
+  height: 5.5rem;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 1rem;
+  margin: 2.5rem clamp(1.25rem, 4vw, 3.5rem) 0;
+  border-bottom: 1px solid rgba(58, 54, 47, 0.35);
+}
+html[data-vibe="doodle"] .doodle-meadow-item { width: 3.5rem; max-height: 5.4rem; flex: 0 1 auto; opacity: 0.66; }
+html[data-vibe="doodle"] .doodle-meadow-item-2 { width: 4.5rem; }
+html[data-vibe="doodle"] .doodle-meadow-item-3 { width: 2.5rem; }
+html[data-vibe="doodle"] .doodle-meadow-item-5 { width: 2.5rem; }
+html[data-vibe="doodle"] .doodle-meadow-character { width: 6rem; opacity: 0.9; }
+
+@media (min-width: 1024px) and (min-height: 46rem) {
+  html[data-vibe="doodle"] .doodle-specimen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+    margin: 1.5rem 0 1rem;
+    padding: 1.2rem 0 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  html[data-vibe="doodle"] .doodle-specimen-drawing { width: 7rem; max-height: 8rem; margin: 0 auto; }
+  html[data-vibe="doodle"] .doodle-specimen-caption { text-align: center; font-size: 0.73rem; line-height: 1.5; }
+  html[data-vibe="doodle"] .doodle-specimen-caption p { margin: 0; }
+  html[data-vibe="doodle"] .doodle-specimen-eyebrow { color: var(--brass); }
+  html[data-vibe="doodle"] .doodle-specimen-title { margin-top: 0.25rem !important; color: var(--copy); }
+  html[data-vibe="doodle"] .doodle-specimen-collection { margin-top: 0.2rem !important; color: var(--muted); font-size: 0.66rem; }
+  html[data-vibe="doodle"] .doodle-specimen-link { display: inline-block; padding-top: 0.45rem; color: var(--brass-bright); text-decoration: underline; text-underline-offset: 0.2em; }
+}
+
+html[data-vibe="doodle"] article.content-flow > div {
+  border-color: var(--border) !important;
+  background: var(--panel) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+html[data-vibe="doodle"] :is(.article-prose blockquote, .chronicle-disclosure, .about-aside) {
+  border-color: var(--border-soft);
+  border-left-color: var(--brass-bright);
+  background: var(--panel-raised);
+}
+html[data-vibe="doodle"] :is(.article-prose code, .article-prose pre) { background: var(--panel-raised); color: var(--bone); }
+html[data-vibe="doodle"] :is(article.content-flow hr, .article-prose hr) {
+  width: 6rem;
+  height: 1.25rem;
+  margin: 2.5rem auto;
+  border: 0;
+  background: var(--doodle-ink);
+  -webkit-mask: url("/cromblog/doodle-vibe/um22-p107-b.png") center / contain no-repeat;
+  mask: url("/cromblog/doodle-vibe/um22-p107-b.png") center / contain no-repeat;
+}
+/* Rails appear only where the existing article container reserves room. */
+@container doodle-article (min-width: 56rem) {
+  html[data-vibe="doodle"] .article-doodle-panel:not(.article-doodle-panel-wide) .doodle-article-rail { display: block !important; }
+}
+@container doodle-article (min-width: 62rem) {
+  html[data-vibe="doodle"] .article-doodle-panel .doodle-article-rail { display: block !important; }
+}
+html[data-vibe="doodle"] .loading-sigil-frame > :not(.doodle-loading-knot) { display: none; }
+html[data-vibe="doodle"] .loading-sigil-frame::after { display: none; }
+html[data-vibe="doodle"] .doodle-loading-knot { width: 5rem; margin: auto; animation: doodle-knot-turn 8s linear infinite; }
+@keyframes doodle-knot-turn { to { transform: rotate(360deg); } }
+
+/* Preferred design: the original strokes supply the personality. */
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] {
+  --forest-975: #e8e7e2;
+  --forest-950: #f0efeb;
+  --forest-900: #f3f2ee;
+  --forest-850: #fcfbf7;
+  --forest-800: #f3f2ee;
+  --forest-750: #e8e7e2;
+  --forest-700: #ddded9;
+  --background: #f0efeb;
+  --panel: #fffefb;
+  --panel-strong: #fffefb;
+  --panel-raised: #f3f2ee;
+  --doodle-paper: #fcfbf7;
+  --doodle-grid: linear-gradient(transparent, transparent);
+  --bone: #30332f;
+  --foreground: #30332f;
+  --parchment: #4a4e48;
+  --copy: #4a4e48;
+  --sage: #656960;
+  --muted: #656960;
+  --parchment-muted: #656960;
+  --brass: #4f636d;
+  --brass-bright: #405f70;
+  --brass-dim: #8c9699;
+  --doodle-ink: #24211d;
+  --border: rgba(48, 51, 47, 0.25);
+  --border-soft: rgba(48, 51, 47, 0.13);
+  --shadow-card: none;
+}
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] body { background: var(--background); }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .site-main::before,
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] :is(.home-hero, .surface-panel, .editorial-panel, .home-panel, .post-card, .art-card, .project-card)::before { display: none; }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] :is(.home-kicker, .section-eyebrow, .archive-label, .project-kicker) { border-bottom: 0; }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .home-hero { padding-block: clamp(1.6rem, 4vw, 3.5rem); }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .home-hero-copy { grid-row: 1; align-self: center; }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .doodle-home-preferred { display: block; }
+html[data-vibe="doodle"] .doodle-home-originals { grid-column: 2; grid-row: 1; margin: 0; min-width: 0; }
+html[data-vibe="doodle"] .doodle-home-originals-drawings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 2vw, 2rem);
+  align-items: end;
+  padding: 0.5rem 0 1.6rem;
+}
+html[data-vibe="doodle"] .doodle-home-drawing-link { display: block; color: var(--doodle-ink); min-width: 0; }
+html[data-vibe="doodle"] .doodle-home-drawing-link:focus-visible { outline: 2px solid var(--brass-bright); outline-offset: 0.5rem; border-radius: 0.2rem; }
+html[data-vibe="doodle"] .doodle-home-character { width: 100%; max-height: 20rem; }
+html[data-vibe="doodle"] .doodle-home-originals figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+html[data-vibe="doodle"] .doodle-home-originals figcaption a { color: var(--bone); }
+html[data-vibe="doodle"] .doodle-home-experiment-link { display: block; margin-top: 0.9rem; font-size: 0.7rem; line-height: 1.6; }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] :is(.post-thumbnail, .project-image-bay, .featured-project-visual) { background: var(--panel-raised); }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] :is(.post-card, .project-card):hover { box-shadow: none; transform: none; border-color: var(--brass-bright); }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .doodle-meadow-field-notebook,
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] .doodle-meadow-original-strokes { display: none; }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .doodle-meadow-original-strokes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  height: auto;
+  gap: clamp(1rem, 2vw, 2rem);
+  opacity: 1;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 0;
+}
+html[data-vibe="doodle"] .doodle-leaf-cluster {
+  position: relative;
+  width: 100%;
+  max-width: 18rem;
+  aspect-ratio: 1.55;
+}
+html[data-vibe="doodle"] .doodle-leaf {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+}
+html[data-vibe="doodle"] .doodle-leaf-drawing {
+  width: 100%;
+  opacity: 1;
+}
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .sidebar-sprig { width: 3rem; height: 3rem; }
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .sidebar-sprig::before {
+  opacity: 1;
+  -webkit-mask-image: url("/cromblog/doodle-vibe/jm26-p030-a.png");
+  mask-image: url("/cromblog/doodle-vibe/jm26-p030-a.png");
+}
+html[data-vibe="doodle"][data-doodle-design="original-strokes"] .sidebar-ornament { opacity: 0.65; }
+
+@media (min-width: 640px) and (max-width: 1199px) {
+  html[data-vibe="doodle"][data-doodle-design="original-strokes"] .doodle-meadow-original-strokes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html[data-vibe="doodle"] .doodle-leaf-cluster:first-child { display: none; }
+}
+
+@media (max-width: 1023px) {
+  html[data-vibe="doodle"] .sidebar-ornament { display: none; }
+  html[data-vibe="doodle"] .doodle-design-switch { grid-template-columns: auto minmax(0, 16rem); align-items: center; gap: 0.5rem 1rem; margin-top: 0.8rem; padding-top: 0.8rem; }
+  html[data-vibe="doodle"] .doodle-restore-controls { grid-column: 1 / -1; }
+}
+
+@media (max-width: 819px) {
+  html[data-vibe="doodle"] .home-hero { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  html[data-vibe="doodle"] .home-hero .home-hero-copy { grid-column: 1; grid-row: 2; }
+  html[data-vibe="doodle"] .home-hero .home-lede { max-width: 40ch; }
+  html[data-vibe="doodle"] .doodle-home-scene { grid-column: 1; grid-row: 1; }
+  html[data-vibe="doodle"][data-doodle-design="field-notebook"] .doodle-home-original { display: none; }
+  html[data-vibe="doodle"] .section-heading.has-notebook-doodle { grid-template-columns: minmax(0, 1fr) 4.5rem; gap: 0 1rem; }
+  html[data-vibe="doodle"] .has-notebook-doodle .section-heading-doodle { max-height: 7rem; }
+  html[data-vibe="doodle"][data-doodle-design="original-strokes"] .home-hero .home-hero-copy { grid-row: 1; }
+  html[data-vibe="doodle"] .doodle-home-originals { grid-column: 1; grid-row: 2; }
+  html[data-vibe="doodle"] .doodle-home-originals-drawings { max-width: 30rem; margin-inline: auto; }
+  html[data-vibe="doodle"] .doodle-home-character { max-height: 18rem; }
+}
+
+@media (max-width: 639px) {
+  html[data-vibe="doodle"] .site-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.25rem 0.6rem; }
+  html[data-vibe="doodle"] .site-nav-link { padding: 0.6rem 0.45rem; min-height: 2.75rem; }
+  html[data-vibe="doodle"] .site-sidebar { padding: 0.9rem; }
+  html[data-vibe="doodle"] .doodle-design-switch { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); font-size: 0.68rem; }
+  html[data-vibe="doodle"] .home-hero { padding: 1.15rem; }
+  html[data-vibe="doodle"] .home-hero .home-title { font-size: 2.9rem; }
+  html[data-vibe="doodle"] .doodle-home-originals-drawings { gap: 1rem; }
+  html[data-vibe="doodle"] .doodle-meadow { height: 3.5rem; gap: 1rem; margin-inline: 1rem; }
+  html[data-vibe="doodle"] .doodle-meadow-item { max-height: 3.4rem; width: 2.5rem; }
+  html[data-vibe="doodle"] .doodle-meadow-character { width: 4.25rem; }
+  html[data-vibe="doodle"] .doodle-meadow-item:not(.doodle-meadow-mobile) { display: none; }
+  html[data-vibe="doodle"][data-doodle-design="original-strokes"] .doodle-meadow-original-strokes { grid-template-columns: minmax(0, 1fr); height: auto; gap: 0; }
+  html[data-vibe="doodle"] .doodle-leaf-cluster { max-width: 20rem; }
+  html[data-vibe="doodle"] .doodle-leaf-cluster:not(.doodle-leaf-cluster-primary) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-vibe="doodle"] .doodle-loading-knot { animation: none; }
+}
+
+@media (prefers-contrast: more), (forced-colors: active), print {
+  html[data-vibe="doodle"] .notebook-doodle,
+  html[data-vibe="doodle"] .doodle-meadow,
+  html[data-vibe="doodle"] .sidebar-sprig,
+  html[data-vibe="doodle"] .doodle-article-rail,
+  html[data-vibe="doodle"] :is(.sidebar-ornament, .printer-rule)::after,
+  html[data-vibe="doodle"] .site-nav-link .nav-label::after { display: none !important; }
+  html[data-vibe="doodle"] :is(article.content-flow hr, .article-prose hr) { height: 0; border-top: 1px solid currentColor; background: none; mask: none; -webkit-mask: none; }
+  html[data-vibe="doodle"] .section-heading.has-notebook-doodle { display: block; }
+  html[data-vibe="doodle"] .doodle-home-originals-drawings { display: none; }
+}
+
+@media (prefers-contrast: more) {
+  html[data-vibe="doodle"] { --border: #3a362f; --border-soft: #77756e; --doodle-grid: linear-gradient(transparent, transparent); }
+}
+
+@media (forced-colors: active) {
+  html[data-vibe="doodle"] { --doodle-grid: linear-gradient(transparent, transparent); }
+  html[data-vibe="doodle"] .doodle-design-switch select { background: Canvas; color: CanvasText; border-color: ButtonText; }
+  html[data-vibe="doodle"] :is(.doodle-restore-controls, .doodle-specimen-link, .doodle-home-experiment-link, .doodle-home-scene figcaption a, .doodle-home-originals figcaption a) { color: LinkText; }
+  html[data-vibe="doodle"] :focus-visible { outline-color: Highlight; }
+}
+
+@media print {
+  html[data-vibe="doodle"] .doodle-design-switch,
+  html[data-vibe="doodle"] .doodle-specimen,
+  html[data-vibe="doodle"] .vibe-control { display: none !important; }
+  html[data-vibe="doodle"] .doodle-home-scene-print { transform: none; box-shadow: none; }
+}

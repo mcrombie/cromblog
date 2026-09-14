@@ -1,0 +1,215 @@
+{
+  "drawings": [
+    {
+      "id": "common-flicker-tree-01",
+      "title": "Common Flicker Tree",
+      "alt": "Graphite sketch of a common flicker clinging vertically to the side of a tree trunk.",
+      "src": "/cromblog/doodles/common-flicker-tree-01.png",
+      "image": {
+        "width": 935,
+        "height": 1681
+      },
+      "note": "Feather markings and the long vertical line of a tree trunk."
+    },
+    {
+      "id": "raven-01",
+      "title": "Raven",
+      "alt": "Graphite profile study of a raven facing left, with a bright eye, heavy beak, and folded wing.",
+      "src": "/cromblog/doodles/raven-01.png",
+      "image": {
+        "width": 1254,
+        "height": 1254
+      },
+      "note": "An expressive eye and carefully layered feathers."
+    },
+    {
+      "id": "carolina-wren-01",
+      "title": "Carolina Wren",
+      "alt": "Graphite sketch of a Carolina wren perched in left-facing profile, with its compact body and tail cocked sharply upward.",
+      "src": "/cromblog/doodles/carolina-wren-01.png",
+      "image": {
+        "width": 1403,
+        "height": 1121
+      },
+      "note": "A small bird, a lifted tail, and a lively perch."
+    },
+    {
+      "id": "scissor-tailed-flycatcher-01",
+      "title": "Scissor Tailed Flycatcher",
+      "alt": "Graphite sketch of a scissor-tailed flycatcher perched in profile, its long tail extending below the branch.",
+      "src": "/cromblog/doodles/scissor-tailed-flycatcher-01.png",
+      "image": {
+        "width": 1024,
+        "height": 1536
+      },
+      "note": "A spare profile carried by a long, sweeping tail."
+    },
+    {
+      "id": "red-eyed-vireo-01",
+      "title": "Red Eyed Vireo",
+      "alt": "Graphite sketch of a rounded red-eyed vireo perched on a thin twig and facing left.",
+      "src": "/cromblog/doodles/red-eyed-vireo-01.png",
+      "image": {
+        "width": 1402,
+        "height": 1122
+      },
+      "note": "A quiet study of posture and proportion."
+    },
+    {
+      "id": "jm26-p030-a",
+      "title": "Bold five-lobed maple leaf",
+      "alt": "Notebook drawing: bold five-lobed maple leaf.",
+      "src": "/cromblog/doodles/2026-01-may/jm26-p030-a.png",
+      "image": {
+        "width": 1159,
+        "height": 1195
+      },
+      "note": "Bold veins within a familiar maple silhouette."
+    },
+    {
+      "id": "jm26-p036-a",
+      "title": "Branch of lobed leaves",
+      "alt": "Notebook drawing: branch of lobed leaves.",
+      "src": "/cromblog/doodles/2026-01-may/jm26-p036-a.png",
+      "image": {
+        "width": 1260,
+        "height": 1114
+      },
+      "note": "A few lobed leaves, with plenty of air between them."
+    },
+    {
+      "id": "jj25-p019-a",
+      "title": "Bold oak leaf with a hanging droplet",
+      "alt": "Notebook drawing: bold oak leaf with a hanging droplet.",
+      "src": "/cromblog/doodles/2025-01-06/jj25-p019-a.png",
+      "image": {
+        "width": 828,
+        "height": 826
+      },
+      "note": "A strong ink contour and a small hanging droplet."
+    },
+    {
+      "id": "jj2526-p108-a",
+      "title": "Tall tree with layered cloud foliage",
+      "alt": "Notebook drawing: tall tree with layered cloud foliage.",
+      "src": "/cromblog/doodles/2025-06-2026-01/jj2526-p108-a.png",
+      "image": {
+        "width": 973,
+        "height": 1600
+      },
+      "note": "Clouds of foliage rising above a finely drawn trunk."
+    },
+    {
+      "id": "fn22-p034-a",
+      "title": "Bent tree with two shaded crowns and five exposed roots",
+      "alt": "Notebook drawing: bent tree with two shaded crowns and five exposed roots.",
+      "src": "/cromblog/doodles/2022-02-11/fn22-p034-a.png",
+      "image": {
+        "width": 755,
+        "height": 1087
+      },
+      "note": "A bent trunk, shaded crowns, and exposed roots."
+    },
+    {
+      "id": "sm2324-p152-a",
+      "title": "Ornate manor with walled gardens and an arched gate",
+      "alt": "Notebook drawing: ornate manor with walled gardens and an arched gate.",
+      "src": "/cromblog/doodles/2023-09-2024-03/sm2324-p152-a.png",
+      "image": {
+        "width": 1586,
+        "height": 1600
+      },
+      "note": "Towers, walled gardens, and a path to an arched gate."
+    },
+    {
+      "id": "crombot-1-01",
+      "title": "Crombot 1",
+      "alt": "Graphite drawing of Crombot 1, a homemade robot with twin ultrasonic-sensor eyes, exposed electronics, wheels, and a crown of looping jumper wires.",
+      "src": "/cromblog/doodles/crombot-1-pencil-01.png",
+      "image": {
+        "width": 1254,
+        "height": 1254
+      },
+      "note": "A notebook study of the robot at the workbench."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "round-19-the-antler-clearing",
+      "title": "The Antler Clearing",
+      "alt": "An antlered deer lowers its head to a shaggy owl in a quiet snowy clearing, touching the offered tip of a wing.",
+      "src": "/cromblog/doodle-experiments/round-19/the-antler-clearing.png",
+      "image": {
+        "width": 1672,
+        "height": 941
+      },
+      "note": "Warm light and a quiet encounter in a winter clearing.",
+      "description": "An antlered deer lowers its head to a shaggy owl in a quiet snowy clearing, touching the offered tip of a wing."
+    },
+    {
+      "id": "round-03-birdsong-assembly",
+      "title": "Birdsong Assembly",
+      "alt": "A raven, long-tailed flycatcher, red-eyed vireo, and common flicker occupy lightly drawn branches above tiny firs and a few oak leaves.",
+      "src": "/cromblog/doodle-experiments/round-03/birdsong-assembly.png",
+      "image": {
+        "width": 1536,
+        "height": 1024
+      },
+      "note": "Bird studies gather in an airy graphite landscape.",
+      "description": "Four very different birds find their own perches in a quiet stand of trees."
+    },
+    {
+      "id": "round-19-one-foot-on-the-river",
+      "title": "One Foot on the River",
+      "alt": "An antler-crowned paddler steadies a curved canoe while a leaf-horned faun steps aboard from a root-bound bank in a green pine valley.",
+      "src": "/cromblog/doodle-experiments/round-19/one-foot-on-the-river.png",
+      "image": {
+        "width": 1536,
+        "height": 1024
+      },
+      "note": "A shared task among the roots at the river's edge.",
+      "description": "An antler-crowned paddler steadies a curved canoe while a leaf-horned faun steps aboard from a root-bound bank in a green pine valley."
+    },
+    {
+      "id": "round-03-rain-beneath-the-bell",
+      "title": "Rain Beneath the Bell",
+      "alt": "A striped spiral-eyed worm and a root-footed four-leaf figure take shelter beneath a hanging bell flower while fine pencil rain falls around scattered leaves.",
+      "src": "/cromblog/doodle-experiments/round-03/rain-beneath-the-bell.png",
+      "image": {
+        "width": 1536,
+        "height": 1024
+      },
+      "note": "A botanical drawing becomes a shelter from the rain.",
+      "description": "A hanging flower becomes a shelter for two small notebook creatures."
+    },
+    {
+      "id": "round-12-the-windward-terraces",
+      "title": "The Windward Terraces",
+      "alt": "Pencil landscape: A horned woodland gathering watches a great inked leaf drift across terraces of trees and tall corn.",
+      "src": "/cromblog/doodle-experiments/round-12/the-windward-terraces.png",
+      "image": {
+        "width": 1774,
+        "height": 887
+      },
+      "note": "A broad landscape assembled around terraces, trees, and distant ridges.",
+      "description": "A horned woodland gathering watches a great inked leaf drift across terraces of trees and tall corn."
+    },
+    {
+      "id": "round-17-the-lantern-appointment",
+      "title": "The Lantern Appointment",
+      "alt": "The crocodile lights the snail through a crooked village gate with a flower-tasseled lantern.",
+      "src": "/cromblog/doodle-experiments/round-17/the-lantern-appointment.png",
+      "image": {
+        "width": 1672,
+        "height": 941
+      },
+      "note": "A small shared gesture in blue night and lantern light.",
+      "description": "The crocodile lights the snail through a crooked village gate with a flower-tasseled lantern."
+    }
+  ],
+  "homeDrawingIds": [
+    "raven-01",
+    "jm26-p030-a",
+    "jj2526-p108-a"
+  ]
+}

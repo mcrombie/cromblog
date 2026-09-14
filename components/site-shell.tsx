@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { DoodleLabStage } from "@/components/doodle-lab-stage";
+import { DoodleMeadow } from "@/components/doodle-meadow";
 import { Sidebar } from "@/components/sidebar";
 import { VibeCycleButton } from "@/components/vibe-cycle-button";
 
@@ -23,8 +23,8 @@ export function SiteShell({
       <Sidebar />
       <VibeCycleButton />
       <main id="main-content" className="site-main" tabIndex={-1}>
-        {showAmbientDoodles ? <DoodleLabStage /> : null}
         <div className="site-main-content">{children}</div>
+        {showAmbientDoodles ? <DoodleMeadow /> : null}
       </main>
     </div>
   );

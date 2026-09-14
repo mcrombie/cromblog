@@ -8,10 +8,12 @@ import type {
   DoodleBatch,
   DoodleCatalogEntry
 } from "@/content/doodle-catalog";
+import { doodleSubjects, type DoodleSubjectGroups } from "@/content/doodle-subjects";
 
 type DoodleGalleryProps = {
   entries: readonly DoodleCatalogEntry[];
   batches: readonly DoodleBatch[];
+  subjectGroups: DoodleSubjectGroups;
 };
 
 type GalleryView = (typeof doodleGalleryViews)[number]["id"];
@@ -22,7 +24,37 @@ function readableLabel(value: string) {
   return value.replace(/[-_]/g, " ");
 }
 
-export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
+export function drawingFromUrl(href: string, entries: readonly DoodleCatalogEntry[]): DoodleCatalogEntry | undefined {
+  const url = new URL(href);
+  if (url.hash === "#experiments") return undefined;
+  const id = url.searchParams.get("drawing");
+  return id ? entries.find((entry) => entry.id === id) : undefined;
+}
+
+export function drawingPreviewUrl(href: string, id: string | null): string {
+  const url = new URL(href);
+  if (id) url.searchParams.set("drawing", id);
+  else url.searchParams.delete("drawing");
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+export function filterDoodleEntries(
+  entries: readonly DoodleCatalogEntry[],
+  subjectGroups: DoodleSubjectGroups,
+  filters: { query: string; batchId: string; subject: string }
+): DoodleCatalogEntry[] {
+  const searchTerms = filters.query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  return entries.filter((entry) => {
+    if (filters.batchId !== "all" && entry.batchId !== filters.batchId) return false;
+    if (filters.subject !== "all" && subjectGroups[entry.category] !== filters.subject) return false;
+    const subjectLabel = doodleSubjects.find((subject) => subject.id === subjectGroups[entry.category])?.label ?? "";
+    const searchable = [entry.title, entry.category, subjectLabel, ...entry.tags]
+      .join(" ").replace(/[-_]/g, " ").toLocaleLowerCase();
+    return searchTerms.every((term) => searchable.includes(term.replace(/[-_]/g, " ")));
+  });
+}
+
+export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGalleryProps) {
   const [view, setView] = useState<GalleryView>("curated");
   const [query, setQuery] = useState("");
   const [batchId, setBatchId] = useState("all");
@@ -32,19 +64,8 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const focusSearchOnClose = useRef(false);
-  const categories = Array.from(new Set(entries.map((entry) => entry.category))).sort();
-  const searchTerms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  const scopedEntries = entries.filter((entry) => {
-    if (batchId !== "all" && entry.batchId !== batchId) return false;
-    if (category !== "all" && entry.category !== category) return false;
-
-    const searchable = [entry.title, entry.category, ...entry.tags]
-      .join(" ")
-      .replace(/[-_]/g, " ")
-      .toLocaleLowerCase();
-
-    return searchTerms.every((term) => searchable.includes(term.replace(/[-_]/g, " ")));
-  });
+  const subjects = doodleSubjects.filter((subject) => Object.values(subjectGroups).includes(subject.id));
+  const scopedEntries = filterDoodleEntries(entries, subjectGroups, { query, batchId, subject: category });
   const filteredEntries = scopedEntries.filter(
     (entry) => view === "all" || entry.status === view
   );
@@ -57,10 +78,44 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
   const selectedBatch = batches.find((batch) => batch.id === selected?.batchId);
 
   useEffect(() => {
+    const syncDrawing = () => {
+      const drawing = drawingFromUrl(window.location.href, entries);
+      if (!drawing) {
+        setSelected(null);
+        return;
+      }
+      setView("all");
+      setQuery("");
+      setBatchId("all");
+      setCategory("all");
+      setVisibleCount(PAGE_SIZE);
+      focusSearchOnClose.current = true;
+      setSelected(drawing);
+    };
+    syncDrawing();
+    window.addEventListener("popstate", syncDrawing);
+    window.addEventListener("hashchange", syncDrawing);
+    return () => {
+      window.removeEventListener("popstate", syncDrawing);
+      window.removeEventListener("hashchange", syncDrawing);
+    };
+  }, [entries]);
+
+  useEffect(() => {
     const dialog = dialogRef.current;
     if (selected && dialog && !dialog.open) dialog.showModal();
     if (!selected && dialog?.open) dialog.close();
   }, [selected]);
+
+  function openDrawing(entry: DoodleCatalogEntry) {
+    setSelected(entry);
+    window.history.replaceState(window.history.state, "", drawingPreviewUrl(window.location.href, entry.id));
+  }
+
+  function closePreview() {
+    setSelected(null);
+    window.history.replaceState(window.history.state, "", drawingPreviewUrl(window.location.href, null));
+  }
 
   useEffect(() => {
     if (!selected) return;
@@ -85,7 +140,7 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
     setView("all");
     setVisibleCount(PAGE_SIZE);
     focusSearchOnClose.current = true;
-    setSelected(null);
+    closePreview();
   }
 
   return (
@@ -156,8 +211,8 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
             }}
           >
             <option value="all">All subjects</option>
-            {categories.map((item) => (
-              <option key={item} value={item}>{readableLabel(item)}</option>
+            {subjects.map((item) => (
+              <option key={item.id} value={item.id}>{item.label}</option>
             ))}
           </select>
         </label>
@@ -184,7 +239,7 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
                 type="button"
                 className="art-card-visual doodle-gallery-open"
                 aria-label={`View ${entry.title}`}
-                onClick={() => setSelected(entry)}
+                onClick={() => openDrawing(entry)}
               >
                 <span className="art-card-image-frame">
                   <Image
@@ -201,7 +256,7 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
               <figcaption className="doodle-gallery-caption">
                 <div>
                   <h2>{entry.title}</h2>
-                  <p>{readableLabel(entry.category)}</p>
+                  <p>{doodleSubjects.find((subject) => subject.id === subjectGroups[entry.category])?.label}</p>
                 </div>
                 <span className="doodle-gallery-status">
                   {doodleGalleryViews.find((item) => item.id === entry.status)?.label}
@@ -249,14 +304,15 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
         className="doodle-gallery-dialog"
         aria-labelledby="doodle-preview-title"
         onClose={() => {
-          setSelected(null);
+          closePreview();
           if (focusSearchOnClose.current) {
             searchRef.current?.focus();
             focusSearchOnClose.current = false;
           }
         }}
+        onCancel={closePreview}
         onClick={(event) => {
-          if (event.target === event.currentTarget) setSelected(null);
+          if (event.target === event.currentTarget) closePreview();
         }}
       >
         {selected ? (
@@ -266,7 +322,7 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
               <button
                 type="button"
                 className="doodle-gallery-close"
-                onClick={() => setSelected(null)}
+                onClick={closePreview}
                 autoFocus
               >
                 Close <span aria-hidden="true">×</span>
@@ -301,14 +357,14 @@ export function DoodleGallery({ entries, batches }: DoodleGalleryProps) {
                   <button
                     type="button"
                     disabled={selectedIndex <= 0}
-                    onClick={() => setSelected(filteredEntries[selectedIndex - 1])}
+                    onClick={() => openDrawing(filteredEntries[selectedIndex - 1])}
                   >
                     ← Previous
                   </button>
                   <button
                     type="button"
                     disabled={selectedIndex >= filteredEntries.length - 1}
-                    onClick={() => setSelected(filteredEntries[selectedIndex + 1])}
+                    onClick={() => openDrawing(filteredEntries[selectedIndex + 1])}
                   >
                     Next →
                   </button>

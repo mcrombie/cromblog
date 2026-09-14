@@ -1,11 +1,13 @@
 import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
+import { doodleVibeMarks } from "@/content/doodle-vibe";
 
 export default function NotFoundPage() {
   return (
     <div className="content-flow">
       <SectionHeading
+        doodle={doodleVibeMarks.notFound}
         eyebrow="Lost path / 404"
         title="This trail ends here."
         description="The page may have moved, or perhaps it never made it out of the mapmaker’s margins."

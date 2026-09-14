@@ -5,10 +5,10 @@ import type { CSSProperties } from "react";
 // A small, deliberate cast from the growing collection. Archived studies never
 // become ambient decoration. The source ID stays stable when a crop is refined.
 const labDrawings = [
-  { id: "ma24-p100-a", className: "doodle-lab-bird" },
-  { id: "ma24-p065-a", className: "doodle-lab-leaf-cat" },
+  { id: "um22-p128-a", className: "doodle-lab-bird" },
+  { id: "um22-p150-a", className: "doodle-lab-leaf-cat" },
   { id: "jj2526-p228-a", className: "doodle-lab-branch" },
-  { id: "ma24-p081-a", className: "doodle-lab-leaf" },
+  { id: "um22-p093-f", className: "doodle-lab-leaf" },
   { id: "jj2526-p244-a", className: "doodle-lab-acorns" }
 ] as const;
 

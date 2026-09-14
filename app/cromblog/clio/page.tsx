@@ -51,6 +51,22 @@ export default function ClioPage() {
             </p>
           </header>
 
+          <aside className="rounded-2xl border border-[color:var(--border)] p-5">
+            <p className="mb-3 text-sm text-pine-800">
+              The latest Windows prototype adds a guided opening, the First Adviser’s
+              spoken reports, travel previews, and wildlife on the map. The video below
+              shows an earlier build.
+            </p>
+            <a href="/games/clio/clio-sage-37-windows.zip" className="folio-button" download>
+              Download the latest Clio for Windows · 16.8 MB
+            </a>
+            <p className="mt-3 text-sm text-pine-700">
+              Windows 10 or 11 with .NET Framework 4.x. Extract the ZIP and open Clio.exe.
+              Opening recordings are included; live reports use Windows speech, with an
+              optional offline voice setup in the download.
+            </p>
+          </aside>
+
           <hr className="border-[color:var(--border)]" />
 
           <div className="article-prose" style={{ maxWidth: "none" }}>

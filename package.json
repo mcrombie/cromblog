@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "doodles:vibe": "py -3.14 scripts/build-doodle-vibe-assets.py",
+    "doodles:vibe:check": "py -3.14 scripts/build-doodle-vibe-assets.py --check",
     "doodles:prepare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-doodle-assets.ps1",
     "doodles:review": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/review-doodle-assets.ps1",
     "start": "next start",

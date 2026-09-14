@@ -82,6 +82,14 @@ export default function CromonstersPage() {
             </p>
           </header>
 
+          <aside className="rounded-2xl border border-[color:var(--border)] p-5">
+            <p className="mb-3 text-sm text-pine-800">
+              The latest prototype follows a farmhand through the estate prologue and a goblin raid’s aftermath.
+              The post and videos below document the original September builds.
+            </p>
+            <Link href="/games/cromonsters" className="folio-button">Play the latest Cromonsters</Link>
+          </aside>
+
           <hr className="border-[color:var(--border)]" />
 
           <div className="article-prose" style={{ maxWidth: "none" }}>

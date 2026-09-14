@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState, type ChangeEvent } from "react";
+import { DOODLE_DESIGN_QUERY_KEY } from "@/lib/doodle-designs";
 
 import {
   DEFAULT_VIBE,
@@ -84,6 +85,12 @@ export function VibeCycleButton({
 
   function applyVibe(nextVibe: VibeId) {
     const nextOption = VIBES.find((option) => option.id === nextVibe) ?? VIBES[0];
+
+    const url = new URL(window.location.href);
+    if (url.searchParams.has(DOODLE_DESIGN_QUERY_KEY)) {
+      url.searchParams.delete(DOODLE_DESIGN_QUERY_KEY);
+      window.history.replaceState(window.history.state, "", url);
+    }
 
     setDocumentVibe(nextOption.id);
     setVibe(nextOption.id);

@@ -1,0 +1,7 @@
+{
+  "heartbeat": { "width": 400, "height": 472, "seconds": "2.4s" },
+  "motor-iterations": { "width": 448, "height": 448, "seconds": "6s" },
+  "echo-skitter": { "width": 512, "height": 288, "seconds": "12s" },
+  "ledge-sentry": { "width": 512, "height": 474, "seconds": "5s" },
+  "led-expressions": { "width": 512, "height": 288, "seconds": "3.5s" }
+}

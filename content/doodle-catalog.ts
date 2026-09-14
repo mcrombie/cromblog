@@ -5,6 +5,11 @@ import juneToJanuary from "@/content/doodle-batches/2025-06-2026-01.json";
 import januaryToJune from "@/content/doodle-batches/2025-01-06.json";
 import augustToJanuary from "@/content/doodle-batches/2024-08-2025-01.json";
 import marchToAugust from "@/content/doodle-batches/2024-03-08.json";
+import septemberToMarch from "@/content/doodle-batches/2023-09-2024-03.json";
+import aprilToAugust from "@/content/doodle-batches/2023-04-08.json";
+import novemberToApril from "@/content/doodle-batches/2022-11-2023-04.json";
+import februaryToNovember from "@/content/doodle-batches/2022-02-11.json";
+import upToMarchAndMisc from "@/content/doodle-batches/2022-up-to-03-misc.json";
 
 export type DoodleCatalogEntry = {
   id: string;
@@ -21,6 +26,11 @@ export type DoodleCatalogEntry = {
 export type DoodleBatch = { id: string; title: string; description?: string };
 
 export const doodleBatches: readonly DoodleBatch[] = [
+  { id: "2022-up-to-03-misc", title: "Up to March 2022 + misc." },
+  { id: "2022-02-11", title: "February–November 2022" },
+  { id: "2022-11-2023-04", title: "November 2022–April 2023" },
+  { id: "2023-04-08", title: "April–August 2023" },
+  { id: "2023-09-2024-03", title: "September 2023–March 2024" },
   { id: "2024-03-08", title: "March–August 2024" },
   { id: "2024-08-2025-01", title: "August 2024–January 2025" },
   { id: "2025-01-06", title: "January–June 2025" },
@@ -54,7 +64,7 @@ const existingDrawings: DoodleCatalogEntry[] = doodleOrder.map((id) => {
 // Only publish the clean gallery projection. Source photos, masks and review
 // notes belong in art-source, outside the public bundle and browser props.
 const importedDrawings: DoodleCatalogEntry[] = ([
-  ...marchToAugust, ...augustToJanuary, ...januaryToJune, ...juneToJanuary, ...januaryToMay
+  ...upToMarchAndMisc, ...februaryToNovember, ...novemberToApril, ...aprilToAugust, ...septemberToMarch, ...marchToAugust, ...augustToJanuary, ...januaryToJune, ...juneToJanuary, ...januaryToMay
 ] as DoodleCatalogEntry[]).map((entry) => {
   if (!["curated", "texture", "archive"].includes(entry.status)) {
     throw new Error(`Invalid catalog status for ${entry.id}`);

@@ -1,0 +1,10 @@
+﻿{
+    "verification":  "Compilation and archive integrity verified. Gameplay and audio have not been verified for this release.",
+    "version":  "sage-37",
+    "sha256":  "8e98682d216e0645ddc789d44a6975eb335b9c6836f76783287b49da230b27df",
+    "archive":  "clio-sage-37-windows.zip",
+    "voice":  "Opening recordings included; Windows speech for live reports; optional offline British voice setup.",
+    "platform":  "Windows 10 or 11 with .NET Framework 4.x",
+    "bytes":  16804689,
+    "sourceRevision":  "e9dab30aff51bbb33bb117c93017e854b6f91d36"
+}

@@ -1,20 +1,40 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
-type ArtTab = "drawings" | "experiments";
-const tabs: readonly ArtTab[] = ["drawings", "experiments"];
+type ArtTab = "showcase" | "drawings" | "experiments";
+const tabs: readonly ArtTab[] = ["showcase", "drawings", "experiments"];
 
-export function ArtTabs({ drawings, experiments, experimentCount }: {
+// Next's client navigation can change a drawing query without a native history
+// event. Keep the existing gallery URL listeners in sync in that case, too.
+function ArtLocationObserver() {
+  const searchParams = useSearchParams();
+  const query = searchParams.toString();
+  useEffect(() => {
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  }, [query]);
+  return null;
+}
+
+function tabFromLocation(): ArtTab {
+  const url = new URL(window.location.href);
+  if (url.hash === "#experiments") return "experiments";
+  if (url.hash === "#drawings" || url.searchParams.has("drawing")) return "drawings";
+  return "showcase";
+}
+
+export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
+  showcase: ReactNode;
   drawings: ReactNode;
   experiments: ReactNode;
   experimentCount: number;
 }) {
-  const [active, setActive] = useState<ArtTab>("drawings");
+  const [active, setActive] = useState<ArtTab>("showcase");
   const buttons = useRef<Partial<Record<ArtTab, HTMLButtonElement | null>>>({});
 
   useEffect(() => {
-    const syncTab = () => setActive(window.location.hash === "#experiments" ? "experiments" : "drawings");
+    const syncTab = () => setActive(tabFromLocation());
     syncTab();
     window.addEventListener("hashchange", syncTab);
     window.addEventListener("popstate", syncTab);
@@ -26,15 +46,20 @@ export function ArtTabs({ drawings, experiments, experimentCount }: {
 
   function selectTab(tab: ArtTab) {
     setActive(tab);
-    window.history.replaceState(window.history.state, "", `#${tab}`);
+    const url = new URL(window.location.href);
+    url.hash = tab;
+    if (tab !== "drawings") url.searchParams.delete("drawing");
+    window.history.pushState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, tab: ArtTab) {
     let next: ArtTab;
     if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-      next = tabs[(tabs.indexOf(tab) + 1) % tabs.length];
+      const direction = event.key === "ArrowRight" ? 1 : -1;
+      next = tabs[(tabs.indexOf(tab) + direction + tabs.length) % tabs.length];
     } else if (event.key === "Home") {
-      next = "drawings";
+      next = "showcase";
     } else if (event.key === "End") {
       next = "experiments";
     } else {
@@ -47,6 +72,7 @@ export function ArtTabs({ drawings, experiments, experimentCount }: {
 
   return (
     <div className="art-tabs">
+      <Suspense fallback={null}><ArtLocationObserver /></Suspense>
       <div className="art-tab-list" role="tablist" aria-label="Art collections">
         {tabs.map((tab) => (
           <button
@@ -62,7 +88,7 @@ export function ArtTabs({ drawings, experiments, experimentCount }: {
             onClick={() => selectTab(tab)}
             onKeyDown={(event) => handleKeyDown(event, tab)}
           >
-            {tab === "drawings" ? "Drawings" : "Experiments"}
+            {tab === "showcase" ? "Showcase" : tab === "drawings" ? "Drawings" : "Experiments"}
             {tab === "experiments" ? <span className="doodle-gallery-count">{experimentCount}</span> : null}
           </button>
         ))}
@@ -77,7 +103,7 @@ export function ArtTabs({ drawings, experiments, experimentCount }: {
           tabIndex={0}
           className="art-tab-panel"
         >
-          {tab === "drawings" ? drawings : experiments}
+          {tab === "showcase" ? showcase : tab === "drawings" ? drawings : experiments}
         </div>
       ))}
     </div>

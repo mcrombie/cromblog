@@ -1,0 +1,97 @@
+[
+  {
+    "id": "round-18-future-blood-donor-v5",
+    "title": "Future Panic 5: Finished Loop",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-18/future-blood-donor-v5-poster.png",
+    "alt": "A spiky-haired man in a collared shirt rocks from lying on his back into a panicked crunch in a blue chrome room, with FUTURE beneath him.",
+    "description": "One very alarmed man, one endless chrome future.",
+    "image": {
+      "width": 800,
+      "height": 600
+    },
+    "round": "18",
+    "sourceIds": [],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-18/future-blood-donor-v5.mp4",
+      "gif": "/cromblog/doodle-experiments/round-18/future-blood-donor-v5.gif",
+      "durationSeconds": 4.8
+    }
+  },
+  {
+    "id": "round-18-future-blood-donor-v4",
+    "title": "Future Panic 4: Chrome World",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-18/future-blood-donor-v4-poster.png",
+    "alt": "A spiky-haired man in a collared shirt rocks from lying on his back into a panicked crunch in a blue chrome room, with FUTURE beneath him.",
+    "description": "The same impossible future, brighter and colder.",
+    "image": {
+      "width": 640,
+      "height": 480
+    },
+    "round": "18",
+    "sourceIds": [],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-18/future-blood-donor-v4.mp4",
+      "gif": "/cromblog/doodle-experiments/round-18/future-blood-donor-v4.gif",
+      "durationSeconds": 4.8
+    }
+  },
+  {
+    "id": "round-18-future-blood-donor-v3",
+    "title": "Future Panic 3: On the Floor",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-18/future-blood-donor-v3-poster.png",
+    "alt": "A spiky-haired man in a collared shirt rocks from lying on his back into a panicked crunch in a blue chrome room, with FUTURE beneath him.",
+    "description": "His panic finds its footing on the polished floor.",
+    "image": {
+      "width": 640,
+      "height": 480
+    },
+    "round": "18",
+    "sourceIds": [],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-18/future-blood-donor-v3.mp4",
+      "gif": "/cromblog/doodle-experiments/round-18/future-blood-donor-v3.gif",
+      "durationSeconds": 4.8
+    }
+  },
+  {
+    "id": "round-18-future-blood-donor-v2",
+    "title": "Future Panic 2: Panic Rhythm",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-18/future-blood-donor-v2-poster.png",
+    "alt": "A spiky-haired man in a collared shirt rocks from lying on his back into a panicked crunch in a blue chrome room, with FUTURE beneath him.",
+    "description": "A sharper rise, an uneven shudder, and the word he keeps repeating.",
+    "image": {
+      "width": 640,
+      "height": 480
+    },
+    "round": "18",
+    "sourceIds": [],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-18/future-blood-donor-v2.mp4",
+      "gif": "/cromblog/doodle-experiments/round-18/future-blood-donor-v2.gif",
+      "durationSeconds": 4.8
+    }
+  },
+  {
+    "id": "round-18-future-blood-donor-v1",
+    "title": "Future Panic 1: First Reaction",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-18/future-blood-donor-v1-poster.png",
+    "alt": "A spiky-haired man in a collared shirt rocks from lying on his back into a panicked crunch in a blue chrome room, with FUTURE beneath him.",
+    "description": "The spiky-haired notebook man discovers the chrome future.",
+    "image": {
+      "width": 640,
+      "height": 480
+    },
+    "round": "18",
+    "sourceIds": [],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-18/future-blood-donor-v1.mp4",
+      "gif": "/cromblog/doodle-experiments/round-18/future-blood-donor-v1.gif",
+      "durationSeconds": 4.8
+    }
+  }
+]

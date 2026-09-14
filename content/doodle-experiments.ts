@@ -5,6 +5,18 @@ import landscapePanoramas from "@/content/doodle-experiment-batches/round-06.jso
 import januaryToJuneScenes from "@/content/doodle-experiment-batches/round-08.json";
 import augustToJanuaryScenes from "@/content/doodle-experiment-batches/round-09.json";
 import marchToAugustScenes from "@/content/doodle-experiment-batches/round-10.json";
+import septemberToMarchScenes from "@/content/doodle-experiment-batches/round-11.json";
+import aprilToAugustScenes from "@/content/doodle-experiment-batches/round-12.json";
+import novemberToAprilScenes from "@/content/doodle-experiment-batches/round-13.json";
+import februaryToNovemberScenes from "@/content/doodle-experiment-batches/round-14.json";
+import earlyAndMiscScenes from "@/content/doodle-experiment-batches/round-15.json";
+import hiddenGardenScene from "@/content/doodle-experiment-batches/round-16.json";
+import characterEncounters from "@/content/doodle-experiment-batches/round-17.json";
+import futureStudies from "@/content/doodle-experiment-batches/round-18.json";
+import twentyCharacterStudies from "@/content/doodle-experiment-batches/round-19.json";
+import memeGifs from "@/content/doodle-experiment-batches/round-20.json";
+import crombCooCooScene from "@/content/doodle-experiment-batches/round-21.json";
+import doodleLabBlogScenes from "@/content/doodle-experiment-batches/round-22.json";
 
 export type DoodleExperiment = {
   id: string;
@@ -20,9 +32,21 @@ export type DoodleExperiment = {
 };
 
 export const doodleExperimentsDescription =
-  "Compositions made with ImageGen from my notebook doodles, exploring how familiar drawings can share new worlds.";
+  "Scenes and animated experiments made with ImageGen from my notebook doodles, exploring how familiar drawings can share new worlds.";
 
 export const doodleExperiments: readonly DoodleExperiment[] = [
+  ...(doodleLabBlogScenes as DoodleExperiment[]),
+  ...(crombCooCooScene as DoodleExperiment[]),
+  ...(memeGifs as DoodleExperiment[]),
+  ...(twentyCharacterStudies as DoodleExperiment[]),
+  ...(characterEncounters as DoodleExperiment[]),
+  ...(futureStudies as DoodleExperiment[]),
+  ...(hiddenGardenScene as DoodleExperiment[]),
+  ...(earlyAndMiscScenes as DoodleExperiment[]),
+  ...(februaryToNovemberScenes as DoodleExperiment[]),
+  ...(novemberToAprilScenes as DoodleExperiment[]),
+  ...(aprilToAugustScenes as DoodleExperiment[]),
+  ...(septemberToMarchScenes as DoodleExperiment[]),
   ...(marchToAugustScenes as DoodleExperiment[]),
   ...(augustToJanuaryScenes as DoodleExperiment[]),
   ...(januaryToJuneScenes as DoodleExperiment[]),

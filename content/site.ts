@@ -3,6 +3,10 @@ import type { BlogSeriesSlug } from "@/content/blog";
 export type ProjectSlug =
   | "big-history-of-virginia"
   | "archivist"
+  | "doodle-lab"
+  | "crombot-one"
+  | "clio"
+  | "cromonsters"
   | "clashvergence"
   | "phoneme-chart"
   | "world-builder"
@@ -69,6 +73,10 @@ export const archivistDemoUrl =
 export const projectOrder: ProjectSlug[] = [
   "big-history-of-virginia",
   "archivist",
+  "doodle-lab",
+  "crombot-one",
+  "clio",
+  "cromonsters",
   "clashvergence",
   "phoneme-chart",
   "world-builder",
@@ -130,6 +138,86 @@ export const projects: Record<ProjectSlug, Project> = {
         href: "https://github.com/mcrombie/archivist",
         external: true
       }
+    ]
+  },
+  "doodle-lab": {
+    slug: "doodle-lab",
+    title: "Doodle Lab",
+    pitch:
+      "Doodle Lab brings years of notebook drawings into a growing archive and new illustrated worlds.",
+    summary:
+      "A collection of extracted notebook drawings, from wildlife and botanical studies to imaginary creatures, alongside scenes, collages, and mosaics made with ImageGen from those drawings.",
+    stack: ["Drawing", "Art direction", "Digital archiving", "ImageGen"],
+    image: {
+      src: "/cromblog/doodle-experiments/round-19/the-antler-clearing.png",
+      alt: "An antlered deer lowers its head to a shaggy owl in a quiet snowy clearing, touching the offered tip of a wing.",
+      width: 1672,
+      height: 941
+    },
+    links: [
+      { label: "Explore Doodle Lab", href: "/art" }
+    ]
+  },
+  "crombot-one": {
+    slug: "crombot-one",
+    title: "Crombot One",
+    pitch:
+      "Crombot One is my first Arduino rover, built from a starter kit to learn the basics of robotics.",
+    summary:
+      "A hands-on introduction to robotics: a small Arduino rover that responds to infrared commands, ultrasonic echoes, and floor sensors. The project story follows what building and testing it has taught me, with narrated demos.",
+    stack: ["Arduino", "Robotics", "Electronics", "Sensor experiments"],
+    image: {
+      src: "/cromblog/crombot-one/thumbnail-shell-drawing-v1.png",
+      alt: "Graphite pencil drawing of Crombot One in his box shell, with an LED matrix, paired ultrasonic sensors, and two wheels",
+      width: 1672,
+      height: 941
+    },
+    links: [
+      { label: "Read the project story", href: "/cromblog/crombot-one" },
+      { label: "Watch the demo", href: "/cromblog/crombot-one/demo-short-landscape-v3.mp4" },
+      { label: "View GitHub repo", href: "https://github.com/mcrombie/crombot", external: true }
+    ]
+  },
+  clio: {
+    slug: "clio",
+    title: "Clio",
+    pitch:
+      "Clio is a historical strategy prototype about guiding a small band of people through an unfolding history.",
+    summary:
+      "A Windows strategy prototype with a guided opening: lead a band of fifty, gather supplies, preview journeys on the map, and discover wildlife. The First Adviser introduces your story and narrates situation reports.",
+    stack: ["Game design", "Historical strategy", "Windows desktop", "Prototype"],
+    image: {
+      src: "/cromblog/clio/clio-demo-poster.jpg",
+      alt: "Clio's hex map, with bands and neighboring peoples exploring a wooded landscape",
+      width: 1920,
+      height: 1080
+    },
+    links: [
+      { label: "Download Clio for Windows", href: "/games/clio/clio-sage-37-windows.zip" },
+      { label: "Read the announcement", href: "/cromblog/clio" },
+      { label: "Watch the original demo", href: "/cromblog/clio/clio-demo.mp4" },
+      { label: "View GitHub repo", href: "https://github.com/mcrombie/clio", external: true }
+    ]
+  },
+  cromonsters: {
+    slug: "cromonsters",
+    title: "Cromonsters",
+    pitch:
+      "Cromonsters is a growing browser adventure about a farmhand on an imperial estate.",
+    summary:
+      "Play the estate prologue: learn the farming tasks, survive a goblin raid, and navigate the aftermath through conversations, looting, trade, and turn-based battles. The wider journey is still in development; the original post preserves the earliest playtests.",
+    stack: ["TypeScript", "Game design", "Pixel art", "Browser prototype"],
+    image: {
+      src: "/cromblog/cromonsters/test-2-poster.jpg",
+      alt: "Cromonsters gameplay with a muted four-shade palette and original pixel-art creatures",
+      width: 1280,
+      height: 720
+    },
+    links: [
+      { label: "Play Cromonsters", href: "/games/cromonsters" },
+      { label: "Read the development story", href: "/cromblog/cromonsters" },
+      { label: "Watch the playtest", href: "/cromblog/cromonsters/cromonsters_test_2.mp4" },
+      { label: "View GitHub repo", href: "https://github.com/mcrombie/cromonsters", external: true }
     ]
   },
   "clashvergence": {

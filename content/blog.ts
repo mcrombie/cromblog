@@ -1,4 +1,5 @@
 export type BlogSlug =
+  | "doodle-lab"
   | "clio"
   | "crombot-one"
   | "cromonsters"
@@ -72,6 +73,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "doodle-lab",
   "crombot-one",
   "clio",
   "cromonsters",
@@ -92,6 +94,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "doodle-lab": {
+    slug: "doodle-lab",
+    title: "( ) Doodle Lab: Fusing Five Years of Doodling into a Web Art Gallery",
+    href: "/cromblog/doodle-lab",
+    status: "published",
+    date: "September 14, 2026",
+    readTime: "Tentative draft",
+    summary: "TENTATIVE — STILL IN DEVELOPMENT. A visual essay template with Latin placeholder text. I’m still refining the post and will replace the Latin with my own words.",
+    image: {
+      src: "/cromblog/doodle-lab/from-a-line-a-world.png",
+      alt: "Notebook drawings unfold into a richly illustrated world of floating forests and curious characters.",
+      width: 1672,
+      height: 941
+    }
+  },
   "clio": {
     slug: "clio",
     title: "Clio: Playing History",

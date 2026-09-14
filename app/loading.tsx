@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { LoadingSigil } from "@/components/loading-sigil";
+import { NotebookDoodle } from "@/components/notebook-doodle";
 
 export default function Loading() {
   return (
@@ -21,6 +22,7 @@ export default function Loading() {
           className="loading-sigil-image loading-sigil-original"
         />
         <LoadingSigil className="loading-sigil-image loading-sigil-themed" />
+        <NotebookDoodle id="um22-p083-e" className="doodle-loading-knot" />
       </div>
       <p className="loading-copy">Opening the next folio…</p>
     </div>

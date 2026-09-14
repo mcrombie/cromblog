@@ -1,0 +1,201 @@
+[
+  {
+    "id": "round-17-the-patient-crossing",
+    "title": "The Patient Crossing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/the-patient-crossing.png",
+    "alt": "The crocodile offers a steady foot as the snail climbs a mossy crossing above a golden stream.",
+    "description": "The crocodile offers a steady foot as the snail climbs a mossy crossing above a golden stream.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "jj2526-p176-a",
+      "ma24-p079-a",
+      "jj2526-p228-a"
+    ]
+  },
+  {
+    "id": "round-17-tea-before-the-rain",
+    "title": "Tea Before the Rain",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/tea-before-the-rain.png",
+    "alt": "A patterned cup of tea passes between friends while a spring shower approaches their garden.",
+    "description": "A patterned cup of tea passes between friends while a spring shower approaches their garden.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "aj2425-p057-a",
+      "jj2526-p108-a",
+      "ma24-p234-a"
+    ]
+  },
+  {
+    "id": "round-17-the-lantern-appointment",
+    "title": "The Lantern Appointment",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/the-lantern-appointment.png",
+    "alt": "The crocodile lights the snail through a crooked village gate with a flower-tasseled lantern.",
+    "description": "The crocodile lights the snail through a crooked village gate with a flower-tasseled lantern.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "aj2425-p188-a",
+      "jj25-p039-a",
+      "aa23-p086-a"
+    ]
+  },
+  {
+    "id": "round-17-the-long-way-up",
+    "title": "The Long Way Up",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/the-long-way-up.png",
+    "alt": "The little snail leads its larger companion up a mountain path above a sea of clouds.",
+    "description": "The little snail leads its larger companion up a mountain path above a sea of clouds.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "jj2526-p092-a",
+      "jj2526-p256-a"
+    ]
+  },
+  {
+    "id": "round-17-an-orchard-favor",
+    "title": "An Orchard Favor",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/an-orchard-favor.png",
+    "alt": "A lowered fruit bough brings an orchard treasure within reach of the curious snail.",
+    "description": "A lowered fruit bough brings an orchard treasure within reach of the curious snail.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "jm26-p100-a",
+      "jj2526-p228-a",
+      "ma24-p234-a"
+    ]
+  },
+  {
+    "id": "round-17-between-the-islands",
+    "title": "Between the Islands",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/between-the-islands.png",
+    "alt": "The snail rides on the crocodile as they cross a root bridge between floating forest islands.",
+    "description": "The snail rides on the crocodile as they cross a root bridge between floating forest islands.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "jj25-p130-a",
+      "fn22-p049-a",
+      "jj2526-p092-a"
+    ]
+  },
+  {
+    "id": "round-17-a-bell-against-the-storm",
+    "title": "A Bell Against the Storm",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/a-bell-against-the-storm.png",
+    "alt": "The two travelers make room for each other beneath a giant bell flower during a silver rainstorm.",
+    "description": "The two travelers make room for each other beneath a giant bell flower during a silver rainstorm.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "jm26-p075-a",
+      "ma24-p234-a",
+      "jj2526-p228-a"
+    ]
+  },
+  {
+    "id": "round-17-the-warmest-small-fire",
+    "title": "The Warmest Small Fire",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/the-warmest-small-fire.png",
+    "alt": "A small log fire brings the companions together in the blue quiet of an alpine evening.",
+    "description": "A small log fire brings the companions together in the blue quiet of an alpine evening.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "aj2425-p010-a",
+      "jj2526-p118-a",
+      "jj2526-p256-a"
+    ]
+  },
+  {
+    "id": "round-17-nearly-home",
+    "title": "Nearly Home",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/nearly-home.png",
+    "alt": "The crocodile holds a lakeside gate open while the snail turns back for one more shared look.",
+    "description": "The crocodile holds a lakeside gate open while the snail turns back for one more shared look.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "um22-p246-a",
+      "aa23-p086-a",
+      "ma24-p079-a"
+    ]
+  },
+  {
+    "id": "round-17-listening-to-the-roots",
+    "title": "Listening to the Roots",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-17/listening-to-the-roots.png",
+    "alt": "The companions listen together at a great exposed root, beneath the glow of a hanging lantern.",
+    "description": "The companions listen together at a great exposed root, beneath the glow of a hanging lantern.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "17",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj2526-p276-b",
+      "jj2526-p176-a",
+      "fn22-p049-a",
+      "aj2425-p188-a"
+    ]
+  }
+]

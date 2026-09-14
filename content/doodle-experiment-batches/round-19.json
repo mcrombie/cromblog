@@ -1,0 +1,401 @@
+[
+  {
+    "id": "round-19-the-smallest-winter-lesson",
+    "title": "The Smallest Winter Lesson",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-smallest-winter-lesson.png",
+    "alt": "A giant-eared spectacled creature and a small bespectacled boy study a frost-covered leaf beside a quiet alpine lake.",
+    "description": "A giant-eared spectacled creature and a small bespectacled boy study a frost-covered leaf beside a quiet alpine lake.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "um22-p196-a",
+      "aa23-p153-a",
+      "fn22-p013-a",
+      "sm2324-p066-a",
+      "aa23-p057-a"
+    ]
+  },
+  {
+    "id": "round-19-a-waltz-for-the-windmill",
+    "title": "A Waltz for the Windmill",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/a-waltz-for-the-windmill.png",
+    "alt": "A crested bird plays its long instrument while a capped bird dances through a lavender dusk courtyard beneath a crooked windmill.",
+    "description": "A crested bird plays its long instrument while a capped bird dances through a lavender dusk courtyard beneath a crooked windmill.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "na2223-p107-a",
+      "na2223-p111-a",
+      "um22-p241-a",
+      "aa23-p086-a",
+      "sm2324-p146-a"
+    ]
+  },
+  {
+    "id": "round-19-the-first-small-miracle",
+    "title": "The First Small Miracle",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-first-small-miracle.png",
+    "alt": "A curled bearded wizard demonstrates a hovering stone to an angular insect robot above a valley of floating root islands.",
+    "description": "A curled bearded wizard demonstrates a hovering stone to an angular insect robot above a valley of floating root islands.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "sm2324-p192-a",
+      "sm2324-p205-a",
+      "fn22-p049-a",
+      "um22-p035-b",
+      "na2223-p128-c"
+    ]
+  },
+  {
+    "id": "round-19-room-for-a-crown",
+    "title": "Room for a Crown",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/room-for-a-crown.png",
+    "alt": "A toothy rabbit angles its fringed umbrella over a surprised three-eyed king on the rain-soaked approach to an ornate manor.",
+    "description": "A toothy rabbit angles its fringed umbrella over a surprised three-eyed king on the rain-soaked approach to an ornate manor.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "na2223-p046-a",
+      "fn22-p091-a",
+      "sm2324-p152-a",
+      "sm2324-p126-b",
+      "aa23-p050-a"
+    ]
+  },
+  {
+    "id": "round-19-one-foot-on-the-river",
+    "title": "One Foot on the River",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/one-foot-on-the-river.png",
+    "alt": "An antler-crowned paddler steadies a curved canoe while a leaf-horned faun steps aboard from a root-bound bank in a green pine valley.",
+    "description": "An antler-crowned paddler steadies a curved canoe while a leaf-horned faun steps aboard from a root-bound bank in a green pine valley.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "aa23-p078-a",
+      "aa23-p101-a",
+      "um22-p246-a",
+      "fn22-p034-a",
+      "sm2324-p015-a"
+    ]
+  },
+  {
+    "id": "round-19-the-leaf-gambit",
+    "title": "The Leaf Gambit",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-leaf-gambit.png",
+    "alt": "A shaggy figure beneath a leafy top hat considers an antenna gentleman’s move in a game of leaves played on a fallen log.",
+    "description": "A shaggy figure beneath a leafy top hat considers an antenna gentleman’s move in a game of leaves played on a fallen log.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "na2223-p062-a",
+      "um22-p065-a",
+      "na2223-p082-a",
+      "um22-p185-a",
+      "aa23-p122-a"
+    ]
+  },
+  {
+    "id": "round-19-the-first-roll-of-winter",
+    "title": "The First Roll of Winter",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-first-roll-of-winter.png",
+    "alt": "A tall-capped little chef offers a warm bread roll to a spiral-eyed owl outside a tiny bakery as the first snow falls.",
+    "description": "A tall-capped little chef offers a warm bread roll to a spiral-eyed owl outside a tiny bakery as the first snow falls.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "um22-p150-c",
+      "fn22-p021-a",
+      "aa23-p086-a",
+      "um22-p079-a",
+      "fn22-p038-b"
+    ]
+  },
+  {
+    "id": "round-19-shelter-in-the-downpour",
+    "title": "Shelter in the Downpour",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/shelter-in-the-downpour.png",
+    "alt": "A wooden robot bends its enormous hat leaf to shelter a coat-wearing teardrop visitor as rain sweeps past an old windmill.",
+    "description": "A wooden robot bends its enormous hat leaf to shelter a coat-wearing teardrop visitor as rain sweeps past an old windmill.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "19",
+    "sourceIds": [
+      "ma24-p208-a",
+      "jj25-p170-a",
+      "um22-p241-a",
+      "ma24-p084-a",
+      "um22-p221-a"
+    ]
+  },
+  {
+    "id": "round-19-a-conversation-across-the-water",
+    "title": "A Conversation Across the Water",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/a-conversation-across-the-water.png",
+    "alt": "A long-haired mermaid and a cap-wearing canoe paddler exchange a quiet greeting beside flowering leaves and a misty pine valley.",
+    "description": "A long-haired mermaid and a cap-wearing canoe paddler exchange a quiet greeting beside flowering leaves and a misty pine valley.",
+    "image": {
+      "width": 1672,
+      "height": 940
+    },
+    "round": "19",
+    "sourceIds": [
+      "ma24-p198-a",
+      "jj25-p148-a",
+      "um22-p246-a",
+      "aa23-p087-a"
+    ]
+  },
+  {
+    "id": "round-19-the-antler-clearing",
+    "title": "The Antler Clearing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-antler-clearing.png",
+    "alt": "An antlered deer lowers its head to a shaggy owl in a quiet snowy clearing, touching the offered tip of a wing.",
+    "description": "An antlered deer lowers its head to a shaggy owl in a quiet snowy clearing, touching the offered tip of a wing.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "19",
+    "sourceIds": [
+      "ma24-p014-a",
+      "ma24-p142-a",
+      "jj25-p039-a",
+      "sm2324-p163-a",
+      "fn22-p013-a"
+    ]
+  },
+  {
+    "id": "round-19-the-little-boardwalk",
+    "title": "The Little Boardwalk",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-little-boardwalk.png",
+    "alt": "A grinning crab steadies a fallen log while a thoughtful beaver rolls its skateboard over a narrow coastal runnel.",
+    "description": "A grinning crab steadies a fallen log while a thoughtful beaver rolls its skateboard over a narrow coastal runnel.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "19",
+    "sourceIds": [
+      "ma24-p169-a",
+      "aj2425-p089-a",
+      "aa23-p060-a",
+      "na2223-p082-a",
+      "jj25-p171-a"
+    ]
+  },
+  {
+    "id": "round-19-a-very-small-voyage",
+    "title": "A Very Small Voyage",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/a-very-small-voyage.png",
+    "alt": "A dragon in oversized boots guides a shallow pan carrying a bespectacled long-eared dog across a sunlit woodland puddle.",
+    "description": "A dragon in oversized boots guides a shallow pan carrying a bespectacled long-eared dog across a sunlit woodland puddle.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "19",
+    "sourceIds": [
+      "ma24-p211-a",
+      "ma24-p203-a",
+      "aj2425-p115-a",
+      "ma24-p234-a",
+      "sm2324-p067-a"
+    ]
+  },
+  {
+    "id": "round-19-the-courtyard-introduction",
+    "title": "The Courtyard Introduction",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-courtyard-introduction.png",
+    "alt": "A bow-tied mouse in striped trousers welcomes a hovering leaf-eared bell visitor beneath a glowing garden lantern.",
+    "description": "A bow-tied mouse in striped trousers welcomes a hovering leaf-eared bell visitor beneath a glowing garden lantern.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "19",
+    "sourceIds": [
+      "aj2425-p186-a",
+      "aj2425-p141-a",
+      "sm2324-p152-a",
+      "jj25-p200-a",
+      "aj2425-p188-a"
+    ]
+  },
+  {
+    "id": "round-19-directions-by-trumpet",
+    "title": "Directions by Trumpet",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/directions-by-trumpet.png",
+    "alt": "A hooded woodland traveler listens closely to a flowering trumpet-headed turtle at a blank signpost below a hilltop village.",
+    "description": "A hooded woodland traveler listens closely to a flowering trumpet-headed turtle at a blank signpost below a hilltop village.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "19",
+    "sourceIds": [
+      "jj25-p205-a",
+      "jj25-p185-a",
+      "jj2526-p099-a",
+      "jj25-p038-a",
+      "um22-p067-a"
+    ]
+  },
+  {
+    "id": "round-19-tea-above-the-treetops",
+    "title": "Tea Above the Treetops",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/tea-above-the-treetops.png",
+    "alt": "A caped rabbit pours tea for a one-eyed gentleman on a quiet tower terrace above the treetops.",
+    "description": "A caped rabbit pours tea for a one-eyed gentleman on a quiet tower terrace above the treetops.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "one-eyed-gentleman-01",
+      "caped-rabbit-01",
+      "aj2425-p057-a",
+      "jj2526-p015-a",
+      "jj2526-p228-a"
+    ]
+  },
+  {
+    "id": "round-19-keeping-time-by-the-water",
+    "title": "Keeping Time by the Water",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/keeping-time-by-the-water.png",
+    "alt": "A wide-eyed orb juggler keeps time with a crested harmonica player beside a blue mountain stream.",
+    "description": "A wide-eyed orb juggler keeps time with a crested harmonica player beside a blue mountain stream.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "jm26-p189-a",
+      "jj2526-p269-a",
+      "jj2526-p256-a",
+      "jj2526-p092-a",
+      "jm26-p075-a"
+    ]
+  },
+  {
+    "id": "round-19-the-windward-guide",
+    "title": "The Windward Guide",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-windward-guide.png",
+    "alt": "A smiling winged insect guides a bearded board-riding wizard between floating islands and suspended lanterns.",
+    "description": "A smiling winged insect guides a bearded board-riding wizard between floating islands and suspended lanterns.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "jm26-p103-a",
+      "jm26-p170-a",
+      "jj25-p130-a",
+      "fn22-p049-a",
+      "aj2425-p188-a"
+    ]
+  },
+  {
+    "id": "round-19-a-place-for-the-seedling",
+    "title": "A Place for the Seedling",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/a-place-for-the-seedling.png",
+    "alt": "A circuit-patterned creature and a leaf-crowned gardener carefully plant a young shoot in a sunlit orchard.",
+    "description": "A circuit-patterned creature and a leaf-crowned gardener carefully plant a young shoot in a sunlit orchard.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "jm26-p004-a",
+      "jj2526-p275-a",
+      "jm26-p100-a",
+      "ma24-p234-a",
+      "ma24-p079-a"
+    ]
+  },
+  {
+    "id": "round-19-an-apple-at-the-root-gate",
+    "title": "An Apple at the Root Gate",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/an-apple-at-the-root-gate.png",
+    "alt": "A shaggy long-eared rabbit offers an apple to a friendly whiskered serpent beneath a lantern-lit root arch.",
+    "description": "A shaggy long-eared rabbit offers an apple to a friendly whiskered serpent beneath a lantern-lit root arch.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "jj2526-p303-a",
+      "jm26-p120-a",
+      "jm26-p037-a",
+      "jj2526-p176-a",
+      "aj2425-p188-a"
+    ]
+  },
+  {
+    "id": "round-19-the-tide-map",
+    "title": "The Tide Map",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-19/the-tide-map.png",
+    "alt": "A swept-haired gentleman and a five-armed squid compare a tide map beside a quiet harbor.",
+    "description": "A swept-haired gentleman and a five-armed squid compare a tide map beside a quiet harbor.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "19",
+    "sourceIds": [
+      "jj2526-p231-a",
+      "jj2526-p122-a",
+      "jj2526-p294-a",
+      "jj2526-p110-a",
+      "jj2526-p092-a"
+    ]
+  }
+]

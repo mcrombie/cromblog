@@ -1,14 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-
-import {
-  blogPosts,
-  publishedBlogOrder,
-  type PublishedBlogPost
-} from "@/content/blog";
+import { DoodleHomeHero } from "@/components/doodle-home-hero";
+import { HomeDoodleShowcase, HomeEntrances, HomeWriting } from "@/components/home-discovery";
 import { archivistDemoUrl } from "@/content/site";
-
-const latestPost = blogPosts[publishedBlogOrder[0]] as PublishedBlogPost;
+import "./home-discovery.css";
 
 const homeHeroImages = [
   { vibe: "forest", src: "/home/forest-hero.png" },
@@ -45,7 +40,6 @@ export default function HomePage() {
             src={src}
             alt=""
             fill
-            priority={vibe === "forest"}
             sizes="(min-width: 1024px) calc(100vw - 19.25rem), 100vw"
             className={`home-hero-image home-hero-image-vibe home-hero-image-${vibe}`}
           />
@@ -54,22 +48,27 @@ export default function HomePage() {
         <div className="home-hero-copy">
           <h1 className="home-title">Cromblog</h1>
           <p className="home-lede">
-            A collection of software and writing by Michael Crombie.
+            Essays, software, and notebook drawings by Michael Crombie.
           </p>
         </div>
+        <DoodleHomeHero />
       </section>
 
+      <HomeEntrances />
+      <HomeWriting />
+
       <section
-        className="home-panel featured-project"
+        className="home-panel featured-project home-selected-projects"
         aria-labelledby="featured-projects-heading"
       >
         <div className="featured-project-header">
           <h2 className="home-panel-heading" id="featured-projects-heading">
-            Featured projects
+            Things to explore
           </h2>
-          <span className="featured-project-status is-live">Live demos</span>
+          <Link href="/projects" className="home-text-link">All projects <span aria-hidden="true">↗</span></Link>
         </div>
 
+        <div className="home-software-grid">
         <article className="featured-project-card">
           <div className="featured-project-visual">
             <Image
@@ -117,39 +116,9 @@ export default function HomePage() {
             </p>
           </div>
         </article>
+        </div>
       </section>
-
-      <section className="home-panel">
-        <h2 className="home-panel-heading">Latest post</h2>
-        <article className="latest-dispatch">
-          {latestPost.image ? (
-            <div className="latest-dispatch-image">
-              <Image
-                src={latestPost.image.src}
-                alt={latestPost.image.alt}
-                fill
-                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 35vw, 28vw"
-                unoptimized={latestPost.image.unoptimized}
-                style={
-                  latestPost.image.objectPosition
-                    ? { objectPosition: latestPost.image.objectPosition }
-                    : undefined
-                }
-              />
-            </div>
-          ) : null}
-          <div>
-            <div className="latest-dispatch-meta">
-              <span>{latestPost.date}</span>
-              <span>{latestPost.readTime}</span>
-            </div>
-            <h3 className="latest-dispatch-title">
-              <Link href={latestPost.href}>{latestPost.title}</Link>
-            </h3>
-            <p className="latest-dispatch-summary">{latestPost.summary}</p>
-          </div>
-        </article>
-      </section>
+      <HomeDoodleShowcase />
     </div>
   );
 }

@@ -1,0 +1,1370 @@
+<!doctype html>
+      <html lang="en">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" /><title>
+          Estate art contact sheet
+        </title>
+        <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+        <style>
+          @font-face {
+            font-family: Estate;
+            src: url('../fonts/estate-ledger.ttf');
+          }
+          * {
+            box-sizing: border-box;
+          }
+          body {
+            margin: 0;
+            padding: 24px;
+            background: #302835;
+            color: #faf0c2;
+            font:
+              16px Estate,
+              monospace;
+          }
+          h1,
+          h2 {
+            color: #e2be79;
+          }
+          p {
+            max-width: 70ch;
+            line-height: 1.6;
+          }
+          .preview {
+            width: 640px;
+            max-width: 100%;
+            image-rendering: pixelated;
+          }
+          .palette,
+          .frames {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+          }
+          .swatch {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #8c8370;
+          }
+          figure {
+            margin: 0;
+            padding: 12px;
+            background: #504047;
+            min-width: 140px;
+            max-width: 230px;
+            overflow-wrap: anywhere;
+          }
+          .frame {
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+            margin: 0 auto 12px;
+          }
+          figcaption {
+            font: 12px monospace;
+            max-width: 190px;
+            line-height: 1.6;
+          }
+          a {
+            color: #f2dc9a;
+          }
+        </style>
+        <h1>Estate art</h1>
+        <p>
+          Original palette-indexed sources, baked with Node alone. All frames are shown below. Tool
+          and goblin poses are assets for later milestones; this page does not simulate a fight.
+        </p>
+        <img
+          class="preview"
+          src="estate-preview.png"
+          alt="The complete central estate composition"
+        />
+        <h2>32-colour palette</h2>
+        <div class="palette"><span class="swatch" style="background:#302835ff" title="0 #302835ff"></span><span class="swatch" style="background:#504047ff" title="1 #504047ff"></span><span class="swatch" style="background:#795740ff" title="2 #795740ff"></span><span class="swatch" style="background:#a4774bff" title="3 #a4774bff"></span><span class="swatch" style="background:#c49b60ff" title="4 #c49b60ff"></span><span class="swatch" style="background:#e2be79ff" title="5 #e2be79ff"></span><span class="swatch" style="background:#f2dc9aff" title="6 #f2dc9aff"></span><span class="swatch" style="background:#faf0c2ff" title="7 #faf0c2ff"></span><span class="swatch" style="background:#374336ff" title="8 #374336ff"></span><span class="swatch" style="background:#506047ff" title="9 #506047ff"></span><span class="swatch" style="background:#738051ff" title="a #738051ff"></span><span class="swatch" style="background:#929b61ff" title="b #929b61ff"></span><span class="swatch" style="background:#b6b071ff" title="c #b6b071ff"></span><span class="swatch" style="background:#cfc087ff" title="d #cfc087ff"></span><span class="swatch" style="background:#513c34ff" title="e #513c34ff"></span><span class="swatch" style="background:#70503bff" title="f #70503bff"></span><span class="swatch" style="background:#94704eff" title="g #94704eff"></span><span class="swatch" style="background:#b39365ff" title="h #b39365ff"></span><span class="swatch" style="background:#675e58ff" title="i #675e58ff"></span><span class="swatch" style="background:#8c8370ff" title="j #8c8370ff"></span><span class="swatch" style="background:#aaa391ff" title="k #aaa391ff"></span><span class="swatch" style="background:#d0c9afff" title="l #d0c9afff"></span><span class="swatch" style="background:#704641ff" title="m #704641ff"></span><span class="swatch" style="background:#a05f49ff" title="n #a05f49ff"></span><span class="swatch" style="background:#d08055ff" title="o #d08055ff"></span><span class="swatch" style="background:#ebaa70ff" title="p #ebaa70ff"></span><span class="swatch" style="background:#e15b38ff" title="q #e15b38ff"></span><span class="swatch" style="background:#f3973fff" title="r #f3973fff"></span><span class="swatch" style="background:#f6d25aff" title="s #f6d25aff"></span><span class="swatch" style="background:#365361ff" title="t #365361ff"></span><span class="swatch" style="background:#567f85ff" title="u #567f85ff"></span><span class="swatch" style="background:#95b1a4ff" title="v #95b1a4ff"></span></div>
+        <h2>Estate tiles</h2>
+        <div class="frames"><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="grass0"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-0px -0px"
+            ></div>
+            <figcaption>grass0 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="grass1"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-48px -0px"
+            ></div>
+            <figcaption>grass1 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="grass2"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-96px -0px"
+            ></div>
+            <figcaption>grass2 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="grass3"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-144px -0px"
+            ></div>
+            <figcaption>grass3 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path0"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-192px -0px"
+            ></div>
+            <figcaption>path0 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path1"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-240px -0px"
+            ></div>
+            <figcaption>path1 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path2"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-288px -0px"
+            ></div>
+            <figcaption>path2 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path3"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-336px -0px"
+            ></div>
+            <figcaption>path3 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path4"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-384px -0px"
+            ></div>
+            <figcaption>path4 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path5"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-432px -0px"
+            ></div>
+            <figcaption>path5 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path6"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-480px -0px"
+            ></div>
+            <figcaption>path6 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path7"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-528px -0px"
+            ></div>
+            <figcaption>path7 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path8"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-576px -0px"
+            ></div>
+            <figcaption>path8 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path9"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-624px -0px"
+            ></div>
+            <figcaption>path9 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path10"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-672px -0px"
+            ></div>
+            <figcaption>path10 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path11"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-720px -0px"
+            ></div>
+            <figcaption>path11 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path12"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-0px -48px"
+            ></div>
+            <figcaption>path12 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path13"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-48px -48px"
+            ></div>
+            <figcaption>path13 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path14"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-96px -48px"
+            ></div>
+            <figcaption>path14 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="path15"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-144px -48px"
+            ></div>
+            <figcaption>path15 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge0"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-192px -48px"
+            ></div>
+            <figcaption>hedge0 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge1"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-240px -48px"
+            ></div>
+            <figcaption>hedge1 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge2"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-288px -48px"
+            ></div>
+            <figcaption>hedge2 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge3"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-336px -48px"
+            ></div>
+            <figcaption>hedge3 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge4"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-384px -48px"
+            ></div>
+            <figcaption>hedge4 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge5"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-432px -48px"
+            ></div>
+            <figcaption>hedge5 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge6"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-480px -48px"
+            ></div>
+            <figcaption>hedge6 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge7"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-528px -48px"
+            ></div>
+            <figcaption>hedge7 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge8"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-576px -48px"
+            ></div>
+            <figcaption>hedge8 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge9"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-624px -48px"
+            ></div>
+            <figcaption>hedge9 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge10"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-672px -48px"
+            ></div>
+            <figcaption>hedge10 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge11"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-720px -48px"
+            ></div>
+            <figcaption>hedge11 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge12"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-0px -96px"
+            ></div>
+            <figcaption>hedge12 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge13"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-48px -96px"
+            ></div>
+            <figcaption>hedge13 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge14"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-96px -96px"
+            ></div>
+            <figcaption>hedge14 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hedge15"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-144px -96px"
+            ></div>
+            <figcaption>hedge15 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="untilled"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-192px -96px"
+            ></div>
+            <figcaption>untilled · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="tilled"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-240px -96px"
+            ></div>
+            <figcaption>tilled · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="sown"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-288px -96px"
+            ></div>
+            <figcaption>sown · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="wheat0"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-336px -96px"
+            ></div>
+            <figcaption>wheat0 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="wheat1"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-384px -96px"
+            ></div>
+            <figcaption>wheat1 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="wheat2"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-432px -96px"
+            ></div>
+            <figcaption>wheat2 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="fence-horizontal"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-480px -96px"
+            ></div>
+            <figcaption>fence-horizontal · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="fence-vertical"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-528px -96px"
+            ></div>
+            <figcaption>fence-vertical · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="gate"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-576px -96px"
+            ></div>
+            <figcaption>gate · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="water"
+              style="width:48px;height:48px;background-image:url('tiles.png');background-size:768px 144px;background-position:-624px -96px"
+            ></div>
+            <figcaption>water · 16×16</figcaption>
+          </figure></div><h2>Scenery, people and animation frames</h2>
+        <div class="frames"><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hut0"
+              style="width:144px;height:192px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -0px"
+            ></div>
+            <figcaption>hut0 · 48×64</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hut1"
+              style="width:144px;height:192px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -0px"
+            ></div>
+            <figcaption>hut1 · 48×64</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hut2"
+              style="width:144px;height:192px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -0px"
+            ></div>
+            <figcaption>hut2 · 48×64</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hut-burned0"
+              style="width:144px;height:192px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -0px"
+            ></div>
+            <figcaption>hut-burned0 · 48×64</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hut-burned1"
+              style="width:144px;height:192px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -0px"
+            ></div>
+            <figcaption>hut-burned1 · 48×64</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hut-burned2"
+              style="width:144px;height:192px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -192px"
+            ></div>
+            <figcaption>hut-burned2 · 48×64</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="crate"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -192px"
+            ></div>
+            <figcaption>crate · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="well"
+              style="width:96px;height:96px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -192px"
+            ></div>
+            <figcaption>well · 32×32</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="cart"
+              style="width:96px;height:96px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -192px"
+            ></div>
+            <figcaption>cart · 32×32</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="tree"
+              style="width:96px;height:144px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -192px"
+            ></div>
+            <figcaption>tree · 32×48</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-north"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -192px"
+            ></div>
+            <figcaption>hero-idle-north · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-north-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -192px"
+            ></div>
+            <figcaption>hero-idle-north-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-north-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -192px"
+            ></div>
+            <figcaption>hero-walk-north-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-north-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -192px"
+            ></div>
+            <figcaption>hero-walk-north-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-north-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -192px"
+            ></div>
+            <figcaption>hero-walk-north-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-north-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -192px"
+            ></div>
+            <figcaption>hero-walk-north-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-north-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -384px"
+            ></div>
+            <figcaption>hero-hoe-north-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-north-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -384px"
+            ></div>
+            <figcaption>hero-hoe-north-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-north-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-96px -384px"
+            ></div>
+            <figcaption>hero-hoe-north-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-north-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -384px"
+            ></div>
+            <figcaption>hero-stab-north-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-north-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -384px"
+            ></div>
+            <figcaption>hero-stab-north-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-north-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-240px -384px"
+            ></div>
+            <figcaption>hero-stab-north-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-east"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -384px"
+            ></div>
+            <figcaption>hero-idle-east · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-east-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-336px -384px"
+            ></div>
+            <figcaption>hero-idle-east-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-east-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -384px"
+            ></div>
+            <figcaption>hero-walk-east-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-east-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -384px"
+            ></div>
+            <figcaption>hero-walk-east-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-east-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -384px"
+            ></div>
+            <figcaption>hero-walk-east-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-east-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -384px"
+            ></div>
+            <figcaption>hero-walk-east-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-east-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -384px"
+            ></div>
+            <figcaption>hero-hoe-east-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-east-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -384px"
+            ></div>
+            <figcaption>hero-hoe-east-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-east-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -384px"
+            ></div>
+            <figcaption>hero-hoe-east-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-east-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -384px"
+            ></div>
+            <figcaption>hero-stab-east-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-east-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -456px"
+            ></div>
+            <figcaption>hero-stab-east-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-east-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -456px"
+            ></div>
+            <figcaption>hero-stab-east-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-south"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-96px -456px"
+            ></div>
+            <figcaption>hero-idle-south · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-south-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -456px"
+            ></div>
+            <figcaption>hero-idle-south-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-south-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -456px"
+            ></div>
+            <figcaption>hero-walk-south-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-south-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-240px -456px"
+            ></div>
+            <figcaption>hero-walk-south-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-south-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -456px"
+            ></div>
+            <figcaption>hero-walk-south-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-south-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-336px -456px"
+            ></div>
+            <figcaption>hero-walk-south-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-south-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -456px"
+            ></div>
+            <figcaption>hero-hoe-south-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-south-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -456px"
+            ></div>
+            <figcaption>hero-hoe-south-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-south-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -456px"
+            ></div>
+            <figcaption>hero-hoe-south-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-south-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -456px"
+            ></div>
+            <figcaption>hero-stab-south-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-south-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -456px"
+            ></div>
+            <figcaption>hero-stab-south-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-south-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -456px"
+            ></div>
+            <figcaption>hero-stab-south-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-west"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -456px"
+            ></div>
+            <figcaption>hero-idle-west · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-idle-west-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -456px"
+            ></div>
+            <figcaption>hero-idle-west-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-west-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -528px"
+            ></div>
+            <figcaption>hero-walk-west-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-west-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -528px"
+            ></div>
+            <figcaption>hero-walk-west-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-west-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-96px -528px"
+            ></div>
+            <figcaption>hero-walk-west-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-walk-west-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -528px"
+            ></div>
+            <figcaption>hero-walk-west-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-west-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -528px"
+            ></div>
+            <figcaption>hero-hoe-west-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-west-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-240px -528px"
+            ></div>
+            <figcaption>hero-hoe-west-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-hoe-west-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -528px"
+            ></div>
+            <figcaption>hero-hoe-west-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-west-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-336px -528px"
+            ></div>
+            <figcaption>hero-stab-west-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-west-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -528px"
+            ></div>
+            <figcaption>hero-stab-west-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="hero-stab-west-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -528px"
+            ></div>
+            <figcaption>hero-stab-west-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-foreman"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -528px"
+            ></div>
+            <figcaption>npc-foreman · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-foreman-breath"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -528px"
+            ></div>
+            <figcaption>npc-foreman-breath · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -528px"
+            ></div>
+            <figcaption>npc-farmhand-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-1-breath"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -528px"
+            ></div>
+            <figcaption>npc-farmhand-1-breath · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -528px"
+            ></div>
+            <figcaption>npc-farmhand-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-2-breath"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -528px"
+            ></div>
+            <figcaption>npc-farmhand-2-breath · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-idle-north"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -600px"
+            ></div>
+            <figcaption>goblin-idle-north · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-north-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -600px"
+            ></div>
+            <figcaption>goblin-walk-north-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-north-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-96px -600px"
+            ></div>
+            <figcaption>goblin-walk-north-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-north-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -600px"
+            ></div>
+            <figcaption>goblin-walk-north-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-north-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -600px"
+            ></div>
+            <figcaption>goblin-walk-north-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-idle-east"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-240px -600px"
+            ></div>
+            <figcaption>goblin-idle-east · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-east-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -600px"
+            ></div>
+            <figcaption>goblin-walk-east-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-east-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-336px -600px"
+            ></div>
+            <figcaption>goblin-walk-east-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-east-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -600px"
+            ></div>
+            <figcaption>goblin-walk-east-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-east-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -600px"
+            ></div>
+            <figcaption>goblin-walk-east-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-idle-south"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -600px"
+            ></div>
+            <figcaption>goblin-idle-south · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-south-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -600px"
+            ></div>
+            <figcaption>goblin-walk-south-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-south-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -600px"
+            ></div>
+            <figcaption>goblin-walk-south-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-south-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -600px"
+            ></div>
+            <figcaption>goblin-walk-south-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-south-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -600px"
+            ></div>
+            <figcaption>goblin-walk-south-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-idle-west"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -600px"
+            ></div>
+            <figcaption>goblin-idle-west · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-west-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -672px"
+            ></div>
+            <figcaption>goblin-walk-west-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-west-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -672px"
+            ></div>
+            <figcaption>goblin-walk-west-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-west-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-96px -672px"
+            ></div>
+            <figcaption>goblin-walk-west-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-walk-west-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -672px"
+            ></div>
+            <figcaption>goblin-walk-west-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-jab-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -672px"
+            ></div>
+            <figcaption>goblin-jab-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-jab-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-240px -672px"
+            ></div>
+            <figcaption>goblin-jab-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-jab-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -672px"
+            ></div>
+            <figcaption>goblin-jab-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-windup-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-336px -672px"
+            ></div>
+            <figcaption>goblin-windup-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-windup-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -672px"
+            ></div>
+            <figcaption>goblin-windup-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-windup-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -672px"
+            ></div>
+            <figcaption>goblin-windup-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-smash-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -672px"
+            ></div>
+            <figcaption>goblin-smash-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-smash-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -672px"
+            ></div>
+            <figcaption>goblin-smash-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-smash-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -672px"
+            ></div>
+            <figcaption>goblin-smash-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-stagger-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -672px"
+            ></div>
+            <figcaption>goblin-stagger-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-stagger-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -672px"
+            ></div>
+            <figcaption>goblin-stagger-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-defeat-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -672px"
+            ></div>
+            <figcaption>goblin-defeat-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-defeat-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -744px"
+            ></div>
+            <figcaption>goblin-defeat-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="goblin-defeat-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -744px"
+            ></div>
+            <figcaption>goblin-defeat-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-foreman-fallen"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-96px -744px"
+            ></div>
+            <figcaption>npc-foreman-fallen · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-1-fallen"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-144px -744px"
+            ></div>
+            <figcaption>npc-farmhand-1-fallen · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-2-fallen"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-192px -744px"
+            ></div>
+            <figcaption>npc-farmhand-2-fallen · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-1-loot-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-240px -744px"
+            ></div>
+            <figcaption>npc-farmhand-1-loot-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="npc-farmhand-1-loot-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-288px -744px"
+            ></div>
+            <figcaption>npc-farmhand-1-loot-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="fire-0"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-336px -744px"
+            ></div>
+            <figcaption>fire-0 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="fire-1"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-384px -744px"
+            ></div>
+            <figcaption>fire-1 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="fire-2"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-432px -744px"
+            ></div>
+            <figcaption>fire-2 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="fire-3"
+              style="width:48px;height:72px;background-image:url('sprites.png');background-size:768px 864px;background-position:-480px -744px"
+            ></div>
+            <figcaption>fire-3 · 16×24</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="dust-0"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-528px -744px"
+            ></div>
+            <figcaption>dust-0 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="dust-1"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-576px -744px"
+            ></div>
+            <figcaption>dust-1 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="dust-2"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-624px -744px"
+            ></div>
+            <figcaption>dust-2 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="dust-3"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-672px -744px"
+            ></div>
+            <figcaption>dust-3 · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="shadow"
+              style="width:48px;height:24px;background-image:url('sprites.png');background-size:768px 864px;background-position:-720px -744px"
+            ></div>
+            <figcaption>shadow · 16×8</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="wheat-vitality"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-0px -816px"
+            ></div>
+            <figcaption>wheat-vitality · 16×16</figcaption>
+          </figure><figure>
+            <div
+              class="frame"
+              role="img"
+              aria-label="wheat-vitality-empty"
+              style="width:48px;height:48px;background-image:url('sprites.png');background-size:768px 864px;background-position:-48px -816px"
+            ></div>
+            <figcaption>wheat-vitality-empty · 16×16</figcaption>
+          </figure></div>
+        <p>
+          <a href="../">Return to the game</a> · Font licence:
+          <a href="../fonts/LICENCE.txt">MIT</a>
+        </p>
+      </html>

@@ -1,0 +1,163 @@
+[
+  {
+    "id": "round-15-the-ringwater-gathering",
+    "title": "The Ringwater Gathering",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/the-ringwater-gathering.png",
+    "alt": "Pencil landscape: A leafy-hatted cat and curious companions gather beside a ringed pool in a broad terraced valley.",
+    "description": "A leafy-hatted cat and curious companions gather beside a ringed pool in a broad terraced valley.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p068-a",
+      "um22-p065-a",
+      "um22-p015-a",
+      "um22-p074-a",
+      "um22-p038-a",
+      "um22-p061-a",
+      "um22-p018-a",
+      "um22-p037-b"
+    ]
+  },
+  {
+    "id": "round-15-the-copper-gorge",
+    "title": "The Copper Gorge",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/the-copper-gorge.png",
+    "alt": "Pencil landscape: Strange woodland travelers pause among exposed roots, copper hills and an old tool beside a winding river.",
+    "description": "Strange woodland travelers pause among exposed roots, copper hills and an old tool beside a winding river.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p035-b",
+      "um22-p025-a",
+      "um22-p057-a",
+      "um22-p042-b",
+      "um22-p018-b",
+      "um22-p027-a",
+      "um22-p072-a",
+      "um22-p036-c"
+    ]
+  },
+  {
+    "id": "round-15-the-tinkers-crossing",
+    "title": "The Tinker's Crossing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/the-tinkers-crossing.png",
+    "alt": "Pencil landscape: A pencil bridge and a rooted tree mark a quiet crossing for a wide-eared traveler, a curled pig and a little wheeled robot.",
+    "description": "A pencil bridge and a rooted tree mark a quiet crossing for a wide-eared traveler, a curled pig and a little wheeled robot.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p182-b",
+      "um22-p185-a",
+      "um22-p196-a",
+      "um22-p202-a",
+      "um22-p214-a",
+      "um22-p239-b",
+      "um22-p235-c",
+      "um22-p221-a"
+    ]
+  },
+  {
+    "id": "round-15-the-long-necked-lagoon",
+    "title": "The Long-Necked Lagoon",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/the-long-necked-lagoon.png",
+    "alt": "Pencil landscape: A quiet lagoon gathers a long-necked watcher, an expressive fish and an unusual company around a small oval cat garden.",
+    "description": "A quiet lagoon gathers a long-necked watcher, an expressive fish and an unusual company around a small oval cat garden.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p198-a",
+      "um22-p199-a",
+      "um22-p182-a",
+      "um22-p213-a",
+      "um22-p229-a",
+      "um22-p235-a",
+      "um22-p235-b",
+      "um22-p238-a"
+    ]
+  },
+  {
+    "id": "round-15-the-clearing-cafe",
+    "title": "The Clearing Cafe",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/the-clearing-cafe.png",
+    "alt": "Pencil landscape: A tall-hatted host and an upright dog gather beneath a leafy tree, joined by a square owl and a grinning pig, with a spotted stand, a coffee cup and a waiting guitar.",
+    "description": "A tall-hatted host and an upright dog gather beneath a leafy tree, joined by a square owl and a grinning pig, with a spotted stand, a coffee cup and a waiting guitar.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p150-c",
+      "um22-p150-a",
+      "um22-p150-b",
+      "um22-p108-a",
+      "um22-p081-a",
+      "um22-p128-a",
+      "um22-p138-a",
+      "um22-p127-a"
+    ]
+  },
+  {
+    "id": "round-15-tidepool-of-the-watchful-eye",
+    "title": "Tidepool of the Watchful Eye",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/tidepool-of-the-watchful-eye.png",
+    "alt": "Pencil landscape: Strange aquatic creatures gather in clear terraced pools beneath a watchful pencil eye.",
+    "description": "Strange aquatic creatures gather in clear terraced pools beneath a watchful pencil eye.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p248-b",
+      "um22-p269-a",
+      "um22-p269-b",
+      "um22-p269-c",
+      "um22-p268-a",
+      "um22-p268-e",
+      "um22-p264-a",
+      "um22-p294-a"
+    ]
+  },
+  {
+    "id": "round-15-the-windmill-way",
+    "title": "The Windmill Way",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-15/the-windmill-way.png",
+    "alt": "Pencil landscape: A shaggy traveler follows a windmill path through a valley of unusual trees and a distant cabin.",
+    "description": "A shaggy traveler follows a windmill path through a valley of unusual trees and a distant cabin.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "15",
+    "sourceIds": [
+      "um22-p241-a",
+      "um22-p246-a",
+      "um22-p272-a",
+      "um22-p268-b",
+      "um22-p265-a",
+      "um22-p279-a",
+      "um22-p279-b",
+      "um22-p279-c"
+    ]
+  }
+]

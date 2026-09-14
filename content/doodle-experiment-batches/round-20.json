@@ -1,0 +1,82 @@
+[
+  {
+    "id": "round-20-this-is-fine",
+    "title": "This Is Fine",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-20/this-is-fine-poster.png",
+    "alt": "A wide-eared gentleman holds his mug as flames rise around him, staying remarkably composed.",
+    "description": "The notebook's mug-holding gentleman keeps his cool in a loop inspired by This Is Fine.",
+    "image": { "width": 640, "height": 480 },
+    "round": "20",
+    "sourceIds": ["fn22-p080-b"],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-20/this-is-fine.mp4",
+      "gif": "/cromblog/doodle-experiments/round-20/this-is-fine.gif",
+      "durationSeconds": 5
+    }
+  },
+  {
+    "id": "round-20-hedge-retreat",
+    "title": "A Quiet Exit",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-20/hedge-retreat-poster.png",
+    "alt": "A round-eared character giving a peace sign retreats into a leafy hedge and disappears.",
+    "description": "A round-eared notebook character takes the discreet way out, inspired by Homer's hedge retreat.",
+    "image": { "width": 640, "height": 480 },
+    "round": "20",
+    "sourceIds": ["jm26-p009-a"],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-20/hedge-retreat.mp4",
+      "gif": "/cromblog/doodle-experiments/round-20/hedge-retreat.gif",
+      "durationSeconds": 5
+    }
+  },
+  {
+    "id": "round-20-confused-bird",
+    "title": "Where Is Everybody?",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-20/confused-bird-poster.png",
+    "alt": "An angular bird in a suit looks around an empty room, puzzled about where everyone went.",
+    "description": "The suited bird searches for company in a loop inspired by the Confused Travolta meme.",
+    "image": { "width": 640, "height": 480 },
+    "round": "20",
+    "sourceIds": ["fn22-p080-e"],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-20/confused-bird.mp4",
+      "gif": "/cromblog/doodle-experiments/round-20/confused-bird.gif",
+      "durationSeconds": 5
+    }
+  },
+  {
+    "id": "round-20-double-take",
+    "title": "The Double Take",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-20/double-take-poster.png",
+    "alt": "A shaggy face with huge eyes and a bow tie blinks in disbelief.",
+    "description": "A huge-eyed notebook face processes the news, inspired by the blinking reaction meme.",
+    "image": { "width": 640, "height": 480 },
+    "round": "20",
+    "sourceIds": ["jj25-p056-a"],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-20/double-take.mp4",
+      "gif": "/cromblog/doodle-experiments/round-20/double-take.gif",
+      "durationSeconds": 5
+    }
+  },
+  {
+    "id": "round-20-a-toast",
+    "title": "A Toast to That",
+    "kind": "Animation",
+    "src": "/cromblog/doodle-experiments/round-20/a-toast-poster.png",
+    "alt": "A dapper cat in a suit raises a glass in a celebratory toast.",
+    "description": "The dapper notebook cat raises a glass in a loop inspired by the Gatsby toast meme.",
+    "image": { "width": 640, "height": 480 },
+    "round": "20",
+    "sourceIds": ["jm26-p005-b"],
+    "animation": {
+      "mp4": "/cromblog/doodle-experiments/round-20/a-toast.mp4",
+      "gif": "/cromblog/doodle-experiments/round-20/a-toast.gif",
+      "durationSeconds": 5
+    }
+  }
+]

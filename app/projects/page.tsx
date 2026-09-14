@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
+import { doodleVibeMarks } from "@/content/doodle-vibe";
 import {
   blogPosts,
   isPublishedPost,
@@ -47,9 +48,10 @@ export default function ProjectsPage() {
   return (
     <div className="content-flow">
       <SectionHeading
+        doodle={doodleVibeMarks.projects}
         eyebrow="Projects"
         title="Projects"
-        description="A collection of featured applications and writing."
+        description="Software, games, robotics, writing, and experiments in art."
       />
 
       <section className="projects-grid">

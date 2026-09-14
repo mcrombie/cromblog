@@ -1,0 +1,92 @@
+[
+  {
+    "id": "round-22-tidal-observatory",
+    "title": "The Tidal Observatory",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-lab/01-tidal-observatory.png",
+    "alt": "A caped rabbit and a one-eyed gentleman align a brass tide instrument among sculptural towers above a bright turquoise sea.",
+    "description": "A caped rabbit and a one-eyed gentleman align a brass tide instrument among sculptural towers above a bright turquoise sea.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "22",
+    "sourceIds": [
+      "caped-rabbit-01",
+      "one-eyed-gentleman-01",
+      "jj25-p106-a"
+    ]
+  },
+  {
+    "id": "round-22-glasshouse-monsoon",
+    "title": "Glasshouse After Rain",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-lab/02-glasshouse-monsoon.png",
+    "alt": "A wooden leaf-hatted robot directs a raindrop toward a fern beside a spiral-shelled snail in a luminous botanical glasshouse.",
+    "description": "A wooden leaf-hatted robot directs a raindrop toward a fern beside a spiral-shelled snail in a luminous botanical glasshouse.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "22",
+    "sourceIds": [
+      "ma24-p208-a",
+      "sm2324-p012-a",
+      "um22-p018-c"
+    ]
+  },
+  {
+    "id": "round-22-cinder-procession",
+    "title": "The Cinder Procession",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-lab/03-cinder-procession.png",
+    "alt": "A bow-tied crocodile and a striped-hat bird wizard carry a small green seedling through monumental terracotta ridges.",
+    "description": "A bow-tied crocodile and a striped-hat bird wizard carry a small green seedling through monumental terracotta ridges.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "22",
+    "sourceIds": [
+      "bow-tied-crocodile-01",
+      "jj25-p021-a",
+      "fn22-p013-a"
+    ]
+  },
+  {
+    "id": "round-22-winter-archive",
+    "title": "The Winter Archive",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-lab/04-winter-archive.png",
+    "alt": "An antlered deer and an eccentric shaggy owl study an autumn leaf in a folio beside a snowbound manor archive.",
+    "description": "An antlered deer and an eccentric shaggy owl study an autumn leaf in a folio beside a snowbound manor archive.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "22",
+    "sourceIds": [
+      "ma24-p014-a",
+      "ma24-p142-a",
+      "sm2324-p152-a"
+    ]
+  },
+  {
+    "id": "round-22-midnight-estuary",
+    "title": "The Midnight Estuary",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-lab/05-midnight-estuary.png",
+    "alt": "An antlered canoe paddler reaches toward the branching whiskers of a giant fish beneath stars in a luminous estuary.",
+    "description": "An antlered canoe paddler reaches toward the branching whiskers of a giant fish beneath stars in a luminous estuary.",
+    "image": {
+      "width": 1671,
+      "height": 941
+    },
+    "round": "22",
+    "sourceIds": [
+      "jj25-p146-a",
+      "aa23-p078-a",
+      "jj25-p038-a"
+    ]
+  }
+]

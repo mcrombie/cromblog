@@ -1,0 +1,25 @@
+[
+  {
+    "id": "round-16-the-last-light-in-the-hidden-garden",
+    "title": "The Last Light in the Hidden Garden",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-16/the-last-light-in-the-hidden-garden.png",
+    "alt": "Pencil garden at sunset: A striped-hat bird wizard and leaf-eared cat gather beside a luminous pool, sheltered by richly grained trees and quiet, watchful creatures.",
+    "description": "A striped-hat bird wizard and leaf-eared cat gather beside a luminous pool, sheltered by richly grained trees and quiet, watchful creatures.",
+    "image": {
+      "width": 1672,
+      "height": 941
+    },
+    "round": "16",
+    "sourceIds": [
+      "jm26-p003-a",
+      "jj2526-p108-a",
+      "jj25-p021-a",
+      "jm26-p197-a",
+      "jj2526-p197-a",
+      "fn22-p065-a",
+      "sm2324-p117-a",
+      "um22-p198-a"
+    ]
+  }
+]

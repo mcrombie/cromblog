@@ -1,0 +1,320 @@
+.art-showcase {
+  --showcase-paper: #fbfaf6;
+  padding-top: 0.5rem;
+}
+
+.art-showcase-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 0.5rem 0 1.5rem;
+}
+
+.art-showcase-kicker {
+  margin: 0 0 0.7rem;
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.art-showcase-inventory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.art-showcase-intro > .art-showcase-kicker {
+  margin: 0;
+}
+
+.art-showcase-inventory > span {
+  opacity: 0.5;
+}
+
+.art-showcase-section {
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.art-showcase-section-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: end;
+  gap: 1rem 2rem;
+  margin-bottom: 1.6rem;
+}
+
+.art-showcase-section-heading h2 {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+  line-height: 1.2;
+}
+
+.art-showcase-section-heading > p {
+  max-width: 37ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.art-showcase-drawings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.7rem 1.15rem;
+}
+
+.art-showcase-drawing,
+.art-showcase-scene {
+  min-width: 0;
+  margin: 0;
+}
+
+.art-showcase-drawing-link,
+.art-showcase-scene-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.art-showcase-paper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(13rem, 20vw, 18rem);
+  padding: clamp(1rem, 2vw, 1.8rem);
+  border: 1px solid var(--border-soft);
+  background: var(--showcase-paper);
+  box-shadow: 0 2px 7px rgb(0 0 0 / 3%);
+}
+
+.art-showcase-paper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.art-showcase-open {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgb(37 38 32 / 16%);
+  background: rgb(251 250 246 / 95%);
+  color: #3f463b;
+  font-size: 0.68rem;
+  line-height: 1.2;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.art-showcase-drawing-link:is(:hover, :focus-visible) .art-showcase-open,
+.art-showcase-scene-link:is(:hover, :focus-visible) .art-showcase-open {
+  opacity: 1;
+}
+
+.art-showcase-drawing-link:focus-visible,
+.art-showcase-scene-link:focus-visible,
+.art-showcase-archive-link:focus-visible {
+  outline: 2px solid var(--brass-bright);
+  outline-offset: 5px;
+}
+
+.art-showcase-caption {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 0.8rem;
+}
+
+.art-showcase-number {
+  padding-top: 0.1rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.art-showcase-caption h3,
+.art-showcase-scene-caption h3 {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.art-showcase-caption p {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.art-showcase-archive-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.art-showcase-archive-link:hover {
+  border-bottom-color: var(--brass-bright);
+}
+
+.art-showcase-scenes-section {
+  margin-top: 3.6rem;
+}
+
+.art-showcase-scenes {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: start;
+  gap: 2rem 1.15rem;
+}
+
+.art-showcase-scene {
+  grid-column: span 2;
+}
+
+.art-showcase-scene:nth-child(2),
+.art-showcase-scene:nth-child(3) {
+  grid-column: span 3;
+}
+
+.art-showcase-scene-featured {
+  grid-column: 1 / -1;
+  padding-bottom: 0.65rem;
+}
+
+.art-showcase-scene-link {
+  position: relative;
+  border: 1px solid var(--border-soft);
+  background: var(--showcase-paper);
+}
+
+.art-showcase-scene-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.art-showcase-scene-caption {
+  margin-top: 0.85rem;
+}
+
+.art-showcase-scene-caption > p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.art-showcase-scene-featured .art-showcase-scene-caption {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-top: 1.2rem;
+}
+
+.art-showcase-scene-featured h3 {
+  font-size: 1.5rem;
+}
+
+.art-showcase-scene-featured .art-showcase-scene-caption > p {
+  margin-top: 0;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 899px) {
+  .art-showcase-drawings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .art-showcase-paper {
+    height: 17rem;
+  }
+
+  .art-showcase-scenes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .art-showcase-scene,
+  .art-showcase-scene:nth-child(2),
+  .art-showcase-scene:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .art-showcase-scene-featured,
+  .art-showcase-scene:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 599px) {
+  .art-page .art-tab-list {
+    justify-content: space-between;
+    gap: 0.6rem;
+  }
+
+  .art-page .art-tab {
+    gap: 0.35rem;
+    font-size: 1rem;
+  }
+
+  .art-showcase-section-heading,
+  .art-showcase-scene-featured .art-showcase-scene-caption {
+    grid-template-columns: 1fr;
+  }
+
+  .art-showcase-section-heading > p {
+    max-width: none;
+  }
+
+  .art-showcase-drawings,
+  .art-showcase-scenes {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.8rem;
+  }
+
+  .art-showcase-paper {
+    height: 20rem;
+    padding: 1.6rem;
+  }
+
+  .art-showcase-scenes-section {
+    margin-top: 2.8rem;
+  }
+}
+
+@media (hover: none) {
+  .art-showcase-open { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-showcase-open { transition: none; }
+}
+
+@media print {
+  .art-showcase-drawing,
+  .art-showcase-scene { break-inside: avoid; }
+  .art-showcase-open,
+  .art-showcase-archive-link { display: none; }
+}

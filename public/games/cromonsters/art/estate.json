@@ -1,0 +1,818 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.10.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 20,
+  "height": 15,
+  "tilewidth": 16,
+  "tileheight": 16,
+  "infinite": false,
+  "nextlayerid": 2,
+  "nextobjectid": 1,
+  "layers": [
+    {
+      "id": 1,
+      "name": "Ground",
+      "type": "tilelayer",
+      "x": 0,
+      "y": 0,
+      "width": 20,
+      "height": 15,
+      "visible": true,
+      "opacity": 1,
+      "data": [
+        27,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        33,
+        26,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        26,
+        26,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        26,
+        26,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        26,
+        26,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        26,
+        26,
+        3,
+        2,
+        9,
+        4,
+        3,
+        2,
+        1,
+        4,
+        9,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        26,
+        26,
+        2,
+        1,
+        8,
+        15,
+        19,
+        15,
+        15,
+        15,
+        16,
+        19,
+        15,
+        15,
+        15,
+        15,
+        17,
+        3,
+        2,
+        1,
+        26,
+        26,
+        43,
+        43,
+        43,
+        45,
+        6,
+        43,
+        43,
+        2,
+        1,
+        10,
+        3,
+        2,
+        1,
+        4,
+        6,
+        2,
+        1,
+        4,
+        26,
+        26,
+        44,
+        3,
+        42,
+        40,
+        41,
+        42,
+        44,
+        1,
+        4,
+        6,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        26,
+        26,
+        44,
+        2,
+        40,
+        41,
+        42,
+        40,
+        44,
+        37,
+        37,
+        37,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        26,
+        26,
+        44,
+        1,
+        41,
+        42,
+        40,
+        41,
+        44,
+        38,
+        38,
+        38,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        26,
+        26,
+        44,
+        4,
+        42,
+        40,
+        41,
+        42,
+        44,
+        39,
+        39,
+        39,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        26,
+        26,
+        43,
+        43,
+        43,
+        43,
+        43,
+        43,
+        43,
+        1,
+        7,
+        19,
+        15,
+        15,
+        15,
+        13,
+        2,
+        1,
+        4,
+        3,
+        26,
+        26,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        6,
+        1,
+        4,
+        3,
+        2,
+        1,
+        4,
+        3,
+        2,
+        26,
+        24,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        29,
+        43,
+        23,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        30
+      ]
+    }
+  ],
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "name": "estate-tiles",
+      "tilewidth": 16,
+      "tileheight": 16,
+      "spacing": 0,
+      "margin": 0,
+      "columns": 16,
+      "tilecount": 46,
+      "image": "tiles.png",
+      "imagewidth": 256,
+      "imageheight": 48,
+      "tiles": [
+        {
+          "id": 0,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "grass0"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "grass1"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "grass2"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "grass3"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path0"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path1"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path2"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path3"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path4"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path5"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path6"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path7"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path8"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path9"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path10"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path11"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path12"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path13"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path14"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "path15"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge0"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge1"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge2"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge3"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge4"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge5"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge6"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge7"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge8"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge9"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge10"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge11"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge12"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge13"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge14"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "hedge15"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "untilled"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "tilled"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "sown"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "wheat0"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "wheat1"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "wheat2"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "fence-horizontal"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "fence-vertical"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "gate"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "properties": [
+            {
+              "name": "frame",
+              "type": "string",
+              "value": "water"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "worldX",
+      "type": "int",
+      "value": 0
+    },
+    {
+      "name": "worldY",
+      "type": "int",
+      "value": 0
+    }
+  ]
+}

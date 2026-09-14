@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Patrick_Hand } from "next/font/google";
 
 import { RootShell } from "@/components/root-shell";
 import { siteMeta } from "@/content/site";
+import { DEFAULT_DOODLE_DESIGN, DOODLE_DESIGNS, DOODLE_DESIGN_QUERY_KEY, DOODLE_DESIGN_STORAGE_KEY } from "@/lib/doodle-designs";
 import {
   DEFAULT_VIBE,
   VIBES,
@@ -11,6 +13,9 @@ import {
 
 import "./globals.css";
 import "./vibes.css";
+import "./vibe-doodle.css";
+
+const notebookHand = Patrick_Hand({ weight: "400", subsets: ["latin"], display: "swap", variable: "--font-hand", preload: false });
 
 const metadataBase = new URL(
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -65,6 +70,24 @@ const vibeInitializer = `(() => {
       document.documentElement.dataset.vibeControl = "dismissed";
     }
   } catch {}
+
+  try {
+    const validDesigns = ${JSON.stringify(DOODLE_DESIGNS.map(design => design.id))};
+    const queryDesign = new URL(window.location.href).searchParams.get(${JSON.stringify(DOODLE_DESIGN_QUERY_KEY)});
+    let storedDesign;
+    try { storedDesign = window.localStorage.getItem(${JSON.stringify(DOODLE_DESIGN_STORAGE_KEY)}); } catch {}
+    document.documentElement.dataset.doodleDesign = validDesigns.includes(queryDesign)
+      ? queryDesign : validDesigns.includes(storedDesign) ? storedDesign : ${JSON.stringify(DEFAULT_DOODLE_DESIGN)};
+    if (validDesigns.includes(queryDesign)) {
+      document.documentElement.dataset.vibe = "doodle";
+      try {
+        window.localStorage.setItem(${JSON.stringify(DOODLE_DESIGN_STORAGE_KEY)}, queryDesign);
+        window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, "doodle");
+      } catch {}
+    }
+  } catch {
+    document.documentElement.dataset.doodleDesign = ${JSON.stringify(DEFAULT_DOODLE_DESIGN)};
+  }
 })();`;
 
 export default function RootLayout({
@@ -73,7 +96,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-vibe={DEFAULT_VIBE} suppressHydrationWarning>
+    <html lang="en" data-vibe={DEFAULT_VIBE} data-doodle-design={DEFAULT_DOODLE_DESIGN} className={notebookHand.variable} suppressHydrationWarning>
       <head>
         <script
           id="cromblog-vibe-initializer"

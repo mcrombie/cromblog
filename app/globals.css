@@ -522,7 +522,8 @@ summary {
   padding: 0.95rem 1rem;
 }
 
-.doodle-gallery-caption h2 {
+.doodle-gallery-caption h2,
+.doodle-experiment-caption h3 {
   margin: 0;
   color: var(--foreground);
   font-family: var(--font-display);
@@ -1223,6 +1224,80 @@ summary {
   line-height: 1.7;
 }
 
+.doodle-experiment-collections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.65rem;
+}
+
+.doodle-experiment-collection {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.doodle-experiment-collection:hover {
+  border-color: var(--brass-dim);
+  color: var(--foreground);
+}
+
+.doodle-experiment-collection[aria-selected="true"] {
+  border-color: var(--brass);
+  background: var(--panel-raised);
+  color: var(--brass-bright);
+}
+
+.doodle-experiment-collection-count {
+  min-width: 1.6rem;
+  padding: 0.08rem 0.35rem;
+  border-radius: 0.2rem;
+  background: var(--border-soft);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.doodle-experiment-collection-panel[hidden] {
+  display: none;
+}
+
+.doodle-experiment-study-group + .doodle-experiment-study-group {
+  margin-top: 2.6rem;
+}
+
+.doodle-experiment-study-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.doodle-experiment-study-heading h2 {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.doodle-experiment-study-heading > span {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
 .doodle-experiments-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1301,7 +1376,8 @@ summary {
 }
 
 @media print {
-  .art-tab-list {
+  .art-tab-list,
+  .doodle-experiment-collections {
     display: none;
   }
 

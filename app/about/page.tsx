@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { SectionHeading } from "@/components/section-heading";
+import { doodleVibeMarks } from "@/content/doodle-vibe";
 
 export const metadata: Metadata = {
   title: "De Me"
@@ -10,6 +11,7 @@ export default function AboutPage() {
   return (
     <div className="content-flow" lang="la">
       <SectionHeading
+        doodle={doodleVibeMarks.about}
         eyebrow="De Me"
         title="Michael Crombie"
         description="Programmator qui instrumenta interactiva, simulationes experientiasque editorias a fundamentis exstruere solet."

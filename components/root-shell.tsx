@@ -13,6 +13,9 @@ type RootShellProps = {
 export function RootShell({ children }: RootShellProps) {
   const pathname = usePathname();
   const isStandaloneProject =
+    pathname === "/cromblog/doodle-lab" ||
+    pathname.startsWith("/games/cromb-coo-coo") ||
+    pathname.startsWith("/games/cromonsters") ||
     pathname.startsWith("/projects/react-chess") ||
     pathname.startsWith("/projects/phoneme-chart") ||
     pathname.startsWith("/projects/polity") ||

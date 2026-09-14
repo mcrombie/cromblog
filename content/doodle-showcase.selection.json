@@ -1,0 +1,25 @@
+{
+  "drawings": [
+    {"id": "common-flicker-tree-01", "note": "Feather markings and the long vertical line of a tree trunk."},
+    {"id": "raven-01", "note": "An expressive eye and carefully layered feathers."},
+    {"id": "carolina-wren-01", "note": "A small bird, a lifted tail, and a lively perch."},
+    {"id": "scissor-tailed-flycatcher-01", "note": "A spare profile carried by a long, sweeping tail."},
+    {"id": "red-eyed-vireo-01", "note": "A quiet study of posture and proportion."},
+    {"id": "jm26-p030-a", "note": "Bold veins within a familiar maple silhouette."},
+    {"id": "jm26-p036-a", "note": "A few lobed leaves, with plenty of air between them."},
+    {"id": "jj25-p019-a", "note": "A strong ink contour and a small hanging droplet."},
+    {"id": "jj2526-p108-a", "note": "Clouds of foliage rising above a finely drawn trunk."},
+    {"id": "fn22-p034-a", "note": "A bent trunk, shaded crowns, and exposed roots."},
+    {"id": "sm2324-p152-a", "note": "Towers, walled gardens, and a path to an arched gate."},
+    {"id": "crombot-1-01", "note": "A notebook study of the robot at the workbench."}
+  ],
+  "scenes": [
+    {"id": "round-19-the-antler-clearing", "note": "Warm light and a quiet encounter in a winter clearing."},
+    {"id": "round-03-birdsong-assembly", "note": "Bird studies gather in an airy graphite landscape."},
+    {"id": "round-19-one-foot-on-the-river", "note": "A shared task among the roots at the river's edge."},
+    {"id": "round-03-rain-beneath-the-bell", "note": "A botanical drawing becomes a shelter from the rain."},
+    {"id": "round-12-the-windward-terraces", "note": "A broad landscape assembled around terraces, trees, and distant ridges."},
+    {"id": "round-17-the-lantern-appointment", "note": "A small shared gesture in blue night and lantern light."}
+  ],
+  "homeDrawingIds": ["raven-01", "jm26-p030-a", "jj2526-p108-a"]
+}

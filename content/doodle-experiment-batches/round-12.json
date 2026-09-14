@@ -1,0 +1,163 @@
+[
+  {
+    "id": "round-12-the-woodland-supper",
+    "title": "The Woodland Supper",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-woodland-supper.png",
+    "alt": "Pencil landscape: A horned cat and a curious woodland gathering prepare supper beside a quiet stream under a tall leafy tree.",
+    "description": "A horned cat and a curious woodland gathering prepare supper beside a quiet stream under a tall leafy tree.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p001-a",
+      "aa23-p011-a",
+      "aa23-p025-a",
+      "aa23-p026-e",
+      "aa23-p040-a",
+      "aa23-p041-a",
+      "aa23-p041-c",
+      "aa23-p030-a"
+    ]
+  },
+  {
+    "id": "round-12-the-orchard-crossing",
+    "title": "The Orchard Crossing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-orchard-crossing.png",
+    "alt": "Pencil landscape: A leafy-crowned visitor and an eccentric animal company gather where a little orchard path crosses an open valley.",
+    "description": "A leafy-crowned visitor and an eccentric animal company gather where a little orchard path crosses an open valley.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p013-a",
+      "aa23-p022-b",
+      "aa23-p022-d",
+      "aa23-p026-a",
+      "aa23-p031-a",
+      "aa23-p031-e",
+      "aa23-p041-e",
+      "aa23-p042-a"
+    ]
+  },
+  {
+    "id": "round-12-the-leaf-landing",
+    "title": "The Leaf Landing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-leaf-landing.png",
+    "alt": "Pencil landscape: An eye-stalk bug and a square cat gather beside a drifting maple leaf at a quiet village river landing.",
+    "description": "An eye-stalk bug and a square cat gather beside a drifting maple leaf at a quiet village river landing.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p113-c",
+      "aa23-p116-a",
+      "aa23-p088-b",
+      "aa23-p111-b",
+      "aa23-p085-a",
+      "aa23-p086-a",
+      "aa23-p119-a",
+      "aa23-p087-b"
+    ]
+  },
+  {
+    "id": "round-12-the-windward-terraces",
+    "title": "The Windward Terraces",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-windward-terraces.png",
+    "alt": "Pencil landscape: A horned woodland gathering watches a great inked leaf drift across terraces of trees and tall corn.",
+    "description": "A horned woodland gathering watches a great inked leaf drift across terraces of trees and tall corn.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p097-a",
+      "aa23-p101-a",
+      "aa23-p093-d",
+      "aa23-p124-a",
+      "aa23-p091-a",
+      "aa23-p122-a",
+      "aa23-p114-a",
+      "aa23-p117-a"
+    ]
+  },
+  {
+    "id": "round-12-the-quiet-landing",
+    "title": "The Quiet Landing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-quiet-landing.png",
+    "alt": "Pencil landscape: A canoe paddler arrives at a peaceful riverbank where a meditator, a sleepy bird, and a long-nosed gentleman wait among soft pencil foliage.",
+    "description": "A canoe paddler arrives at a peaceful riverbank where a meditator, a sleepy bird, and a long-nosed gentleman wait among soft pencil foliage.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p078-a",
+      "aa23-p055-a",
+      "aa23-p047-a",
+      "aa23-p062-a",
+      "aa23-p057-a",
+      "aa23-p053-a",
+      "aa23-p058-a",
+      "aa23-p082-b"
+    ]
+  },
+  {
+    "id": "round-12-the-hillside-balancing-act",
+    "title": "The Hillside Balancing Act",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-hillside-balancing-act.png",
+    "alt": "Pencil landscape: A dog balances on its ball while an eccentric audience gathers among leafy hillside terraces.",
+    "description": "A dog balances on its ball while an eccentric audience gathers among leafy hillside terraces.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p158-a",
+      "aa23-p153-a",
+      "aa23-p162-a",
+      "aa23-p162-b",
+      "aa23-p159-a",
+      "aa23-p147-b",
+      "aa23-p161-a",
+      "aa23-p149-a"
+    ]
+  },
+  {
+    "id": "round-12-the-leafway-rest",
+    "title": "The Leafway Rest",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-12/the-leafway-rest.png",
+    "alt": "Pencil landscape: Leaf-headed travelers and a spiral gentleman pause with a shaggy dog beside a winding garden path.",
+    "description": "Leaf-headed travelers and a spiral gentleman pause with a shaggy dog beside a winding garden path.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "12",
+    "sourceIds": [
+      "aa23-p131-a",
+      "aa23-p128-a",
+      "aa23-p146-a",
+      "aa23-p150-a",
+      "aa23-p157-a",
+      "aa23-p155-a",
+      "aa23-p144-a",
+      "aa23-p161-b"
+    ]
+  }
+]

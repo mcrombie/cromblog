@@ -1,0 +1,163 @@
+[
+  {
+    "id": "round-13-the-reedbank-crossing",
+    "title": "The Reedbank Crossing",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-reedbank-crossing.png",
+    "alt": "Pencil landscape: Two frogs and a mushroom rider meet beside a quiet marsh, where a curious leafy loop frames the distant water.",
+    "description": "Two frogs and a mushroom rider meet beside a quiet marsh, where a curious leafy loop frames the distant water.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p001-a",
+      "na2223-p006-a",
+      "na2223-p010-a",
+      "na2223-p010-b",
+      "na2223-p018-a",
+      "na2223-p024-a",
+      "na2223-p025-a",
+      "na2223-p002-a"
+    ]
+  },
+  {
+    "id": "round-13-the-hillside-gift",
+    "title": "The Hillside Gift",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-hillside-gift.png",
+    "alt": "Pencil landscape: An elf, a turkey, and an odd animal company gather around a little wrapped gift on a terraced hillside.",
+    "description": "An elf, a turkey, and an odd animal company gather around a little wrapped gift on a terraced hillside.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p003-a",
+      "na2223-p004-a",
+      "na2223-p005-a",
+      "na2223-p008-a",
+      "na2223-p010-c",
+      "na2223-p010-d",
+      "na2223-p013-a",
+      "na2223-p031-a"
+    ]
+  },
+  {
+    "id": "round-13-the-watchmakers-meadow",
+    "title": "The Watchmaker’s Meadow",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-watchmakers-meadow.png",
+    "alt": "Pencil landscape: A small wizard and hat-wearing creatures gather around an open pocket watch in a quiet meadow beneath a wind-swept tree.",
+    "description": "A small wizard and hat-wearing creatures gather around an open pocket watch in a quiet meadow beneath a wind-swept tree.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p094-a",
+      "na2223-p099-a",
+      "na2223-p073-a",
+      "na2223-p077-a",
+      "na2223-p071-a",
+      "na2223-p082-a",
+      "na2223-p079-a",
+      "na2223-p098-d"
+    ]
+  },
+  {
+    "id": "round-13-the-low-tide-promenade",
+    "title": "The Low-Tide Promenade",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-low-tide-promenade.png",
+    "alt": "Pencil landscape: A caped traveller, heart-headed gentleman and many-eyed creature pause above shallow pools on a broad, quiet coast.",
+    "description": "A caped traveller, heart-headed gentleman and many-eyed creature pause above shallow pools on a broad, quiet coast.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p075-a",
+      "na2223-p098-a",
+      "na2223-p084-a",
+      "na2223-p085-a",
+      "na2223-p074-a",
+      "na2223-p080-a",
+      "na2223-p098-b",
+      "na2223-p098-c"
+    ]
+  },
+  {
+    "id": "round-13-the-pear-garden-rehearsal",
+    "title": "The Pear Garden Rehearsal",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-pear-garden-rehearsal.png",
+    "alt": "Pencil landscape: A curly-haired flautist rehearses in a quiet pear garden while peculiar rabbits, a grinning pencil, a shell-backed ant and a sleepy bird gather around a wooden planter.",
+    "description": "A curly-haired flautist rehearses in a quiet pear garden while peculiar rabbits, a grinning pencil, a shell-backed ant and a sleepy bird gather around a wooden planter.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p065-a",
+      "na2223-p036-a",
+      "na2223-p045-a",
+      "na2223-p046-a",
+      "na2223-p048-a",
+      "na2223-p052-a",
+      "na2223-p056-a",
+      "na2223-p056-b"
+    ]
+  },
+  {
+    "id": "round-13-the-plateau-players",
+    "title": "The Plateau Players",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-plateau-players.png",
+    "alt": "Pencil landscape: A bird musician and dancing companions rehearse on an open hillside beside an enormous mug and a tiny curling flame.",
+    "description": "A bird musician and dancing companions rehearse on an open hillside beside an enormous mug and a tiny curling flame.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p107-a",
+      "na2223-p111-a",
+      "na2223-p110-a",
+      "na2223-p101-a",
+      "na2223-p118-a",
+      "na2223-p124-a",
+      "na2223-p124-b",
+      "na2223-p128-a"
+    ]
+  },
+  {
+    "id": "round-13-the-spiral-sanctuary",
+    "title": "The Spiral Sanctuary",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-13/the-spiral-sanctuary.png",
+    "alt": "Pencil landscape: A spiral sanctuary draws a bucket-carrying ghost and an eccentric gathering of creatures to a quiet terraced valley.",
+    "description": "A spiral sanctuary draws a bucket-carrying ghost and an eccentric gathering of creatures to a quiet terraced valley.",
+    "image": {
+      "width": 1774,
+      "height": 887
+    },
+    "round": "13",
+    "sourceIds": [
+      "na2223-p108-a",
+      "na2223-p127-a",
+      "na2223-p113-a",
+      "na2223-p116-a",
+      "na2223-p117-a",
+      "na2223-p119-a",
+      "na2223-p130-a",
+      "na2223-p121-a"
+    ]
+  }
+]

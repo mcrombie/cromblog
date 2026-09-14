@@ -76,7 +76,12 @@ placements, semantics, tags, and source provenance recorded in
 configured placement against the asset catalog. Keep the original notebook
 photographs outside `public`.
 
-The restored `/art` route is **Doodle Lab**. Its growing catalog in
+The restored `/art` route is **Doodle Lab**. Its default **Showcase** tab
+opens with twelve hand-picked originals and six
+scenes; **Drawings** and **Experiments** retain the full collections. The
+selection is maintained in `content/doodle-showcase.selection.json`; run
+`node scripts/build-doodle-showcase.cjs` after editing it, and use `--check`
+to verify its lightweight generated metadata. The full catalog in
 `content/doodle-catalog.ts` includes every published extraction, with selected,
 texture, archive and all-drawings views, batch/subject filters, search and full-size
 previews. The earlier reviewed descriptions in `content/art.ts` remain intact.
@@ -129,15 +134,21 @@ checks described in the Doodle Lab guide.
 
 The `Doodle Lab` vibe is the final entry in `lib/vibes.ts` and the default
 for visitors without a saved preference, so cycling forward from it reaches
-Professional. It uses the less-formal characters as a restrained working-notebook layer.
-Ambient art is mounted inside `SiteShell`, so it never leaks into standalone
-apps or viewers. The floating vibe control steps in either direction; the
-native picker remains available wherever the inline control is mounted. Keep
-new Doodle Lab art deterministic and cataloged rather than choosing it randomly
-at render time. Only selected drawings and botanical textures enter the ambient
-layer; archived studies are browseable in Art. Art itself and standalone apps
-keep the ambient layer disabled, and narrow screens hide the additional margin
-drawings.
+Professional. It uses naturalistic bird studies as a restrained notebook layer.
+Its sidebar design selector offers **Field Notebook**, following the notebook
+design plan, and **Original Strokes**, a quieter version that foregrounds the
+original drawings. The choice persists across pages and reloads. The floating
+vibe control steps in either direction and can be dismissed and restored.
+Deterministic, cataloged originals supply the route specimens, heading marks,
+and footer meadow. Mobile keeps a smaller meadow; Art and standalone apps omit
+ambient decorations. Archived studies remain browseable in Art, and the Future
+GIF experiments have their own collection tab.
+
+The small `content/doodle-vibe.ts` registry keeps the full art catalog out of the
+shared layout. Run `npm run doodles:vibe` to rebuild its original-alpha PNG
+derivatives, or `npm run doodles:vibe:check` to verify them. See the
+[Doodle Lab guide](art-source/DOODLE-LAB.md) and
+[design implementation notes](art-source/doodle-vibe-redesign/IMPLEMENTATION.md).
 
 ## Blog Style
 
