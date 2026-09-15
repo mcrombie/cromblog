@@ -62,6 +62,22 @@ html[data-vibe="doodle"] .site-sidebar {
 html[data-vibe="doodle"] .site-sidebar { background-color: var(--panel-raised); }
 html[data-vibe="doodle"] .site-main::before { background: var(--border-soft); }
 
+/* A dense field of original notebook doodles fills the page behind the paper panels.
+ * The tile comes from scripts/build-doodle-vibe-pattern.py; rebuild it after changing the cast. */
+html[data-vibe="doodle"] .site-sidebar { isolation: isolate; }
+html[data-vibe="doodle"] :is(.site-main, .site-sidebar)::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: var(--doodle-ink);
+  opacity: 0.2;
+  -webkit-mask: url("/cromblog/doodle-vibe/pattern-tile.png") 0 0 / 46.875rem repeat;
+  mask: url("/cromblog/doodle-vibe/pattern-tile.png") 0 0 / 46.875rem repeat;
+}
+html[data-vibe="doodle"] .site-sidebar::after { opacity: 0.12; }
+
 html[data-vibe="doodle"] :is(.home-hero, .surface-panel, .editorial-panel, .home-panel, .post-card, .project-card, .art-card, .featured-project-card) {
   border-color: var(--border);
   background: var(--panel);
@@ -133,27 +149,55 @@ html[data-vibe="doodle"] .site-nav-link:hover .nav-label::after { opacity: 0.4; 
 html[data-vibe="doodle"] .site-nav-link.is-active .nav-label::after { opacity: 1; }
 html[data-vibe="doodle"] .sidebar-note { color: var(--muted); }
 
-/* The two designs share a small, persistent comparison control. */
+/* The two designs share a small, persistent comparison control, styled to match the Vibe switcher above it. */
 html[data-vibe="doodle"] .doodle-design-switch {
   display: grid;
-  gap: 0.4rem;
+  gap: 0.55rem;
   margin: 1.35rem 0 0;
-  padding-top: 1rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--border-soft);
   color: var(--copy);
   font-size: 0.74rem;
 }
-html[data-vibe="doodle"] .doodle-design-switch label { font-weight: 650; }
+html[data-vibe="doodle"] .doodle-design-switch label {
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+html[data-vibe="doodle"] .doodle-design-select { position: relative; display: block; min-width: 0; }
+html[data-vibe="doodle"] .doodle-design-select::after {
+  position: absolute;
+  top: 50%;
+  right: 0.95rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  color: var(--muted);
+  content: "";
+  pointer-events: none;
+  transform: translateY(-70%) rotate(45deg);
+}
 html[data-vibe="doodle"] .doodle-design-switch select {
   width: 100%;
   min-height: 2.75rem;
-  padding: 0.5rem 0.6rem;
+  padding: 0.55rem 2.4rem 0.55rem 0.85rem;
   border: 1px solid var(--border);
-  border-radius: 0.2rem;
-  background: var(--panel);
-  color: var(--bone);
-  font: inherit;
+  border-radius: 0.55rem;
+  background: var(--panel-strong);
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
+html[data-vibe="doodle"] .doodle-design-switch select:hover { border-color: var(--brass-dim); }
 html[data-vibe="doodle"] .doodle-restore-controls {
   display: none;
   min-height: 2.5rem;
@@ -466,6 +510,7 @@ html[data-vibe="doodle"][data-doodle-design="original-strokes"] .sidebar-ornamen
   html[data-vibe="doodle"] .doodle-meadow,
   html[data-vibe="doodle"] .sidebar-sprig,
   html[data-vibe="doodle"] .doodle-article-rail,
+  html[data-vibe="doodle"] :is(.site-main, .site-sidebar)::after,
   html[data-vibe="doodle"] :is(.sidebar-ornament, .printer-rule)::after,
   html[data-vibe="doodle"] .site-nav-link .nav-label::after { display: none !important; }
   html[data-vibe="doodle"] :is(article.content-flow hr, .article-prose hr) { height: 0; border-top: 1px solid currentColor; background: none; mask: none; -webkit-mask: none; }

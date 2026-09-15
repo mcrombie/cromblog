@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState, type ChangeEvent } from "react";
 import { DOODLE_DESIGN_QUERY_KEY } from "@/lib/doodle-designs";
+import styles from "./vibe-navigation.module.css";
 
 import {
   DEFAULT_VIBE,
@@ -9,6 +10,7 @@ import {
   VIBES,
   VIBE_CHANGE_EVENT,
   VIBE_DISMISSED_SESSION_KEY,
+  VIBE_QUERY_KEY,
   VIBE_STORAGE_KEY,
   type VibeId
 } from "@/lib/vibes";
@@ -19,7 +21,7 @@ function setDocumentVibe(vibe: VibeId) {
 }
 
 type VibeCycleButtonProps = {
-  variant?: "floating" | "inline";
+  variant?: "floating" | "inline" | "navigation";
 };
 
 export function VibeCycleButton({
@@ -87,8 +89,9 @@ export function VibeCycleButton({
     const nextOption = VIBES.find((option) => option.id === nextVibe) ?? VIBES[0];
 
     const url = new URL(window.location.href);
-    if (url.searchParams.has(DOODLE_DESIGN_QUERY_KEY)) {
+    if (url.searchParams.has(DOODLE_DESIGN_QUERY_KEY) || url.searchParams.has(VIBE_QUERY_KEY)) {
       url.searchParams.delete(DOODLE_DESIGN_QUERY_KEY);
+      url.searchParams.delete(VIBE_QUERY_KEY);
       window.history.replaceState(window.history.state, "", url);
     }
 
@@ -133,6 +136,22 @@ export function VibeCycleButton({
     } catch {
       // Dismissal still applies until the page is reloaded.
     }
+  }
+
+  // This permanent entry point deliberately has no floating-control classes:
+  // footer positioning and a dismissed widget must never hide theme selection.
+  if (variant === "navigation") {
+    return (
+      <div className={`${styles.navigation} vibe-navigation`}>
+        <label className={styles.label} htmlFor={pickerId}>Vibe</label>
+        <span className={styles.selectWrap}>
+          <select id={pickerId} className={styles.select} value={resolvedVibe} onChange={chooseVibe}>
+            {VIBES.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
+          </select>
+        </span>
+        <span className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</span>
+      </div>
+    );
   }
 
   return (

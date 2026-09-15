@@ -9,6 +9,11 @@ import styles from "./post.module.css";
 
 const post = blogPosts["cromonsters"];
 const media = "/cromblog/cromonsters";
+// Keep the original announcement's social preview tied to its historical playtest.
+const originalPreview = {
+  src: `${media}/test-2-poster.jpg`,
+  alt: "Cromonsters! gameplay with a muted four-shade palette and original pixel-art creatures"
+};
 
 export const metadata: Metadata = {
   title: post.title,
@@ -17,13 +22,13 @@ export const metadata: Metadata = {
     type: "article",
     title: post.title,
     description: post.summary,
-    images: [{ url: post.image.src, width: 1280, height: 720, alt: post.image.alt }]
+    images: [{ url: originalPreview.src, width: 1280, height: 720, alt: originalPreview.alt }]
   },
   twitter: {
     card: "summary_large_image",
     title: post.title,
     description: post.summary,
-    images: [post.image.src]
+    images: [originalPreview.src]
   }
 };
 

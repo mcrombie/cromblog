@@ -14,10 +14,11 @@ import {
   type ExperimentCollection
 } from "@/lib/doodle-experiment-collections";
 
-function ExperimentGrid({ entries, onOpen, grouped = false }: {
+function ExperimentGrid({ entries, onOpen, grouped = false, fullWidth = false }: {
   entries: readonly DoodleExperiment[];
   onOpen: (entry: DoodleExperiment) => void;
   grouped?: boolean;
+  fullWidth?: boolean;
 }) {
   const Heading = grouped ? "h3" : "h2";
 
@@ -36,7 +37,7 @@ function ExperimentGrid({ entries, onOpen, grouped = false }: {
               alt={entry.alt}
               width={entry.image.width}
               height={entry.image.height}
-              sizes="(max-width: 767px) 90vw, (max-width: 1279px) 43vw, 480px"
+              sizes={fullWidth ? "(max-width: 1279px) 90vw, 1000px" : "(max-width: 767px) 90vw, (max-width: 1279px) 43vw, 480px"}
               quality={90}
               className="doodle-experiment-image"
             />
@@ -103,16 +104,16 @@ export function DoodleExperiments({ entries, description }: {
   entries: readonly DoodleExperiment[];
   description: string;
 }) {
-  const { twoCharacterScenes, futureStudies, memeGifs, scenic, characterStudies } = groupDoodleExperiments(entries);
+  const { twoCharacterScenes, futureStudies, memeGifs, comics, scenic, characterStudies } = groupDoodleExperiments(entries);
   const hasCharacterStudies = characterStudies.length > 0;
-  const hasCollections = hasCharacterStudies || scenic.length > 0 || futureStudies.length > 0 || memeGifs.length > 0;
+  const hasCollections = hasCharacterStudies || scenic.length > 0 || comics.length > 0 || futureStudies.length > 0 || memeGifs.length > 0;
   const [activeCollection, setActiveCollection] = useState<ExperimentCollection>(
     hasCharacterStudies ? "character-studies" : "all"
   );
   const [selected, setSelected] = useState<DoodleExperiment | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const collectionButtons = useRef<Partial<Record<ExperimentCollection, HTMLButtonElement | null>>>({});
-  const collectionEntries = { all: entries, scenic, "character-studies": characterStudies, "future-studies": futureStudies, "meme-gifs": memeGifs };
+  const collectionEntries = { all: entries, scenic, comics, "character-studies": characterStudies, "future-studies": futureStudies, "meme-gifs": memeGifs };
   const visibleEntries = collectionEntries[activeCollection];
   const selectedIndex = selected ? visibleEntries.findIndex((entry) => entry.id === selected.id) : -1;
 
@@ -213,6 +214,18 @@ export function DoodleExperiments({ entries, description }: {
           className="doodle-experiment-collection-panel"
         >
           <ExperimentGrid entries={scenic} onOpen={setSelected} />
+        </div>
+      ) : null}
+      {hasCollections ? (
+        <div
+          id="experiment-panel-comics"
+          role="tabpanel"
+          aria-labelledby="experiment-tab-comics"
+          hidden={activeCollection !== "comics"}
+          tabIndex={0}
+          className="doodle-experiment-collection-panel doodle-experiment-comics"
+        >
+          <ExperimentGrid entries={comics} onOpen={setSelected} fullWidth />
         </div>
       ) : null}
       {hasCollections ? (

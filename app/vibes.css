@@ -381,15 +381,16 @@ html[data-vibe="professional"] .site-ambient {
   display: none;
 }
 
+/* The header scrolls with the page: once it carried the vibe picker it was too tall to pin. */
 html[data-vibe="professional"] .site-sidebar {
-  position: sticky;
+  position: relative;
   z-index: 20;
   inset: auto;
-  top: 0.75rem;
+  top: auto;
   display: grid;
   width: auto;
   height: auto;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: clamp(1.5rem, 4vw, 4rem);
   overflow: visible;
@@ -399,6 +400,20 @@ html[data-vibe="professional"] .site-sidebar {
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 12px 35px rgba(25, 49, 57, 0.08);
   backdrop-filter: blur(18px);
+}
+
+/* One header row: navigation, then a compact inline vibe picker. The ornament wrapper holds no content here. */
+html[data-vibe="professional"] .site-sidebar > div:has(> .sidebar-ornament) {
+  display: none;
+}
+
+html[data-vibe="professional"] .vibe-navigation {
+  width: auto;
+  max-width: none;
+  margin-top: 0;
+  grid-template-columns: auto minmax(10.5rem, 12.5rem);
+  align-items: center;
+  column-gap: 0.7rem;
 }
 
 html[data-vibe="professional"] .site-brand {

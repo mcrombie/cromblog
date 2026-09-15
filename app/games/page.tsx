@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
 import { doodleVibeMarks } from "@/content/doodle-vibe";
+import { gameArt } from "@/content/game-art";
 
 export const metadata: Metadata = {
   title: "Games",
@@ -156,10 +157,8 @@ export default function GamesPage() {
             </div>
             <div className="project-image-bay">
               <Image
-                src="/cromblog/clio/clio-demo-poster.jpg"
-                alt="Clio's hex map and strategy interface"
-                width={1920}
-                height={1080}
+                {...gameArt.clio}
+                alt={gameArt.clio.alt}
                 sizes="(min-width: 1280px) 40vw, (min-width: 768px) 50vw, 100vw"
                 className="project-image"
               />
@@ -215,10 +214,8 @@ export default function GamesPage() {
             </div>
             <div className="project-image-bay">
               <Image
-                src="/cromblog/cromonsters/test-2-poster.jpg"
-                alt="Cromonsters gameplay from its second playtest"
-                width={1920}
-                height={1080}
+                {...gameArt.cromonsters}
+                alt={gameArt.cromonsters.alt}
                 sizes="(min-width: 1280px) 40vw, (min-width: 768px) 50vw, 100vw"
                 className="project-image"
               />

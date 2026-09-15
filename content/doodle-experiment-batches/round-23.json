@@ -1,0 +1,21 @@
+[
+  {
+    "id": "round-23-crombot-scenic-route",
+    "title": "Crombot Takes the Scenic Route",
+    "kind": "Comic",
+    "src": "/cromblog/doodle-experiments/round-23/crombot-scenic-route.png",
+    "alt": "A four-panel comic follows Crombot, a handmade robot car with twin sensor eyes and looping wires, as he avoids a spiral-shelled snail, meets a leaf-hatted figure, and gives the snail a lift through a botanical world.",
+    "description": "A small detour becomes a new friendship. Crombot meets a leaf-hatted gardener and a snail with somewhere to be.",
+    "image": {
+      "width": 1448,
+      "height": 1086
+    },
+    "round": "23",
+    "sourceIds": [
+      "crombot-1-01",
+      "ma24-p208-a",
+      "sm2324-p012-a",
+      "um22-p018-c"
+    ]
+  }
+]

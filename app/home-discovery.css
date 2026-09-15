@@ -1,62 +1,110 @@
-.home-entrances {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-block: 1px solid var(--border);
-}
-.home-entrance {
-  display: grid;
-  align-content: start;
-  gap: .65rem;
-  padding: 1.5rem clamp(1rem, 2vw, 1.8rem);
-}
-.home-entrance + .home-entrance { border-left: 1px solid var(--border); }
-.home-entrance-number { color: var(--muted); font-size: .7rem; letter-spacing: .12em; }
-.home-entrance-title { display: flex; justify-content: space-between; gap: .75rem; font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.25; color: var(--foreground); }
-.home-entrance-title > span { color: var(--brass-bright); font-family: var(--font-ui); font-size: 1rem; }
-.home-entrance-description { max-width: 30ch; color: var(--copy); font-size: .85rem; line-height: 1.6; }
-.home-entrance:hover .home-entrance-title { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
 .home-discovery-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; }
 .home-discovery-heading > h2 { flex: 1 1 auto; }
 .home-text-link { width: fit-content; color: var(--brass-bright); font-size: .82rem; line-height: 1.6; text-decoration: underline; text-underline-offset: .25em; text-decoration-color: var(--border); }
 .home-text-link:hover { text-decoration-color: currentColor; }
 .home-reading-link { display: inline-block; margin-top: 1rem; }
-.home-more-writing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
-.home-more-writing p { color: var(--muted); font-size: .73rem; margin: 0 0 .45rem; }
-.home-more-writing h3 { font: 1.15rem/1.4 var(--font-display); margin: 0; color: var(--foreground); }
-.home-more-writing a:hover { text-decoration: underline; text-underline-offset: .2em; }
-.home-more-writing h3 span { color: var(--brass-bright); font-size: .8rem; white-space: nowrap; }
-.home-software-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
-.home-software-grid .featured-project-card { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; margin-top: 0; }
-.home-software-grid .featured-project-visual { min-height: 0; aspect-ratio: 18 / 11; border-right: 0; border-bottom: 1px solid var(--border); }
-.home-software-grid .featured-project-image { object-fit: contain; }
-.home-software-grid .featured-project-copy { padding: clamp(1.2rem, 2.5vw, 1.8rem); align-self: start; }
-.home-software-grid .featured-project-title { font-size: clamp(2rem, 3.1vw, 2.8rem); }
-.home-software-grid .featured-project-summary { font-size: .92rem; line-height: 1.75; }
-.home-doodle-spread { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: center; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: 1.5rem; }
-.home-doodle-scene { margin: 0; min-width: 0; }
-.home-doodle-scene > a { display: block; border: 1px solid var(--border); background: #f7f5ed; }
-.home-doodle-scene img { display: block; width: 100%; height: auto; }
-.home-doodle-scene figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem .8rem; margin-top: .65rem; color: var(--muted); font-size: .73rem; line-height: 1.5; }
-.home-doodle-scene figcaption span:first-child { font-family: var(--font-display); font-style: italic; color: var(--copy); font-size: .9rem; }
-.home-doodle-introduction h3 { margin: .6rem 0 1rem; font: clamp(1.7rem, 2.7vw, 2.4rem)/1.12 var(--font-display); letter-spacing: -.025em; color: var(--foreground); }
-.home-doodle-introduction > p:not(.featured-project-kicker) { color: var(--copy); font-size: .9rem; line-height: 1.8; }
-.home-doodle-originals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin: 1.3rem 0; }
-.home-doodle-originals a { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; padding: .4rem; border: 1px solid var(--border); background: #faf9f5; }
-.home-doodle-originals img { width: 100%; height: 100%; object-fit: contain; }
-@media (max-width: 767px) {
-  .home-doodle-spread { grid-template-columns: minmax(0, 1fr); }
-  .home-doodle-originals { max-width: 23rem; }
+
+/* Featured project: a card inside the Cromblog masthead, the first and clearest link on the page.
+ * It takes its colors from each vibe's panel tokens, so it reads on dark and light mastheads alike.
+ * The masthead's width, not the viewport's, decides whether the card sits beside the title. */
+.home-page { container: home-page / inline-size; }
+.home-hero-band { flex-direction: column; align-items: stretch; }
+.home-hero-band .home-hero-copy { flex: none; }
+.home-feature {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0 clamp(1rem, 2.6vw, 2rem) clamp(1rem, 2.6vw, 2rem);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+  background: var(--panel-strong);
+  color: var(--bone);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .2);
 }
+.home-feature-media { position: relative; aspect-ratio: 16 / 8; background: var(--panel-raised); }
+.home-feature-image { object-fit: cover; }
+.home-feature-copy { display: grid; align-content: center; justify-items: start; gap: .5rem; padding: 1.2rem 1.35rem 1.3rem; }
+.home-feature-kicker { margin: 0; color: var(--brass); font-size: .68rem; font-weight: 700; letter-spacing: .16em; line-height: 1.3; text-transform: uppercase; }
+.home-feature-title { margin: 0; color: var(--bone); font-family: var(--font-display); font-size: clamp(1.85rem, 3vw, 2.35rem); font-weight: 500; line-height: 1.02; letter-spacing: -.03em; }
+.home-feature-summary { margin: 0; color: var(--copy); font-size: .88rem; line-height: 1.6; }
+.home-feature-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .35rem;
+  padding: .6rem 1.15rem;
+  border: 1px solid var(--brass-bright);
+  border-radius: 999px;
+  background: var(--brass-bright);
+  color: var(--panel-strong);
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.home-feature-link:hover { border-color: var(--brass); background: var(--brass); transform: translateY(-1px); }
+.home-feature-link:focus-visible { outline: 2px solid var(--brass-bright); outline-offset: 3px; }
+
+@container home-page (min-width: 36rem) {
+  .home-feature { grid-template-columns: minmax(8rem, .8fr) minmax(0, 1.2fr); }
+  .home-feature-media { aspect-ratio: auto; min-height: 11.5rem; }
+}
+
+@container home-page (min-width: 60rem) {
+  .home-hero-band { flex-direction: row; align-items: center; }
+  .home-hero-band .home-hero-copy { flex: 1 1 auto; }
+  .home-feature { flex: 0 1 32rem; min-width: 22rem; margin: clamp(1.1rem, 2.6vw, 2rem) clamp(1.1rem, 2.6vw, 2rem) clamp(1.1rem, 2.6vw, 2rem) auto; }
+}
+
+/* Essential has no masthead panel, so the card follows the title. */
+html[data-vibe="minimal"] .home-feature { width: min(100%, 36rem); margin: 2.25rem 0 0; border-radius: .4rem; box-shadow: none; }
+
+/* Doodle Lab: the card takes the left column beneath the title; the framed drawing keeps the right. */
+html[data-vibe="doodle"] .home-hero .doodle-home-original.doodle-home-strict { display: none; }
+html[data-vibe="doodle"] .home-hero .home-feature {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 1.5rem 0 0;
+  border-radius: .35rem;
+  box-shadow: var(--shadow-card);
+}
+html[data-vibe="doodle"] .home-hero .home-feature-media { min-height: 0; aspect-ratio: 16 / 7; border-bottom: 1px solid var(--border-soft); }
+html[data-vibe="doodle"] .home-hero .doodle-home-originals { grid-row: 1 / span 2; }
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] .home-feature-kicker { font-family: var(--font-hand), "Segoe Print", "Bradley Hand", var(--font-display); font-size: 1.1rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+html[data-vibe="slow-garden"] .home-feature { border-color: #878761; border-radius: 2px; box-shadow: 0 5px 16px #51492b33; }
+/* Slow Garden bottom-aligns its masthead row; when stacked, keep both blocks full width. */
+@container home-page (max-width: 59.98rem) {
+  html[data-vibe="slow-garden"] .home-hero-band { align-items: stretch; justify-content: flex-end; padding-top: clamp(7rem, 32vw, 11rem); }
+  /* The taller stacked masthead needs its pale wash to reach the title, or the words sit on foliage. */
+  html[data-vibe="slow-garden"] .home-hero-band::after { background: linear-gradient(0deg, #e9ddbbfa, #e9ddbbf2 62%, #e9ddbb00 92%); }
+}
+/* Baron's accent red is too dark for small text on its near-black card. */
+html[data-vibe="baron"] .home-feature-kicker { color: #c9a47a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .home-feature-link { transition: none; }
+  .home-feature-link:hover { transform: none; }
+}
+
+/* On narrow screens the featured card follows the title, ahead of the drawings. */
+@media (max-width: 819px) {
+  html[data-vibe="doodle"] .home-hero .home-hero-copy { grid-row: 1; }
+  html[data-vibe="doodle"] .home-hero .home-feature { grid-row: 2; margin-top: 0; }
+  html[data-vibe="doodle"] .home-hero :is(.doodle-home-scene, .doodle-home-originals) { grid-row: 3; }
+}
+
 @media (max-width: 639px) {
-  .home-entrances { grid-template-columns: minmax(0, 1fr); }
-  .home-entrance { grid-template-columns: 1.5rem minmax(0, 1fr); column-gap: .75rem; padding: 1.15rem .4rem; }
-  .home-entrance + .home-entrance { border-left: 0; border-top: 1px solid var(--border); }
-  .home-entrance-number { grid-row: 1 / 3; padding-top: .2rem; }
-  .home-entrance-description { grid-column: 2; max-width: none; }
-  .home-more-writing, .home-software-grid { grid-template-columns: minmax(0, 1fr); }
-  .home-more-writing { gap: 1rem; }
   .home-discovery-heading .home-panel-heading { font-size: .73rem; letter-spacing: .13em; }
 }
+
 @media (forced-colors: active) {
-  .home-doodle-originals a, .home-doodle-scene > a { border-color: CanvasText; }
+  .home-feature { border-color: CanvasText; }
+  .home-feature-link { border-color: ButtonText; background: ButtonFace; color: ButtonText; }
 }

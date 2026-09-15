@@ -1,4 +1,5 @@
 import { archivistArt } from "@/content/archivist-art";
+import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
   | "doodle-lab"
@@ -45,6 +46,8 @@ export type BlogPostBase = {
   summary: string;
   series?: BlogSeriesSlug;
   image?: BlogPostImage;
+  /** Lists the post on Cromblog but leaves it out of the home page's writing panel. */
+  hideOnHome?: boolean;
 };
 
 export type PublishedBlogPost = BlogPostBase & {
@@ -98,12 +101,14 @@ export const blogOrder: BlogSlug[] = [
 export const blogPosts = {
   "doodle-lab": {
     slug: "doodle-lab",
-    title: "( ) Doodle Lab: Fusing Five Years of Doodling into a Web Art Gallery",
+    title: "Doodle Lab: Fusing Five Years of Doodling into a Web Art Gallery",
     href: "/cromblog/doodle-lab",
     status: "published",
-    date: "September 14, 2026",
-    readTime: "Tentative draft",
-    summary: "TENTATIVE — STILL IN DEVELOPMENT. A visual essay template with Latin placeholder text. I’m still refining the post and will replace the Latin with my own words.",
+    date: "September 15, 2026",
+    readTime: "3 min read",
+    hideOnHome: true,
+    summary:
+      "What I thought would be a quick and fun project break grew into one of my most interesting and original programming projects so far: turning years of notebook doodles into my own little art world.",
     image: {
       src: "/cromblog/doodle-lab/from-a-line-a-world.png",
       alt: "Notebook drawings unfold into a richly illustrated world of floating forests and curious characters.",
@@ -119,12 +124,7 @@ export const blogPosts = {
     readTime: "2 min read · plus the original prompt and demo",
     summary:
       "After Cromonsters, another game-making experiment: Clio, a strategy prototype about guiding a small band of people through history, inspired by Civilization, Humankind and Total War.",
-    image: {
-      src: "/cromblog/clio/clio-demo-poster.jpg",
-      alt: "Clio's hex map, with bands and neighboring peoples exploring a wooded landscape",
-      width: 1920,
-      height: 1080
-    }
+    image: gameArt.clio
   },
   "crombot-one": {
     slug: "crombot-one",
@@ -149,12 +149,7 @@ export const blogPosts = {
     readTime: "3 min read · plus prompts and videos",
     summary:
       "It occurred to me while hiking how relatively simple the original Game Boy Pokémon game was and that it would probably be trivially easy to rebuild the mechanics with modern AI agent programming.",
-    image: {
-      src: "/cromblog/cromonsters/test-2-poster.jpg",
-      alt: "Cromonsters! gameplay with a muted four-shade palette and original pixel-art creatures",
-      width: 1280,
-      height: 720
-    }
+    image: gameArt.cromonsters
   },
   "simulating-civilizations-iv": {
     slug: "simulating-civilizations-iv",

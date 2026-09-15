@@ -1,5 +1,6 @@
 import type { BlogSeriesSlug } from "@/content/blog";
 import { archivistArt } from "@/content/archivist-art";
+import { gameArt } from "@/content/game-art";
 
 export type ProjectSlug =
   | "big-history-of-virginia"
@@ -182,12 +183,7 @@ export const projects: Record<ProjectSlug, Project> = {
     summary:
       "A Windows strategy prototype with a guided opening: lead a band of fifty, gather supplies, preview journeys on the map, and discover wildlife. The First Adviser introduces your story and narrates situation reports.",
     stack: ["Game design", "Historical strategy", "Windows desktop", "Prototype"],
-    image: {
-      src: "/cromblog/clio/clio-demo-poster.jpg",
-      alt: "Clio's hex map, with bands and neighboring peoples exploring a wooded landscape",
-      width: 1920,
-      height: 1080
-    },
+    image: gameArt.clio,
     links: [
       { label: "Download Clio for Windows", href: "/games/clio/clio-sage-37-windows.zip" },
       { label: "Read the announcement", href: "/cromblog/clio" },
@@ -203,12 +199,7 @@ export const projects: Record<ProjectSlug, Project> = {
     summary:
       "Play the estate prologue: learn the farming tasks, survive a goblin raid, and navigate the aftermath through conversations, looting, trade, and turn-based battles. The wider journey is still in development; the original post preserves the earliest playtests.",
     stack: ["TypeScript", "Game design", "Pixel art", "Browser prototype"],
-    image: {
-      src: "/cromblog/cromonsters/test-2-poster.jpg",
-      alt: "Cromonsters gameplay with a muted four-shade palette and original pixel-art creatures",
-      width: 1280,
-      height: 720
-    },
+    image: gameArt.cromonsters,
     links: [
       { label: "Play Cromonsters", href: "/games/cromonsters" },
       { label: "Read the development story", href: "/cromblog/cromonsters" },

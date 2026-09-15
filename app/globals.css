@@ -761,6 +761,8 @@ summary {
 }
 
 .sidebar-ornament {
+  /* Anchors the rule and emblem; without it they drift to the middle of the fixed sidebar. */
+  position: relative;
   margin: 1rem 0;
 }
 
@@ -1373,6 +1375,18 @@ summary {
   .doodle-experiments-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+.doodle-experiment-comics .doodle-experiments-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.doodle-experiment-comics .doodle-experiment-open {
+  aspect-ratio: auto;
+}
+
+.doodle-experiment-comics .doodle-experiment-image {
+  height: auto;
 }
 
 @media print {

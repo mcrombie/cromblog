@@ -1,11 +1,12 @@
 import type { DoodleExperiment } from "@/content/doodle-experiments";
 
-export const experimentCollections = ["all", "scenic", "character-studies", "future-studies", "meme-gifs"] as const;
+export const experimentCollections = ["all", "scenic", "comics", "character-studies", "future-studies", "meme-gifs"] as const;
 export type ExperimentCollection = typeof experimentCollections[number];
 
 export const experimentCollectionLabels: Record<ExperimentCollection, string> = {
   all: "All experiments",
   scenic: "Scenic",
+  comics: "Comics",
   "character-studies": "Character studies",
   "future-studies": "Future GIF",
   "meme-gifs": "Meme GIFs"
@@ -17,6 +18,7 @@ export function groupDoodleExperiments(entries: readonly DoodleExperiment[]) {
   );
   const futureStudies = entries.filter((entry) => entry.round === "18");
   const memeGifs = entries.filter((entry) => entry.round === "20" && entry.kind === "Animation");
+  const comics = entries.filter((entry) => entry.kind === "Comic");
   const scenic = entries.filter((entry) =>
     entry.kind === "Scene" && entry.round !== "17" && entry.round !== "19"
   );
@@ -25,6 +27,7 @@ export function groupDoodleExperiments(entries: readonly DoodleExperiment[]) {
     twoCharacterScenes,
     futureStudies,
     memeGifs,
+    comics,
     scenic,
     characterStudies: twoCharacterScenes
   };

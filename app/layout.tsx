@@ -8,12 +8,14 @@ import {
   DEFAULT_VIBE,
   VIBES,
   VIBE_DISMISSED_SESSION_KEY,
+  VIBE_QUERY_KEY,
   VIBE_STORAGE_KEY
 } from "@/lib/vibes";
 
 import "./globals.css";
 import "./vibes.css";
 import "./vibe-doodle.css";
+import "./vibe-slow-garden.css";
 
 const notebookHand = Patrick_Hand({ weight: "400", subsets: ["latin"], display: "swap", variable: "--font-hand", preload: false });
 
@@ -88,6 +90,15 @@ const vibeInitializer = `(() => {
   } catch {
     document.documentElement.dataset.doodleDesign = ${JSON.stringify(DEFAULT_DOODLE_DESIGN)};
   }
+
+  // Explicit theme links take precedence, including when local storage is blocked.
+  try {
+    const queryVibe = new URL(window.location.href).searchParams.get(${JSON.stringify(VIBE_QUERY_KEY)});
+    if (${JSON.stringify(VIBES.map((vibe) => vibe.id))}.includes(queryVibe)) {
+      document.documentElement.dataset.vibe = queryVibe;
+      try { window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, queryVibe); } catch {}
+    }
+  } catch {}
 })();`;
 
 export default function RootLayout({

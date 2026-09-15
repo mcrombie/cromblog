@@ -21,11 +21,12 @@ export function SiteShell({
       <div className="site-ambient" aria-hidden="true" />
       <div className="site-ambient" aria-hidden="true" />
       <Sidebar />
-      <VibeCycleButton />
       <main id="main-content" className="site-main" tabIndex={-1}>
         <div className="site-main-content">{children}</div>
         {showAmbientDoodles ? <DoodleMeadow /> : null}
+        <div className="slow-garden-floor" aria-hidden="true" />
       </main>
+      <VibeCycleButton />
     </div>
   );
 }

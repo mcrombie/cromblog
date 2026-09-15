@@ -17,11 +17,12 @@ import twentyCharacterStudies from "@/content/doodle-experiment-batches/round-19
 import memeGifs from "@/content/doodle-experiment-batches/round-20.json";
 import crombCooCooScene from "@/content/doodle-experiment-batches/round-21.json";
 import doodleLabBlogScenes from "@/content/doodle-experiment-batches/round-22.json";
+import crombotComic from "@/content/doodle-experiment-batches/round-23.json";
 
 export type DoodleExperiment = {
   id: string;
   title: string;
-  kind: "Collage" | "Mosaic" | "Scene" | "Animation";
+  kind: "Collage" | "Mosaic" | "Scene" | "Animation" | "Comic";
   src: string;
   alt: string;
   description: string;
@@ -32,9 +33,10 @@ export type DoodleExperiment = {
 };
 
 export const doodleExperimentsDescription =
-  "Scenes and animated experiments made with ImageGen from my notebook doodles, exploring how familiar drawings can share new worlds.";
+  "Scenes, comics, and animated experiments made with ImageGen from my notebook doodles and Crombot studies, exploring how familiar characters can share new worlds.";
 
 export const doodleExperiments: readonly DoodleExperiment[] = [
+  ...(crombotComic as DoodleExperiment[]),
   ...(doodleLabBlogScenes as DoodleExperiment[]),
   ...(crombCooCooScene as DoodleExperiment[]),
   ...(memeGifs as DoodleExperiment[]),

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DoodleDesignSwitch } from "@/components/doodle-design-switch";
 import { DoodleSpecimen } from "@/components/doodle-specimen";
+import { VibeCycleButton } from "@/components/vibe-cycle-button";
 
 type NavItem = {
   label: string;
@@ -42,6 +43,11 @@ export function Sidebar() {
 
   return (
     <aside className="site-sidebar" aria-label="Site navigation">
+      <Link href="/" className="slow-garden-brand" aria-label="Cromblog home">
+        <span className="slow-garden-brand-art" aria-hidden="true" />
+        <span className="slow-garden-brand-name">Cromblog</span>
+        <span className="slow-garden-brand-caption">Michael Crombie</span>
+      </Link>
       <div>
         <div className="sidebar-ornament" aria-hidden="true" />
       </div>
@@ -117,6 +123,7 @@ export function Sidebar() {
         })}
       </nav>
 
+      <VibeCycleButton variant="navigation" />
       <DoodleDesignSwitch />
       {pathname !== "/art" && !pathname.startsWith("/art/") ? <DoodleSpecimen /> : null}
 

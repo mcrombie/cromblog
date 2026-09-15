@@ -1,10 +1,11 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import { usePathname } from "next/navigation";
 
 import { SiteShell } from "@/components/site-shell";
+import { VibeLocationObserver } from "@/components/vibe-location-observer";
 
 type RootShellProps = {
   children: ReactNode;
@@ -13,7 +14,6 @@ type RootShellProps = {
 export function RootShell({ children }: RootShellProps) {
   const pathname = usePathname();
   const isStandaloneProject =
-    pathname === "/cromblog/doodle-lab" ||
     pathname.startsWith("/games/cromb-coo-coo") ||
     pathname.startsWith("/games/cromonsters") ||
     pathname.startsWith("/games/heartwood-valley") ||
@@ -26,11 +26,12 @@ export function RootShell({ children }: RootShellProps) {
   const isArtRoute = pathname === "/art" || pathname.startsWith("/art/");
 
   if (isStandaloneProject) {
-    return <main className="standalone-experience">{children}</main>;
+    return <><Suspense fallback={null}><VibeLocationObserver /></Suspense><main className="standalone-experience">{children}</main></>;
   }
 
   return (
     <SiteShell showAmbientDoodles={!isArtRoute}>
+      <Suspense fallback={null}><VibeLocationObserver /></Suspense>
       {children}
     </SiteShell>
   );

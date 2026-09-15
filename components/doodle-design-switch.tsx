@@ -60,9 +60,11 @@ export function DoodleDesignSwitch() {
   return (
     <div className="doodle-design-switch">
       <label htmlFor={id}>Doodle Lab design</label>
-      <select id={id} value={design} onChange={event => choose(event.currentTarget.value)}>
-        {DOODLE_DESIGNS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
-      </select>
+      <span className="doodle-design-select">
+        <select id={id} value={design} onChange={event => choose(event.currentTarget.value)}>
+          {DOODLE_DESIGNS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
+        </select>
+      </span>
       <button type="button" className="doodle-restore-controls" onClick={restoreControls}>
         Show appearance controls
       </button>

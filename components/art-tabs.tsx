@@ -19,6 +19,10 @@ function ArtLocationObserver() {
 
 function tabFromLocation(): ArtTab {
   const url = new URL(window.location.href);
+  if (url.hash === "#garden") {
+    window.location.replace("/?vibe=slow-garden");
+    return "showcase";
+  }
   if (url.hash === "#experiments") return "experiments";
   if (url.hash === "#drawings" || url.searchParams.has("drawing")) return "drawings";
   return "showcase";
@@ -73,7 +77,7 @@ export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
   return (
     <div className="art-tabs">
       <Suspense fallback={null}><ArtLocationObserver /></Suspense>
-      <div className="art-tab-list" role="tablist" aria-label="Art collections">
+      <div className="art-tab-list" role="tablist" aria-label="Art collections" style={{ flexWrap: "wrap" }}>
         {tabs.map((tab) => (
           <button
             key={tab}
