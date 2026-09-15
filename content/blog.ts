@@ -46,8 +46,6 @@ export type BlogPostBase = {
   summary: string;
   series?: BlogSeriesSlug;
   image?: BlogPostImage;
-  /** Lists the post on Cromblog but leaves it out of the home page's writing panel. */
-  hideOnHome?: boolean;
 };
 
 export type PublishedBlogPost = BlogPostBase & {
@@ -106,7 +104,6 @@ export const blogPosts = {
     status: "published",
     date: "September 15, 2026",
     readTime: "3 min read",
-    hideOnHome: true,
     summary:
       "What I thought would be a quick and fun project break grew into one of my most interesting and original programming projects so far: turning years of notebook doodles into my own little art world.",
     image: {

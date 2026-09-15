@@ -2,102 +2,107 @@
 .home-discovery-heading > h2 { flex: 1 1 auto; }
 .home-text-link { width: fit-content; color: var(--brass-bright); font-size: .82rem; line-height: 1.6; text-decoration: underline; text-underline-offset: .25em; text-decoration-color: var(--border); }
 .home-text-link:hover { text-decoration-color: currentColor; }
-.home-reading-link { display: inline-block; margin-top: 1rem; }
+.home-reading-link { display: inline-block; margin-top: .75rem; }
 
-/* Featured project: a card inside the Cromblog masthead, the first and clearest link on the page.
- * It takes its colors from each vibe's panel tokens, so it reads on dark and light mastheads alike.
- * The masthead's width, not the viewport's, decides whether the card sits beside the title. */
+/* The masthead is a slim Cromblog title over the featured project, which is the page's centrepiece.
+ * The card takes its colors from each vibe's panel tokens, so it stands out on dark and light mastheads.
+ * Sizes follow the home column's width (container units), not the viewport's. */
 .home-page { container: home-page / inline-size; }
 .home-hero-band { flex-direction: column; align-items: stretch; }
-.home-hero-band .home-hero-copy { flex: none; }
+html[data-vibe] .home-hero-band .home-hero-copy { flex: none; align-self: stretch; width: auto; padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1.25rem, 3.2vw, 2.75rem) 0; }
+html[data-vibe] .home-hero-band .home-title { max-width: none; margin-top: 0; font-size: clamp(2.1rem, 3.4vw, 2.9rem); }
+html[data-vibe] .home-hero-band .home-lede { max-width: 60ch; margin-top: .4rem; font-size: clamp(.98rem, 1.4vw, 1.1rem); }
+
 .home-feature {
   position: relative;
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  margin: 0 clamp(1rem, 2.6vw, 2rem) clamp(1rem, 2.6vw, 2rem);
+  margin: clamp(1.1rem, 2.4vw, 1.75rem) clamp(1.25rem, 3.2vw, 2.75rem) clamp(1.25rem, 3.2vw, 2.75rem);
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: .75rem;
+  border-radius: 1rem;
   background: var(--panel-strong);
   color: var(--bone);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, .2);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .28);
 }
-.home-feature-media { position: relative; aspect-ratio: 16 / 8; background: var(--panel-raised); }
-.home-feature-image { object-fit: cover; }
-.home-feature-copy { display: grid; align-content: center; justify-items: start; gap: .5rem; padding: 1.2rem 1.35rem 1.3rem; }
-.home-feature-kicker { margin: 0; color: var(--brass); font-size: .68rem; font-weight: 700; letter-spacing: .16em; line-height: 1.3; text-transform: uppercase; }
-.home-feature-title { margin: 0; color: var(--bone); font-family: var(--font-display); font-size: clamp(1.85rem, 3vw, 2.35rem); font-weight: 500; line-height: 1.02; letter-spacing: -.03em; }
-.home-feature-summary { margin: 0; color: var(--copy); font-size: .88rem; line-height: 1.6; }
+.home-feature-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--panel-raised); }
+.home-feature-image { object-fit: cover; transition: transform .6s ease; }
+.home-feature:hover .home-feature-image { transform: scale(1.025); }
+.home-feature-copy { display: grid; align-content: center; justify-items: start; gap: .85rem; padding: clamp(1.5rem, 4.5cqi, 3.25rem); }
+.home-feature-kicker { margin: 0; color: var(--brass); font-size: .74rem; font-weight: 700; letter-spacing: .18em; line-height: 1.3; text-transform: uppercase; }
+.home-feature-title { margin: 0; color: var(--bone); font-family: var(--font-display); font-size: clamp(2.6rem, 6.5cqi, 4.6rem); font-weight: 500; line-height: .95; letter-spacing: -.035em; }
+.home-feature-summary { max-width: 36ch; margin: 0; color: var(--copy); font-size: clamp(1rem, 1.8cqi, 1.2rem); line-height: 1.65; }
+.home-feature-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.4rem; margin-top: .5rem; }
 .home-feature-link {
   display: inline-flex;
-  min-height: 2.75rem;
+  min-height: 3.1rem;
   align-items: center;
-  gap: .45rem;
-  margin-top: .35rem;
-  padding: .6rem 1.15rem;
+  gap: .5rem;
+  padding: .8rem 1.6rem;
   border: 1px solid var(--brass-bright);
   border-radius: 999px;
   background: var(--brass-bright);
   color: var(--panel-strong);
   font-family: var(--font-ui);
-  font-size: .84rem;
+  font-size: .98rem;
   font-weight: 700;
-  letter-spacing: .03em;
+  letter-spacing: .02em;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
   transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
 }
 .home-feature-link:hover { border-color: var(--brass); background: var(--brass); transform: translateY(-1px); }
-.home-feature-link:focus-visible { outline: 2px solid var(--brass-bright); outline-offset: 3px; }
+.home-feature-secondary { color: var(--brass-bright); font-family: var(--font-ui); font-size: .92rem; font-weight: 600; text-decoration: underline; text-underline-offset: .25em; text-decoration-color: var(--border); }
+.home-feature-secondary:hover { text-decoration-color: currentColor; }
+.home-feature-link:focus-visible, .home-feature-secondary:focus-visible { outline: 2px solid var(--brass-bright); outline-offset: 3px; }
 
-@container home-page (min-width: 36rem) {
-  .home-feature { grid-template-columns: minmax(8rem, .8fr) minmax(0, 1.2fr); }
-  .home-feature-media { aspect-ratio: auto; min-height: 11.5rem; }
+@container home-page (min-width: 46rem) {
+  .home-feature { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); min-height: clamp(22rem, 40cqi, 30rem); }
+  .home-feature-media { aspect-ratio: auto; min-height: 100%; }
 }
 
-@container home-page (min-width: 60rem) {
-  .home-hero-band { flex-direction: row; align-items: center; }
-  .home-hero-band .home-hero-copy { flex: 1 1 auto; }
-  .home-feature { flex: 0 1 32rem; min-width: 22rem; margin: clamp(1.1rem, 2.6vw, 2rem) clamp(1.1rem, 2.6vw, 2rem) clamp(1.1rem, 2.6vw, 2rem) auto; }
+/* The latest post stays compact so it never competes with the featured project. */
+.home-writing .latest-dispatch-image { min-height: 9.5rem; }
+.home-writing .latest-dispatch-title { font-size: clamp(1.45rem, 2.4vw, 1.9rem); }
+.home-writing .latest-dispatch-summary { font-size: .95rem; line-height: 1.7; }
+@container home-page (min-width: 46rem) {
+  .home-writing .latest-dispatch { grid-template-columns: minmax(12rem, 17rem) minmax(0, 1fr); align-items: center; }
 }
 
-/* Essential has no masthead panel, so the card follows the title. */
-html[data-vibe="minimal"] .home-feature { width: min(100%, 36rem); margin: 2.25rem 0 0; border-radius: .4rem; box-shadow: none; }
+/* Essential has no masthead panel, so the card simply follows the title. */
+html[data-vibe="minimal"] .home-hero-band .home-hero-copy { padding: 0; }
+html[data-vibe="minimal"] .home-feature { margin: 2.25rem 0 0; border-radius: .5rem; box-shadow: none; }
 
-/* Doodle Lab: the card takes the left column beneath the title; the framed drawing keeps the right. */
+/* Doodle Lab: title and framed drawing share the top row; the featured project spans the panel beneath. */
+html[data-vibe="doodle"] .home-hero.home-hero-band { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+html[data-vibe="doodle"] .home-hero-band .home-hero-copy { grid-column: 1; grid-row: 1; align-self: center; padding: 0; }
 html[data-vibe="doodle"] .home-hero .doodle-home-original.doodle-home-strict { display: none; }
-html[data-vibe="doodle"] .home-hero .home-feature {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: start;
-  grid-template-columns: minmax(0, 1fr);
-  margin: 1.5rem 0 0;
-  border-radius: .35rem;
-  box-shadow: var(--shadow-card);
-}
-html[data-vibe="doodle"] .home-hero .home-feature-media { min-height: 0; aspect-ratio: 16 / 7; border-bottom: 1px solid var(--border-soft); }
-html[data-vibe="doodle"] .home-hero .doodle-home-originals { grid-row: 1 / span 2; }
-html[data-vibe="doodle"][data-doodle-design="field-notebook"] .home-feature-kicker { font-family: var(--font-hand), "Segoe Print", "Bradley Hand", var(--font-display); font-size: 1.1rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+html[data-vibe="doodle"] .home-hero :is(.doodle-home-scene, .doodle-home-originals) { grid-column: 2; grid-row: 1; width: min(24rem, 38cqi); }
+html[data-vibe="doodle"] .home-hero .doodle-home-scene { width: auto; max-width: 20rem; }
+html[data-vibe="doodle"] .home-hero .doodle-home-bird-print { width: fit-content; }
+html[data-vibe="doodle"] .home-hero .doodle-home-bird-print img { width: auto; height: clamp(10rem, 16cqi, 13rem); }
+html[data-vibe="doodle"] .home-hero .doodle-home-character { max-height: 11rem; }
+html[data-vibe="doodle"] .home-hero .home-feature { grid-column: 1 / -1; grid-row: 2; margin: 1.5rem 0 0; border-radius: .4rem; box-shadow: var(--shadow-card); }
+html[data-vibe="doodle"][data-doodle-design="field-notebook"] .home-feature-kicker { font-family: var(--font-hand), "Segoe Print", "Bradley Hand", var(--font-display); font-size: 1.2rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
 
-html[data-vibe="slow-garden"] .home-feature { border-color: #878761; border-radius: 2px; box-shadow: 0 5px 16px #51492b33; }
-/* Slow Garden bottom-aligns its masthead row; when stacked, keep both blocks full width. */
-@container home-page (max-width: 59.98rem) {
-  html[data-vibe="slow-garden"] .home-hero-band { align-items: stretch; justify-content: flex-end; padding-top: clamp(7rem, 32vw, 11rem); }
-  /* The taller stacked masthead needs its pale wash to reach the title, or the words sit on foliage. */
-  html[data-vibe="slow-garden"] .home-hero-band::after { background: linear-gradient(0deg, #e9ddbbfa, #e9ddbbf2 62%, #e9ddbb00 92%); }
-}
+/* Slow Garden keeps its woodland scene visible above the title, which sits on the pale wash. */
+html[data-vibe="slow-garden"] .home-hero-band { align-items: stretch; justify-content: flex-end; padding-top: clamp(3.5rem, 8cqi, 6rem); }
+html[data-vibe="slow-garden"] .home-hero-band::after { background: linear-gradient(0deg, #e9ddbbfa, #e9ddbbf2 66%, #e9ddbb00 94%); }
+html[data-vibe="slow-garden"] .home-feature { border-color: #878761; border-radius: 3px; box-shadow: 0 8px 24px #51492b40; }
+
 /* Baron's accent red is too dark for small text on its near-black card. */
 html[data-vibe="baron"] .home-feature-kicker { color: #c9a47a; }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-feature-link { transition: none; }
-  .home-feature-link:hover { transform: none; }
+  .home-feature-image, .home-feature-link { transition: none; }
+  .home-feature:hover .home-feature-image, .home-feature-link:hover { transform: none; }
 }
 
-/* On narrow screens the featured card follows the title, ahead of the drawings. */
+/* On narrow screens: title, then the featured project, then the drawing. */
 @media (max-width: 819px) {
-  html[data-vibe="doodle"] .home-hero .home-hero-copy { grid-row: 1; }
-  html[data-vibe="doodle"] .home-hero .home-feature { grid-row: 2; margin-top: 0; }
-  html[data-vibe="doodle"] .home-hero :is(.doodle-home-scene, .doodle-home-originals) { grid-row: 3; }
+  html[data-vibe="doodle"] .home-hero.home-hero-band { grid-template-columns: minmax(0, 1fr); }
+  html[data-vibe="doodle"] .home-hero .home-feature { grid-column: 1; grid-row: 2; margin-top: 0; }
+  html[data-vibe="doodle"] .home-hero :is(.doodle-home-scene, .doodle-home-originals) { grid-column: 1; grid-row: 3; width: auto; }
 }
 
 @media (max-width: 639px) {

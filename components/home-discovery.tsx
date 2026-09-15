@@ -3,23 +3,22 @@ import Link from "next/link";
 
 import { blogPosts, publishedBlogOrder, type PublishedBlogPost } from "@/content/blog";
 
-export function HomeRecentPost() {
-  const post = publishedBlogOrder
-    .map(slug => blogPosts[slug] as PublishedBlogPost)
-    .find(entry => !entry.hideOnHome);
-  if (!post) return null;
+export function HomeLatestPost() {
+  const slug = publishedBlogOrder[0];
+  if (!slug) return null;
+  const post = blogPosts[slug] as PublishedBlogPost;
 
   return (
     <section className="home-panel home-writing" aria-labelledby="home-writing-heading">
       <div className="home-discovery-heading">
-        <h2 className="home-panel-heading" id="home-writing-heading">Recently on Cromblog</h2>
+        <h2 className="home-panel-heading" id="home-writing-heading">Latest from Cromblog</h2>
         <Link className="home-text-link" href="/cromblog">All posts <span aria-hidden="true">↗</span></Link>
       </div>
       <article className="latest-dispatch">
         {post.image ? (
           <Link href={post.href} className="latest-dispatch-image" aria-label={`Read ${post.title}`}>
             <Image src={post.image.src} alt={post.image.alt} fill
-              sizes="(max-width: 639px) 90vw, (max-width: 1023px) 35vw, 28vw"
+              sizes="(max-width: 639px) 90vw, 17rem"
               unoptimized={post.image.unoptimized}
               style={{ objectPosition: post.image.objectPosition }} />
           </Link>

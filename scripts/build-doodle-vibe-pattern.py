@@ -13,36 +13,46 @@ import hashlib
 import json
 import math
 import random
+import re
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "public/cromblog/doodle-vibe/pattern-tile.png"
+OUTPUT = ROOT / "public/cromblog/doodle-vibe/pattern-tile.webp"
 MANIFEST = ROOT / "content/doodle-vibe-pattern.generated.json"
-TILE = 1500  # pixels; CSS draws the tile at half size so strokes stay sharp on 2x screens
+TILE = 1800  # pixels; CSS draws the tile at half size (56.25rem) so strokes stay sharp on 2x screens
 SEED = 20260915
-SIZE_RANGE = (104, 176)  # longest edge in tile pixels for the unique pass
-FILL_SIZE_RANGE = (72, 118)  # smaller repeats that fill the gaps
-GAP = 22  # clear space between drawings, in tile pixels
-MAX_TURN = 16  # degrees
-FILL_PATIENCE = 900  # consecutive failed placements before the fill pass stops
+SIZE_RANGE = (116, 188)  # longest edge in tile pixels for the unique pass
+FILL_SIZE_RANGE = (80, 124)  # smaller repeats that fill the gaps
+GAP = 14  # clear space between drawings, in tile pixels
+MAX_TURN = 14  # degrees
+FILL_PATIENCE = 1600  # consecutive failed placements before the fill pass stops
+ALPHA_LEVELS = 16  # keeps pencil softness at background strength while compressing well
 
-# Clean cutouts (haze < 0.2, cover < 0.35 in measure-cutouts.py), chosen by eye for variety.
+# Curated drawings with finished, legible line work (clean cutouts: haze < 0.3, cover < 0.42 in
+# measure-cutouts.py), chosen by eye, plus the canonical June–August 2026 drawings from content/doodles.ts.
 DRAWINGS = [
-    "um22-p083-e", "um22-p129-a", "um22-p081-a", "um22-p107-b", "fn22-p068-a", "um22-p100-a",
-    "um22-p061-a", "um22-p096-a", "fn22-p003-a", "um22-p085-a", "um22-p038-a", "um22-p015-a",
-    "jm26-p038-b", "fn22-p048-a", "um22-p138-a", "fn22-p025-a", "um22-p083-b", "na2223-p006-a",
-    "aa23-p023-a", "na2223-p023-a", "jm26-p124-b", "um22-p079-a", "um22-p022-a", "um22-p025-a",
-    "fn22-p004-a", "fn22-p051-a", "fn22-p099-a", "um22-p055-a", "jm26-p085-a", "um22-p009-a",
-    "fn22-p021-a", "na2223-p080-a", "jm26-p043-a", "um22-p139-a", "um22-p128-a", "jj25-p065-a",
-    "um22-p141-a", "jj2526-p163-a", "fn22-p026-a", "um22-p013-a", "jj2526-p261-a", "jj2526-p003-a",
-    "fn22-p053-b", "um22-p157-a", "jj25-p058-a", "um22-p035-d", "jj25-p028-a", "na2223-p002-a",
-    "jm26-p074-a", "um22-p018-c", "jm26-p038-e", "jm26-p082-b", "jm26-p027-b", "um22-p185-a",
-    "aj2425-p103-a", "ma24-p189-b", "jm26-p038-d", "fn22-p097-a", "aj2425-p190-c", "fn22-p080-f",
-    "jj2526-p079-b", "fn22-p013-a", "fn22-p073-a", "jm26-p188-a", "jm26-p038-f", "jm26-p175-a",
-    "jm26-p032-b",
+    # Canonical summer drawings
+    "raven-01", "carolina-wren-01", "owl-on-branch-01", "scissor-tailed-flycatcher-01", "red-eyed-vireo-01",
+    "common-flicker-tree-01", "eye-flower-sentinel-01", "one-eyed-gentleman-01", "bow-tied-crocodile-01",
+    "caped-rabbit-01", "feathered-eye-01", "orb-balancing-slug-01",
+    # Trees and plants
+    "fn22-p034-a", "fn22-p092-a", "fn22-p097-a", "um22-p020-a", "um22-p022-a", "um22-p024-b", "um22-p079-a",
+    "aa23-p001-a", "aa23-p013-a", "sm2324-p033-a", "jj25-p011-a", "jj25-p037-a", "jj25-p058-a",
+    "jj2526-p172-a", "jj2526-p226-a", "jm26-p059-a", "jm26-p085-a", "jm26-p145-a", "jj25-p097-a",
+    # Leaves, flowers and fruit
+    "fn22-p074-a", "fn22-p099-a", "aj2425-p083-a", "aj2425-p145-a", "jj2526-p003-a", "jj2526-p061-a",
+    "jj2526-p140-a", "jm26-p030-a", "jm26-p074-a", "jm26-p093-a", "jm26-p114-a", "jm26-p125-a",
+    # Birds and animals
+    "fn22-p021-a", "ma24-p146-a", "jj25-p027-b", "jj25-p036-a", "jj25-p134-a", "jj2526-p124-a",
+    "jj2526-p093-a", "jj2526-p178-a", "jm26-p032-a", "jm26-p063-a", "na2223-p005-a", "na2223-p006-a",
+    "aj2425-p089-a", "aj2425-p138-a", "jj25-p022-a", "aj2425-p166-a",
+    # Characters and curiosities
+    "um22-p015-a", "aa23-p011-a", "ma24-p075-a", "ma24-p187-a", "ma24-p177-a", "aj2425-p030-a",
+    "aj2425-p031-a", "aj2425-p090-a", "aj2425-p177-a", "jj25-p095-a", "jj25-p178-a", "jj2526-p098-a",
+    "jj2526-p163-a", "jm26-p106-a",
 ]
 
 
@@ -51,6 +61,11 @@ def catalog():
     for file in sorted((ROOT / "content/doodle-batches").glob("*.json")):
         for entry in json.loads(file.read_text(encoding="utf-8")):
             entries[entry["id"]] = entry
+    # The original June–August 2026 drawings live in content/doodles.ts rather than a batch file.
+    legacy = (ROOT / "content/doodles.ts").read_text(encoding="utf-8")
+    for asset_id, src in re.findall(r'"([a-z0-9-]+)": \{\s*id: "\1",\s*src: "([^"]+)"', legacy):
+        status = "texture" if asset_id == "leaf-vine-01" else "curated"
+        entries.setdefault(asset_id, {"id": asset_id, "src": src, "status": status})
     return entries
 
 
@@ -101,7 +116,7 @@ def stamp(canvas, mark, x, y):
 
 
 def radius_of(mark):
-    return max(mark.size) / 2 * 0.8 + GAP / 2
+    return max(mark.size) / 2 * 0.76 + GAP / 2
 
 
 def main():
@@ -109,6 +124,8 @@ def main():
     parser.add_argument("--preview", help="write a 2x2 composite on paper for visual review")
     args = parser.parse_args()
 
+    if len(set(DRAWINGS)) != len(DRAWINGS):
+        raise SystemExit("DRAWINGS lists a drawing twice")
     entries = catalog()
     rng = random.Random(SEED)
     sources = {}
@@ -140,10 +157,8 @@ def main():
         })
         return True
 
-    # Largest first, so the unique pass never runs out of room.
-    unique = sorted(DRAWINGS, key=lambda _: rng.random())
-    for asset_id in unique:
-        if not place(asset_id, SIZE_RANGE, 6000, False):
+    for asset_id in sorted(DRAWINGS, key=lambda _: rng.random()):
+        if not place(asset_id, SIZE_RANGE, 8000, False):
             raise SystemExit(f"No room for {asset_id}; shrink SIZE_RANGE or remove drawings")
 
     failures = 0
@@ -153,16 +168,17 @@ def main():
         else:
             failures += 1
 
-    # Sixteen alpha levels keep the pencil softness at background strength and roughly halve the file.
-    step = 255 / 15
+    step = 255 / (ALPHA_LEVELS - 1)
     canvas = (np.round(canvas / step) * step).astype(np.uint8)
-    tile = Image.merge("LA", (Image.new("L", (TILE, TILE), 0), Image.fromarray(canvas)))
+    # A black RGB carrier with the drawings in alpha: CSS masks read only the alpha channel.
+    zero = Image.new("L", (TILE, TILE), 0)
+    tile = Image.merge("RGBA", (zero, zero, zero, Image.fromarray(canvas)))
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    tile.save(OUTPUT, optimize=True)
+    tile.save(OUTPUT, "WEBP", lossless=True, method=6)
     output_sha = hashlib.sha256(OUTPUT.read_bytes()).hexdigest()
 
     manifest = {
-        "tile": {"src": "/cromblog/doodle-vibe/pattern-tile.png", "pixels": TILE, "sha256": output_sha},
+        "tile": {"src": "/cromblog/doodle-vibe/pattern-tile.webp", "pixels": TILE, "sha256": output_sha},
         "seed": SEED,
         "drawings": len(DRAWINGS),
         "placements": records,

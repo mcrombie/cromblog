@@ -40,7 +40,7 @@ export const ART_NAV_LABELS_BY_VIBE = {
   "slow-garden": "Botanical plates"
 } as const satisfies Record<VibeId, string>;
 
-export const DEFAULT_VIBE: VibeId = "doodle";
+export const DEFAULT_VIBE: VibeId = "professional";
 
 export function isVibeId(value: unknown): value is VibeId {
   return VIBES.some((vibe) => vibe.id === value);

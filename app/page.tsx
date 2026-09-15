@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { DoodleHomeHero } from "@/components/doodle-home-hero";
-import { HomeRecentPost } from "@/components/home-discovery";
+import { HomeLatestPost } from "@/components/home-discovery";
 import { archivistDemoUrl } from "@/content/site";
 import { archivistArt } from "@/content/archivist-art";
 import "./home-discovery.css";
@@ -31,7 +32,7 @@ export default function HomePage() {
         <div className="home-hero-copy">
           <h1 className="home-title">Cromblog</h1>
           <p className="home-lede">
-            Essays, software, and notebook drawings by Michael Crombie.
+            Essays, software, and art by Michael Crombie.
           </p>
         </div>
 
@@ -42,7 +43,7 @@ export default function HomePage() {
               alt={archivistImage.alt}
               fill
               priority
-              sizes="(max-width: 719px) 90vw, (max-width: 1279px) 30vw, 15rem"
+              sizes="(max-width: 719px) 92vw, 46vw"
               className="home-feature-image"
               style={{ objectPosition: archivistImage.objectPosition }}
             />
@@ -55,22 +56,27 @@ export default function HomePage() {
               <em>Cradle of the Empire</em>. Archivist reads the manuscript then
               cites and summarizes what the book says.
             </p>
-            <a
-              href={archivistDemoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="home-feature-link"
-            >
-              Try Archivist <span aria-hidden="true">↗</span>
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
+            <div className="home-feature-actions">
+              <a
+                href={archivistDemoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="home-feature-link"
+              >
+                Try Archivist <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <Link href="/cromblog/archivist-elegant-context-window" className="home-feature-secondary">
+                How I built it
+              </Link>
+            </div>
           </div>
         </article>
 
         <DoodleHomeHero />
       </section>
 
-      <HomeRecentPost />
+      <HomeLatestPost />
     </div>
   );
 }
