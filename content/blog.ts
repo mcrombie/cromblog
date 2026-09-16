@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "archivist-iv-demo"
   | "doodle-lab"
   | "clio"
   | "crombot-one"
@@ -76,6 +77,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "archivist-iv-demo",
   "doodle-lab",
   "crombot-one",
   "clio",
@@ -97,6 +99,21 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "archivist-iv-demo": {
+    slug: "archivist-iv-demo",
+    title: "Archivist IV: The Demo",
+    href: "/cromblog/archivist-iv-demo",
+    date: "September 16, 2026",
+    readTime: "1 min read · plus a 2-minute demo",
+    summary:
+      "Finally showing off what Archivist can do and how fast, after a round of interface tweaks to make the screen less busy and more intuitive.",
+    image: {
+      src: "/cromblog/archivist-iv-demo/archivist-demo-poster.jpg",
+      alt: "Archivist's opening screen: an engraved oak beside the Cradle of the Empire title, a question box, and four starter questions.",
+      width: 1920,
+      height: 1080
+    }
+  },
   "doodle-lab": {
     slug: "doodle-lab",
     title: "Doodle Lab: Fusing Five Years of Doodling into a Web Art Gallery",

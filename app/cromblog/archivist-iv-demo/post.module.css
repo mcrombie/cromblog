@@ -1,0 +1,100 @@
+.videoFigure {
+  /* The space above comes from the article's content-flow rhythm, as it does below. */
+  margin-inline: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: var(--panel);
+}
+
+.videoFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0d161b;
+}
+
+.videoFrame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.posterLink {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.posterImage {
+  object-fit: cover;
+  transition: filter 180ms ease;
+}
+
+.playButton {
+  position: relative;
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(13, 22, 27, 0.78);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.playButton svg {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.2rem;
+  fill: currentColor;
+}
+
+.posterLink:hover .posterImage,
+.posterLink:focus-visible .posterImage {
+  filter: brightness(0.9);
+}
+
+.posterLink:hover .playButton,
+.posterLink:focus-visible .playButton {
+  background: rgba(13, 22, 27, 0.92);
+  transform: scale(1.06);
+}
+
+.videoFigure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.7;
+}
+
+.videoFigure figcaption a {
+  color: var(--brass-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.videoFigure :focus-visible {
+  outline: 2px solid var(--brass-bright);
+  outline-offset: 3px;
+}
+
+.posterLink:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .posterImage,
+  .playButton {
+    transition: none;
+  }
+}
