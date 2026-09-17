@@ -3,7 +3,7 @@ import { Patrick_Hand } from "next/font/google";
 
 import { RootShell } from "@/components/root-shell";
 import { siteMeta } from "@/content/site";
-import { DEFAULT_DOODLE_DESIGN, DOODLE_DESIGNS, DOODLE_DESIGN_QUERY_KEY, DOODLE_DESIGN_STORAGE_KEY } from "@/lib/doodle-designs";
+import { DOODLE_DESIGN_QUERY_KEY, LEGACY_DOODLE_DESIGN_IDS } from "@/lib/doodle-designs";
 import {
   DEFAULT_VIBE,
   VIBES,
@@ -73,23 +73,14 @@ const vibeInitializer = `(() => {
     }
   } catch {}
 
+  // Old Doodle Lab design links (?doodle-design=...) simply open the Doodle Lab vibe.
   try {
-    const validDesigns = ${JSON.stringify(DOODLE_DESIGNS.map(design => design.id))};
-    const queryDesign = new URL(window.location.href).searchParams.get(${JSON.stringify(DOODLE_DESIGN_QUERY_KEY)});
-    let storedDesign;
-    try { storedDesign = window.localStorage.getItem(${JSON.stringify(DOODLE_DESIGN_STORAGE_KEY)}); } catch {}
-    document.documentElement.dataset.doodleDesign = validDesigns.includes(queryDesign)
-      ? queryDesign : validDesigns.includes(storedDesign) ? storedDesign : ${JSON.stringify(DEFAULT_DOODLE_DESIGN)};
-    if (validDesigns.includes(queryDesign)) {
+    const legacyDesign = new URL(window.location.href).searchParams.get(${JSON.stringify(DOODLE_DESIGN_QUERY_KEY)});
+    if (${JSON.stringify(LEGACY_DOODLE_DESIGN_IDS)}.includes(legacyDesign)) {
       document.documentElement.dataset.vibe = "doodle";
-      try {
-        window.localStorage.setItem(${JSON.stringify(DOODLE_DESIGN_STORAGE_KEY)}, queryDesign);
-        window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, "doodle");
-      } catch {}
+      try { window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, "doodle"); } catch {}
     }
-  } catch {
-    document.documentElement.dataset.doodleDesign = ${JSON.stringify(DEFAULT_DOODLE_DESIGN)};
-  }
+  } catch {}
 
   // Explicit theme links take precedence, including when local storage is blocked.
   try {
@@ -107,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-vibe={DEFAULT_VIBE} data-doodle-design={DEFAULT_DOODLE_DESIGN} className={notebookHand.variable} suppressHydrationWarning>
+    <html lang="en" data-vibe={DEFAULT_VIBE} className={notebookHand.variable} suppressHydrationWarning>
       <head>
         <script
           id="cromblog-vibe-initializer"

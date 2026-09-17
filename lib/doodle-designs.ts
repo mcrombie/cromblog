@@ -1,12 +1,14 @@
-export const DOODLE_DESIGN_STORAGE_KEY = "cromblog:doodle-design";
-export const DOODLE_DESIGN_CHANGE_EVENT = "cromblog:doodle-design-change";
+/**
+ * The Doodle Lab vibe once offered two designs (Field Notebook and Original
+ * Strokes) behind a sidebar switch. There is a single design now; these
+ * constants only keep the old `?doodle-design=` links working as aliases for
+ * `?vibe=doodle`.
+ */
 export const DOODLE_DESIGN_QUERY_KEY = "doodle-design";
-export const DOODLE_DESIGNS = [
-  { id: "field-notebook", label: "Field Notebook" },
-  { id: "original-strokes", label: "Original Strokes" }
-] as const;
-export type DoodleDesignId = typeof DOODLE_DESIGNS[number]["id"];
-export const DEFAULT_DOODLE_DESIGN: DoodleDesignId = "field-notebook";
-export function isDoodleDesignId(value: unknown): value is DoodleDesignId {
-  return DOODLE_DESIGNS.some(design => design.id === value);
+export const LEGACY_DOODLE_DESIGN_IDS = ["field-notebook", "original-strokes"] as const;
+
+export type LegacyDoodleDesignId = (typeof LEGACY_DOODLE_DESIGN_IDS)[number];
+
+export function isLegacyDoodleDesignId(value: unknown): value is LegacyDoodleDesignId {
+  return LEGACY_DOODLE_DESIGN_IDS.some((id) => id === value);
 }

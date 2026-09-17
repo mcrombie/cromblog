@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DoodleHomeHero } from "@/components/doodle-home-hero";
+import { DoodleHomeFigure, DoodleHomeNote } from "@/components/doodle-home-hero";
 import { HomeLatestPost } from "@/components/home-discovery";
 import { archivistDemoUrl } from "@/content/site";
 import { archivistArt } from "@/content/archivist-art";
@@ -29,11 +29,14 @@ export default function HomePage() {
           />
         ))}
 
+        <DoodleHomeFigure />
+
         <div className="home-hero-copy">
           <h1 className="home-title">Cromblog</h1>
           <p className="home-lede">
             Essays, software, and art by Michael Crombie.
           </p>
+          <DoodleHomeNote />
         </div>
 
         <article className="home-feature" aria-labelledby="home-feature-title">
@@ -72,8 +75,6 @@ export default function HomePage() {
             </div>
           </div>
         </article>
-
-        <DoodleHomeHero />
       </section>
 
       <HomeLatestPost />

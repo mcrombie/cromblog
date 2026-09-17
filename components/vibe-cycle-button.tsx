@@ -85,6 +85,17 @@ export function VibeCycleButton({
     }
   }
 
+  // The sidebar offers this once the floating control has been dismissed for the session.
+  function restoreDismissedControl() {
+    delete document.documentElement.dataset.vibeControl;
+
+    try {
+      window.sessionStorage.removeItem(VIBE_DISMISSED_SESSION_KEY);
+    } catch {
+      // The floating control is still restored for the current page.
+    }
+  }
+
   function applyVibe(nextVibe: VibeId) {
     const nextOption = VIBES.find((option) => option.id === nextVibe) ?? VIBES[0];
 
@@ -149,6 +160,9 @@ export function VibeCycleButton({
             {VIBES.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
           </select>
         </span>
+        <button type="button" className={`${styles.restore} vibe-restore-button`} onClick={restoreDismissedControl}>
+          Show appearance controls
+        </button>
         <span className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</span>
       </div>
     );

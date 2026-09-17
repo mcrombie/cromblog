@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { DoodleDesignSwitch } from "@/components/doodle-design-switch";
 import { DoodleSpecimen } from "@/components/doodle-specimen";
 import { VibeCycleButton } from "@/components/vibe-cycle-button";
 
@@ -124,7 +123,6 @@ export function Sidebar() {
       </nav>
 
       <VibeCycleButton variant="navigation" />
-      <DoodleDesignSwitch />
       {pathname !== "/art" && !pathname.startsWith("/art/") ? <DoodleSpecimen /> : null}
 
       <div className="sidebar-footer">

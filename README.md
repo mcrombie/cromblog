@@ -132,21 +132,25 @@ contact sheet to the workspace `.tmp` directory rather than shipping it with the
 site. New batches use `scripts/doodle_batch.py` and its source, master, and catalog
 checks described in the Doodle Lab guide.
 
-The `Doodle Lab` vibe is the final entry in `lib/vibes.ts` and the default
-for visitors without a saved preference, so cycling forward from it reaches
-Professional. It uses naturalistic bird studies as a restrained notebook layer.
-Its sidebar design selector offers **Field Notebook**, following the notebook
-design plan, and **Original Strokes**, a quieter version that foregrounds the
-original drawings. The choice persists across pages and reloads. The floating
-vibe control steps in either direction and can be dismissed and restored.
-Deterministic, cataloged originals supply the route specimens, heading marks,
-and footer meadow. Mobile keeps a smaller meadow; Art and standalone apps omit
-ambient decorations. Archived studies remain browseable in Art, and the Future
-GIF experiments have their own collection tab.
+The `Doodle Lab` vibe is a single design, **Field Notebook**: warm dotted paper
+with a field of original notebook doodles behind the panels (denser at the page
+edges, fading under the content), handwritten annotations, and every content
+image presented as a matted print. Deterministic, cataloged originals supply
+the home hero (the Common Flicker climbing the page edge beside the title), a
+route-specific sidebar specimen and heading mark, and page-foot compositions of
+intact leaf and tree drawings; no drawing appears twice on one screen. Drawings
+sketch in as they arrive and the field drifts a little on scroll, both disabled
+under `prefers-reduced-motion`. Art and standalone apps omit ambient
+decorations. The floating vibe control can be dismissed and restored from the
+sidebar. The retired design switch's `?doodle-design=` links still open the
+vibe. Archived studies remain browseable in Art, and the Future GIF experiments
+have their own collection tab.
 
 The small `content/doodle-vibe.ts` registry keeps the full art catalog out of the
-shared layout. Run `npm run doodles:vibe` to rebuild its original-alpha PNG
-derivatives, or `npm run doodles:vibe:check` to verify them. See the
+shared layout; it maps routes to specimens, marks and foot compositions. After
+changing `content/doodle-vibe-assets.json`, run `npm run doodles:vibe` to rebuild
+the original-alpha PNG derivatives, delete any PNG the registry no longer lists,
+and run `npm run doodles:vibe:check` to verify them. See the
 [Doodle Lab guide](art-source/DOODLE-LAB.md) and
 [design implementation notes](art-source/doodle-vibe-redesign/IMPLEMENTATION.md).
 

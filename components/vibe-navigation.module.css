@@ -79,6 +79,26 @@
   outline-offset: 2px;
 }
 
+/* Shown only after the floating control has been dismissed for the session. */
+.restore {
+  display: none;
+  min-height: 2.5rem;
+  padding: .35rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--brass-bright);
+  font: inherit;
+  font-size: .82rem;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  cursor: pointer;
+}
+
+:global(html[data-vibe-control="dismissed"]) .restore {
+  display: inline-block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .select,
   .selectWrap::after {

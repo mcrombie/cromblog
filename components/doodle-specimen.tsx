@@ -13,7 +13,7 @@ export function DoodleSpecimen() {
 
   return (
     <figure className="doodle-specimen" data-doodle-specimen={id}>
-      <NotebookDoodle id={id} className="doodle-specimen-drawing" />
+      <NotebookDoodle key={id} id={id} className="doodle-specimen-drawing" />
       <figcaption className="doodle-specimen-caption">
         <p className="doodle-specimen-eyebrow">From the notebook</p>
         <p className="doodle-specimen-title">{drawing.title}</p>

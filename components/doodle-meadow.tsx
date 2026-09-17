@@ -1,42 +1,56 @@
-import { NotebookDoodle } from "@/components/notebook-doodle";
-import { doodleVibeMeadow, doodleVibeLeafClusters } from "@/content/doodle-vibe";
+"use client";
 
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+
+import { NotebookDoodle } from "@/components/notebook-doodle";
+import { doodleVibeCompositions, doodleVibeFootForPath } from "@/content/doodle-vibe";
+
+/* The page foot in the Doodle Lab vibe: route-specific compositions of intact
+ * leaf and tree drawings. It renders in every appearance and is hidden by CSS
+ * outside Doodle, so switching vibes never changes the markup. */
 export function DoodleMeadow() {
+  const pathname = usePathname() ?? "/";
+  const foot = doodleVibeFootForPath(pathname);
+  const root = useRef<HTMLDivElement>(null);
+
+  // Drawings sketch in on load. A composition that starts below the fold is marked so the
+  // CSS can hand its reveal to a scroll-driven timeline instead, where the browser has one.
+  useEffect(() => {
+    root.current?.querySelectorAll<HTMLElement>(".doodle-composition").forEach((composition) => {
+      if (composition.getBoundingClientRect().top > window.innerHeight) {
+        composition.classList.add("doodle-composition-below");
+      }
+    });
+  }, [pathname]);
+
   return (
-    <>
-        <div className="doodle-meadow doodle-meadow-field-notebook" aria-hidden="true">
-          {doodleVibeMeadow.map(({ id, role, mobile }, index) => (
-            <NotebookDoodle
-              key={id}
-              id={id}
-              className={[
-                "doodle-meadow-item",
-                `doodle-meadow-item-${index + 1}`,
-                `doodle-meadow-${role}`,
-                mobile ? "doodle-meadow-mobile" : ""
-              ].filter(Boolean).join(" ")}
-            />
-          ))}
-        </div>
-        <div className="doodle-meadow doodle-meadow-original-strokes" aria-hidden="true">
-          {doodleVibeLeafClusters.map(({ id, primary, leaves }) => (
-            <div
-              key={id}
-              data-leaf-composition={id}
-              className={`doodle-leaf-cluster${primary ? " doodle-leaf-cluster-primary" : ""}`}
-            >
-              {leaves.map(({ id: drawingId, x, y, width, rotate }, index) => (
-                <span
-                  key={`${drawingId}-${index}`}
-                  className="doodle-leaf"
-                  style={{ left: `${x}%`, top: `${y}%`, width: `${width}%`, transform: `translate(-50%, -50%) rotate(${rotate}deg)` }}
-                >
-                  <NotebookDoodle id={drawingId} className="doodle-leaf-drawing" />
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-    </>
+    <div ref={root} className="doodle-meadow" aria-hidden="true" data-doodle-foot={foot.join(" ")}>
+      {foot.map((compositionId, slot) => {
+        const composition = doodleVibeCompositions[compositionId];
+        return (
+          <div
+            key={compositionId}
+            className={`doodle-composition doodle-composition-slot-${slot + 1}`}
+            data-doodle-composition={compositionId}
+          >
+            {composition.items.map((item, index) => (
+              <span
+                key={`${item.id}-${index}`}
+                className="doodle-composition-item"
+                style={{
+                  left: `${item.x}%`,
+                  top: `${item.y}%`,
+                  width: `${item.width}%`,
+                  transform: `translate(-50%, -50%) rotate(${item.rotate}deg)`
+                }}
+              >
+                <NotebookDoodle id={item.id} className="doodle-composition-drawing" index={slot * 3 + index} />
+              </span>
+            ))}
+          </div>
+        );
+      })}
+    </div>
   );
 }
