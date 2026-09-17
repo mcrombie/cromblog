@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { DoodleField } from "@/components/doodle-field";
 import { DoodleSpecimen } from "@/components/doodle-specimen";
 import { VibeCycleButton } from "@/components/vibe-cycle-button";
 
@@ -137,6 +138,7 @@ export function Sidebar() {
           Essays, software, and simulated worlds.
         </p>
       </div>
+      <DoodleField placement="sidebar" />
     </aside>
   );
 }

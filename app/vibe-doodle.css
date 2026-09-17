@@ -4,6 +4,7 @@
 .notebook-doodle,
 .doodle-specimen,
 .doodle-meadow,
+.doodle-field,
 .doodle-home-figure,
 .doodle-home-note {
   display: none;
@@ -79,58 +80,57 @@ html[data-vibe="doodle"] .site-sidebar { background-color: var(--panel-raised); 
 html[data-vibe="doodle"] .site-main::before { z-index: 4; top: 0.65rem; height: 1px; background: var(--border-soft); }
 html[data-vibe="doodle"] .site-main-content { position: relative; z-index: 1; }
 
-/* A dense field of original notebook doodles fills the page behind the paper panels.
- * The tile comes from scripts/build-doodle-vibe-pattern.py; rebuild it after changing the cast. */
-html[data-vibe="doodle"] :is(.site-main, .site-sidebar)::after {
+/* The field: a few dozen of the best notebook drawings, each drawn once and scattered over a
+ * viewport-sized sheet that holds still while the paper panels scroll across it. Drawings fade
+ * beneath the content column and stay strong at the page edges. Phones and tablets use a
+ * portrait layout of the first fourteen. Layout and masks: scripts/build-doodle-vibe-field.py. */
+html[data-vibe="doodle"] .doodle-field {
   position: absolute;
   z-index: -1;
   inset: 0;
-  content: "";
+  display: block;
+  color: var(--doodle-ink);
   pointer-events: none;
-  background: var(--doodle-ink);
-  opacity: 0.2;
-  -webkit-mask: url("/cromblog/doodle-vibe/pattern-tile.webp") 0 0 / 56.25rem repeat;
-  mask: url("/cromblog/doodle-vibe/pattern-tile.webp") 0 0 / 56.25rem repeat;
 }
-html[data-vibe="doodle"] .site-sidebar::after { opacity: 0.18; }
-
-/* The field fades beneath the content column and stays dense at the page edges, head and foot.
- * Browsers without mask compositing keep the uniform field above. */
-@supports (mask-composite: intersect) or (-webkit-mask-composite: source-in) {
-  html[data-vibe="doodle"] .site-main::after {
-    -webkit-mask-image:
-      url("/cromblog/doodle-vibe/pattern-tile.webp"),
-      linear-gradient(90deg, #000 0 6%, rgba(0, 0, 0, 0.32) 28% 72%, #000 94%),
-      linear-gradient(180deg, #000 0 4%, transparent 11% 87%, #000 95%);
-    -webkit-mask-size: 56.25rem, 100% 100%, 100% 100%;
-    -webkit-mask-repeat: repeat, no-repeat, no-repeat;
-    -webkit-mask-position: 0 0, 0 0, 0 0;
-    -webkit-mask-composite: source-in, source-over, source-over;
-    mask-image:
-      url("/cromblog/doodle-vibe/pattern-tile.webp"),
-      linear-gradient(90deg, #000 0 6%, rgba(0, 0, 0, 0.32) 28% 72%, #000 94%),
-      linear-gradient(180deg, #000 0 4%, transparent 11% 87%, #000 95%);
-    mask-size: 56.25rem, 100% 100%, 100% 100%;
-    mask-repeat: repeat, no-repeat, no-repeat;
-    mask-position: 0 0, 0 0, 0 0;
-    mask-composite: intersect, add, add;
-  }
-  html[data-vibe="doodle"] .site-sidebar::after {
-    -webkit-mask-image:
-      url("/cromblog/doodle-vibe/pattern-tile.webp"),
-      linear-gradient(90deg, #000 0 8%, rgba(0, 0, 0, 0.4) 32% 68%, #000 92%);
-    -webkit-mask-size: 56.25rem, 100% 100%;
-    -webkit-mask-repeat: repeat, no-repeat;
-    -webkit-mask-position: 0 0, 0 0;
-    -webkit-mask-composite: source-in, source-over;
-    mask-image:
-      url("/cromblog/doodle-vibe/pattern-tile.webp"),
-      linear-gradient(90deg, #000 0 8%, rgba(0, 0, 0, 0.4) 32% 68%, #000 92%);
-    mask-size: 56.25rem, 100% 100%;
-    mask-repeat: repeat, no-repeat;
-    mask-position: 0 0, 0 0;
-    mask-composite: intersect, add;
-  }
+html[data-vibe="doodle"] .doodle-field-sheet {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  opacity: 0.25;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 6%, rgba(0, 0, 0, 0.5) 26% 74%, #000 94%);
+  mask-image: linear-gradient(90deg, #000 0 6%, rgba(0, 0, 0, 0.5) 26% 74%, #000 94%);
+}
+html[data-vibe="doodle"] .doodle-field-sidebar .doodle-field-sheet {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  opacity: 0.18;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 8%, rgba(0, 0, 0, 0.5) 32% 68%, #000 92%);
+  mask-image: linear-gradient(90deg, #000 0 8%, rgba(0, 0, 0, 0.5) 32% 68%, #000 92%);
+}
+html[data-vibe="doodle"] .doodle-field-drawing {
+  position: absolute;
+  top: var(--field-y);
+  left: var(--field-x);
+  width: calc(var(--field-width) * var(--field-scale, 1));
+  background: currentColor;
+  -webkit-mask: var(--field-src) center / 100% 100% no-repeat;
+  mask: var(--field-src) center / 100% 100% no-repeat;
+  transform: translate(-50%, -50%) rotate(var(--field-turn));
+}
+@media (min-width: 1800px) {
+  html[data-vibe="doodle"] .doodle-field-main { --field-scale: 1.15; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  html[data-vibe="doodle"] .doodle-field-main { --field-scale: 0.9; }
+}
+@media (max-width: 1023px) {
+  html[data-vibe="doodle"] .doodle-field-main { --field-scale: var(--field-narrow-scale); }
+  html[data-vibe="doodle"] .doodle-field-main .doodle-field-drawing { top: var(--field-narrow-y); left: var(--field-narrow-x); }
+  html[data-vibe="doodle"] .doodle-field-main .doodle-field-drawing.is-wide-only { display: none; }
+}
+@media (max-width: 639px) {
+  html[data-vibe="doodle"] .doodle-field-main { --field-scale: calc(var(--field-narrow-scale) * 0.85); }
 }
 
 /* Raised paper panels. */
@@ -513,8 +513,7 @@ html[data-vibe="doodle"] :is(.art-showcase-open, .doodle-gallery-enlarge) {
 
 /* Living ink. Drawings sketch in with a short diagonal reveal, staggered within a group.
  * Where scroll-driven animations exist, the foot compositions and article rails sketch in
- * as they enter view and the field drifts a few rem behind the page. All of it is off
- * under reduced motion. */
+ * as they enter view. All of it is off under reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
   html[data-vibe="doodle"] :is(.notebook-doodle, .doodle-art) {
     animation: doodle-sketch-in var(--doodle-sketch-duration, 700ms) cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -531,20 +530,12 @@ html[data-vibe="doodle"] :is(.art-showcase-open, .doodle-gallery-enlarge) {
       animation-timeline: view();
       animation-range: entry calc(5% + var(--doodle-index, 0) * 4%) entry 75%;
     }
-    html[data-vibe="doodle"] .site-main::after {
-      animation: doodle-field-drift linear both;
-      animation-timeline: scroll(root);
-    }
   }
 }
 @keyframes doodle-sketch-in {
   from { clip-path: polygon(0 0, 0 0, 0 0); opacity: 0.25; }
   55% { opacity: 1; }
   to { clip-path: polygon(0 0, 200% 0, 0 200%); opacity: 1; }
-}
-@keyframes doodle-field-drift {
-  from { -webkit-mask-position: 0 0, 0 0, 0 0; mask-position: 0 0, 0 0, 0 0; }
-  to { -webkit-mask-position: 0 -5rem, 0 0, 0 0; mask-position: 0 -5rem, 0 0, 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -557,7 +548,7 @@ html[data-vibe="doodle"] :is(.art-showcase-open, .doodle-gallery-enlarge) {
   html[data-vibe="doodle"] .doodle-meadow,
   html[data-vibe="doodle"] .sidebar-sprig,
   html[data-vibe="doodle"] .doodle-article-rail,
-  html[data-vibe="doodle"] :is(.site-main, .site-sidebar)::after,
+  html[data-vibe="doodle"] .doodle-field,
   html[data-vibe="doodle"] :is(.sidebar-ornament, .printer-rule)::after,
   html[data-vibe="doodle"] :is(.post-title, .project-title, .latest-dispatch-title)::after,
   html[data-vibe="doodle"] .site-nav-link .nav-label::after { display: none !important; }

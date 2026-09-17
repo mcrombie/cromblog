@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { DoodleField } from "@/components/doodle-field";
 import { DoodleMeadow } from "@/components/doodle-meadow";
 import { Sidebar } from "@/components/sidebar";
 import { VibeCycleButton } from "@/components/vibe-cycle-button";
@@ -25,6 +26,7 @@ export function SiteShell({
         <div className="site-main-content">{children}</div>
         {showAmbientDoodles ? <DoodleMeadow /> : null}
         <div className="slow-garden-floor" aria-hidden="true" />
+        <DoodleField placement="main" />
       </main>
       <VibeCycleButton />
     </div>
