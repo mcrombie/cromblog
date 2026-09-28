@@ -8,6 +8,7 @@ import { blogPosts } from "@/content/blog";
 import styles from "./post.module.css";
 
 const post = blogPosts["azhora-game"];
+const latestUpdate = post.updateDates?.at(-1);
 
 export const metadata: Metadata = {
   title: post.title,
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     title: post.title,
     description: post.summary,
     publishedTime: "2026-09-28",
+    modifiedTime: latestUpdate ? new Date(latestUpdate).toISOString() : undefined,
     images: [{ url: "/og.png", width: 1200, height: 630 }]
   },
   twitter: {
@@ -43,7 +45,10 @@ export default function AzhoraGamePage() {
           <header className="content-flow">
             <p className="text-xs uppercase tracking-[0.22em] text-pine-700">Cromblog</p>
             <h1 className="font-serif text-4xl text-ink sm:text-5xl">{post.title}</h1>
-            <p className="text-sm text-pine-700/80">{post.date} &middot; {post.readTime}</p>
+            <div className="space-y-1 text-sm text-pine-700/80">
+              <p>{post.date} &middot; {post.readTime}</p>
+              {latestUpdate ? <p>Updated {latestUpdate}</p> : null}
+            </div>
           </header>
 
           <hr className="border-[color:var(--border)]" />
@@ -86,10 +91,8 @@ export default function AzhoraGamePage() {
               actually building the bones of this world I am now speaking to life.
             </p>
 
-            <h2 id="voice-to-text">Voice to Text</h2>
             <p>
-              Speaking Azhora into existence has blown my mind more than any of
-              these other projects.
+              Speaking Azhora into existence has blown my mind more than any other.
             </p>
           </div>
 
@@ -113,13 +116,13 @@ export default function AzhoraGamePage() {
 
           <div className="article-prose" style={{ maxWidth: "none" }}>
             <p>
-              Creating a game by simply speaking a loose stream of consciousness
-              about how you want it to work is almost as fun as playing it.
+              Creating a game by simply speaking your loose stream-of-consciousness
+              ideas about how you want it to be is almost as fun as playing it.
             </p>
             <p>
-              I am amazed at how many words I can produce so quickly while
-              speaking. In a couple of hours, I churned out about 10,000 words
-              describing what I wanted Azhora to be.
+              I am amazed at how many words I have produced so quickly while
+              speaking. In a couple of hours, I churned out about 10,000 words of
+              text describing what I want the Azhora game to be.
             </p>
             <p>
               Here is that full prompt, with the voice-to-text mistakes and
@@ -135,39 +138,62 @@ export default function AzhoraGamePage() {
           />
 
           <div className="article-prose" style={{ maxWidth: "none" }}>
-            <h2 id="ai-coding-models">AI Coding Models</h2>
             <p>
               I recorded that massive prompt after I ran out of usage with
-              Codex. The plan seemed like an incredible deal. It makes me wonder
-              how OpenAI will balance its subscriptions with developers like me
-              who have an insatiable desire for more tokens.
+              Codex. Even the Pro plan has{" "}
+              <a href="https://learn.chatgpt.com/docs/pricing">usage limits</a>.
+              It seems like an incredible deal and I am sure OpenAI
+              is having to constantly rethink their business model as so many
+              developers like me have an insatiable desire for using more tokens.
             </p>
-            <p>So I decided to switch to Claude’s Max plan for September.</p>
+            <p>So I decided to switch to Claude’s Max plan for this month.</p>
             <p>
-              For this project, that meant the somewhat awkward step of handing
-              it over from GPT-6 Astra in Codex to Claude Fable, using Claude
-              Code’s{" "}
+              For this project, that means the somewhat awkward step of handing
+              the project over from GPT-6 Astra in Codex to Claude’s Fable. I am
+              curious to see how they work differently, but I imagine since the
+              game’s core design is already laid out it should not be too hard
+              for Fable, using Claude Code’s{" "}
               <a href="https://claude.com/blog/introducing-dynamic-workflows-in-claude-code">
                 ultracode setting
-              </a>.
-              I was curious to see how they would work differently. Since the
-              game’s core design was already laid out, I expected Fable to be
-              able to pick up where Codex left off.
-            </p>
-
-            <h2 id="conclusion">Conclusion</h2>
-            <p>
-              I was amazed that I could have the basis for a 3D adventure game
-              in a few hours. After a couple of weeks of development, I have
-              fleshed it out a lot more, but there is still a lot of work to do
-              before it is a full game.
+              </a>, to adapt.
             </p>
             <p>
-              Still, I figured I would write an introductory post because there
-              will be more to come. This project has really gotten me sidetracked
-              over the last week. I have found making it even more fun than
-              Cromonsters or Clio, partly because it will bring together some
-              of my favorite ideas from both games.
+              The whole game — the terrain, the characters, the fights, the
+              journal — is plain JavaScript running in a browser, with a library
+              called <a href="https://threejs.org/">Three.js</a> doing the 3D
+              graphics. Three.js takes a scene of meshes, lights and a camera and
+              renders it through <a href="https://www.khronos.org/webgl/">WebGL</a>,
+              a browser graphics API based on OpenGL ES, for telling a graphics
+              card where to put its triangles.
+            </p>
+            <p>
+              <a href="https://www.electronjs.org/docs/latest/tutorial/process-model">Electron</a>{" "}
+              is what makes it feel like a desktop game instead of a tab: it
+              bundles Chromium with the page, giving it a window and an icon,
+              and letting it save directly to a file on disk. There is no game
+              engine like Unity or Unreal underneath, nor any compilation step.
+              All I have to do is edit a file, relaunch, and see the change. These
+              same files can run in a phone browser, which is why I eventually
+              added touch controls.
+            </p>
+            <p>
+              The cost to this approach is that I don’t expect this setup to push
+              the triangles a mature engine is capable of, but for a low-poly
+              world you mostly walk through, that trade has held up so far. I
+              will see its limits soon, I suspect.
+            </p>
+            <p>
+              Regardless, I was amazed that now I could have the basis for a 3D
+              adventure game in a few hours. After a couple of weeks of
+              development I have fleshed it out a lot more, but there is still a
+              lot of work to do before it is a complete game.
+            </p>
+            <p>
+              Still, I figured I would do an introductory post because there
+              will be more to come of this project. It really has gotten me
+              sidetracked the last week, but I found making it far more fun than
+              Cromonsters or Clio, partly because in the end it will take some of
+              my favorite ideas from both of those games.
             </p>
           </div>
 

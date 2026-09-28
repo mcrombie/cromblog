@@ -107,7 +107,8 @@ export const blogPosts = {
     href: "/cromblog/azhora-game",
     status: "published",
     date: "September 28, 2026",
-    readTime: "3 min read + gameplay and full prompt",
+    updateDates: ["September 28, 2026"],
+    readTime: "4 min read + gameplay and full prompt",
     summary:
       "Speaking Azhora into existence: voice-to-text game development with Codex and Claude, an old world of lore, and a 10,000-word prompt."
   },
