@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "azhora-game"
   | "archivist-iv-demo"
   | "doodle-lab"
   | "clio"
@@ -77,6 +78,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "azhora-game",
   "archivist-iv-demo",
   "doodle-lab",
   "crombot-one",
@@ -99,6 +101,16 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "azhora-game": {
+    slug: "azhora-game",
+    title: "Azhora: Building a 3D Adventure Game",
+    href: "/cromblog/azhora-game",
+    status: "published",
+    date: "September 28, 2026",
+    readTime: "3 min read + gameplay and full prompt",
+    summary:
+      "Speaking Azhora into existence: voice-to-text game development with Codex and Claude, an old world of lore, and a 10,000-word prompt."
+  },
   "archivist-iv-demo": {
     slug: "archivist-iv-demo",
     title: "Archivist IV: The Demo",
