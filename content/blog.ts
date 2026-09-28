@@ -110,7 +110,14 @@ export const blogPosts = {
     updateDates: ["September 28, 2026"],
     readTime: "4 min read + gameplay and full prompt",
     summary:
-      "Speaking Azhora into existence: voice-to-text game development with Codex and Claude, an old world of lore, and a 10,000-word prompt."
+      "Speaking Azhora into existence: voice-to-text game development with Codex and Claude, an old world of lore, and a 10,000-word prompt.",
+    // In-game capture: azhora-game/tests/artifacts/opening-landed.jpg.
+    image: {
+      src: "/cromblog/azhora-game/tidewater-haven-arrival.jpg",
+      alt: "An adventurer arriving at Tidewater Haven along a wooden dock, framed by sailboats, turquoise water, and a forest village.",
+      width: 1440,
+      height: 960
+    }
   },
   "archivist-iv-demo": {
     slug: "archivist-iv-demo",

@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description: post.summary,
     publishedTime: "2026-09-28",
     modifiedTime: latestUpdate ? new Date(latestUpdate).toISOString() : undefined,
-    images: [{ url: "/og.png", width: 1200, height: 630 }]
+    images: [{ url: post.image.src, width: post.image.width, height: post.image.height, alt: post.image.alt }]
   },
   twitter: {
     card: "summary_large_image",
     title: post.title,
     description: post.summary,
-    images: ["/og.png"]
+    images: [post.image.src]
   }
 };
 
