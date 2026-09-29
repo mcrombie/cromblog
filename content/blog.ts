@@ -111,12 +111,12 @@ export const blogPosts = {
     readTime: "4 min read + gameplay and full prompt",
     summary:
       "Speaking Azhora into existence: voice-to-text game development with Codex and Claude, an old world of lore, and a 10,000-word prompt.",
-    // In-game capture: azhora-game/tests/artifacts/opening-landed.jpg.
+    // In-game capture: azhora-game/tests/artifacts/developer-dragon-lotharn-wide.jpg.
     image: {
-      src: "/cromblog/azhora-game/tidewater-haven-arrival.jpg",
-      alt: "An adventurer arriving at Tidewater Haven along a wooden dock, framed by sailboats, turquoise water, and a forest village.",
-      width: 1440,
-      height: 960
+      src: "/cromblog/azhora-game/developer-dragon-east-lotharn.jpg",
+      alt: "The player riding a green dragon between the forested cliffs of the East Lotharn Mountains in Azhora.",
+      width: 1920,
+      height: 1040
     }
   },
   "archivist-iv-demo": {
