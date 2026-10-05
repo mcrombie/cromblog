@@ -14,7 +14,8 @@ export type ProjectSlug =
   | "world-builder"
   | "react-chess"
   | "polity"
-  | "pomodoro-clock";
+  | "pomodoro-clock"
+  | "stardate-valley";
 
 export type ProjectLink = {
   label: string;
@@ -30,8 +31,17 @@ export type ProjectImage = {
   unoptimized?: boolean;
 };
 
+/** The Projects page's tabs: every project sits in exactly one. */
+export type ProjectCategory = "apps" | "books" | "games";
+export const projectCategories: readonly { id: ProjectCategory; label: string }[] = [
+  { id: "apps", label: "Apps" },
+  { id: "books", label: "Books" },
+  { id: "games", label: "Games" }
+];
+
 export type Project = {
   slug: ProjectSlug;
+  category: ProjectCategory;
   title: string;
   pitch: string;
   summary: string;
@@ -79,6 +89,7 @@ export const projectOrder: ProjectSlug[] = [
   "crombot-one",
   "clio",
   "cromonsters",
+  "stardate-valley",
   "clashvergence",
   "phoneme-chart",
   "world-builder",
@@ -88,8 +99,25 @@ export const projectOrder: ProjectSlug[] = [
 ];
 
 export const projects: Record<ProjectSlug, Project> = {
+  "stardate-valley": {
+    slug: "stardate-valley",
+    category: "games",
+    title: "Stardate Valley",
+    pitch: "A farm-life dating spoof: you inherited a farm, and the entire town inherited a crush on you.",
+    summary:
+      "Grow turnips, fish, and date all eight adult neighbors in this Stardew-inspired spoof, complete with pixel tools, heart events, a foul-mouthed goblin lord, an outrageously flirty Crombot, and a very ambitious polycule potluck. For a quick tour, open Grandpa’s letter and choose “Skip to the flirting.”",
+    stack: ["Browser game", "Farming", "Romance", "Pixel art"],
+    image: {
+      src: "/games/heartwood-valley/assets/village-map.png",
+      alt: "Stardate Valley: a pixel-art farm, cottages, flower gardens, and a wooden bridge over a turquoise river",
+      width: 1536,
+      height: 1024
+    },
+    links: [{ label: "Play Stardate Valley", href: "/games/heartwood-valley" }]
+  },
   "big-history-of-virginia": {
     slug: "big-history-of-virginia",
+    category: "books",
     title: "Cradle of the Empire: A Big History of Virginia",
     pitch:
       "Cradle of the Empire is a big history of Virginia, tracing the land and its people from deep geological time through to the present.",
@@ -109,6 +137,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   archivist: {
     slug: "archivist",
+    category: "apps",
     title: "Archivist",
     pitch:
       "Archivist turns Cradle of the Empire into a source-grounded conversation with the complete substantive manuscript.",
@@ -139,6 +168,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "doodle-lab": {
     slug: "doodle-lab",
+    category: "apps",
     title: "Doodle Lab",
     pitch:
       "Doodle Lab brings years of notebook drawings into a growing archive and new illustrated worlds.",
@@ -157,6 +187,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "crombot-one": {
     slug: "crombot-one",
+    category: "apps",
     title: "Crombot One",
     pitch:
       "Crombot One is my first Arduino rover, built from a starter kit to learn the basics of robotics.",
@@ -177,6 +208,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   clio: {
     slug: "clio",
+    category: "games",
     title: "Clio",
     pitch:
       "Clio is a historical strategy prototype about guiding a small band of people through an unfolding history.",
@@ -193,6 +225,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   cromonsters: {
     slug: "cromonsters",
+    category: "games",
     title: "Cromonsters",
     pitch:
       "Cromonsters is a growing browser adventure about a farmhand on an imperial estate.",
@@ -209,6 +242,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "clashvergence": {
     slug: "clashvergence",
+    category: "apps",
     title: "Clashvergence",
     pitch:
       "Clashvergence is a Python civilization simulation that models how factions grow, trade, fracture, and adapt across a map.",
@@ -230,6 +264,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "phoneme-chart": {
     slug: "phoneme-chart",
+    category: "apps",
     title: "Interactive Phoneme Chart",
     pitch:
       "Interactive Phoneme Chart is a TypeScript tool for exploring IPA sounds, language inventories, and constructed phonologies.",
@@ -249,6 +284,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "world-builder": {
     slug: "world-builder",
+    category: "apps",
     title: "World Builder",
     pitch:
       "World Builder is a hex-map editor for generating, customizing, and exporting maps for worldbuilding and simulation workflows.",
@@ -269,6 +305,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "react-chess": {
     slug: "react-chess",
+    category: "games",
     title: "React-Chess",
     pitch:
       "React-Chess is a rebuilt chess app with a TypeScript rules engine and a modern React/Vite interface.",
@@ -290,6 +327,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "polity": {
     slug: "polity",
+    category: "apps",
     title: "The Root of Civilization",
     pitch:
       "The Root of Civilization is an interactive essay about settlement, agriculture, and the first pressure toward complex society.",
@@ -311,6 +349,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "pomodoro-clock": {
     slug: "pomodoro-clock",
+    category: "apps",
     title: "Pomodoro Clock",
     pitch:
       "Pomodoro Clock is a focus timer with a lava lamp background that morphs from dark green to red as your session counts down.",

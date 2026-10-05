@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ProjectTabs } from "@/components/project-tabs";
 import { SectionHeading } from "@/components/section-heading";
 import { doodleVibeMarks } from "@/content/doodle-vibe";
 import {
@@ -11,7 +12,7 @@ import {
   type BlogPost,
   type BlogSeriesSlug
 } from "@/content/blog";
-import { projectOrder, projects } from "@/content/site";
+import { projectCategories, projectOrder, projects } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Projects"
@@ -45,6 +46,10 @@ function getBlogButton(series: BlogSeriesSlug | undefined) {
 }
 
 export default function ProjectsPage() {
+  const counts = {
+    all: projectOrder.length,
+    ...Object.fromEntries(projectCategories.map(({ id }) => [id, projectOrder.filter((slug) => projects[slug].category === id).length]))
+  } as Record<"all" | (typeof projectCategories)[number]["id"], number>;
   return (
     <div className="content-flow">
       <SectionHeading
@@ -54,13 +59,14 @@ export default function ProjectsPage() {
         description="Software, games, robotics, writing, and experiments in art."
       />
 
+      <ProjectTabs tabs={projectCategories} counts={counts}>
       <section className="projects-grid">
         {projectOrder.map((slug) => {
           const project = projects[slug];
           const blogButton = getBlogButton(project.blogSeries);
 
           return (
-            <article key={slug} id={project.slug} className="project-card">
+            <article key={slug} id={project.slug} className="project-card" data-category={project.category}>
               <div className="project-card-grid">
                 <div className="project-copy">
                   <p className="project-kicker">
@@ -121,6 +127,7 @@ export default function ProjectsPage() {
           );
         })}
       </section>
+      </ProjectTabs>
     </div>
   );
 }

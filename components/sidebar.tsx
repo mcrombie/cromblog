@@ -19,8 +19,6 @@ const navLinks: NavItem[] = [
   { href: "/about", label: "About", symbol: "✦" },
   { href: "/cromblog", label: "Blog", symbol: "❧" },
   { href: "/projects", label: "Projects", symbol: "◇" },
-  { href: "/games", label: "Games", symbol: "\u265F" },
-  { href: "/art", label: "Art", symbol: "\u273F" },
   {
     href: "https://github.com/mcrombie",
     label: "GitHub",

@@ -54,7 +54,7 @@ export default function ClioPage() {
             <p className="text-sm text-pine-700/80">{post.date} &middot; {post.readTime}</p>
             <p className={styles.projectLinks}>
               <a href="https://github.com/mcrombie/clio">Clio on GitHub</a>
-              <Link href="/games">Browse my games</Link>
+              <Link href="/projects#games">Browse my games</Link>
             </p>
           </header>
 
