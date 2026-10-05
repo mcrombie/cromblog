@@ -64,3 +64,25 @@ export function buildDoodleSubjectGroups(entries: readonly { category: string }[
     return [category, subject];
   }));
 }
+
+/** Categories whose drawings can be birds: the creature and character ones, not plants, places or objects. */
+const birdCategories = new Set(["Birds", "Birds & animals", "Animals", "Creatures", "Curious creatures", "Characters", "Groups", "People & faces"]);
+const birdWords = /\b(birds?|owls?|owlets?|wrens?|vireos?|flycatchers?|ravens?|crows?|sparrows?|finch(?:es)?|cardinals?|warblers?|hawks?|eagles?|herons?|ducks?|robins?|jays?|woodpeckers?|pewees?|chicks?|parrots?|penguins?|pelicans?|storks?|cranes?|swans?|geese|goose|hens?|roosters?|turkeys?|songbirds?|kingfishers?|hummingbirds?|bluebirds?)\b/i;
+
+/**
+ * Which theme a drawing belongs to. Mostly its category's, but the batches file birds under several categories
+ * (Birds, Birds & animals, Creatures, Animals, Characters), so a drawing whose main subject is a bird - judged
+ * from the part of its title before "with", "holding" and the like, or from a "bird" tag in a bird category - is
+ * a Bird. A tree with a tiny bird in it stays a tree.
+ */
+export function doodleSubjectFor(
+  entry: { category: string; title: string; tags: readonly string[] },
+  groups: DoodleSubjectGroups
+): DoodleSubjectId {
+  if (birdCategories.has(entry.category)) {
+    const head = entry.title.split(/\s+(?:with|holding|on|beneath|under|above|beside|behind|among|inside|carrying|riding)\s+/i)[0];
+    const tagged = (entry.category === "Birds" || entry.category === "Birds & animals") && entry.tags.some((tag) => /^birds?$/i.test(tag));
+    if (birdWords.test(head) || tagged) return "birds";
+  }
+  return groups[entry.category];
+}

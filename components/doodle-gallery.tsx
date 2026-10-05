@@ -8,7 +8,7 @@ import type {
   DoodleBatch,
   DoodleCatalogEntry
 } from "@/content/doodle-catalog";
-import { doodleSubjects, type DoodleSubjectGroups } from "@/content/doodle-subjects";
+import { doodleSubjectFor, doodleSubjects, type DoodleSubjectGroups } from "@/content/doodle-subjects";
 import { doodleThumbSrc } from "@/lib/doodle-image-paths";
 
 type DoodleGalleryProps = {
@@ -47,8 +47,8 @@ export function filterDoodleEntries(
   const searchTerms = filters.query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return entries.filter((entry) => {
     if (filters.batchId !== "all" && entry.batchId !== filters.batchId) return false;
-    if (filters.subject !== "all" && subjectGroups[entry.category] !== filters.subject) return false;
-    const subjectLabel = doodleSubjects.find((subject) => subject.id === subjectGroups[entry.category])?.label ?? "";
+    if (filters.subject !== "all" && doodleSubjectFor(entry, subjectGroups) !== filters.subject) return false;
+    const subjectLabel = doodleSubjects.find((subject) => subject.id === doodleSubjectFor(entry, subjectGroups))?.label ?? "";
     const searchable = [entry.title, entry.category, subjectLabel, ...entry.tags]
       .join(" ").replace(/[-_]/g, " ").toLocaleLowerCase();
     return searchTerms.every((term) => searchable.includes(term.replace(/[-_]/g, " ")));
@@ -166,7 +166,7 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
           >
             {item.label}
             <span className="doodle-experiment-collection-count">
-              {item.id === "all" ? entries.length : entries.filter((entry) => subjectGroups[entry.category] === item.id).length}
+              {item.id === "all" ? entries.length : entries.filter((entry) => doodleSubjectFor(entry, subjectGroups) === item.id).length}
             </span>
           </button>
         ))}
@@ -262,7 +262,7 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
               <figcaption className="doodle-gallery-caption">
                 <div>
                   <h2>{entry.title}</h2>
-                  <p>{doodleSubjects.find((subject) => subject.id === subjectGroups[entry.category])?.label}</p>
+                  <p>{doodleSubjects.find((subject) => subject.id === doodleSubjectFor(entry, subjectGroups))?.label}</p>
                 </div>
                 <span className="doodle-gallery-status">
                   {doodleGalleryViews.find((item) => item.id === entry.status)?.label}
