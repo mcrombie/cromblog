@@ -1,3 +1,5 @@
+import curation from "@/content/doodle-curation.json";
+
 export const doodleSubjects = [
   { id: "characters", label: "Characters & people" },
   { id: "creatures", label: "Creatures & animals" },
@@ -76,9 +78,11 @@ const birdWords = /\b(birds?|owls?|owlets?|wrens?|vireos?|flycatchers?|ravens?|c
  * a Bird. A tree with a tiny bird in it stays a tree.
  */
 export function doodleSubjectFor(
-  entry: { category: string; title: string; tags: readonly string[] },
+  entry: { id: string; category: string; title: string; tags: readonly string[] },
   groups: DoodleSubjectGroups
 ): DoodleSubjectId {
+  const reviewed = (curation.themes as Record<string, DoodleSubjectId | undefined>)[entry.id];
+  if (reviewed) return reviewed;
   if (birdCategories.has(entry.category)) {
     const head = entry.title.split(/\s+(?:with|holding|on|beneath|under|above|beside|behind|among|inside|carrying|riding)\s+/i)[0];
     const tagged = (entry.category === "Birds" || entry.category === "Birds & animals") && entry.tags.some((tag) => /^birds?$/i.test(tag));

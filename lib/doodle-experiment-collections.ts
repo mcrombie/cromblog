@@ -14,16 +14,17 @@ export const experimentCollectionLabels: Record<ExperimentCollection, string> = 
 /** Collections that were merged into one: every animation now lives under GIFs. */
 const mergedCollections: Readonly<Record<string, ExperimentCollection>> = { "future-studies": "gifs", "meme-gifs": "gifs" };
 
+/** Scenes from otherwise scenic rounds that are really about their characters. */
+const characterStudyIds: ReadonlySet<string> = new Set(["round-22-midnight-estuary", "round-22-winter-archive"]);
+
 export function groupDoodleExperiments(entries: readonly DoodleExperiment[]) {
   const twoCharacterScenes = entries.filter((entry) =>
-    entry.kind === "Scene" && (entry.round === "17" || entry.round === "19" || entry.round === "24")
+    entry.kind === "Scene" && (entry.round === "17" || entry.round === "19" || entry.round === "24" || characterStudyIds.has(entry.id))
   );
   // Every animation in one place: the future studies, the meme GIFs and the earlier animated scenes.
   const gifs = entries.filter((entry) => entry.kind === "Animation");
   const comics = entries.filter((entry) => entry.kind === "Comic");
-  const scenic = entries.filter((entry) =>
-    entry.kind === "Scene" && entry.round !== "17" && entry.round !== "19" && entry.round !== "24"
-  );
+  const scenic = entries.filter((entry) => entry.kind === "Scene" && !twoCharacterScenes.includes(entry));
 
   return {
     twoCharacterScenes,

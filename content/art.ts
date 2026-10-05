@@ -4,7 +4,7 @@ export const doodleGalleryViews = [
   {
     id: "curated",
     label: "Selected",
-    description: "A selection of the more developed drawings."
+    description: "The best drawings in each theme, best first."
   },
   {
     id: "texture",
@@ -14,7 +14,7 @@ export const doodleGalleryViews = [
   {
     id: "archive",
     label: "Archive",
-    description: "Loose studies and smaller experiments, kept for later."
+    description: "Every other drawing: more characters, studies and sketches."
   },
   {
     id: "all",

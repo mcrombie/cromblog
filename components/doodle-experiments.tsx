@@ -240,7 +240,7 @@ export function DoodleExperiments({ entries, description }: {
           {twoCharacterScenes.length > 0 ? (
             <section className="doodle-experiment-study-group" aria-labelledby="two-character-scenes-title">
               <div className="doodle-experiment-study-heading">
-                <h2 id="two-character-scenes-title">Two-character scenes</h2>
+                <h2 id="two-character-scenes-title">Character scenes</h2>
                 <span>{twoCharacterScenes.length} scenes</span>
               </div>
               <ExperimentGrid entries={twoCharacterScenes} onOpen={setSelected} grouped />

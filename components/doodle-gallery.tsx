@@ -70,6 +70,8 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
   const filteredEntries = scopedEntries.filter(
     (entry) => view === "all" || entry.status === view
   );
+  // Selected is a ranked best-of (content/doodle-curation.json): best first, the themes taking turns under All themes.
+  if (view === "curated") filteredEntries.sort((a, b) => (a.rank ?? 1e9) - (b.rank ?? 1e9));
   const visibleEntries = filteredEntries.slice(0, visibleCount);
   const currentView = doodleGalleryViews.find((item) => item.id === view)!;
   const hasFilters = query !== "" || batchId !== "all" || category !== "all";

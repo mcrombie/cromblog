@@ -1,4 +1,5 @@
 import { artGalleries } from "@/content/art";
+import curation from "@/content/doodle-curation.json";
 import { doodleAssets, doodleOrder, type DoodleAsset } from "@/content/doodles";
 import januaryToMay from "@/content/doodle-batches/2026-01-may.json";
 import juneToJanuary from "@/content/doodle-batches/2025-06-2026-01.json";
@@ -21,6 +22,8 @@ export type DoodleCatalogEntry = {
   category: string;
   tags: readonly string[];
   image: { width: number; height: number };
+  /** Place in its theme's reviewed best-of (lower is better); only Selected drawings have one. */
+  rank?: number;
 };
 
 export type DoodleBatch = { id: string; title: string; description?: string };
@@ -44,6 +47,22 @@ const originalDescriptions = new Map<string, string>(
   artGalleries.flatMap((gallery) => gallery.works.map((work) => [work.assetId, work.alt] as const))
 );
 
+/**
+ * The reviewed curation (content/doodle-curation.json): each theme's best-of, in order, is "Selected"; every other
+ * drawing is an Archive drawing or a Texture. Until a review has been recorded, the batches' own statuses stand.
+ */
+const curatedThemes = curation.selected as Record<string, readonly string[]>;
+const statusFixes = curation.status as Record<string, "texture" | "drawing" | undefined>;
+const reviewed = Object.values(curatedThemes).some((ids) => ids.length > 0);
+const selectedRanks = new Map<string, number>();
+Object.values(curatedThemes).forEach((ids, themeIndex) => ids.forEach((id, place) => selectedRanks.set(id, place * 16 + themeIndex)));
+function curatedStatus(id: string, status: DoodleCatalogEntry["status"]): DoodleCatalogEntry["status"] {
+  const fixed = statusFixes[id];
+  if (!reviewed) return fixed === "texture" ? "texture" : fixed === "drawing" && status === "texture" ? "archive" : status;
+  if (selectedRanks.has(id)) return "curated";
+  return (fixed ?? (status === "texture" ? "texture" : "drawing")) === "texture" ? "texture" : "archive";
+}
+
 const existingDrawings: DoodleCatalogEntry[] = doodleOrder.map((id) => {
   const asset: DoodleAsset = doodleAssets[id];
   const title = asset.displayName ?? id.replace(/-\d+$/, "").split("-")
@@ -52,7 +71,8 @@ const existingDrawings: DoodleCatalogEntry[] = doodleOrder.map((id) => {
     id, title, src: asset.src,
     alt: originalDescriptions.get(id) ?? `Notebook drawing of ${title.toLowerCase()}.`,
     batchId: id === "crombot-1-01" ? "crombot" : "2026-06-aug",
-    status: id === "leaf-vine-01" ? "texture" : "curated",
+    status: curatedStatus(id, id === "leaf-vine-01" ? "texture" : "curated"),
+    rank: selectedRanks.get(id),
     category: asset.kind === "character" ? "Characters"
       : asset.tags.includes("bird") ? "Birds & animals"
       : asset.tags.includes("botanical") ? "Botanicals" : "Abstract & objects",
@@ -71,7 +91,8 @@ const importedDrawings: DoodleCatalogEntry[] = ([
   }
   return {
     id: entry.id, title: entry.title, src: entry.src, alt: entry.alt,
-    batchId: entry.batchId, status: entry.status as DoodleCatalogEntry["status"],
+    batchId: entry.batchId, status: curatedStatus(entry.id, entry.status as DoodleCatalogEntry["status"]),
+    rank: selectedRanks.get(entry.id),
     category: entry.category, tags: entry.tags, image: entry.image
   };
 });
