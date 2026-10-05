@@ -9,6 +9,7 @@ import type {
   DoodleCatalogEntry
 } from "@/content/doodle-catalog";
 import { doodleSubjects, type DoodleSubjectGroups } from "@/content/doodle-subjects";
+import { doodleThumbSrc } from "@/lib/doodle-image-paths";
 
 type DoodleGalleryProps = {
   entries: readonly DoodleCatalogEntry[];
@@ -26,7 +27,7 @@ function readableLabel(value: string) {
 
 export function drawingFromUrl(href: string, entries: readonly DoodleCatalogEntry[]): DoodleCatalogEntry | undefined {
   const url = new URL(href);
-  if (url.hash === "#experiments") return undefined;
+  if (url.hash === "#experiments" || url.hash === "#ai-experiments") return undefined;
   const id = url.searchParams.get("drawing");
   return id ? entries.find((entry) => entry.id === id) : undefined;
 }
@@ -150,6 +151,27 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
         <span>{batches.length} {batches.length === 1 ? "collection" : "collections"}</span>
       </div>
 
+      <div className="doodle-experiment-collections doodle-gallery-themes" role="tablist" aria-label="Doodle themes">
+        {[{ id: "all", label: "All themes" }, ...subjects].map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={category === item.id}
+            className="doodle-experiment-collection"
+            onClick={() => {
+              setCategory(item.id);
+              setVisibleCount(PAGE_SIZE);
+            }}
+          >
+            {item.label}
+            <span className="doodle-experiment-collection-count">
+              {item.id === "all" ? entries.length : entries.filter((entry) => subjectGroups[entry.category] === item.id).length}
+            </span>
+          </button>
+        ))}
+      </div>
+
       <div className="doodle-gallery-views" role="group" aria-label="Drawing selection">
         {doodleGalleryViews.map((item) => (
           <button
@@ -201,21 +223,6 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
             ))}
           </select>
         </label>
-        <label className="doodle-gallery-field">
-          <span>Subject</span>
-          <select
-            value={category}
-            onChange={(event) => {
-              setCategory(event.target.value);
-              setVisibleCount(PAGE_SIZE);
-            }}
-          >
-            <option value="all">All subjects</option>
-            {subjects.map((item) => (
-              <option key={item.id} value={item.id}>{item.label}</option>
-            ))}
-          </select>
-        </label>
       </div>
 
       <div className="doodle-gallery-results" aria-live="polite" aria-atomic="true">
@@ -243,11 +250,10 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
               >
                 <span className="art-card-image-frame">
                   <Image
-                    src={entry.src}
+                    src={doodleThumbSrc(entry.src)}
                     alt={entry.alt}
                     fill
-                    sizes="(max-width: 639px) 88vw, (max-width: 1279px) 44vw, 30vw"
-                    quality={90}
+                    unoptimized
                     className="art-card-image"
                   />
                 </span>
@@ -334,8 +340,7 @@ export function DoodleGallery({ entries, batches, subjectGroups }: DoodleGallery
                 alt={selected.alt}
                 width={selected.image.width}
                 height={selected.image.height}
-                sizes="(max-width: 760px) 92vw, 900px"
-                quality={95}
+                unoptimized
                 className="art-card-image"
               />
             </div>

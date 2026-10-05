@@ -3,8 +3,11 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
-type ArtTab = "showcase" | "drawings" | "experiments";
-const tabs: readonly ArtTab[] = ["showcase", "drawings", "experiments"];
+// Two collections: the notebook doodles themselves, and the AI experiments made from them. The old tab names
+// (#showcase, #drawings, #experiments) still land in the right one.
+type ArtTab = "doodles" | "ai-experiments";
+const tabs: readonly ArtTab[] = ["doodles", "ai-experiments"];
+const tabLabels: Record<ArtTab, string> = { doodles: "Doodles", "ai-experiments": "AI Experiments" };
 
 // Next's client navigation can change a drawing query without a native history
 // event. Keep the existing gallery URL listeners in sync in that case, too.
@@ -21,20 +24,19 @@ function tabFromLocation(): ArtTab {
   const url = new URL(window.location.href);
   if (url.hash === "#garden") {
     window.location.replace("/?vibe=slow-garden");
-    return "showcase";
+    return "doodles";
   }
-  if (url.hash === "#experiments") return "experiments";
-  if (url.hash === "#drawings" || url.searchParams.has("drawing")) return "drawings";
-  return "showcase";
+  if (url.hash === "#ai-experiments" || url.hash === "#experiments") return "ai-experiments";
+  return "doodles";
 }
 
-export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
-  showcase: ReactNode;
-  drawings: ReactNode;
+export function ArtTabs({ doodles, experiments, doodleCount, experimentCount }: {
+  doodles: ReactNode;
   experiments: ReactNode;
+  doodleCount: number;
   experimentCount: number;
 }) {
-  const [active, setActive] = useState<ArtTab>("showcase");
+  const [active, setActive] = useState<ArtTab>("doodles");
   const buttons = useRef<Partial<Record<ArtTab, HTMLButtonElement | null>>>({});
 
   useEffect(() => {
@@ -52,7 +54,8 @@ export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
     setActive(tab);
     const url = new URL(window.location.href);
     url.hash = tab;
-    if (tab !== "drawings") url.searchParams.delete("drawing");
+    if (tab !== "doodles") url.searchParams.delete("drawing");
+    if (tab !== "ai-experiments") url.searchParams.delete("collection");
     window.history.pushState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
     window.dispatchEvent(new HashChangeEvent("hashchange"));
   }
@@ -63,9 +66,9 @@ export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
       const direction = event.key === "ArrowRight" ? 1 : -1;
       next = tabs[(tabs.indexOf(tab) + direction + tabs.length) % tabs.length];
     } else if (event.key === "Home") {
-      next = "showcase";
+      next = "doodles";
     } else if (event.key === "End") {
-      next = "experiments";
+      next = "ai-experiments";
     } else {
       return;
     }
@@ -92,8 +95,8 @@ export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
             onClick={() => selectTab(tab)}
             onKeyDown={(event) => handleKeyDown(event, tab)}
           >
-            {tab === "showcase" ? "Showcase" : tab === "drawings" ? "Drawings" : "Experiments"}
-            {tab === "experiments" ? <span className="doodle-gallery-count">{experimentCount}</span> : null}
+            {tabLabels[tab]}
+            <span className="doodle-gallery-count">{tab === "doodles" ? doodleCount : experimentCount}</span>
           </button>
         ))}
       </div>
@@ -107,7 +110,7 @@ export function ArtTabs({ showcase, drawings, experiments, experimentCount }: {
           tabIndex={0}
           className="art-tab-panel"
         >
-          {tab === "showcase" ? showcase : tab === "drawings" ? drawings : experiments}
+          {tab === "doodles" ? doodles : experiments}
         </div>
       ))}
     </div>

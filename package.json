@@ -13,7 +13,9 @@
     "doodles:prepare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-doodle-assets.ps1",
     "doodles:review": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/review-doodle-assets.ps1",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "thumbs": "node scripts/make-doodle-thumbs.mjs",
+    "prebuild": "node scripts/check-doodle-thumbs.mjs"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +36,7 @@
     "eslint": "^8.56.0",
     "eslint-config-next": "^13.4.19",
     "postcss": "^8.4.31",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   }

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { doodleThumbSrc, doodleViewSrc } from "@/lib/doodle-image-paths";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import type { DoodleExperiment } from "@/content/doodle-experiments";
@@ -33,12 +34,11 @@ function ExperimentGrid({ entries, onOpen, grouped = false, fullWidth = false }:
             onClick={() => onOpen(entry)}
           >
             <Image
-              src={entry.src}
+              src={fullWidth ? doodleViewSrc(entry.src) : doodleThumbSrc(entry.src)}
               alt={entry.alt}
               width={entry.image.width}
               height={entry.image.height}
-              sizes={fullWidth ? "(max-width: 1279px) 90vw, 1000px" : "(max-width: 767px) 90vw, (max-width: 1279px) 43vw, 480px"}
-              quality={90}
+              unoptimized
               className="doodle-experiment-image"
             />
             <span className={`doodle-gallery-enlarge${entry.animation ? " doodle-experiment-play" : ""}`} aria-hidden="true">
@@ -104,16 +104,16 @@ export function DoodleExperiments({ entries, description }: {
   entries: readonly DoodleExperiment[];
   description: string;
 }) {
-  const { twoCharacterScenes, futureStudies, memeGifs, comics, scenic, characterStudies } = groupDoodleExperiments(entries);
+  const { twoCharacterScenes, gifs, comics, scenic, characterStudies } = groupDoodleExperiments(entries);
   const hasCharacterStudies = characterStudies.length > 0;
-  const hasCollections = hasCharacterStudies || scenic.length > 0 || comics.length > 0 || futureStudies.length > 0 || memeGifs.length > 0;
+  const hasCollections = hasCharacterStudies || scenic.length > 0 || comics.length > 0 || gifs.length > 0;
   const [activeCollection, setActiveCollection] = useState<ExperimentCollection>(
     hasCharacterStudies ? "character-studies" : "all"
   );
   const [selected, setSelected] = useState<DoodleExperiment | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const collectionButtons = useRef<Partial<Record<ExperimentCollection, HTMLButtonElement | null>>>({});
-  const collectionEntries = { all: entries, scenic, comics, "character-studies": characterStudies, "future-studies": futureStudies, "meme-gifs": memeGifs };
+  const collectionEntries = { all: entries, scenic, comics, "character-studies": characterStudies, gifs };
   const visibleEntries = collectionEntries[activeCollection];
   const selectedIndex = selected ? visibleEntries.findIndex((entry) => entry.id === selected.id) : -1;
 
@@ -155,7 +155,7 @@ export function DoodleExperiments({ entries, description }: {
     if (!selected) return;
     const previousOverflow = document.body.style.overflow;
     const closeOnTabChange = () => {
-      if (window.location.hash !== "#experiments") setSelected(null);
+      if (window.location.hash !== "#ai-experiments") setSelected(null);
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("hashchange", closeOnTabChange);
@@ -250,34 +250,14 @@ export function DoodleExperiments({ entries, description }: {
       ) : null}
       {hasCollections ? (
         <div
-          id="experiment-panel-future-studies"
+          id="experiment-panel-gifs"
           role="tabpanel"
-          aria-labelledby="experiment-tab-future-studies"
-          hidden={activeCollection !== "future-studies"}
+          aria-labelledby="experiment-tab-gifs"
+          hidden={activeCollection !== "gifs"}
           tabIndex={0}
           className="doodle-experiment-collection-panel"
         >
-          {futureStudies.length > 0 ? (
-            <section className="doodle-experiment-study-group" aria-labelledby="future-studies-title">
-              <div className="doodle-experiment-study-heading">
-                <h2 id="future-studies-title">Future studies</h2>
-                <span>{futureStudies.length} iterations</span>
-              </div>
-              <ExperimentGrid entries={futureStudies} onOpen={setSelected} grouped />
-            </section>
-          ) : null}
-        </div>
-      ) : null}
-      {hasCollections ? (
-        <div
-          id="experiment-panel-meme-gifs"
-          role="tabpanel"
-          aria-labelledby="experiment-tab-meme-gifs"
-          hidden={activeCollection !== "meme-gifs"}
-          tabIndex={0}
-          className="doodle-experiment-collection-panel"
-        >
-          <ExperimentGrid entries={memeGifs} onOpen={setSelected} />
+          <ExperimentGrid entries={gifs} onOpen={setSelected} />
         </div>
       ) : null}
       <dialog
@@ -302,18 +282,17 @@ export function DoodleExperiments({ entries, description }: {
               <AnimationPreview
                 key={selected.id}
                 animation={selected.animation}
-                poster={selected.src}
+                poster={doodleViewSrc(selected.src)}
                 alt={selected.alt}
                 image={selected.image}
               />
             ) : (
               <Image
-                src={selected.src}
+                src={doodleViewSrc(selected.src)}
                 alt={selected.alt}
                 width={selected.image.width}
                 height={selected.image.height}
-                sizes="(max-width: 760px) 92vw, 920px"
-                quality={95}
+                unoptimized
                 className="doodle-experiment-preview-image"
               />
             )}

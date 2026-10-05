@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 
-import "@/app/art-showcase.css";
-import { ArtShowcase } from "@/components/art-showcase";
 import { ArtTabs } from "@/components/art-tabs";
 import { DoodleExperiments } from "@/components/doodle-experiments";
 import { DoodleGallery } from "@/components/doodle-gallery";
@@ -28,9 +26,9 @@ export default function ArtPage() {
         description="A growing collection of drawings from my notebooks, and experiments in the worlds they can become."
       />
       <ArtTabs
+        doodleCount={doodleCatalog.length}
         experimentCount={doodleExperiments.length}
-        showcase={<ArtShowcase />}
-        drawings={<DoodleGallery entries={doodleCatalog} batches={doodleBatches} subjectGroups={subjectGroups} />}
+        doodles={<DoodleGallery entries={doodleCatalog} batches={doodleBatches} subjectGroups={subjectGroups} />}
         experiments={<DoodleExperiments entries={doodleExperiments} description={doodleExperimentsDescription} />}
       />
     </div>
