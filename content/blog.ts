@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "doodle-lab-ii"
   | "azhora-game"
   | "archivist-iv-demo"
   | "doodle-lab"
@@ -42,6 +43,7 @@ export type BlogPostImage = {
 export type BlogPostBase = {
   slug: BlogSlug;
   title: string;
+  subtitle?: string;
   href: string;
   updateDates?: string[];
   readTime: string;
@@ -78,6 +80,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "doodle-lab-ii",
   "azhora-game",
   "archivist-iv-demo",
   "doodle-lab",
@@ -101,6 +104,24 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "doodle-lab-ii": {
+    slug: "doodle-lab-ii",
+    title: "Doodle Lab II: The Doodles Strike Back",
+    subtitle: "How My Own Drawings Took Down My Website",
+    href: "/cromblog/doodle-lab-ii",
+    status: "published",
+    date: "October 5, 2026",
+    readTime: "4 min read",
+    summary:
+      "How a gallery of notebook drawings ran through my image-optimization allowance, what two AIs helped me figure out, and the fix that brought the site back.",
+    image: {
+      src: "/cromblog/doodle-lab-ii/innocent-culprit.webp",
+      alt: "A pleased-looking notebook dog beside a toppled computer monitor, with loose doodle drawings spilling from its screen.",
+      width: 1536,
+      height: 1024,
+      unoptimized: true
+    }
+  },
   "azhora-game": {
     slug: "azhora-game",
     title: "Azhora: Building a 3D Adventure Game",

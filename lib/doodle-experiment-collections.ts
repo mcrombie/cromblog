@@ -16,13 +16,13 @@ const mergedCollections: Readonly<Record<string, ExperimentCollection>> = { "fut
 
 export function groupDoodleExperiments(entries: readonly DoodleExperiment[]) {
   const twoCharacterScenes = entries.filter((entry) =>
-    entry.kind === "Scene" && (entry.round === "17" || entry.round === "19")
+    entry.kind === "Scene" && (entry.round === "17" || entry.round === "19" || entry.round === "24")
   );
   // Every animation in one place: the future studies, the meme GIFs and the earlier animated scenes.
   const gifs = entries.filter((entry) => entry.kind === "Animation");
   const comics = entries.filter((entry) => entry.kind === "Comic");
   const scenic = entries.filter((entry) =>
-    entry.kind === "Scene" && entry.round !== "17" && entry.round !== "19"
+    entry.kind === "Scene" && entry.round !== "17" && entry.round !== "19" && entry.round !== "24"
   );
 
   return {

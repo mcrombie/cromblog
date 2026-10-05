@@ -18,6 +18,7 @@ import memeGifs from "@/content/doodle-experiment-batches/round-20.json";
 import crombCooCooScene from "@/content/doodle-experiment-batches/round-21.json";
 import doodleLabBlogScenes from "@/content/doodle-experiment-batches/round-22.json";
 import crombotComic from "@/content/doodle-experiment-batches/round-23.json";
+import websiteRepairDog from "@/content/doodle-experiment-batches/round-24.json";
 
 export type DoodleExperiment = {
   id: string;
@@ -36,6 +37,7 @@ export const doodleExperimentsDescription =
   "Scenes, comics, and animated experiments made with ImageGen from my notebook doodles and Crombot studies, exploring how familiar characters can share new worlds.";
 
 export const doodleExperiments: readonly DoodleExperiment[] = [
+  ...(websiteRepairDog as DoodleExperiment[]),
   ...(crombotComic as DoodleExperiment[]),
   ...(doodleLabBlogScenes as DoodleExperiment[]),
   ...(crombCooCooScene as DoodleExperiment[]),

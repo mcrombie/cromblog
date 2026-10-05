@@ -1,0 +1,18 @@
+[
+  {
+    "id": "round-24-dog-with-a-wrench",
+    "title": "Dog with a Wrench",
+    "kind": "Scene",
+    "src": "/cromblog/doodle-experiments/round-24/dog-with-a-wrench.png",
+    "alt": "A tall, long-eared notebook dog stands on its hind paws, holding a wrench in one raised paw, drawn in graphite on warm ivory paper.",
+    "description": "A familiar notebook dog lends a paw with the website repairs.",
+    "image": {
+      "width": 1536,
+      "height": 1024
+    },
+    "round": "24",
+    "sourceIds": [
+      "um22-p001-a"
+    ]
+  }
+]
