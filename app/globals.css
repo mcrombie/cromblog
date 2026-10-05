@@ -2798,5 +2798,6 @@ article.content-flow figcaption {
 /* Projects page tabs (components/project-tabs.tsx): only the active category's cards are shown. */
 .project-tabs .art-tab-list { margin-bottom: 1.5rem; }
 .project-tab-panel[data-category="apps"] .project-card:not([data-category="apps"]),
+.project-tab-panel[data-category="art"] .project-card:not([data-category="art"]),
 .project-tab-panel[data-category="books"] .project-card:not([data-category="books"]),
 .project-tab-panel[data-category="games"] .project-card:not([data-category="games"]) { display: none; }

@@ -32,9 +32,10 @@ export type ProjectImage = {
 };
 
 /** The Projects page's tabs: every project sits in exactly one. */
-export type ProjectCategory = "apps" | "books" | "games";
+export type ProjectCategory = "apps" | "art" | "books" | "games";
 export const projectCategories: readonly { id: ProjectCategory; label: string }[] = [
   { id: "apps", label: "Apps" },
+  { id: "art", label: "Art" },
   { id: "books", label: "Books" },
   { id: "games", label: "Games" }
 ];
@@ -168,7 +169,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
   "doodle-lab": {
     slug: "doodle-lab",
-    category: "apps",
+    category: "art",
     title: "Doodle Lab",
     pitch:
       "Doodle Lab brings years of notebook drawings into a growing archive and new illustrated worlds.",
