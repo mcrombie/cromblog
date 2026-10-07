@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "azhora-ii"
   | "doodle-lab-ii"
   | "azhora-game"
   | "archivist-iv-demo"
@@ -80,6 +81,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "azhora-ii",
   "doodle-lab-ii",
   "azhora-game",
   "archivist-iv-demo",
@@ -104,6 +106,23 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "azhora-ii": {
+    slug: "azhora-ii",
+    title: "Azhora II: Time, Space, and Demos",
+    href: "/cromblog/azhora-ii",
+    status: "published",
+    date: "October 7, 2026",
+    readTime: "5 min read + five videos",
+    summary:
+      "Five demo videos of Azhora, then back to basics: time and space complexity, a reorganized codebase, and a five-region sandbox before taking on the whole continent.",
+    // Rendered from the game by the offline recorder: Minora with the mountains behind it.
+    image: {
+      src: "/cromblog/azhora-ii/minora.jpg",
+      alt: "The white-walled city of Minora and its Guild tower in Azhora, with mountains rising behind it.",
+      width: 1920,
+      height: 1080
+    }
+  },
   "doodle-lab-ii": {
     slug: "doodle-lab-ii",
     title: "Doodle Lab II: The Doodles Strike Back",
