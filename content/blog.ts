@@ -25,7 +25,7 @@ export type BlogSlug =
   | "simulating-civilizations-iii"
   | "cradle-of-the-empire";
 
-export type BlogSeriesSlug = "rebuilding-old-apps" | "simulating-civilizations";
+export type BlogSeriesSlug = "azhora" | "rebuilding-old-apps" | "simulating-civilizations";
 
 export type BlogSeries = {
   slug: BlogSeriesSlug;
@@ -65,11 +65,16 @@ export type DraftBlogPost = BlogPostBase & {
 export type BlogPost = PublishedBlogPost | DraftBlogPost;
 
 export const blogSeriesOrder: BlogSeriesSlug[] = [
+  "azhora",
   "rebuilding-old-apps",
   "simulating-civilizations"
 ];
 
 export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
+  azhora: {
+    slug: "azhora",
+    title: "Azhora"
+  },
   "rebuilding-old-apps": {
     slug: "rebuilding-old-apps",
     title: "Rebuilding Old Apps"
@@ -113,6 +118,7 @@ export const blogPosts = {
     status: "published",
     date: "October 7, 2026",
     readTime: "5 min read + five videos",
+    series: "azhora",
     summary:
       "Five demo videos of Azhora, then back to basics: time and space complexity, a reorganized codebase, and a five-region sandbox before taking on the whole continent.",
     // Rendered from the game by the offline recorder: Minora with the mountains behind it.
@@ -149,6 +155,7 @@ export const blogPosts = {
     date: "September 28, 2026",
     updateDates: ["September 28, 2026"],
     readTime: "4 min read + gameplay and full prompt",
+    series: "azhora",
     summary:
       "Speaking Azhora into existence: voice-to-text game development with Codex and Claude, an old world of lore, and a 10,000-word prompt.",
     // In-game capture: azhora-game/tests/artifacts/developer-dragon-lotharn-wide.jpg.

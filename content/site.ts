@@ -3,6 +3,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type ProjectSlug =
+  | "azhora"
   | "big-history-of-virginia"
   | "archivist"
   | "doodle-lab"
@@ -84,6 +85,7 @@ export const archivistDemoUrl =
   archivistDemoFallbackUrl;
 
 export const projectOrder: ProjectSlug[] = [
+  "azhora",
   "big-history-of-virginia",
   "archivist",
   "doodle-lab",
@@ -100,6 +102,30 @@ export const projectOrder: ProjectSlug[] = [
 ];
 
 export const projects: Record<ProjectSlug, Project> = {
+  azhora: {
+    slug: "azhora",
+    category: "games",
+    title: "Azhora",
+    pitch:
+      "Azhora is a 3D adventure game set on a continent I have been drawing and writing about for years.",
+    summary:
+      "Walk, ride, and fly across a low-poly continent of more than a hundred regions, with towns, quests, skills, and a brewing war between its kingdoms. Built in plain JavaScript with Three.js and Electron, mostly by talking to coding agents, and now being refocused on a five-region campaign sandbox.",
+    stack: ["JavaScript", "Three.js", "Electron", "Game design", "Worldbuilding"],
+    // Rendered from the game: Minora with the mountains behind it (the Azhora II post's thumbnail).
+    image: {
+      src: "/cromblog/azhora-ii/minora.jpg",
+      alt: "The white-walled city of Minora and its Guild tower in Azhora, with mountains rising behind it.",
+      width: 1920,
+      height: 1080
+    },
+    links: [
+      { label: "Play Azhora", href: "/games/azhora" },
+      { label: "Watch the demos", href: "/cromblog/azhora-ii#demo" },
+      { label: "Explore the map", href: "/game-azhora-map" },
+      { label: "View GitHub repo", href: "https://github.com/mcrombie/azhora-game", external: true }
+    ],
+    blogSeries: "azhora"
+  },
   "stardate-valley": {
     slug: "stardate-valley",
     category: "games",
