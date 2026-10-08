@@ -57,9 +57,9 @@ function page(commit: string): string {
 <link rel="canonical" href="${SITE}/game-azhora-map">
 <link rel="icon" href="${SITE}/favicon.ico">
 <base href="${base}">
-<link rel="stylesheet" href="src/world-map.css">
+<link rel="stylesheet" href="src/ui/map/world-map.css">
 <style>
-  /* The game draws its place names in "Adventure", which it maps to Georgia (src/style.css). */
+  /* The game draws its place names in "Adventure", which its styles map to Georgia. */
   @font-face { font-family: Adventure; src: local("Georgia"); }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; }
@@ -96,17 +96,34 @@ function page(commit: string): string {
   <p class="atlas-caption">The whole chart, fully revealed, drawn by the game's own map from its latest version (<a href="${commitLink}">${short}</a>).</p>
 </main>
 <script type="module">
-  // The game's own modules, at the same commit as the chart.
-  import { createWorldMap } from "./src/world-map.js";
-  import { SUBREGIONS } from "./src/map-fog.js";
-  import { atlasRevealedCityMarks } from "./src/world-map-detail.js";
-  import { TRANSFORM } from "./src/region-world.js";
-  const map = createWorldMap();
-  // What the game's chart shows with its fog lifted: every region named, every named area and city marked.
-  const areas = SUBREGIONS.map(area => ({ id: area.id, name: area.name, kind: "area", ...TRANSFORM.worldToAtlas(area.x, area.z) }));
-  map.setChart({ reveal: true, status: [], marks: [...atlasRevealedCityMarks({ sevron: true }), ...areas] });
-  map.open();
-  window.azhoraMap = map;
+  async function openAtlas() {
+    // The game's own modules, at the same commit as the chart. Catch import
+    // failures too, so a moved/unavailable file cannot leave an endless spinner.
+    const [{ createWorldMap }, { SUBREGIONS }, { atlasRevealedCityMarks }, { TRANSFORM }] = await Promise.all([
+      import("./src/ui/map/world-map.js"),
+      import("./src/ui/map/map-fog.js"),
+      import("./src/ui/map/world-map-detail.js"),
+      import("./src/world/terrain/region-world.js"),
+    ]);
+    const map = createWorldMap();
+    // What the game's chart shows with its fog lifted: every region named, every named area and city marked.
+    const areas = SUBREGIONS.map(area => ({ id: area.id, name: area.name, kind: "area", ...TRANSFORM.worldToAtlas(area.x, area.z) }));
+    map.setChart({ reveal: true, status: [], marks: [...atlasRevealedCityMarks({ sevron: true }), ...areas] });
+    map.open();
+    if (!await map.ready) throw new Error("Map assets could not load");
+    window.azhoraMap = map;
+  }
+  openAtlas().catch(error => {
+    console.error("Azhora atlas could not load", error);
+    const loading = document.getElementById("atlas-loading");
+    loading.hidden = false;
+    loading.textContent = "The interactive map could not load. Refresh to try again, or ";
+    const fallback = document.createElement("a");
+    fallback.href = "./assets/azhora-world-map.svg";
+    fallback.textContent = "open the map image";
+    fallback.style.color = "inherit";
+    loading.append(fallback);
+  });
 </script>
 </body>
 </html>
