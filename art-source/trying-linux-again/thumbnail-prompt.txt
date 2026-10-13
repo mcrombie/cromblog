@@ -1,0 +1,15 @@
+Generation method: built-in image_gen tool (no CLI fallback).
+Current post title: Omarchy: Giving Linux Another Try. The original generation prompt below is preserved verbatim; the thumbnail contains no title text.
+Generated: October 13, 2026.
+Original: thumbnail-v1.png (1672 x 941).
+Web asset: ../../public/cromblog/trying-linux-again/thumbnail-v1.webp
+The WebP is a format/compression derivative; the composition is unchanged.
+
+Use case: illustration-story.
+Asset type: draft thumbnail for a personal Cromblog essay titled "Trying Linux Again: Two Weeks with Omarchy".
+Primary request: A thoughtful, inviting retro editorial illustration of a modest refurbished laptop used for a fresh Linux experiment. Wide landscape 16:9 composition, designed to stay legible at small blog-card size.
+Scene: a simple writing desk, the open laptop as the clear focal point, with a small bootable USB stick beside it. No people.
+Screen: a stylized dark desktop with two neatly tiled windows side by side: a writing pane and a reference-manual pane, indicated by restrained short text-like lines rather than readable text; subtle terminal aesthetic. This is conceptual artwork, not an authentic screenshot or a product advertisement.
+Style: tactile ink and colored-pencil editorial illustration, warm off-white paper, charcoal outlines, restrained muted green and amber screen accents; nostalgic computer-magazine feeling, calm curiosity rather than futuristic spectacle.
+Composition: close three-quarter view of the whole laptop, generous breathing room, clear silhouette, uncluttered background. Keep essential objects within the central area so the image crops gracefully.
+Constraints: no headline, no lettering, no logos, no invented brand marks, no robots, no decorative binary streams, no watermarks. Opaque background.

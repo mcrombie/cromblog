@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "trying-linux-again"
   | "azhora-ii"
   | "doodle-lab-ii"
   | "azhora-game"
@@ -86,6 +87,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "trying-linux-again",
   "azhora-ii",
   "doodle-lab-ii",
   "azhora-game",
@@ -111,6 +113,23 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "trying-linux-again": {
+    slug: "trying-linux-again",
+    title: "Omarchy: Giving Linux Another Try",
+    href: "/cromblog/trying-linux-again",
+    status: "published",
+    date: "October 13, 2026",
+    readTime: "4 min read",
+    summary:
+      "A $100 refurbished laptop, an installation more tedious than anticipated, and twenty minutes a day: giving Linux another chance with Omarchy.",
+    image: {
+      src: "/cromblog/trying-linux-again/thumbnail-v1.webp",
+      alt: "Retro-style illustration of a laptop with two tiled windows on a writing desk, with a USB stick beside it.",
+      width: 1672,
+      height: 941,
+      unoptimized: true
+    }
+  },
   "azhora-ii": {
     slug: "azhora-ii",
     title: "Azhora II: Time, Space, and Demos",
