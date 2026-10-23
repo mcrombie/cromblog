@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "azhora-iii"
   | "trying-linux-again"
   | "azhora-ii"
   | "doodle-lab-ii"
@@ -87,6 +88,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "azhora-iii",
   "trying-linux-again",
   "azhora-ii",
   "doodle-lab-ii",
@@ -113,6 +115,24 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "azhora-iii": {
+    slug: "azhora-iii",
+    title: "Azhora III: The Lizeem War",
+    href: "/cromblog/azhora-iii",
+    status: "published",
+    date: "October 23, 2026",
+    readTime: "4 min read + demo",
+    series: "azhora",
+    summary:
+      "Focusing Azhora on the Lizeem War as a first coherent campaign and proof of concept, and reflecting on a month of working with coding agents.",
+    image: {
+      src: "/cromblog/azhora-iii/teresod-ogre-refuge.webp",
+      alt: "In-game capture of brown-robed Teresod confronting an ogre in Azhora’s misty Spirit and Time Realm.",
+      width: 1920,
+      height: 1080,
+      unoptimized: true
+    }
+  },
   "trying-linux-again": {
     slug: "trying-linux-again",
     title: "Omarchy: Giving Linux Another Try",
