@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "cradle-of-the-empire-ii-the-paperback"
   | "azhora-iii"
   | "trying-linux-again"
   | "azhora-ii"
@@ -88,6 +89,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "cradle-of-the-empire-ii-the-paperback",
   "azhora-iii",
   "trying-linux-again",
   "azhora-ii",
@@ -115,6 +117,23 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "cradle-of-the-empire-ii-the-paperback": {
+    slug: "cradle-of-the-empire-ii-the-paperback",
+    title: "Cradle of the Empire II: The Paperback",
+    href: "/cromblog/cradle-of-the-empire-ii-the-paperback",
+    status: "published",
+    date: "October 30, 2026",
+    readTime: "8 min read",
+    summary:
+      "In many ways, making the physical book has been an entirely different undertaking from writing it.",
+    image: {
+      src: "/cromblog/cradle-of-the-empire-ii-the-paperback/wraparound-cover.webp",
+      alt: "Full wraparound paperback cover of Cradle of the Empire: A Big History of Virginia, showing the back cover, spine, and front cover.",
+      width: 2400,
+      height: 1606,
+      unoptimized: true
+    }
+  },
   "azhora-iii": {
     slug: "azhora-iii",
     title: "Azhora III: The Lizeem War",
@@ -365,7 +384,7 @@ export const blogPosts = {
   },
   "cradle-of-the-empire": {
     slug: "cradle-of-the-empire",
-    title: "Cradle of the Empire: A Big History of Virginia",
+    title: "Cradle of the Empire: The Ebook",
     href: "/cromblog/cradle-of-the-empire",
     date: "July 4, 2026",
     readTime: "2 min read",
