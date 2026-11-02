@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "site-security-i"
   | "cradle-of-the-empire-ii-the-paperback"
   | "azhora-iii"
   | "trying-linux-again"
@@ -28,7 +29,7 @@ export type BlogSlug =
   | "simulating-civilizations-iii"
   | "cradle-of-the-empire";
 
-export type BlogSeriesSlug = "azhora" | "rebuilding-old-apps" | "simulating-civilizations";
+export type BlogSeriesSlug = "site-security" | "azhora" | "rebuilding-old-apps" | "simulating-civilizations";
 
 export type BlogSeries = {
   slug: BlogSeriesSlug;
@@ -68,12 +69,17 @@ export type DraftBlogPost = BlogPostBase & {
 export type BlogPost = PublishedBlogPost | DraftBlogPost;
 
 export const blogSeriesOrder: BlogSeriesSlug[] = [
+  "site-security",
   "azhora",
   "rebuilding-old-apps",
   "simulating-civilizations"
 ];
 
 export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
+  "site-security": {
+    slug: "site-security",
+    title: "Site Security"
+  },
   azhora: {
     slug: "azhora",
     title: "Azhora"
@@ -89,6 +95,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "site-security-i",
   "cradle-of-the-empire-ii-the-paperback",
   "azhora-iii",
   "trying-linux-again",
@@ -117,6 +124,24 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "site-security-i": {
+    slug: "site-security-i",
+    title: "Site Security I: A One-Day Review with Codex",
+    href: "/cromblog/site-security-i",
+    status: "published",
+    date: "November 2, 2026",
+    readTime: "5 min read",
+    series: "site-security",
+    summary:
+      "A one-day security review of CromBlog with Codex: narrowing an API proxy, improving Git exclusions for sensitive files, and testing the changes.",
+    image: {
+      src: "/cromblog/site-security-i/thumbnail-v1.webp",
+      alt: "Pencil-and-ink illustration of a laptop displaying a shield, with a checklist, magnifying glass, and hourglass on a wooden desk framed by ferns.",
+      width: 1672,
+      height: 941,
+      unoptimized: true
+    }
+  },
   "cradle-of-the-empire-ii-the-paperback": {
     slug: "cradle-of-the-empire-ii-the-paperback",
     title: "Cradle of the Empire II: The Paperback",

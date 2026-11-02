@@ -1,0 +1,5 @@
+Method: Built-in imagegen
+Final asset: public/cromblog/site-security-i/thumbnail-v1.webp
+Encoding: WebP, quality 82; original image dimensions retained.
+
+Create a custom editorial blog thumbnail for CromBlog about a carefully bounded one-day website cybersecurity review. Wide landscape 16:9 composition, suitable for a small blog card and an article hero. A warmly lit wooden writing desk with an open dark laptop showing a simple parchment-and-forest-green website layout, a small brass-edged shield emblem on the screen, a magnifying glass resting over a handwritten checklist beside the laptop, and a modest hourglass suggesting the time limit. Suggest a few fern fronds at the edges. Hand-drawn colored-pencil and fine ink crosshatching on textured cream paper, vintage natural-history editorial illustration. Restrained palette of deep pine green, warm parchment, charcoal, muted sage and aged brass. Calm, thoughtful, practical mood; strong clear central silhouette, uncluttered composition, main subjects safely inside the middle 80 percent for thumbnail cropping. No people, no logos, no readable words, no neon, no glossy cyberpunk effects, no watermark.
