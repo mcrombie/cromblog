@@ -5,3 +5,32 @@ out
 dist
 coverage
 *.log
+
+# Local environment and deployment metadata. Keep intentional examples trackable.
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.sample
+!.env.*.sample
+!.env.template
+!.env.*.template
+.vercel/
+
+# Local credentials and private key containers (not a substitute for secret scanning).
+.npmrc
+.netrc
+.pypirc
+.aws/
+.ssh/
+credentials.json
+credentials.local.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
