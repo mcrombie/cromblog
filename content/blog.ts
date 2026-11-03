@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "archivist-v-updating-the-corpus"
   | "site-security-i"
   | "cradle-of-the-empire-ii-the-paperback"
   | "azhora-iii"
@@ -95,6 +96,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "archivist-v-updating-the-corpus",
   "site-security-i",
   "cradle-of-the-empire-ii-the-paperback",
   "azhora-iii",
@@ -124,6 +126,23 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "archivist-v-updating-the-corpus": {
+    slug: "archivist-v-updating-the-corpus",
+    title: "Archivist V: Updating the Corpus",
+    href: "/cromblog/archivist-v-updating-the-corpus",
+    status: "published",
+    date: "November 3, 2026",
+    readTime: "3 min read",
+    summary:
+      "Bringing Archivist into step with the published first edition: extracting the PDF, rebuilding the search corpus, and verifying its page references.",
+    image: {
+      src: "/cromblog/archivist-v-updating-the-corpus/thumbnail-v1.webp",
+      alt: "Pencil-and-ink illustration of an open history book, matching landscape index cards, and a brass magnifying glass on a lamplit library desk.",
+      width: 1672,
+      height: 941,
+      unoptimized: true
+    }
+  },
   "site-security-i": {
     slug: "site-security-i",
     title: "Site Security I: A One-Day Review with Codex",
