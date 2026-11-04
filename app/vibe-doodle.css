@@ -307,8 +307,7 @@ html[data-vibe="doodle"] :is(.vibe-cycle-action, .vibe-picker-label) { color: va
 html[data-vibe="doodle"] :is(.vibe-cycle-name, .vibe-cycle-mark, .vibe-picker-chevron) { color: var(--brass-bright); }
 html[data-vibe="doodle"] .vibe-select option { background: var(--panel); color: var(--bone); }
 html[data-vibe="doodle"] .vibe-control-inline { --vibe-inline-radius: 0.25rem; }
-html[data-vibe="doodle"] .vibe-control:not(.vibe-control-inline) { transform: rotate(-0.6deg); }
-html[data-vibe="doodle"] .vibe-control:focus-within { transform: none; }
+/* Keep the control's viewport anchor steady; the lettering retains its character. */
 
 /* Heading marks sit in their own column beside the title. Large drawings use the darker
  * graphite so pencil shading survives; ornaments keep the lighter ink. */

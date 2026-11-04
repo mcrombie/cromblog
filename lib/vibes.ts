@@ -10,7 +10,6 @@ export const VIBES = [
   { id: "ember", label: "Ember & Ink" },
   { id: "princess", label: "Pretty Pink Princess" },
   { id: "baron", label: "Baleful Black Baron" },
-  { id: "rose", label: "Rose & Ruin" },
   { id: "doodle", label: "Doodle Lab" },
   { id: "slow-garden", label: "Slow Garden" }
 ] as const;
@@ -23,7 +22,8 @@ export const VIBES = [
 export const ARCHIVED_VIBES = [
   { id: "whimsical", label: "Cosmic Almanac", artNavLabel: "Curiosities", heroImage: "/home/cosmic-almanac-hero.png" },
   { id: "codex", label: "Illuminated Codex", artNavLabel: "Illuminations", heroImage: "/home/illuminated-codex-still-life.png" },
-  { id: "ocean", label: "Tidal Archive", artNavLabel: "Specimens", heroImage: "/home/tidal-archive-hero.png" }
+  { id: "ocean", label: "Tidal Archive", artNavLabel: "Specimens", heroImage: "/home/tidal-archive-hero.png" },
+  { id: "rose", label: "Rose & Ruin", artNavLabel: "Keepsakes", heroImage: "/home/illuminated-codex-still-life.png" }
 ] as const;
 
 export type VibeId = (typeof VIBES)[number]["id"];
@@ -35,7 +35,6 @@ export const ART_NAV_LABELS_BY_VIBE = {
   ember: "Inkwork",
   princess: "Pretty Pictures",
   baron: "Dark Arts",
-  rose: "Keepsakes",
   doodle: "Doodles",
   "slow-garden": "Botanical plates"
 } as const satisfies Record<VibeId, string>;
@@ -44,4 +43,8 @@ export const DEFAULT_VIBE: VibeId = "professional";
 
 export function isVibeId(value: unknown): value is VibeId {
   return VIBES.some((vibe) => vibe.id === value);
+}
+
+export function isArchivedVibeId(value: unknown): boolean {
+  return ARCHIVED_VIBES.some((vibe) => vibe.id === value);
 }

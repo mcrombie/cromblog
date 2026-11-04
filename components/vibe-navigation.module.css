@@ -82,7 +82,7 @@
 /* Shown only after the floating control has been dismissed for the session. */
 .restore {
   display: none;
-  min-height: 2.5rem;
+  min-height: 2.75rem;
   padding: .35rem 0;
   border: 0;
   background: transparent;

@@ -5,6 +5,7 @@ import { RootShell } from "@/components/root-shell";
 import { siteMeta } from "@/content/site";
 import { DOODLE_DESIGN_QUERY_KEY, LEGACY_DOODLE_DESIGN_IDS } from "@/lib/doodle-designs";
 import {
+  ARCHIVED_VIBES,
   DEFAULT_VIBE,
   VIBES,
   VIBE_DISMISSED_SESSION_KEY,
@@ -63,6 +64,9 @@ const vibeInitializer = `(() => {
     document.documentElement.dataset.vibe = validVibes.includes(storedVibe)
       ? storedVibe
       : ${JSON.stringify(DEFAULT_VIBE)};
+    if (${JSON.stringify(ARCHIVED_VIBES.map((vibe) => vibe.id))}.includes(storedVibe)) {
+      window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, ${JSON.stringify(DEFAULT_VIBE)});
+    }
   } catch {
     document.documentElement.dataset.vibe = ${JSON.stringify(DEFAULT_VIBE)};
   }
@@ -88,6 +92,9 @@ const vibeInitializer = `(() => {
     if (${JSON.stringify(VIBES.map((vibe) => vibe.id))}.includes(queryVibe)) {
       document.documentElement.dataset.vibe = queryVibe;
       try { window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, queryVibe); } catch {}
+    } else if (${JSON.stringify(ARCHIVED_VIBES.map((vibe) => vibe.id))}.includes(queryVibe)) {
+      document.documentElement.dataset.vibe = ${JSON.stringify(DEFAULT_VIBE)};
+      try { window.localStorage.setItem(${JSON.stringify(VIBE_STORAGE_KEY)}, ${JSON.stringify(DEFAULT_VIBE)}); } catch {}
     }
   } catch {}
 })();`;

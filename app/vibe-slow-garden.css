@@ -165,12 +165,6 @@ html[data-vibe="slow-garden"] :is(.vibe-cycle-name, .vibe-cycle-mark, .vibe-dism
 html[data-vibe="slow-garden"] .vibe-cycle-action { color: #626448; font-size: .75rem; }
 html[data-vibe="slow-garden"] .vibe-cycle-name { font-size: 1rem; }
 html[data-vibe="slow-garden"] .vibe-control:not(.vibe-control-inline) {
-  position: relative;
-  align-self: flex-end;
-  inset: auto;
-  width: max-content;
-  max-width: calc(100% - 2 * var(--garden-inset));
-  margin: 1.5rem var(--garden-inset);
   box-shadow: none;
 }
 html[data-vibe="slow-garden"] .cromblog-doodle-masthead { grid-template-columns: 1fr; }
@@ -294,7 +288,7 @@ html[data-vibe="slow-garden"] :is(.art-showcase-archive-link, .doodle-gallery-lo
   html[data-vibe="slow-garden"] .site-nav { gap: .2rem 1rem; }
   html[data-vibe="slow-garden"] .site-nav-link { font-size: .9375rem; }
   html[data-vibe="slow-garden"] .home-hero-band { min-height: 20rem; background-position: 40% center; }
-  html[data-vibe="slow-garden"] .home-hero-band .home-hero-copy { padding: 1.4rem 1rem; }
+  html[data-vibe="slow-garden"] .home-hero-band .home-hero-copy { padding: 1.4rem 1rem; background: #f4f0e3e6; }
   html[data-vibe="slow-garden"] .home-hero-band .home-title { font-size: 3.2rem; }
   html[data-vibe="slow-garden"] .slow-garden-floor { height: 8rem; }
   html[data-vibe="slow-garden"] .section-title { font-size: 2.6rem; }

@@ -46,8 +46,14 @@ assert.equal(open({ query: "?doodle-design=original-strokes", stored: "slow-gard
 assert.equal(open({ query: "?doodle-design=original-strokes&vibe=slow-garden" }).dataset.vibe, "slow-garden", "An explicit vibe takes precedence over a stale doodle-design query");
 for (const vibe of constants.VIBES) assert.equal(open({ stored: vibe.id }).dataset.vibe, vibe.id, `${vibe.label} remains selectable`);
 for (const vibe of constants.ARCHIVED_VIBES) {
-  assert.equal(open({ stored: vibe.id }).dataset.vibe, constants.DEFAULT_VIBE, `A saved ${vibe.label} choice falls back to the default`);
-  assert.equal(open({ query: `?vibe=${vibe.id}`, stored: "ember" }).dataset.vibe, "ember", `A ${vibe.label} link cannot replace a saved appearance`);
+  const savedArchive = open({ stored: vibe.id });
+  assert.equal(savedArchive.dataset.vibe, constants.DEFAULT_VIBE, `A saved ${vibe.label} choice falls back to the default`);
+  assert.equal(savedArchive.saved.get(constants.VIBE_STORAGE_KEY), constants.DEFAULT_VIBE, "Retired saved preferences are normalized");
+  for (const options of [{ stored: "ember" }, { blocked: true }, {}]) {
+    assert.equal(open({ query: `?vibe=${vibe.id}`, ...options }).dataset.vibe, constants.DEFAULT_VIBE, `A ${vibe.label} link falls back to Professional`);
+  }
 }
+assert.deepEqual(constants.VIBES.map(v => v.id), ["professional", "forest", "minimal", "ember", "princess", "baron", "doodle", "slow-garden"], "The approved eight themes retain their order");
+assert.equal(open({ query: "?doodle-design=original-strokes&vibe=rose" }).dataset.vibe, constants.DEFAULT_VIBE, "Explicit archived links also override legacy design links");
 assert.equal(constants.VIBES[constants.VIBES.findIndex(v => v.id === "doodle") + 1].id, "slow-garden", "Slow Garden follows Doodle Lab in the cycle");
 console.log("Vibe initializer: all appearances, persistent selection, direct links, invalid values, blocked storage, and Doodle Lab compatibility passed.");

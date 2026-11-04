@@ -1,5 +1,5 @@
 /*
- * Eleven complete visual systems share the same semantic markup. Forest Folio
+ * Active and archived visual systems share the same semantic markup. Forest Folio
  * is the original design in globals.css; the other modes deliberately change
  * layout, density, decoration, and typography as well as color.
  */
@@ -10,6 +10,30 @@
   z-index: 80;
   right: max(0.9rem, env(safe-area-inset-right));
   bottom: max(0.9rem, env(safe-area-inset-bottom));
+  max-width: calc(100% - 2rem);
+  margin: 0;
+}
+
+/* Let the last content and keyboard-focused links scroll clear of the widget. */
+@media screen {
+  html:not([data-vibe-control="dismissed"]):has(.vibe-control) {
+    scroll-padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+
+  html:not([data-vibe-control="dismissed"]) body:has(.vibe-control:not(.vibe-control-inline)) {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+.vibe-cycle-compact-label { display: none; }
+.vibe-mobile-trigger, .vibe-mobile-current { display: none; }
+.vibe-control-panel { display: contents; }
+
+.vibe-control:not(.vibe-control-inline) { padding-right: 2.75rem; }
+
+.vibe-control button:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
 }
 
 .vibe-stepper {
@@ -90,24 +114,25 @@ html[data-vibe-control="dismissed"]
 }
 
 .vibe-control:not(.vibe-control-inline) .vibe-cycle-button {
-  padding-right: 3.65rem;
+  padding-right: .8rem;
 }
 
 .vibe-dismiss-button {
   position: absolute;
   z-index: 2;
-  top: 0.25rem;
-  right: 0.25rem;
+  top: 0;
+  right: 0;
   display: grid;
   width: 2.75rem;
-  height: 2.75rem;
+  height: 100%;
+  min-height: 2.75rem;
   place-items: center;
   padding: 0;
-  border: 0;
-  border-left: 1px solid var(--border-soft);
-  border-radius: 0 0.4rem 0.4rem 0;
-  background: transparent;
-  color: var(--muted);
+  border: 1px solid var(--border);
+  border-left: 0;
+  border-radius: 0 .55rem .55rem 0;
+  background: var(--panel-strong);
+  color: var(--foreground);
   font: inherit;
   font-size: 1.05rem;
   line-height: 1;
@@ -304,7 +329,6 @@ html[data-vibe="whimsical"] .home-hero-image-whimsical,
 html[data-vibe="codex"] .home-hero-image-codex,
 html[data-vibe="ember"] .home-hero-image-ember,
 html[data-vibe="ocean"] .home-hero-image-ocean,
-html[data-vibe="princess"] .home-hero-image-whimsical,
 html[data-vibe="baron"] .home-hero-image-ember,
 html[data-vibe="rose"] .home-hero-image-codex {
   display: block;
@@ -2755,6 +2779,10 @@ html[data-vibe="princess"] .brand-tagline {
   color: #85596f;
 }
 
+html[data-vibe="princess"] .sidebar-note {
+  color: #75465e;
+}
+
 html[data-vibe="princess"] .site-nav-link:hover {
   border-color: rgba(189, 63, 122, 0.3);
   background: rgba(255, 255, 255, 0.55);
@@ -2813,11 +2841,6 @@ html[data-vibe="princess"] .home-hero::after {
     linear-gradient(0deg, rgba(68, 18, 46, 0.6), transparent 58%);
 }
 
-html[data-vibe="princess"] .home-hero-image-whimsical {
-  opacity: 0.88;
-  filter: sepia(0.12) saturate(1.12) hue-rotate(294deg) contrast(1.02) brightness(0.86);
-}
-
 html[data-vibe="princess"] .home-kicker {
   color: #f6cb72;
 }
@@ -2874,6 +2897,19 @@ html[data-vibe="princess"] .vibe-picker-label {
 html[data-vibe="princess"] .vibe-cycle-name,
 html[data-vibe="princess"] .vibe-picker-chevron {
   color: #f6cb72;
+}
+
+/* Keep floating controls readable over the lightest possible page surface. */
+html[data-vibe="princess"] .vibe-control:not(.vibe-control-inline) .vibe-previous-button {
+  color: var(--foreground);
+}
+
+html[data-vibe="princess"] .vibe-control:not(.vibe-control-inline) .vibe-cycle-action {
+  color: #fff3f8;
+}
+
+html[data-vibe="princess"] .vibe-control:not(.vibe-control-inline) :is(.vibe-cycle-name, .vibe-cycle-mark) {
+  color: #ffe0a0;
 }
 
 html[data-vibe="princess"] .vibe-select option {
@@ -3093,6 +3129,12 @@ html[data-vibe="baron"] .section-eyebrow,
 html[data-vibe="baron"] .archive-label,
 html[data-vibe="baron"] .project-kicker {
   color: #a84751;
+}
+
+/* Small project labels need more contrast; retain the deeper decorative red. */
+html[data-vibe="baron"] .project-kicker,
+html[data-vibe="baron"] .content-flow:has(> .projects-grid) > .section-heading .section-eyebrow {
+  color: #ce727c;
 }
 
 html[data-vibe="baron"] .home-title {
@@ -3604,6 +3646,8 @@ html[data-vibe]
   .vibe-cycle-button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 /* Responsive adaptations for the alternate layout systems. */
@@ -3634,17 +3678,123 @@ html[data-vibe]
 }
 
 @media (max-width: 900px) {
-  .vibe-control:not(.vibe-control-inline) {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: max-content;
-    max-width: 100%;
-    margin-top: 0.75rem;
+  /* Same controls and behavior, with a compact footprint at narrow widths. */
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) {
+    padding-right: 2.75rem;
+    transform: none;
   }
 
-  .vibe-cycle-button {
-    max-width: 100%;
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) .vibe-previous-button {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    color: var(--foreground);
+  }
+
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) .vibe-cycle-button {
+    width: 5.5rem;
+    min-width: 5.5rem;
+    min-height: 2.75rem;
+    grid-template-columns: 1fr auto;
+    gap: .4rem;
+    padding: .5rem .65rem;
+    border-radius: 0;
+    font-size: .875rem;
+    line-height: 1.25;
+  }
+
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) .vibe-cycle-mark {
+    order: 2;
+    width: 1rem;
+    height: 1rem;
+    border: 0;
+    color: inherit;
+  }
+
+  .vibe-control:not(.vibe-control-inline) .vibe-cycle-copy { display: none; }
+  .vibe-control:not(.vibe-control-inline) .vibe-cycle-compact-label { display: inline; }
+
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) .vibe-dismiss-button {
+    top: 0;
+    right: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--border);
+    border-left: 0;
+    background: var(--panel-strong);
+    color: var(--foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-vibe] .vibe-control:not(.vibe-control-inline),
+  html[data-vibe] .vibe-control button {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) {
+    padding: 0;
+    width: 3.5rem;
+    max-width: calc(100% - 2rem);
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .vibe-control:not(.vibe-control-inline) .vibe-mobile-trigger {
+    display: block;
+    width: 3.5rem;
+    min-height: 2.75rem;
+    padding: .5rem .25rem;
+    border: 1px solid var(--border);
+    border-radius: .55rem;
+    background: var(--panel-strong);
+    color: var(--foreground);
+    font: 600 .875rem/1.25 var(--font-ui);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .vibe-control:not(.vibe-control-inline) .vibe-control-panel {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + .5rem);
+    width: 13.125rem;
+    max-width: calc(100vw - 2rem);
+    padding: .75rem 1rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: .55rem;
+    background: var(--panel-strong);
+    color: var(--foreground);
+    box-shadow: 0 4px 18px #0003;
+    pointer-events: auto;
+  }
+
+  .vibe-control[data-mobile-open="true"]:not(.vibe-control-inline) .vibe-control-panel { display: block; }
+
+  .vibe-control:not(.vibe-control-inline) .vibe-mobile-current {
+    display: block;
+    margin: 0 0 .65rem;
+    font: 600 .875rem/1.35 var(--font-ui);
+  }
+
+  html[data-vibe] .vibe-control:not(.vibe-control-inline) .vibe-dismiss-button {
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  /* Before hydration and during collisions, neither the button nor its empty
+     wrapper may intercept a page link. Navigation always retains its dropdown. */
+  .vibe-control:is([data-mobile-blocked="true"], [data-mobile-blocked="pending"]) {
+    visibility: hidden;
+  }
+
+  .vibe-control:is([data-mobile-blocked="true"], [data-mobile-blocked="pending"]) * {
+    pointer-events: none !important;
   }
 }
 
@@ -3855,12 +4005,6 @@ html[data-vibe]
     background:
       linear-gradient(90deg, rgba(74, 20, 51, 0.98), rgba(112, 35, 70, 0.9) 67%, rgba(125, 41, 77, 0.72)),
       linear-gradient(0deg, rgba(68, 18, 46, 0.72), transparent 58%);
-  }
-
-  html[data-vibe="princess"] .home-hero-image-whimsical {
-    opacity: 0.73;
-    object-position: 68% center;
-    filter: sepia(0.12) saturate(1.05) hue-rotate(294deg) contrast(1.04) brightness(0.72);
   }
 
   html[data-vibe="baron"] .home-hero::after {
