@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Play Azhora",
-  description: "A playable 3D adventure on the forested shores of Azhora."
+  description: "A 3D adventure and strategic war simulation prototype. Play the Lizeemi War in Story or explore freely with progressive world loading."
 };
 
 /** The game is a static site on Render; this page shows it full-screen under mcrombie.com. */

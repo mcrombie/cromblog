@@ -107,10 +107,10 @@ export const projects: Record<ProjectSlug, Project> = {
     category: "games",
     title: "Azhora",
     pitch:
-      "Azhora is a 3D adventure game set on a continent I have been drawing and writing about for years.",
+      "A playable prototype combining 3D adventure with an independently advancing strategic war simulation.",
     summary:
-      "Walk, ride, and fly across a low-poly continent of more than a hundred regions, with towns, quests, skills, and a brewing war between its kingdoms. Built in plain JavaScript with Three.js and Electron, mostly by talking to coding agents, and now being refocused on a five-region campaign sandbox.",
-    stack: ["JavaScript", "Three.js", "Electron", "Game design", "Worldbuilding"],
+      "A playable prototype combining 3D adventure with a strategic war simulation. Armies march, battles resolve, and regions change hands independently of the player, while your tactical encounters influence the campaign. Play the Lizeemi War in Story, or roam freely in Explore with progressive world loading that can take about a minute to start.",
+    stack: ["JavaScript", "Three.js", "Electron", "Simulation design", "Game design", "Worldbuilding"],
     // Rendered from the game: Minora with the mountains behind it (the Azhora II post's thumbnail).
     image: {
       src: "/cromblog/azhora-ii/minora.jpg",
@@ -120,7 +120,7 @@ export const projects: Record<ProjectSlug, Project> = {
     },
     links: [
       { label: "Play Azhora", href: "/games/azhora" },
-      { label: "Watch the demos", href: "/cromblog/azhora-ii#demo" },
+      { label: "Azhora III: Lizeem War demo", href: "/cromblog/azhora-iii" },
       { label: "Explore the map", href: "/game-azhora-map" },
       { label: "View GitHub repo", href: "https://github.com/mcrombie/azhora-game", external: true }
     ],
