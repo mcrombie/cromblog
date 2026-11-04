@@ -32,7 +32,7 @@ export type ProjectImage = {
   unoptimized?: boolean;
 };
 
-/** The Projects page's tabs: every project sits in exactly one. */
+/** Catalog categories: every project sits in exactly one. */
 export type ProjectCategory = "apps" | "art" | "books" | "games";
 export const projectCategories: readonly { id: ProjectCategory; label: string }[] = [
   { id: "apps", label: "Apps" },
@@ -84,6 +84,7 @@ export const archivistDemoUrl =
   configuredHttpsUrl(process.env.NEXT_PUBLIC_ARCHIVIST_URL) ??
   archivistDemoFallbackUrl;
 
+/** The complete catalog, including projects not featured in the portfolio. */
 export const projectOrder: ProjectSlug[] = [
   "azhora",
   "big-history-of-virginia",
@@ -99,6 +100,17 @@ export const projectOrder: ProjectSlug[] = [
   "react-chess",
   "polity",
   "pomodoro-clock"
+];
+
+/** The curated Projects page selection; keep the full catalog and its links intact. */
+export const featuredProjectOrder: readonly ProjectSlug[] = [
+  "archivist",
+  "azhora",
+  "big-history-of-virginia",
+  "clashvergence",
+  "world-builder",
+  "phoneme-chart",
+  "react-chess"
 ];
 
 export const projects: Record<ProjectSlug, Project> = {
@@ -147,10 +159,10 @@ export const projects: Record<ProjectSlug, Project> = {
     category: "books",
     title: "Cradle of the Empire: A Big History of Virginia",
     pitch:
-      "Cradle of the Empire is a big history of Virginia, tracing the land and its people from deep geological time through to the present.",
+      "A published history of Virginia and its relationship to the development of American power, built on four years of independent research and writing.",
     summary:
-      "A four-year history project spanning Virginia's geological formation, deep human history, and political development, published as a standalone book rather than software.",
-    stack: ["Research", "Long-form writing", "Editing", "Self-publishing"],
+      "A completed and independently published nonfiction book exploring Virginia's history and its relationship to the development of American power. Four years of independent historical research and long-form writing, with editorial collaboration to bring the first edition to publication.",
+    stack: ["Historical research", "Long-form nonfiction", "Editorial collaboration", "Independent publishing"],
     image: {
       src: "/cromblog/cradle-of-the-empire/cover.jpg",
       alt: "Cover art for Cradle of the Empire: A Big History of Virginia, showing a great oak on a riverbank with tall ships passing on the water beyond",
@@ -169,7 +181,7 @@ export const projects: Record<ProjectSlug, Project> = {
     pitch:
       "Archivist turns Cradle of the Empire into a source-grounded conversation with the complete substantive manuscript.",
     summary:
-      "A full-stack RAG demonstration built around one published history: conversational follow-ups, premise and absence handling, edition-qualified citations, bounded public excerpts, cost controls, and selectable historiographical framing.",
+      "A full-stack RAG demonstration built around one published history: conversational follow-ups, premise and absence handling, edition-qualified citations, bounded public excerpts, cost controls, selectable historiographical framing, and retrieval evaluation.",
     stack: [
       "Python",
       "FastAPI",
