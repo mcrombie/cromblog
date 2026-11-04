@@ -2,6 +2,9 @@
   "name": "cromblog",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=24.22.2 <25"
+  },
   "description": "A quiet editorial portfolio built with Next.js.",
   "scripts": {
     "dev": "next dev",
@@ -13,7 +16,8 @@
     "doodles:prepare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-doodle-assets.ps1",
     "doodles:review": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/review-doodle-assets.ps1",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint app components content lib proxy.ts",
+    "typecheck": "next typegen && tsc --noEmit --incremental false",
     "thumbs": "node scripts/make-doodle-thumbs.mjs",
     "prebuild": "node scripts/check-doodle-thumbs.mjs"
   },
@@ -21,22 +25,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "next": "^13.4.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sharp": "0.35.5",
     "three": "^0.186.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@types/node": "^20.10.6",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "@types/three": "^0.186.0",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^13.4.19",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.5",
     "postcss": "^8.4.31",
-    "sharp": "^0.35.5",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   }

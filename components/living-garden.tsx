@@ -41,7 +41,10 @@ export function LivingGarden({ embedded = false }: { embedded?: boolean }) {
     const timer = window.setInterval(update, 30_000);
     document.addEventListener("visibilitychange", update);
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReducedMotion(preference.matches);
+    const updatePreference = () => {
+      setReducedMotion(preference.matches);
+      if (preference.matches) setPlaying(false);
+    };
     updatePreference();
     preference.addEventListener("change", updatePreference);
     return () => {
@@ -52,18 +55,15 @@ export function LivingGarden({ embedded = false }: { embedded?: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (!playing) return;
-    if (reducedMotion) { setPlaying(false); return; }
+    if (!playing || reducedMotion) return;
     // Playback is an explicit preview, never a change to the planting date.
     const timer = window.setInterval(() => {
-      setOffset((days) => Math.min(MAX_DAYS, days + 7));
+      const nextOffset = Math.min(MAX_DAYS, offset + 7);
+      setOffset(nextOffset);
+      if (nextOffset >= MAX_DAYS) setPlaying(false);
     }, 350);
     return () => window.clearInterval(timer);
-  }, [playing, reducedMotion]);
-
-  useEffect(() => {
-    if (offset >= MAX_DAYS) setPlaying(false);
-  }, [offset]);
+  }, [playing, reducedMotion, offset]);
 
   function changeZoom(factor: number) {
     setView((current) => clampGardenView({ ...current, zoom: current.zoom * factor }));
