@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState, type ChangeEvent } from "react";
+import { useId, useState, useSyncExternalStore, type ChangeEvent } from "react";
 import { DOODLE_DESIGN_QUERY_KEY } from "@/lib/doodle-designs";
 import styles from "./vibe-navigation.module.css";
 
@@ -20,6 +20,27 @@ function setDocumentVibe(vibe: VibeId) {
   window.dispatchEvent(new CustomEvent(VIBE_CHANGE_EVENT, { detail: vibe }));
 }
 
+function subscribeVibe(onChange: () => void) {
+  const syncStoredVibe = (event: StorageEvent) => {
+    if (event.key === VIBE_STORAGE_KEY) {
+      setDocumentVibe(isVibeId(event.newValue) ? event.newValue : DEFAULT_VIBE);
+    }
+  };
+  window.addEventListener("storage", syncStoredVibe);
+  window.addEventListener(VIBE_CHANGE_EVENT, onChange);
+  return () => {
+    window.removeEventListener("storage", syncStoredVibe);
+    window.removeEventListener(VIBE_CHANGE_EVENT, onChange);
+  };
+}
+
+function readDocumentVibe() {
+  const vibe = document.documentElement.dataset.vibe;
+  return isVibeId(vibe) ? vibe : null;
+}
+
+const serverVibe = () => null;
+
 type VibeCycleButtonProps = {
   variant?: "floating" | "inline" | "navigation";
 };
@@ -27,43 +48,9 @@ type VibeCycleButtonProps = {
 export function VibeCycleButton({
   variant = "floating"
 }: VibeCycleButtonProps) {
-  const [vibe, setVibe] = useState<VibeId | null>(null);
+  const vibe = useSyncExternalStore(subscribeVibe, readDocumentVibe, serverVibe);
   const [announcement, setAnnouncement] = useState("");
   const pickerId = useId();
-
-  useEffect(() => {
-    const documentVibe = document.documentElement.dataset.vibe;
-
-    if (isVibeId(documentVibe)) {
-      setVibe(documentVibe);
-    }
-
-    const syncStoredVibe = (event: StorageEvent) => {
-      if (event.key === VIBE_STORAGE_KEY) {
-        const storedVibe = isVibeId(event.newValue)
-          ? event.newValue
-          : DEFAULT_VIBE;
-
-        setDocumentVibe(storedVibe);
-        setVibe(storedVibe);
-      }
-    };
-
-    const syncVisibleVibe = (event: Event) => {
-      const changedVibe = (event as CustomEvent<unknown>).detail;
-
-      if (isVibeId(changedVibe)) {
-        setVibe(changedVibe);
-      }
-    };
-
-    window.addEventListener("storage", syncStoredVibe);
-    window.addEventListener(VIBE_CHANGE_EVENT, syncVisibleVibe);
-    return () => {
-      window.removeEventListener("storage", syncStoredVibe);
-      window.removeEventListener(VIBE_CHANGE_EVENT, syncVisibleVibe);
-    };
-  }, []);
 
   const resolvedVibe = vibe ?? DEFAULT_VIBE;
   const currentIndex = VIBES.findIndex((option) => option.id === resolvedVibe);
@@ -107,7 +94,6 @@ export function VibeCycleButton({
     }
 
     setDocumentVibe(nextOption.id);
-    setVibe(nextOption.id);
     setAnnouncement(`Appearance changed to ${nextOption.label}.`);
 
     try {

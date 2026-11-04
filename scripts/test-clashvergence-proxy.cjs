@@ -82,7 +82,7 @@ function harness({ env = {}, upstream, immediateTimeout = false } = {}) {
       const handler = ["GET", "POST", "DELETE"].includes(method)
         ? routeModule.exports[method]
         : routeModule.exports.GET;
-      return handler(request, { params: { path: segments } });
+      return handler(request, { params: Promise.resolve({ path: segments }) });
     }
   };
 }

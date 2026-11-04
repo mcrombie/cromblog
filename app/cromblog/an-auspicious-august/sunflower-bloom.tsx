@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 const animationBase =
   "/cromblog/auspicious-august-and-a-signal-september/sunflower-bloom-only";
@@ -9,13 +9,23 @@ const animationBase =
 const animationAlt =
   "A hand-tinted nineteenth-century botanical plate in which a sunflower gradually opens from a tight bud into a full bloom.";
 
+function subscribeMotion(onChange: () => void) {
+  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  preference.addEventListener("change", onChange);
+  return () => preference.removeEventListener("change", onChange);
+}
+
+const readReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const serverReducedMotion = () => true;
+
 export function SunflowerBloom() {
-  const [playing, setPlaying] = useState(false);
+  const reducedMotion = useSyncExternalStore(subscribeMotion, readReducedMotion, serverReducedMotion);
+  const [playbackChoice, setPlaying] = useState<boolean | null>(null);
+  const playing = playbackChoice ?? !reducedMotion;
   const [run, setRun] = useState(0);
 
   useEffect(() => {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPlaying(!motionPreference.matches);
 
     const handleMotionPreference = (event: MediaQueryListEvent) => {
       if (event.matches) setPlaying(false);

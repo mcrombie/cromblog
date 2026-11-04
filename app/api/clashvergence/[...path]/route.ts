@@ -28,7 +28,7 @@ const RATE_POLICIES: Record<string, RatePolicy> = {
 const rateBuckets = new Map<string, RateBucket>();
 
 type RouteContext = {
-  params: { path: string[] };
+  params: Promise<{ path: string[] }>;
 };
 
 type Operation = "create" | "state" | "delete" | "advance" | "history";
@@ -87,7 +87,8 @@ function validPayload(operation: Operation, value: unknown): boolean {
 
 function clientIdentity(request: NextRequest): string {
   const forwardedFor = request.headers.get("x-forwarded-for")?.split(",", 1)[0];
-  const candidate = request.ip || request.headers.get("x-real-ip") || forwardedFor;
+  // NextRequest.ip was removed in Next 15. Vercel supplies these at its edge.
+  const candidate = request.headers.get("x-real-ip") || forwardedFor;
   return (candidate?.trim() || "unknown").slice(0, 128);
 }
 
@@ -173,7 +174,8 @@ function backendRequestUrl(baseUrl: URL, path: string[]): URL {
 }
 
 async function proxy(request: NextRequest, context: RouteContext) {
-  const operations = allowedOperations(context.params.path);
+  const { path } = await context.params;
+  const operations = allowedOperations(path);
   if (!operations) return errorResponse("Unknown demo endpoint.", 404);
   const operation = Object.prototype.hasOwnProperty.call(operations, request.method)
     ? operations[request.method]
@@ -193,9 +195,9 @@ async function proxy(request: NextRequest, context: RouteContext) {
     );
   }
 
-  const target = backendRequestUrl(baseUrl, context.params.path);
+  const target = backendRequestUrl(baseUrl, path);
 
-  const rateLimit = enforceRateLimit(request, context.params.path);
+  const rateLimit = enforceRateLimit(request, path);
   if (!rateLimit.allowed) {
     return NextResponse.json(
       { error: "Too many demo requests. Please wait and try again." },

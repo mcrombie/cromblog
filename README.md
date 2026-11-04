@@ -4,10 +4,11 @@ Cromblog is Michael Crombie's personal site for essays, projects, and project no
 
 ## Development
 
-Install dependencies:
+Use Node.js 24 LTS, version 24.22.2 or later in the 24.x line. The runtime
+requirement is recorded in `package.json`. Install the reviewed dependency set:
 
 ```bash
-npm install
+npm ci
 ```
 
 Run the local development server:
@@ -16,11 +17,19 @@ Run the local development server:
 npm run dev
 ```
 
-Build the production site:
+Run the framework checks and build the production site. Next.js 16 does not
+run ESLint as part of its build, so keep the lint step explicit:
 
 ```bash
+npm run lint
+npm run typecheck
+node scripts/test-draft-proxy.cjs
+node scripts/test-clashvergence-proxy.cjs
 npm run build
 ```
+
+The bounded Next.js 16 migration, security findings, and remaining release
+checks are recorded in [the security upgrade review](docs/next-security-upgrade-20261104.md).
 
 For a non-Vercel deployment, set `NEXT_PUBLIC_SITE_URL` to the canonical site
 origin so Open Graph and social-preview image URLs resolve correctly.

@@ -112,6 +112,7 @@ export default function AzhoraViewerPage() {
   const simRef    = useRef<SimWorld | null>(null)
   const viewRef   = useRef({ x: 0, y: 0, zoom: 1 })
   const dragging  = useRef(false)
+  const [isDragging, setIsDragging] = useState(false)
   const lastPos   = useRef({ x: 0, y: 0 })
 
   const [simWorld, setSimWorld] = useState<SimWorld | null>(null)
@@ -282,6 +283,7 @@ export default function AzhoraViewerPage() {
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     dragging.current = true
+    setIsDragging(true)
     lastPos.current  = { x: e.clientX, y: e.clientY }
   }, [])
 
@@ -296,7 +298,10 @@ export default function AzhoraViewerPage() {
     [render],
   )
 
-  const onMouseUp = useCallback(() => { dragging.current = false }, [])
+  const onMouseUp = useCallback(() => {
+    dragging.current = false
+    setIsDragging(false)
+  }, [])
 
   const onWheel = useCallback(
     (e: React.WheelEvent) => {
@@ -409,7 +414,7 @@ export default function AzhoraViewerPage() {
             display: 'block',
             width: '100%',
             height: '100%',
-            cursor: dragging.current ? 'grabbing' : 'grab',
+            cursor: isDragging ? 'grabbing' : 'grab',
           }}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
