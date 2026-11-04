@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "azhora-iv"
   | "archivist-v-updating-the-corpus"
   | "site-security-i"
   | "cradle-of-the-empire-ii-the-paperback"
@@ -96,6 +97,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "azhora-iv",
   "archivist-v-updating-the-corpus",
   "site-security-i",
   "cradle-of-the-empire-ii-the-paperback",
@@ -126,6 +128,24 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "azhora-iv": {
+    slug: "azhora-iv",
+    title: "Azhora IV: From Development to Deployment",
+    href: "/cromblog/azhora-iv",
+    status: "published",
+    date: "November 4, 2026",
+    readTime: "3 min read",
+    series: "azhora",
+    summary:
+      "Simplifying Azhora’s launcher, preparing its public release, and making the game a more presentable part of my software development portfolio before moving on.",
+    image: {
+      src: "/cromblog/azhora-ii/minora.jpg",
+      alt: "The white-walled city of Minora and its Guild tower in Azhora, with mountains rising behind it.",
+      width: 1920,
+      height: 1080,
+      unoptimized: true
+    }
+  },
   "archivist-v-updating-the-corpus": {
     slug: "archivist-v-updating-the-corpus",
     title: "Archivist V: Updating the Corpus",
