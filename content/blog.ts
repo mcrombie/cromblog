@@ -139,8 +139,8 @@ export const blogPosts = {
     summary:
       "Simplifying Azhora’s launcher, preparing its public release, and making the game a more presentable part of my software development portfolio before moving on.",
     image: {
-      src: "/cromblog/azhora-ii/minora.jpg",
-      alt: "The white-walled city of Minora and its Guild tower in Azhora, with mountains rising behind it.",
+      src: "/cromblog/azhora-iv/ambron.jpg",
+      alt: "In-game view of Ambron’s palace, stone towers, city walls, and harbor in Azhora.",
       width: 1920,
       height: 1080,
       unoptimized: true
