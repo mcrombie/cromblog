@@ -17,7 +17,7 @@ export default function CromblogPage() {
         <SectionHeading
           eyebrow="Cromblog"
           title="Cromblog"
-          description="This is a series of essays primarily focused with my learning journey since my transition from history writing back to the world of software development."
+          description="Essays on software development, history, research, and creative projects."
         />
         <DoodleArt
           assetId={cromblogMastheadDoodle.assetId}

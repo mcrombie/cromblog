@@ -1,5 +1,4 @@
 import type { BlogSeriesSlug } from "@/content/blog";
-import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type ProjectSlug =
@@ -164,10 +163,10 @@ export const projects: Record<ProjectSlug, Project> = {
       "A completed and independently published nonfiction book exploring Virginia's history and its relationship to the development of American power. Four years of independent historical research and long-form writing, with editorial collaboration to bring the first edition to publication.",
     stack: ["Historical research", "Long-form nonfiction", "Editorial collaboration", "Independent publishing"],
     image: {
-      src: "/cromblog/cradle-of-the-empire/cover.jpg",
-      alt: "Cover art for Cradle of the Empire: A Big History of Virginia, showing a great oak on a riverbank with tall ships passing on the water beyond",
-      width: 1792,
-      height: 2688
+      src: "/cromblog/cradle-of-the-empire-ii-the-paperback/wraparound-cover.webp",
+      alt: "Full wraparound paperback cover of Cradle of the Empire: A Big History of Virginia, showing the back cover, spine, and front cover.",
+      width: 2400,
+      height: 1606
     },
     links: [
       { label: "Order the ebook", href: "https://www.amazon.com/dp/B0H6VNH94K", external: true },
@@ -191,7 +190,12 @@ export const projects: Record<ProjectSlug, Project> = {
       "Chroma",
       "RAG evaluation"
     ],
-    image: archivistArt.featured,
+    image: {
+      src: "/cromblog/archivist-iv-demo/archivist-demo-poster.jpg",
+      alt: "Archivist's opening screen: an engraved oak beside the Cradle of the Empire title, a question box, and four starter questions.",
+      width: 1920,
+      height: 1080
+    },
     links: [
       {
         label: "Open live demo",
