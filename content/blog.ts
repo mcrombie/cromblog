@@ -2,6 +2,7 @@ import { archivistArt } from "@/content/archivist-art";
 import { gameArt } from "@/content/game-art";
 
 export type BlogSlug =
+  | "site-security-ii"
   | "azhora-iv"
   | "archivist-v-updating-the-corpus"
   | "site-security-i"
@@ -97,6 +98,7 @@ export const blogSeries: Record<BlogSeriesSlug, BlogSeries> = {
 };
 
 export const blogOrder: BlogSlug[] = [
+  "site-security-ii",
   "azhora-iv",
   "archivist-v-updating-the-corpus",
   "site-security-i",
@@ -128,6 +130,24 @@ export const blogOrder: BlogSlug[] = [
 ];
 
 export const blogPosts = {
+  "site-security-ii": {
+    slug: "site-security-ii",
+    title: "Securing CromBlog II: Upgrading Next.js",
+    href: "/cromblog/site-security-ii",
+    status: "published",
+    date: "November 5, 2026",
+    readTime: "3 min read",
+    series: "site-security",
+    summary:
+      "Upgrading CromBlog from Next.js 13 to Next.js 16, testing the migration, and deploying the updated website with no known production dependency vulnerabilities.",
+    image: {
+      src: "/cromblog/site-security-ii/thumbnail-v1.webp",
+      alt: "Pencil-and-ink illustration of a laptop displaying a green shield, brass padlock, upward arrow, and the number 16, with a completed checklist and screwdriver on a fern-framed wooden desk.",
+      width: 1672,
+      height: 941,
+      unoptimized: true
+    }
+  },
   "azhora-iv": {
     slug: "azhora-iv",
     title: "Azhora IV: From Development to Deployment",
@@ -165,7 +185,7 @@ export const blogPosts = {
   },
   "site-security-i": {
     slug: "site-security-i",
-    title: "Site Security I: A One-Day Review with Codex",
+    title: "Securing CromBlog: A Day of Cybersecurity with Codex",
     href: "/cromblog/site-security-i",
     status: "published",
     date: "November 2, 2026",
