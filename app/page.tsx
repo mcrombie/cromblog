@@ -46,7 +46,6 @@ export default function HomePage() {
         <section className="home-feature home-diptych" aria-labelledby="featured-work-title">
           <header className="diptych-heading">
             <h2 id="featured-work-title">Featured Work</h2>
-            <p>Software and history, in conversation.</p>
           </header>
 
           <div className="diptych-pages">
