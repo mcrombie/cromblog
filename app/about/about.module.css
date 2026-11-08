@@ -1,0 +1,72 @@
+.letter {
+  max-width: 720px;
+  margin-inline: auto;
+  padding-block: clamp(.75rem, 2vw, 1.5rem) 3rem;
+  color: var(--copy);
+  font: 400 1.12rem/1.85 var(--font-article);
+}
+
+.opening { margin-bottom: 1.3em; }
+
+.label {
+  margin: 0 0 2.5rem;
+  color: var(--muted);
+  font: 500 .72rem/1.5 var(--font-ui);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.salutation, .signoff p { color: inherit; font: inherit; font-style: italic; }
+.salutation { margin: 0 0 .8em; }
+.welcome { margin: 0; color: var(--bone); font-weight: 500; }
+
+.prose p { margin: 0 0 1.3em; color: inherit; font: inherit; }
+.prose p:last-child { margin-bottom: 0; }
+.prose p.aside { font-style: italic; }
+.prose cite { font-style: italic; }
+
+.prose a {
+  color: var(--brass-bright);
+  text-decoration: underline;
+  text-decoration-color: var(--brass);
+  text-underline-offset: .2em;
+}
+.prose a:hover { color: var(--bone); }
+.letter a:focus-visible { outline: 2px solid var(--brass-bright); outline-offset: 5px; }
+
+.closing { margin-top: 2rem; }
+.signoff p { margin: 0; }
+.signoff p + p { margin-top: .3em; }
+
+.illustration {
+  width: 90%;
+  max-width: 576px;
+  margin: 1.75rem 0 0;
+  overflow: hidden;
+  background: #f7f0e6;
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+}
+.illustration img { display: block; width: 100%; height: auto; aspect-ratio: 3/2; object-fit: contain; }
+
+:global(html[data-vibe="professional"]) .letter { --bone: #17363d; --copy: #34474d; --muted: #596d72; }
+:global(html[data-vibe="professional"]) .illustration { border-color: #d8e0e2; }
+:global(html[data-vibe="minimal"]) .letter { --bone: #181818; --copy: #333; --muted: #666; }
+:global(html[data-vibe="doodle"]) .illustration { padding: 6px; border-color: var(--border); background: var(--doodle-mat-paper); }
+:global(html[data-vibe="slow-garden"]) .illustration { border-radius: 0; border-color: #a3a27880; }
+
+@media (max-width: 639px) {
+  .letter { padding-block: .5rem 3rem; font-size: 1.04rem; line-height: 1.8; }
+  .label { margin-bottom: 1.75rem; font-size: .66rem; }
+  .prose p { margin-bottom: 1.2em; }
+  .opening { margin-bottom: 1.2em; }
+  .closing { margin-top: 1.75rem; }
+  .illustration { margin-top: 1.5rem; }
+}
+
+@media print {
+  .letter { max-width: none; font-size: 11pt; }
+  .label { margin-bottom: 1.5rem; }
+  .signoff, .illustration { break-inside: avoid; }
+  .illustration { max-width: 100mm; }
+}
