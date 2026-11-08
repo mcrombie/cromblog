@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { DoodleHomeFigure, DoodleHomeNote } from "@/components/doodle-home-hero";
 import { HomeLatestPost } from "@/components/home-discovery";
 import { archivistDemoUrl, projects } from "@/content/site";
@@ -51,7 +50,6 @@ export default function HomePage() {
           <div className="diptych-pages">
             <article className="diptych-page diptych-page--archivist" aria-labelledby="featured-archivist-title">
               <header className="diptych-intro">
-                <p className="diptych-label">Software &amp; AI</p>
                 <h3 id="featured-archivist-title" className="diptych-title">Archivist</h3>
               </header>
               <div className="diptych-media diptych-media--archivist">
@@ -84,7 +82,6 @@ export default function HomePage() {
             <article className="diptych-page diptych-page--book" aria-labelledby="featured-book-title">
               <div className="diptych-book-copy">
                 <header className="diptych-intro">
-                  <p className="diptych-label">History &amp; Writing</p>
                   <h3 id="featured-book-title" className="diptych-title">
                     Cradle of the Empire{" "}<span className="diptych-subtitle">A Big History of Virginia</span>
                   </h3>
@@ -94,9 +91,9 @@ export default function HomePage() {
                   in the development of American power over four centuries.
                 </p>
                 <div className="diptych-endnote">
-                  <Link href="/cromblog/cradle-of-the-empire-ii-the-paperback" className="diptych-action">
-                    Explore the Book <span aria-hidden="true">→</span>
-                  </Link>
+                  <a href="https://www.amazon.com/dp/B0HPCQGLPM" className="diptych-action">
+                    Order the Book <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               </div>
               <div className="diptych-media diptych-media--book">
