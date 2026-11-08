@@ -1,0 +1,196 @@
+/* C: Balanced Folio. B's compact book/text grouping, with landscape Archivist art. */
+.home-feature.home-diptych {
+  --diptych-accent: var(--brass-bright);
+  --diptych-rule: var(--border);
+  display: block;
+  min-height: 0;
+  isolation: isolate;
+  border-radius: .35rem;
+  border-color: var(--diptych-rule);
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-card);
+}
+.diptych-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .4rem 1.5rem;
+  padding: 1.1rem clamp(1rem, 2.5cqi, 2rem);
+  border-bottom: 1px solid var(--diptych-rule);
+}
+.diptych-heading h2, .diptych-label {
+  margin: 0;
+  color: var(--diptych-accent);
+  font: 700 .7rem/1.45 var(--font-ui);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.diptych-heading p {
+  margin: 0;
+  color: var(--copy);
+  font: 400 clamp(1.05rem, 1.9cqi, 1.4rem)/1.35 var(--font-display);
+}
+.diptych-pages { display: grid; grid-template-columns: minmax(0, 1fr); }
+.diptych-page {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  gap: .75rem;
+  padding: clamp(1rem, 2cqi, 1.5rem);
+}
+.diptych-page--archivist > * { width: 100%; max-width: 26rem; justify-self: center; }
+.diptych-page--archivist > .diptych-summary { max-width: 26rem; }
+.diptych-page--book {
+  grid-template-columns: minmax(7.5rem, .8fr) minmax(0, 1fr);
+  grid-template-rows: auto;
+  column-gap: clamp(1rem, 2cqi, 1.5rem);
+}
+.diptych-book-copy { grid-column: 2; grid-row: 1; display: grid; align-self: center; gap: .75rem; min-width: 0; }
+.diptych-page + .diptych-page { border-top: 1px solid var(--diptych-rule); }
+.diptych-page + .diptych-page::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: .75rem;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--border-soft), transparent);
+}
+.diptych-title {
+  margin: .45rem 0 0;
+  color: var(--bone);
+  font: 500 clamp(1.6rem, 2.6cqi, 2.1rem)/1.08 var(--font-display);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.diptych-subtitle {
+  display: block;
+  margin-top: .4rem;
+  font-size: .5em;
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+.diptych-media {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--panel-raised);
+}
+.diptych-media--archivist { aspect-ratio: 1456 / 816; background: #18394a; }
+.diptych-image { object-fit: cover; object-position: center; }
+.diptych-media--archivist .diptych-image { object-fit: contain; }
+.diptych-media--book {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .55rem;
+  background: #e9dfc9;
+}
+.diptych-media--book::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: .18;
+  background: url("/cromblog/cradle-of-the-empire/cover.jpg") center 60% / cover;
+  pointer-events: none;
+}
+/* Show the existing jacket's complete front, without modifying its artwork. */
+.diptych-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  box-shadow: 1px 2px 2px #1c211f40, 5px 7px 14px #1c211f30;
+}
+.diptych-cover .diptych-image { object-position: right center; }
+.diptych-summary {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--copy);
+  font-size: clamp(.95rem, 1.5cqi, 1.05rem);
+  line-height: 1.6;
+}
+.diptych-endnote {
+  align-self: start;
+  border-top: 1px solid var(--diptych-rule);
+  padding-top: .3rem;
+}
+.diptych-action {
+  display: inline-flex;
+  align-items: center;
+  align-self: end;
+  gap: .6rem;
+  min-height: 2.9rem;
+  max-width: 100%;
+  padding: .3rem 0;
+  color: var(--diptych-accent);
+  font: 700 .94rem/1.4 var(--font-ui);
+  text-decoration: none;
+}
+.diptych-action > [aria-hidden] { font-size: 1.2rem; font-weight: 400; }
+.diptych-action:hover { text-decoration: underline; text-underline-offset: .25em; }
+.diptych-action:focus-visible { outline: 3px solid var(--diptych-accent); outline-offset: 4px; }
+/* Equal panels share a seam; their different image proportions remain intact. */
+@container home-page (min-width: 40rem) {
+  .diptych-pages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .diptych-page { grid-row: 1; }
+  .diptych-page:first-child { grid-column: 1; }
+  .diptych-page + .diptych-page { grid-column: 2; border-top: 0; border-left: 1px solid var(--diptych-rule); }
+  .diptych-page + .diptych-page::before { inset: 0 auto 0 0; width: .75rem; height: auto; background: linear-gradient(to right, var(--border-soft), transparent); }
+}
+/* In narrower side-by-side panels, keep the book's reading column broad and
+ * its action away from the site's existing fixed controls at the right edge. */
+@container home-page (min-width: 40rem) and (max-width: 52rem) {
+  .diptych-page--book { grid-template-columns: minmax(4.75rem, .65fr) minmax(0, 1fr); }
+  .diptych-book-copy { display: contents; }
+  .diptych-page--book .diptych-intro { grid-column: 2; grid-row: 1; align-self: center; }
+  .diptych-media--book { grid-row: 1; padding: .35rem; }
+  .diptych-page--book .diptych-summary { grid-column: 1 / -1; grid-row: 2; }
+  .diptych-page--book .diptych-endnote { grid-column: 1 / -1; grid-row: 3; }
+}
+/* Trim the masthead surround, without altering other pages or themed artwork. */
+html[data-vibe="professional"] .home-hero--balanced .home-hero-copy,
+html[data-vibe="forest"] .home-hero--balanced .home-hero-copy {
+  padding: clamp(1.1rem, 2.4cqi, 1.75rem) clamp(1rem, 2.2cqi, 1.75rem) 0;
+}
+html[data-vibe="professional"] .home-hero--balanced .home-diptych,
+html[data-vibe="forest"] .home-hero--balanced .home-diptych {
+  margin: 1rem clamp(1rem, 2.2cqi, 1.75rem) clamp(1rem, 2.2cqi, 1.75rem);
+}
+html[data-vibe="professional"] .home-diptych { --diptych-rule: #b7cdce; box-shadow: 0 15px 35px #071b261f; }
+html[data-vibe="professional"] .diptych-page--book { background: #cda15d09; }
+html[data-vibe="forest"] .home-diptych { --diptych-rule: #cda15d60; background: #10231df5; }
+html[data-vibe="forest"] .diptych-page--book { background: #cda15d05; }
+html[data-vibe="minimal"] .home-diptych { box-shadow: none; }
+html[data-vibe="princess"] .home-diptych { --diptych-accent: #814d12; }
+html[data-vibe="doodle"] .diptych-heading h2,
+html[data-vibe="doodle"] .diptych-label { font-family: var(--font-hand), "Segoe Print", var(--font-display); font-size: 1.05rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+html[data-vibe="doodle"] .diptych-media { outline: 1px solid var(--border); outline-offset: 3px; }
+html[data-vibe="slow-garden"] .diptych-heading { border-bottom: 3px double var(--diptych-rule); }
+@media (max-width: 639px) {
+  .home-feature.home-diptych { margin-inline: .75rem; }
+  .diptych-heading { padding: .9rem 1rem; }
+  .diptych-heading p { max-width: 24ch; }
+  .diptych-page { gap: .75rem; padding: 1rem; }
+  .diptych-title { font-size: 1.45rem; text-wrap: initial; }
+  .diptych-label { letter-spacing: .07em; }
+  .diptych-subtitle { font-size: .64em; }
+  .diptych-page--book { grid-template-columns: minmax(4.75rem, .65fr) minmax(0, 1fr); }
+  .diptych-book-copy { display: contents; }
+  .diptych-page--book .diptych-intro { grid-column: 2; grid-row: 1; align-self: center; }
+  .diptych-media--book { grid-row: 1; padding: .35rem; }
+  .diptych-page--book .diptych-summary { grid-column: 1 / -1; grid-row: 2; }
+  .diptych-page--book .diptych-endnote { grid-column: 1 / -1; grid-row: 3; }
+  .diptych-summary { font-size: .95rem; line-height: 1.55; }
+}
+@media (forced-colors: active) {
+  .home-feature.home-diptych, .diptych-heading, .diptych-media,
+  .diptych-page + .diptych-page, .diptych-endnote { border-color: CanvasText; }
+  .diptych-page + .diptych-page::before { display: none; }
+  .diptych-action { color: LinkText; }
+  .diptych-action:focus-visible { outline-color: Highlight; }
+}
