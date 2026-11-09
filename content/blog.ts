@@ -448,10 +448,12 @@ export const blogPosts = {
     summary:
       "Moving beyond vibe coding through primeproofing: combining context engineering with output validation, then testing the process with mygrep and the Clio civilization simulation.",
     image: {
-      src: "/cromblog/primeproofing-beyond-vibe-coding/thumbnail.jpg",
-      alt: "Engraving-style illustration of a cartographer drawing a glowing blue map by candlelight",
+      src: "/cromblog/primeproofing-beyond-vibe-coding/primeproofing-michael-no-vest.webp",
+      alt: "Engraving-style illustration of Michael Crombie in a grid flannel, drawing a glowing blue map by candlelight",
       width: 1200,
-      height: 672
+      height: 671,
+      unoptimized: true,
+      objectPosition: "35% 50%"
     }
   },
   "building-an-llm-from-scratch": {
