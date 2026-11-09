@@ -46,6 +46,7 @@ export type BlogPostImage = {
   height: number;
   unoptimized?: boolean;
   objectPosition?: string;
+  objectFit?: "cover" | "contain";
 };
 
 export type BlogPostBase = {
@@ -384,10 +385,12 @@ export const blogPosts = {
     summary:
       "A live Clashvergence demo, a more grounded narrative generator, and an evaluation that established determinism while exposing the cost of auditing large simulated worlds.",
     image: {
-      src: "/clashvergence/og.png",
-      alt: "Clashvergence Live artwork showing a colored hex-map world beside an open historical chronicle",
-      width: 1731,
-      height: 909
+      src: "/cromblog/simulating-civilizations-iv/clashvergence-turn25-gameplay.webp",
+      alt: "Clashvergence at turn 25, with five factions across a hex map beside simulation controls and a generated history",
+      width: 1600,
+      height: 800,
+      unoptimized: true,
+      objectFit: "contain"
     }
   },
   "an-auspicious-august": {
