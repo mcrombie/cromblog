@@ -1,11 +1,13 @@
 // Current game artwork shared by blog previews, Projects, and Games.
 export const gameArt = {
-  // First Adviser illustration introduced in Clio commit 99e9719 (September 13, 2026).
+  // Published sage-37 renderer, captured offscreen from a replayed turn-28 game.
   clio: {
-    src: "/cromblog/clio/first-adviser.png",
-    alt: "Pencil portrait of Clio's First Adviser, a bearded sage in a pointed hat",
-    width: 1254,
-    height: 1254
+    src: "/cromblog/clio/clio-sage37-turn28.webp",
+    alt: "Clio at turn 28: the Zholhen tribe beside mountains, rivers and woodland, with Gather, Move and End turn controls",
+    width: 1600,
+    height: 960,
+    unoptimized: true,
+    objectFit: "contain"
   },
   // M7 screenshot: cromonsters/artifacts/battle-ui/goblin-desktop.png.
   cromonsters: {
